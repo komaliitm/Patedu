@@ -167,7 +167,8 @@ INSTALLED_APPS = (
     'sms',
     'health_worker',
     'djcelery',
-    'south'
+    'south',
+    'schedule_api',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
