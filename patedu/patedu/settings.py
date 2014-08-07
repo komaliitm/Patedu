@@ -3,12 +3,37 @@ import os
 import os.path
 import logging
 import sys
+from datetime import timedelta
+from celery.schedules import crontab
 #import askbot
 import site
 
 #Setting path variables
 SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__).decode('utf-8'))
 PROJECT_DIR = os.path.dirname(SETTINGS_DIR).decode('utf-8')
+
+# Celery imports
+import djcelery
+djcelery.setup_loader()
+BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+CELERY_RESULT_BACKEND = 'amqp://guest:guest@localhost:5672//'
+CELERY_ALWAYS_EAGER = False
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+# CELERYBEAT_SCHEDULE = {
+#     'add-every-30-seconds': {
+#         'task': 'vaccination.tasks.add',
+#         'schedule': timedelta(seconds=30),
+#         'args': (16, 16)
+#     },
+# }
+
+CELERY_TIMEZONE = 'UTC'
+
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -143,7 +168,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'vaccination',
     'sms',
-    'health_worker'
+    'health_worker',
+    'djcelery',
+    'south'
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
