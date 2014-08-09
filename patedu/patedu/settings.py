@@ -4,7 +4,7 @@ import os.path
 import logging
 import sys
 from datetime import timedelta
-from celery.schedules import crontab
+#from celery.schedules import crontab
 #import askbot
 import site
 
