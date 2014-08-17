@@ -1,4 +1,5 @@
 # Create your views here.
+from __future__ import absolute_import
 import json
 import datetime
 from django.http import HttpResponse, HttpResponseBadRequest
@@ -14,9 +15,15 @@ from django.shortcuts import render_to_response
 from django.core.exceptions import ObjectDoesNotExist
 from common.utils import get_a_Uuid, utcnow_aware
 from datetime import datetime, timedelta
-from models import VaccinationBeneficiary
+from vaccination.models import *
 from health_worker.models import HealthWorker
 from random import randint
+import pytz
+from celery import shared_task
+import unicodedata
+from sms.views import *
+import binascii
+from django.db.models import Q
 
 def APIInfo(request):
 	return HttpResponse('Mobile Interface API')
@@ -29,8 +36,8 @@ def RestBeneficiary(request, id):
 
 	if request.method == 'GET':
 		return HttpResponse(json.dumps(vaccine_benef.json()), mimetype="application/json")
-	elif request.method == 'PATCH' or request.method == 'PUT':
-		req = json.loads(request.raw_post_data)
+	elif request.method == 'POST':
+		req = request.POST
 		name = req.get('name')
 		notif_num = req.get('notif_num')
 		dob = req.get('dob')
@@ -48,7 +55,7 @@ def RestBeneficiary(request, id):
 		if sex is not None: vaccine_benef.Sex = sex
 		if gaurdian_name is not None: vaccine_benef.Gaurdian_name = gaurdian_name
 		if language is not None: vaccine_benef.Language = language
-		if is_verified is not None: vaccine_benef.isVerified = is_verified 
+		if is_verified is not None: vaccine_benef.isVerified = is_verified
 
 		if hw_num is not None:
 			hw = None
@@ -58,13 +65,14 @@ def RestBeneficiary(request, id):
 				hw = HealthWorker(phone=hw_num, username=hw_num, password= "hw123")
 				hw.save()
 			vaccine_benef.health_worker = hw
+		
 		vaccine_benef.ModifiedOn = utcnow_aware()
 
 		vaccine_benef.save()
 		return HttpResponse( json.dumps(vaccine_benef.json()), mimetype="application/json")
 	elif request.method == 'DELETE':
 		vaccine_benef.delete()
-		return HttpResponse("Beneciary deleted")
+		return HttpResponse("Beneficiary deleted")
 	return HttpResponseBadRequest('Unknown http request type') 
 
 def RestBeneficiaryList(request):
@@ -123,7 +131,7 @@ def RestBeneficiaryList(request):
 			if gaurdian_name is not None: benef_post.Gaurdian_name = gaurdian_name
 			if language is not None: benef_post.Language = language
 			
-			if hw_num is not None: 
+			if hw_num is not None:
 				hw = None
 				try:
 					hw = HealthWorker.objects.get(phone=hw_num)
@@ -138,7 +146,122 @@ def RestBeneficiaryList(request):
 			benef_post.BeneficiaryId = get_a_Uuid()
 
 			benef_post.save()
+			generate_schedule(benef_post.BeneficiaryId)
 			return HttpResponse( json.dumps(benef_post.json()), mimetype="application/json")
 		else:
 			return HttpResponseBadRequest('Name or DOB cannot be empty while adding a value')
 	return HttpResponseBadRequest('Unsupported HTTP request type for this URL')
+
+def generate_schedule(benef_id):
+	ret = {"status":0,
+	"msg":""}
+
+	try:
+		vaccine_benef = VaccinationBeneficiary.objects.get(BeneficiaryId=benef_id)
+	except ObjectDoesNotExist:
+		ret["status"] = 1
+		ret["msg"] = "Vaccination Beneficiary ID is not correct"
+		return ret
+
+	if vaccine_benef.isScheduleGenerated:
+		ret["status"] = 1
+		ret["msg"] = "for given beneficiary the schedule is already generated"
+		return ret
+
+	#Generate schedule here
+	timezone = 'Asia/Kolkata'
+	tz = pytz.timezone(timezone)
+	today_utc = utcnow_aware()
+	today = today_utc.astimezone(tz).date()
+
+	dob = vaccine_benef.Dob
+	delta_dob = today - dob
+	today_weeks = delta_dob.days/7
+
+	#TODO: Accomodate richness in model itself
+	richness = [
+		{'stage':'1M', 'days':30},
+		{'stage':'1W', 'days':7},
+		{'stage':'1D', 'days':1},
+		{'stage':'AW1', 'days':15},
+		{'stage':'AW2', 'days':4}
+	]
+
+	#find all vaccines greater than today_weeks
+	vaccines = Vaccinations.objects.filter(AgeInWeeks__gte=today_weeks)
+	for vaccine in vaccines:
+		vaccine_eta = dob + timedelta(days=vaccine.AgeInWeeks*7)
+		
+		#Generate the reminders for future based on richness level
+		for level in richness:
+			rem_eta = vaccine_eta - timedelta(days=level['days'])
+			if rem_eta >= today:
+				try:
+					rem_template = VaccineReminderTemplate.objects.get(Vaccine=vaccine, stage=level['stage'], Language=vaccine_benef.Language)
+					vac_rem = VaccineReminder(vaccine_reference=rem_template, vaccination_beneficiary= vaccine_benef, dueDate= rem_eta, vaccDate=vaccine_eta)
+					vac_rem.save()
+				except ObjectDoesNotExist:
+					print 'Error: Template missing for the vaccine: '+vaccine.vaccineId+' '+level['stage']+' '+vaccine_benef.Language
+			else:
+				#TODO: Account for recently missed vaccinations
+				continue
+
+@shared_task
+def send_reminders():
+	timezone = 'Asia/Kolkata'
+	tz = pytz.timezone(timezone)
+	today_utc = utcnow_aware()
+	today = today_utc.astimezone(tz)
+
+	today_date = today.date()
+
+	reminders = VaccineReminder.objects.filter( Q(state=2)|Q(state=1), Q(dueDate=today_date))
+
+	for reminder in reminders:
+		language = reminder.vaccine_reference.Language
+		vaccine_name = reminder.vaccine_reference.Vaccine.VaccineName
+		benef_name = reminders.vaccination_beneficiary.ChildName
+		benef_number = reminders.vaccination_beneficiary.NotifyNumber
+		gaurdian_name = reminders.vaccination_beneficiary.Gaurdian_name
+		hw = reminders.vaccination_beneficiary.health_worker
+		if hw and hw.firt_name:
+			hw_name = hw.firt_name+' '+hw.last_name
+		else:
+			hw_name = ''
+		vacc_date = '{0.month}/{0.day}/{0.year}'.format(reminder.vaccDate)
+
+		#TODO: Accomodate for IVR, and email later
+		sms_id = reminder.vaccine_reference.sms_message
+		sms_temp = ''
+		try:
+			sms_temp = SMSMessages.objects.get(msg_identifier=sms_id)
+		except ObjectDoesNotExist:
+			print 'ERROR: SMS msg not found for the id: '+sms_id
+			continue
+		sms_temp = sms_temp.replace(u'childName', unicode(benef_name))
+		sms_temp = sms_temp.replace(u'vaccineName', unicode(vaccine_name))
+		sms_temp = sms_temp.replace(u'date', unicode(vacc_date))
+		sms_temp = sms_temp.replace(u'hwName', unicode(hw_name))
+		sms_msg = sms_temp
+		sms_msg_hexlified = binascii.hexlify(sms_msg.encode('utf-8'))
+		#send sms
+		print 'sending sms'
+		sent_code = SendSMSUnicode(recNum=benef_number, msgtxt=sms_msg_hexlified)
+
+		if 'Status=1' in sent_code:
+			reminder.state = 1
+			reminder.errorCode = sent_code
+			reminder.save()
+		elif 'Status=0' in sent_code:
+			reminder.state = 0
+			reminder.save()
+
+
+
+
+
+
+
+		
+
+

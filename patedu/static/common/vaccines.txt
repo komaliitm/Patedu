@@ -1,0 +1,9 @@
+{"VaccineName":"OPV", "AgeInWeeks":0, "notes":"", "vaccineId":"OPV_0"}
+{"VaccineName":"BCG", "AgeInWeeks":0, "notes":"", "vaccineId":"BCG_0"}
+{"VaccineName":"OPV", "AgeInWeeks":6, "notes":"", "vaccineId":"OPV_6"}
+{"VaccineName":"DPT", "AgeInWeeks":6, "notes":"", "vaccineId":"DPT_6"}
+{"VaccineName":"OPV", "AgeInWeeks":9, "notes":"", "vaccineId":"OPV_9"}
+{"VaccineName":"DPT", "AgeInWeeks":9, "notes":"", "vaccineId":"DPT_9"}
+{"VaccineName":"Measles Vaccine", "AgeInWeeks":39, "notes":"", "vaccineId":"MSL_39"}
+{"VaccineName":"DPT", "AgeInWeeks":77, "notes":"", "vaccineId":"DPT_77"}
+{"VaccineName":"OPV", "AgeInWeeks":77, "notes":"booster dose", "vaccineId":"OPV_77"}

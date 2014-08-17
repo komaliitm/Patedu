@@ -11,6 +11,7 @@ def add(x,y):
 	return x+y
 
 @shared_task
-def dummy(x,y):
+def dummy():
     v = Vaccinations('xyz', 12)
     v.save()
+    return 1
