@@ -57,14 +57,25 @@ DB_Password = os.getenv('DB_PASSWORD','')
 DB_Host = os.getenv('DB_HOST','')
 DB_Port = os.getenv('DB_PORT','')
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': DB_Engine, # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+#         'NAME': DB_Name,                      # Or path to database file if using sqlite3.
+#         'USER': DB_UserName,                      # Not used with sqlite3.
+#         'PASSWORD': DB_Password,                  # Not used with sqlite3.
+#         'HOST': DB_Host,                      # Set to empty string for localhost. Not used with sqlite3.
+#         'PORT': DB_Port,                      # Set to empty string for default. Not used with sqlite3.
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': DB_Engine, # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': DB_Name,                      # Or path to database file if using sqlite3.
-        'USER': DB_UserName,                      # Not used with sqlite3.
-        'PASSWORD': DB_Password,                  # Not used with sqlite3.
-        'HOST': DB_Host,                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': DB_Port,                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE':'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME':'dlpmcs_psqldb',                      # Or path to database file if using sqlite3.
+        'USER':'postgres',                      # Not used with sqlite3.
+        'PASSWORD':'dlpmcs',                  # Not used with sqlite3.
+        'HOST':'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT':'',                    # Set to empty string for default. Not used with sqlite3.
     }
 }
 
