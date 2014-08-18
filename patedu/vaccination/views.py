@@ -24,10 +24,13 @@ import unicodedata
 from sms.views import *
 import binascii
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def APIInfo(request):
 	return HttpResponse('Mobile Interface API')
 
+@csrf_exempt
 def RestBeneficiary(request, id):
 	try:
 		vaccine_benef = VaccinationBeneficiary.objects.get(BeneficiaryId=id)
@@ -75,6 +78,7 @@ def RestBeneficiary(request, id):
 		return HttpResponse("Beneficiary deleted")
 	return HttpResponseBadRequest('Unknown http request type') 
 
+@csrf_exempt
 def RestBeneficiaryList(request):
 	if request.method == 'GET':
 		name = request.GET.get('name')
