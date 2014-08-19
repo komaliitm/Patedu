@@ -152,7 +152,7 @@ def RestBeneficiaryList(request):
 
 			benef_post.save()
 			platform = sys.platform
-			
+			print 'platform'
 			generate_schedule(benef_post.BeneficiaryId)
 			welcome_msg_id = 'VAC_WELCOME'
 			if platform == 'linux2':
@@ -188,7 +188,7 @@ def send_welcome_msg(benef_id, msg_id):
 	sms_msg_hexlified = toHex(sms_msg)
 	benef_number = vaccine_benef.NotifyNumber
 	#send sms
-	pprint(sending welcome sms)
+	pprint('sending welcome sms')
 	sent_code = SendSMSUnicode(recNum=benef_number, msgtxt=sms_msg_hexlified)
 
 	if 'Status=1' in sent_code:
