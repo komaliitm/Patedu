@@ -17,6 +17,7 @@ import inspect
 #from vaccination.models import Vaccinations
 from django.core.exceptions import ObjectDoesNotExist
 import pytz
+from schedule_api.models import TaskScheduler
 
 def toHex(s):
     res = ""
@@ -94,6 +95,11 @@ def LoadInitialVaccineSMSData(orm):
     #     line = line.decode('utf-8')
     #     msg_object = json.loads(line.strip())
     #     orm.SMSMessagesHindi.objects.create(msg_identifier=msg_object["msg_identifier"], msg=msg_object["msg"])
+
+def LoadInitialScheduleData(orm):
+
+    global HANDLE
+    TaskScheduler.schedule_every(task_name='vaccination.views.send_reminders', period='minutes', every='30')
 
 def checkmark(*arg):    
 
