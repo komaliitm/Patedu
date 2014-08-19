@@ -25,6 +25,7 @@ from sms.views import *
 import binascii
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
+import sys
 
 @csrf_exempt
 def APIInfo(request):
@@ -150,9 +151,14 @@ def RestBeneficiaryList(request):
 			benef_post.BeneficiaryId = get_a_Uuid()
 
 			benef_post.save()
+			platform = sys.platform
+			
 			generate_schedule(benef_post.BeneficiaryId)
 			welcome_msg_id = 'VAC_WELCOME'
-			result = send_welcome_msg(benef_post.BeneficiaryId, welcome_msg_id)
+			if platform == 'linux2':
+				result = send_welcome_msg.delay(benef_post.BeneficiaryId, welcome_msg_id)
+			else:
+				result = send_welcome_msg(benef_post.BeneficiaryId, welcome_msg_id)
 			return HttpResponse( json.dumps(benef_post.json()), mimetype="application/json")
 		else:
 			return HttpResponseBadRequest('Name or DOB cannot be empty while adding a value')
@@ -182,7 +188,7 @@ def send_welcome_msg(benef_id, msg_id):
 	sms_msg_hexlified = toHex(sms_msg)
 	benef_number = vaccine_benef.NotifyNumber
 	#send sms
-	print 'sending welcome sms'
+	pprint(sending welcome sms)
 	sent_code = SendSMSUnicode(recNum=benef_number, msgtxt=sms_msg_hexlified)
 
 	if 'Status=1' in sent_code:
@@ -254,7 +260,7 @@ def send_reminders():
 	tz = pytz.timezone(timezone)
 	today_utc = utcnow_aware()
 	today = today_utc.astimezone(tz)
-
+	pprint('Executing send_reminders scheduled function')
 	today_date = today.date()
 
 	reminders = VaccineReminder.objects.filter( Q(state=2)|Q(state=1), Q(dueDate=today_date))
