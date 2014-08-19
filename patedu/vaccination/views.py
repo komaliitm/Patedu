@@ -51,7 +51,7 @@ def send_welcome_msg(benef_id, msg_id):
 	sms_msg_hexlified = toHex(sms_msg)
 	benef_number = vaccine_benef.NotifyNumber
 	#send sms
-	pprint('sending welcome sms')
+	print 'sending welcome sms'
 	sent_code = SendSMSUnicode(recNum=benef_number, msgtxt=sms_msg_hexlified)
 
 	if 'Status=1' in sent_code:
@@ -61,6 +61,7 @@ def send_welcome_msg(benef_id, msg_id):
 	elif 'Status=0' in sent_code:
 		ret["status"] = 0
 		ret["msg"] = "Welcome message successfully sent"
+	return ret
 
 
 def generate_schedule(benef_id):
@@ -299,7 +300,7 @@ def RestBeneficiaryList(request):
 
 			benef_post.save()
 			platform = sys.platform
-			
+
 			generate_schedule(benef_post.BeneficiaryId)
 			welcome_msg_id = 'VAC_WELCOME'
 			if platform == 'linux2':
@@ -310,7 +311,6 @@ def RestBeneficiaryList(request):
 		else:
 			return HttpResponseBadRequest('Name or DOB cannot be empty while adding a value')
 	return HttpResponseBadRequest('Unsupported HTTP request type for this URL')
-
 
 
 		

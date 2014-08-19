@@ -226,3 +226,5 @@ LOGGING = {
         },
     }
 }
+
+PPRINT_ENABLE = True

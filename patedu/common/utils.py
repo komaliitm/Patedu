@@ -12,7 +12,7 @@ import time
 import inspect
 import colorama
 from django.utils.timezone import utc
-from django.utils import simplejson as json
+import json
 import inspect
 #from vaccination.models import Vaccinations
 from django.core.exceptions import ObjectDoesNotExist
