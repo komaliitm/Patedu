@@ -13,7 +13,7 @@ from django.http import HttpResponseNotAllowed
 import dateutil.parser
 from django.shortcuts import render_to_response
 from django.core.exceptions import ObjectDoesNotExist
-from common.utils import get_a_Uuid, utcnow_aware
+from common.utils import get_a_Uuid, utcnow_aware, toHex
 from datetime import datetime, timedelta
 from vaccination.models import *
 from health_worker.models import HealthWorker
@@ -127,7 +127,7 @@ def RestBeneficiaryList(request):
 		language = request.POST.get('language')
 		hw_num = request.POST.get('hw_num')
 
-		if name is not None and dob is not None:
+		if name is not None and dob is not None and notif_num is not None:
 			dob = dateutil.parser.parse(dob).date()
 			benef_post = VaccinationBeneficiary(ChildName=name, Dob=dob)
 			if notif_num is not None: benef_post.NotifyNumber = notif_num
@@ -151,10 +151,48 @@ def RestBeneficiaryList(request):
 
 			benef_post.save()
 			generate_schedule(benef_post.BeneficiaryId)
+			welcome_msg_id = 'VAC_WELCOME'
+			result = send_welcome_msg(benef_post.BeneficiaryId, welcome_msg_id)
 			return HttpResponse( json.dumps(benef_post.json()), mimetype="application/json")
 		else:
 			return HttpResponseBadRequest('Name or DOB cannot be empty while adding a value')
 	return HttpResponseBadRequest('Unsupported HTTP request type for this URL')
+
+@shared_task
+def send_welcome_msg(benef_id, msg_id):
+	ret = {"status":0,
+	"msg":""}
+
+	try:
+		vaccine_benef = VaccinationBeneficiary.objects.get(BeneficiaryId=benef_id)
+	except ObjectDoesNotExist:
+		ret["status"] = 1
+		ret["msg"] = "Vaccination Beneficiary ID is not correct"
+		return ret
+
+	sms_msg = ''
+	try:
+		sms_msg = SMSMessages.objects.get(msg_identifier=msg_id).msg
+	except ObjectDoesNotExist:
+		print 'ERROR: SMS msg not found for the id: '+msg_id
+		ret["status"] = 1
+		ret["msg"] = "Welcome message for given ID does not exist: "+msg_id
+		return ret
+
+	sms_msg_hexlified = toHex(sms_msg)
+	benef_number = vaccine_benef.NotifyNumber
+	#send sms
+	print 'sending welcome sms'
+	sent_code = SendSMSUnicode(recNum=benef_number, msgtxt=sms_msg_hexlified)
+
+	if 'Status=1' in sent_code:
+		ret["status"] = 1
+		ret["msg"] = sent_code
+		return ret
+	elif 'Status=0' in sent_code:
+		ret["status"] = 0
+		ret["msg"] = "Welcome message successfully sent"
+
 
 def generate_schedule(benef_id):
 	ret = {"status":0,
@@ -224,12 +262,12 @@ def send_reminders():
 	for reminder in reminders:
 		language = reminder.vaccine_reference.Language
 		vaccine_name = reminder.vaccine_reference.Vaccine.VaccineName
-		benef_name = reminders.vaccination_beneficiary.ChildName
-		benef_number = reminders.vaccination_beneficiary.NotifyNumber
-		gaurdian_name = reminders.vaccination_beneficiary.Gaurdian_name
-		hw = reminders.vaccination_beneficiary.health_worker
-		if hw and hw.firt_name:
-			hw_name = hw.firt_name+' '+hw.last_name
+		benef_name = reminder.vaccination_beneficiary.ChildName
+		benef_number = reminder.vaccination_beneficiary.NotifyNumber
+		gaurdian_name = reminder.vaccination_beneficiary.Gaurdian_name
+		hw = reminder.vaccination_beneficiary.health_worker
+		if hw and hw.first_name:
+			hw_name = hw.first_name+' '+hw.last_name
 		else:
 			hw_name = ''
 		vacc_date = '{0.month}/{0.day}/{0.year}'.format(reminder.vaccDate)
@@ -238,7 +276,7 @@ def send_reminders():
 		sms_id = reminder.vaccine_reference.sms_message
 		sms_temp = ''
 		try:
-			sms_temp = SMSMessages.objects.get(msg_identifier=sms_id)
+			sms_temp = SMSMessages.objects.get(msg_identifier=sms_id).msg
 		except ObjectDoesNotExist:
 			print 'ERROR: SMS msg not found for the id: '+sms_id
 			continue
@@ -247,7 +285,8 @@ def send_reminders():
 		sms_temp = sms_temp.replace(u'date', unicode(vacc_date))
 		sms_temp = sms_temp.replace(u'hwName', unicode(hw_name))
 		sms_msg = sms_temp
-		sms_msg_hexlified = binascii.hexlify(sms_msg.encode('utf-8'))
+		#sms_msg_hexlified = binascii.hexlify(sms_msg.encode('utf-8'))
+		sms_msg_hexlified = toHex(sms_msg)
 		#send sms
 		print 'sending sms'
 		sent_code = SendSMSUnicode(recNum=benef_number, msgtxt=sms_msg_hexlified)
@@ -259,11 +298,12 @@ def send_reminders():
 		elif 'Status=0' in sent_code:
 			reminder.state = 0
 			reminder.save()
+		break
 
 
-
-
-
+@shared_task
+def sms_registrations():
+	incoming_msgs = ReceiveSMSToday()
 
 
 		

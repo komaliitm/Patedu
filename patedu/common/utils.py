@@ -18,6 +18,12 @@ import inspect
 from django.core.exceptions import ObjectDoesNotExist
 import pytz
 
+def toHex(s):
+    res = ""
+    for c in s:
+        res += "%04X" % ord(c) #at least 4 hex digits, can be more
+    return res
+
 def utcnow_aware():
     return datetime.utcnow().replace(tzinfo=pytz.utc)
 
@@ -77,7 +83,7 @@ def LoadInitialVaccineSMSData(orm):
     orm.SMSMessages.objects.create(msg_identifier="BCG_AW", msg=u'कृपया समय पर vaccineName टीकाकरण लीजिये. यह टीका क्षय रोग से आपके बच्चे को बचाने के लिए महत्वपूर्ण है. अधिक जानकारी के लिए स्वास्थ्य कार्यकर्ता hwName से बात करें.')
     orm.SMSMessages.objects.create(msg_identifier="DPT_AW", msg=u'कृपया समय पर vaccineName टीकाकरण लीजिये. यह टीका टिटनेस से आपके बच्चे को बचाने के लिए महत्वपूर्ण है. अधिक जानकारी के लिए स्वास्थ्य कार्यकर्ता hwName से बात करें.')
     orm.SMSMessages.objects.create(msg_identifier="MSL_AW", msg=u'कृपया समय पर vaccineName टीकाकरण लीजिये. यह टीका खसरा से आपके बच्चे को बचाने के लिए महत्वपूर्ण है. अधिक जानकारी के लिए स्वास्थ्य कार्यकर्ता hwName से बात करें.')
-
+    orm.SMSMessages.objects.create(msg_identifier="VAC_WELCOME",msg=u"ई-आरोग्यम एसएमएस सेवा आप का स्वागत करती है. आपका पंजीकरण सफल रहा है.")
     # static_dir = settings.STATIC_ROOT
     # vaccfile = os.path.join(static_dir, 'common', 'sms_msg.txt')
     # vaccfile = open(vaccfile, 'r')

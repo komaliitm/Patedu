@@ -33,9 +33,11 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 
 SMSPROVIDER_URL = 'http://api.mVaayoo.com/mvaayooapi/MessageCompose'
+SMSPROVIDERRECEIVE_URL = 'http://api.mVaayoo.com/mvaayooapi/MessageReply'
 SMSPROVIDER_USER = 'komalvis007g@gmail.com'
 SMSPROVIDER_PASS = 'babboo'
 SMSSENDERID = 'TEST SMS'
+SMSREPLYNUMBER = 56263183
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

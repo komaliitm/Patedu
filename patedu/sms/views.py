@@ -2,6 +2,9 @@
 import requests
 from django.utils import simplejson as json
 from django.conf import settings
+from django.http import HttpResponse, HttpResponseBadRequest
+import pytz
+from common.utils import *
 
 #Make a class (with model) SMS with non-HTTP functions for Send and receive.
 #Make a class and model for the POST parameters.
@@ -19,7 +22,7 @@ def SendSMS(recNum, msgtxt, state=4):
 	GET_str = '?'+'user='+userSmsProvider+':'+passSmsProvider+'&'+'senderID='+senderId+'&'+'receipientno='+str(recNum)+'&'+'msgtxt='+msgtxt+'&'+'state='+str(state)
 	GET_url = url+GET_str
 	r = requests.get(GET_url)
-	return HttpResponse(r)
+	return r.text
 
 def SendSMSUnicode(recNum, msgtxt, state=4):
 	url = settings.SMSPROVIDER_URL
@@ -29,10 +32,29 @@ def SendSMSUnicode(recNum, msgtxt, state=4):
 	
 	GET_str = '?'+'user='+userSmsProvider+':'+passSmsProvider+'&'+'senderID='+senderId+'&'+'receipientno='+str(recNum)+'&'+'msgtxt='+msgtxt+'&'+'state='+str(state)+'&msgtype=4&dcs=8&ishex=1'
 	GET_url = url+GET_str
-	r = requests.get(GET_url)
-	return HttpResponse(r)
+	
+	print GET_url
 
-def ReceiveSMS(request):
-	smsReceiveURL = 'http://api.mVaayoo.com/mvaayooapi/MessageReply?user=komalvis007g@gmail.com:babboo&senderID=562639831&receipientno=9390681183&sdtime=2013-07-14 00:00:00&edtime=2013-07-15 00:00:00'
-	r = requests.get(smsReceiveURL)
-	return HttpResponse(r)
+	r = requests.get(GET_url)
+	return r.text
+
+def ReceiveSMSToday():
+	url = settings.SMSPROVIDERRECEIVE_URL
+	userSmsProvider = settings.SMSPROVIDER_USER
+	passSmsProvider = settings.SMSPROVIDER_PASS
+	senderId = str(settings.SMSREPLYNUMBER)
+
+	timezone = 'Asia/Kolkata'
+	tz = pytz.timezone(timezone)
+	today_utc = utcnow_aware()
+	today = today_utc.astimezone(tz)
+	today_date = today.date()
+	sdtime = today_date.isoformat()+' 00:00:00'
+	edtime = today_date.isoformat()+' 23:59:59'
+
+	GET_str = '?'+'user='+userSmsProvider+':'+passSmsProvider+'&'+'senderID='+senderId+'&'+'sdtime='+sdtime+'&'+'edtime='+edtime
+	GET_url = url+GET_str
+	
+	r = requests.get(GET_url)
+
+	return r.json()
