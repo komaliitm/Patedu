@@ -168,7 +168,6 @@ def send_reminders():
 		elif 'Status=0' in sent_code:
 			reminder.state = 0
 			reminder.save()
-		break
 
 
 @shared_task

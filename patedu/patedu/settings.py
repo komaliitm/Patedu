@@ -36,7 +36,7 @@ SMSPROVIDER_URL = 'http://api.mVaayoo.com/mvaayooapi/MessageCompose'
 SMSPROVIDERRECEIVE_URL = 'http://api.mVaayoo.com/mvaayooapi/MessageReply'
 SMSPROVIDER_USER = 'komalvis007g@gmail.com'
 SMSPROVIDER_PASS = 'babboo'
-SMSSENDERID = 'TEST SMS'
+SMSSENDERID = 'VACCIN'
 SMSREPLYNUMBER = 56263183
 
 DEBUG = True
