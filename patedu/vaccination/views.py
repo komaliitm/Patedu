@@ -124,7 +124,7 @@ def send_reminders():
 	tz = pytz.timezone(timezone)
 	today_utc = utcnow_aware()
 	today = today_utc.astimezone(tz)
-	pprint('Executing send_reminders scheduled function')
+	print 'Executing send_reminders scheduled function'
 	today_date = today.date()
 
 	reminders = VaccineReminder.objects.filter( Q(state=2)|Q(state=1), Q(dueDate=today_date))
