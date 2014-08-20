@@ -14,6 +14,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^vaccination/', include('vaccination.urls'))
-
+    url(r'^vaccination/', include('vaccination.urls')),
+    url(r'^urlpattern/', include('sms.urls'))
 )

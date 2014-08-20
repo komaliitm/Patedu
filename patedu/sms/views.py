@@ -1,6 +1,6 @@
 # Create your views here.
 import requests
-from django.utils import simplejson as json
+import json
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest
 import pytz
@@ -12,6 +12,8 @@ from common.utils import *
 def SendSMSWrapper(request):
 	return SendSMS(recNum=9390681183, msgtxt='This is dlpmcs Test SMS beedu')
 
+def ReplyResponse(request):
+	return HttpResponse('status=0 <success>')
 
 def SendSMS(recNum, msgtxt, state=4):
 	url = settings.SMSPROVIDER_URL
@@ -54,7 +56,8 @@ def ReceiveSMSToday():
 
 	GET_str = '?'+'user='+userSmsProvider+':'+passSmsProvider+'&'+'senderID='+senderId+'&'+'sdtime='+sdtime+'&'+'edtime='+edtime
 	GET_url = url+GET_str
-	
+	print GET_url
 	r = requests.get(GET_url)
-
-	return r.json()
+	print r.text
+	print r.json
+	return r.json
