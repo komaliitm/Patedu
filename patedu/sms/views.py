@@ -13,6 +13,10 @@ def SendSMSWrapper(request):
 	return SendSMS(recNum=9390681183, msgtxt='This is dlpmcs Test SMS beedu')
 
 def ReplyResponse(request):
+	fromNumber = request.GET.get('da')
+	msgtxt = request.GET.get('msgtxt')
+
+	print fromNumber + ' : ' +msgtxt 
 	return HttpResponse('status=0 <success>')
 
 def SendSMS(recNum, msgtxt, state=4):
