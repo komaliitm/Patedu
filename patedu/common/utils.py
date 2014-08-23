@@ -79,12 +79,19 @@ def LoadInitialVaccineTemplateData(orm):
 def LoadInitialVaccineSMSData(orm):
 
     global HANDLE
-    orm.SMSMessages.objects.create(msg_identifier="VAC_REM", msg=u'आपके बच्चे childName का  vaccineName टीकाकरण अगले महीने date को होनी है. अधिक जानकारी के लिए स्वास्थ्य कार्यकर्ता hwName से बात करें.')
+    orm.SMSMessages.objects.create(msg_identifier="VAC_REM_1M", msg=u"आपके बच्चे childName का  vaccineName टीकाकरण अगले महीने date को होनी है. अधिक जानकारी के लिए स्वास्थ्य कार्यकर्ता hwName से बात करें.")
+    orm.SMSMessages.objects.create(msg_identifier="VAC_REM_1W", msg=u"आपके बच्चे childName का  vaccineName टीकाकरण अगले सप्ताह date को होनी है. अधिक जानकारी के लिए स्वास्थ्य कार्यकर्ता hwName से बात करें.")
+    orm.SMSMessages.objects.create(msg_identifier="VAC_REM_1D", msg=u"आपके बच्चे childName का  vaccineName टीकाकरण अगले दिन date को होनी है. अधिक जानकारी के लिए स्वास्थ्य कार्यकर्ता hwName से बात करें.")
     orm.SMSMessages.objects.create(msg_identifier="OPV_AW", msg=u'कृपया समय पर vaccineName टीकाकरण लीजिये. यह टीका आपके बच्चे को पोलियो रोकने के लिए महत्वपूर्ण है. अधिक जानकारी के लिए स्वास्थ्य कार्यकर्ता hwName से बात करें.')
     orm.SMSMessages.objects.create(msg_identifier="BCG_AW", msg=u'कृपया समय पर vaccineName टीकाकरण लीजिये. यह टीका क्षय रोग से आपके बच्चे को बचाने के लिए महत्वपूर्ण है. अधिक जानकारी के लिए स्वास्थ्य कार्यकर्ता hwName से बात करें.')
     orm.SMSMessages.objects.create(msg_identifier="DPT_AW", msg=u'कृपया समय पर vaccineName टीकाकरण लीजिये. यह टीका टिटनेस से आपके बच्चे को बचाने के लिए महत्वपूर्ण है. अधिक जानकारी के लिए स्वास्थ्य कार्यकर्ता hwName से बात करें.')
     orm.SMSMessages.objects.create(msg_identifier="MSL_AW", msg=u'कृपया समय पर vaccineName टीकाकरण लीजिये. यह टीका खसरा से आपके बच्चे को बचाने के लिए महत्वपूर्ण है. अधिक जानकारी के लिए स्वास्थ्य कार्यकर्ता hwName से बात करें.')
     orm.SMSMessages.objects.create(msg_identifier="VAC_WELCOME",msg=u"ई-आरोग्यम एसएमएस सेवा आप का स्वागत करती है. आपका पंजीकरण सफल रहा है.")
+    orm.SMSMessages.objects.create(msg_identifier="REG_FAILURE",msg=u"एसएमएस टीकाकरण पंजीकरण विफल. एसएमएस का प्रारूप गलत था.")
+    orm.SMSMessages.objects.create(msg_identifier="UNREG_FAILURE",msg=u"एसएमएस टीकाकरण समाप्ति असफल. एसएमएस का प्रारूप गलत था.")
+    orm.SMSMessages.objects.create(msg_identifier="REG_SUCCESS",msg=u"एसएमएस टीकाकरण पंजीकरण सफल. लाभार्थी को समय पर जागरूकता और अनुस्मारक एसएमएस प्राप्त होंगे.")
+    orm.SMSMessages.objects.create(msg_identifier="UNREG_SUCCESS",msg=u"एसएमएस टीकाकरण समाप्ति सफल. लाभार्थी को अब कोई भी एसएमएस प्राप्त नहीं होगी.")
+    orm.SMSMessages.objects.create(msg_identifier="SMS_FAILURE",msg=u"एसएमएस का प्रारूप गलत है. एसएमएस नजरअंदाज कर दिया है.")
     # static_dir = settings.STATIC_ROOT
     # vaccfile = os.path.join(static_dir, 'common', 'sms_msg.txt')
     # vaccfile = open(vaccfile, 'r')

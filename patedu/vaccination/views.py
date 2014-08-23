@@ -21,23 +21,16 @@ from random import randint
 import pytz
 from celery import shared_task
 import unicodedata
-from sms.views import *
+from sms.sender import SendSMSUnicode
 import binascii
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 import sys
 
 @shared_task
-def send_welcome_msg(benef_id, msg_id):
+def send_instant_msg(benef_number, msg_id):
 	ret = {"status":0,
 	"msg":""}
-
-	try:
-		vaccine_benef = VaccinationBeneficiary.objects.get(BeneficiaryId=benef_id)
-	except ObjectDoesNotExist:
-		ret["status"] = 1
-		ret["msg"] = "Vaccination Beneficiary ID is not correct"
-		return ret
 
 	sms_msg = ''
 	try:
@@ -49,9 +42,8 @@ def send_welcome_msg(benef_id, msg_id):
 		return ret
 
 	sms_msg_hexlified = toHex(sms_msg)
-	benef_number = vaccine_benef.NotifyNumber
 	#send sms
-	print 'sending welcome sms'
+	print 'sending instant sms for :'+msg_id
 	sent_code = SendSMSUnicode(recNum=benef_number, msgtxt=sms_msg_hexlified)
 
 	if 'Status=1' in sent_code:
@@ -277,6 +269,11 @@ def RestBeneficiaryList(request):
 
 		if name is not None and dob is not None and notif_num is not None:
 			dob = dateutil.parser.parse(dob).date()
+			
+			beneficiaries = VaccinationBeneficiary.objects.filter(NotifyNumber = notif_num, Dob=dob) 
+			if beneficiaries.count() > 0:
+				return HttpResponse( json.dumps(beneficiaries[0].json()), mimetype="application/json")
+			
 			benef_post = VaccinationBeneficiary(ChildName=name, Dob=dob)
 			if notif_num is not None: benef_post.NotifyNumber = notif_num
 			if sex is not None: benef_post.Sex = sex
@@ -303,15 +300,10 @@ def RestBeneficiaryList(request):
 			generate_schedule(benef_post.BeneficiaryId)
 			welcome_msg_id = 'VAC_WELCOME'
 			if platform == 'linux2':
-				result = send_welcome_msg.delay(benef_post.BeneficiaryId, welcome_msg_id)
+				result = send_instant_msg.delay(benef_post.NotifyNumber, welcome_msg_id)
 			else:
-				result = send_welcome_msg(benef_post.BeneficiaryId, welcome_msg_id)
+				result = send_instant_msg(benef_post.NotifyNumber, welcome_msg_id)
 			return HttpResponse( json.dumps(benef_post.json()), mimetype="application/json")
 		else:
 			return HttpResponseBadRequest('Name or DOB cannot be empty while adding a value')
 	return HttpResponseBadRequest('Unsupported HTTP request type for this URL')
-
-
-		
-
-
