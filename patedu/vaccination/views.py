@@ -119,7 +119,7 @@ def send_reminders():
 	print 'Executing send_reminders scheduled function'
 	today_date = today.date()
 
-	reminders = VaccineReminder.objects.filter( Q(state=2)|Q(state=1), Q(dueDate=today_date))
+	reminders = VaccineReminder.objects.filter( Q(state=2)|Q(state=1), Q(dueDate__lte=today_date))
 
 	for reminder in reminders:
 		language = reminder.vaccine_reference.Language

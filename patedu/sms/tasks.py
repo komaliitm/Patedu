@@ -3,7 +3,9 @@ import json
 from django.conf import settings
 from common.utils import utcnow_aware
 import pytz
+from celery import shared_task
 
+@shared_task
 def ReceiveSMSToday():
 	url = settings.SMSPROVIDERRECEIVE_URL
 	userSmsProvider = settings.SMSPROVIDER_USER
