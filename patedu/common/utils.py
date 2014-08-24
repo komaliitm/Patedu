@@ -91,7 +91,7 @@ def LoadInitialVaccineSMSData(orm):
     orm.SMSMessages.objects.create(msg_identifier="UNREG_FAILURE",msg=u"एसएमएस टीकाकरण समाप्ति असफल. एसएमएस का प्रारूप गलत था.")
     orm.SMSMessages.objects.create(msg_identifier="REG_SUCCESS",msg=u"एसएमएस टीकाकरण पंजीकरण सफल. लाभार्थी को समय पर जागरूकता और अनुस्मारक एसएमएस प्राप्त होंगे.")
     orm.SMSMessages.objects.create(msg_identifier="UNREG_SUCCESS",msg=u"एसएमएस टीकाकरण समाप्ति सफल. लाभार्थी को अब कोई भी एसएमएस प्राप्त नहीं होगी.")
-    orm.SMSMessages.objects.create(msg_identifier="SMS_FAILURE",msg=u"एसएमएस का प्रारूप गलत है. एसएमएस नजरअंदाज कर दिया है.")
+    orm.SMSMessages.objects.create(msg_identifier="SMS_FAILURE",msg=u"एसएमएस का प्रारूप गलत है. एसएमएस नजरअंदाज कर दिया गया है.")
     # static_dir = settings.STATIC_ROOT
     # vaccfile = os.path.join(static_dir, 'common', 'sms_msg.txt')
     # vaccfile = open(vaccfile, 'r')
@@ -107,6 +107,7 @@ def LoadInitialScheduleData(orm):
 
     global HANDLE
     TaskScheduler.schedule_every(task_name='vaccination.views.send_reminders', period='minutes', every='30')
+    TaskScheduler.schedule_every(task_name='sms.tasks.ReceiveSMSSinceLast', period='minutes', every='1')
 
 def checkmark(*arg):    
 
