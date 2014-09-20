@@ -193,6 +193,8 @@ INSTALLED_APPS = (
     'south',
     'schedule_api',
     'sms',
+    'mcts_identities',
+    'mcts_transactions'
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
