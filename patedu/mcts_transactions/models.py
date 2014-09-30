@@ -4,6 +4,7 @@ from mcts_identities.models import *
 class Events(models.Model):
 	class CATEGORY():
 			VACC = 1
+			CHILD_VACC = 13
 			CHILD_REG = 2 
 			DELIVERY = 3
 			ANC = 4
@@ -17,6 +18,7 @@ class Events(models.Model):
 			MOTHER_REG = 12
 
 	CATEGORY_CHOICES = (
+		(CATEGORY.CHILD_VACC, 'any kind of vaccination given to child'),
 		(CATEGORY.VACC, 'any kind of vaccination given'),
 		(CATEGORY.CHILD_REG, 'child registration'),
 		(CATEGORY.DELIVERY, 'delivery'),
@@ -44,8 +46,70 @@ class Transactions(models.Model):
 	notes = models.CharField(max_length=256)
 
 class DueEvents(models.Model):
+	UNHANDLED = 0
+	SCH = 1
+	AW = 2
+	SCHAW =3
+
+	HANDLED_LEVELS = (
+		(UNHANDLED, 'unhandled'),
+		(SCH, 'schedule message sent'),
+		(AW, 'awareness message sent'),
+		(SCHAW, 'both awareness and schedule message sent')
+	)
+
 	beneficiary = models.ForeignKey(Beneficiary)
 	date = models.DateField()
 	event = models.ForeignKey(Events)
 	subcenter = models.ForeignKey(SubCenter)
 	notes = models.CharField(max_length=256)
+	handled = models.IntegerField(choices=HANDLED_LEVELS, default=UNHANDLED)
+
+class Content(models.Model):
+	# SMS = 0
+	# EMAIL =1
+	# IVR =2
+
+	# MEDIUM_CATEGORY = (
+	# 	(SMS, "sms"),
+	# 	(EMAIL, "email"),
+	# 	(IVR, "ivr")
+	# )
+
+	class LANGUAGE():
+		HINDI = 1
+		ENGLISH = 2 
+		TELUGU = 3
+
+	LANGUAGE_CHOICES = (
+		(LANGUAGE.HINDI, 'Hindi'),
+		(LANGUAGE.ENGLISH, 'English'),
+		(LANGUAGE.TELUGU, 'Telugu')
+	)
+
+	sch_msg_sms = models.CharField(max_length=512)
+	sch_msg_email = models.CharField(max_length=2048, null=True)
+	sch_msg_ivr = models.CharField(max_length=2048, null=True)
+	
+	aw_msg_sms = models.CharField(max_length=512)
+	aw_msg_email = models.CharField(max_length=2048, null=True)
+	aw_msg_ivr = models.CharField(max_length=2048, null=True)
+
+	language = models.IntegerField(choices=LANGUAGE_CHOICES, default=LANGUAGE.HINDI)
+	msg_index = models.CharField(max_length=20)
+
+class ContentDelivered(models.Model):
+	SMS = 0
+	EMAIL =1
+	IVR =2
+
+	MEDIUM_CATEGORY = (
+		(SMS, "sms"),
+		(EMAIL, "email"),
+		(IVR, "ivr")
+	)
+
+	msg = models.CharField(max_length=2048)
+	medium = models.IntegerField(choices=MEDIUM_CATEGORY)
+	timestamp = models.DateTimeField()
+	benefeciary = models.Beneficiary(ForeignKey)
