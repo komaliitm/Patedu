@@ -1,4 +1,6 @@
 *.pyc
 *.sqlite3
 *.log
+*.sublime-project
+*.sublime-workspace
 userenv.bat
