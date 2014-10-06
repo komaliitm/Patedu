@@ -112,4 +112,4 @@ class ContentDelivered(models.Model):
 	msg = models.CharField(max_length=2048)
 	medium = models.IntegerField(choices=MEDIUM_CATEGORY)
 	timestamp = models.DateTimeField()
-	benefeciary = models.Beneficiary(ForeignKey)
+	benefeciary = models.ForeignKey(Beneficiary)
