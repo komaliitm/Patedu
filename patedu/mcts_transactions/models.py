@@ -2,6 +2,9 @@ from django.db import models
 from mcts_identities.models import *
 
 class Events(models.Model):
+	ANC_REG_VAL = 'anc_reg'
+	PNC_REG_VAL = 'pnc_reg'
+	IMM_REG_VAL = 'imm_reg'
 	class CATEGORY():
 			VACC = 1
 			CHILD_VACC = 13
@@ -35,15 +38,15 @@ class Events(models.Model):
 
 	MCTS_ID = models.CharField(max_length=50)
 	val = models.CharField(max_length=50)
-	content_index = models.CharField(max_length=20)
-	category = models.IntegerField(choices=CATEGORY_CHOICES)
+	content_index = models.CharField(max_length=20, null=True)
+	category = models.IntegerField(choices=CATEGORY_CHOICES, null=True)
 
 class Transactions(models.Model):
 	beneficiary = models.ForeignKey(Beneficiary)
 	timestamp = models.DateTimeField()
 	event = models.ForeignKey(Events)
 	subcenter = models.ForeignKey(SubCenter)
-	notes = models.CharField(max_length=256)
+	notes = models.CharField(max_length=256, null=True)
 
 class DueEvents(models.Model):
 	UNHANDLED = 0
@@ -62,9 +65,16 @@ class DueEvents(models.Model):
 	date = models.DateField()
 	event = models.ForeignKey(Events)
 	subcenter = models.ForeignKey(SubCenter)
-	notes = models.CharField(max_length=256)
+	notes = models.CharField(max_length=256, null=True)
 	handled = models.IntegerField(choices=HANDLED_LEVELS, default=UNHANDLED)
 
+class OverDueEvents(models.Model):
+	beneficiary = models.ForeignKey(Beneficiary)
+	date = models.DateField()
+	event = models.ForeignKey(Events)
+	subcenter = models.ForeignKey(SubCenter)
+	notes = models.CharField(max_length=256)
+	
 class Content(models.Model):
 	# SMS = 0
 	# EMAIL =1
@@ -109,7 +119,19 @@ class ContentDelivered(models.Model):
 		(IVR, "ivr")
 	)
 
+	SUCCESS = 0
+	ISSUE = 1
+	FAILURE = 2
+
+
+	DELIVERY_STATUS = (
+		(SUCCESS, "delivery is successful"),
+		(ISSUE, "delivery is not successful but has  to be retried")
+		(FAILURE, "delivery is failed permanently")
+	)
+
 	msg = models.CharField(max_length=2048)
-	medium = models.IntegerField(choices=MEDIUM_CATEGORY)
+	medium = models.IntegerField(choices=MEDIUM_CATEGORY, default=SMS)
 	timestamp = models.DateTimeField()
+	status = models.IntegerField(choices=DELIVERY_STATUS)
 	benefeciary = models.ForeignKey(Beneficiary)
