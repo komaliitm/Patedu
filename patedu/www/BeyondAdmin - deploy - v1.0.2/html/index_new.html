@@ -295,6 +295,13 @@ Purchase: http://wrapbootstrap.com
                                 </div>
                             </div>
                         </div>
+                         <div class="row">
+                                                <div class="col-xs-12 col-md-12">
+                            <div class="widget">
+                            <div id="map-canvas"  style="width: 900px; height: 500px" ></div>
+                            </div>
+                        </div>
+                         </div>
                      </div>
                 </div>
                 <!-- /Page Body -->
@@ -766,6 +773,66 @@ Purchase: http://wrapbootstrap.com
  ]
  }
 
+    </script>
+        <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBi0Oz6xouYIoWM3DWDJ0C9AllumEB9YXo">
+    </script>
+    <script type="text/javascript">
+    var panchyatRajInput = [{"lat":25.4486,"lang":78.5696,"panchayatName": "bab1" ,"Status" :  "Green","Beneficiaries": 10, "Adherence" : 68 , "Overdue": 70, "Subcenter" : "badegaon", "AshaDetails" : "Ramvati:9177866663"},
+{"lat":25.4686,"lang":78.5696,"panchayatName": "bab2" ,"Status" :  "Green","Beneficiaries": 10, "Adherence" : 68 , "Overdue": 70, "Subcenter" : "badegaon", "AshaDetails" : "Ramvati:9177866663"},
+{"lat":25.4886,"lang":78.5696,"panchayatName": "bab3" ,"Status" :  "Yellow","Beneficiaries": 10, "Adherence" : 68 , "Overdue": 70, "Subcenter" : "badegaon", "AshaDetails" : "Ramvati:9177866663"},
+{"lat":25.5086,"lang":78.5696,"panchayatName": "bab4" ,"Status" :  "Red","Beneficiaries": 10, "Adherence" : 68 , "Overdue": 70, "Subcenter" : "badegaon", "AshaDetails" : "Ramvati:9177866663"}];
+    
+
+     
+      function initialize() {
+      var output = new google.maps.LatLng(25.4486,78.5696);
+        var mapOptions = {
+          center: output,
+          zoom: 10
+        };
+       var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+      
+      for (var i = panchyatRajInput.length - 1; i >= 0; i--) {
+       
+               var contentString = 
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h3 id="firstHeading" class="firstHeading">' + panchyatRajInput[i].panchayatName + '</h3>' + '<table>' +
+                        '<p>'  + panchyatRajInput[i].Status  + '</p>'
+                      + '<p>' + panchyatRajInput[i].Beneficiaries + '</p>' 
+                      + '<p>' + panchyatRajInput[i].Adherence + '</p>'  
+                      + '<p>' + panchyatRajInput[i].Overdue  + '</p>'
+                      + '<p>' + panchyatRajInput[i].Subcenter + '</p>'  
+                      + '<p>' + panchyatRajInput[i].AshaDetails + '</p>' + '</table>' +
+     '</div>'+
+      '</div>';
+
+
+      var infowindow = new google.maps.InfoWindow({
+      content: contentString
+      });
+         console.log("Print Values" + " " + panchyatRajInput[i].lat + " " + panchyatRajInput[i].lang + " " + panchyatRajInput[i].panchayatName);
+         var icon_new;
+          if(panchyatRajInput[i].Status == "Green")
+            {icon_new = "assets/img/Green.png" ; }
+         else if (panchyatRajInput[i].Status == "Yellow")
+          { icon_new = "assets/img/Yellow.png"; }
+        else
+          { icon_new = "assets/img/Red.png"; }
+        var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(panchyatRajInput[i].lat, panchyatRajInput[i].lang),
+        map: map,
+        title:panchyatRajInput[i].panchayatName,
+        icon: icon_new
+         });
+         google.maps.event.addListener(marker, 'click', function() {
+           infowindow.open(map,marker);
+        });
+       }
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 
 </body>
