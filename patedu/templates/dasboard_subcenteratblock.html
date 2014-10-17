@@ -1,0 +1,773 @@
+﻿<!DOCTYPE html>
+<!--
+BeyondAdmin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.2.0
+Version: 1.0.0
+Purchase: http://wrapbootstrap.com
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+    <meta charset="utf-8" />
+    <title>Block Infromation</title>
+
+    <meta name="description" content="Block Infromation" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="{{STATIC_URL}}beyond/img/favicon.png" type="image/x-icon">
+
+
+    <!--Basic Styles-->
+    <link href="{{STATIC_URL}}beyond/css/bootstrap.min.css" rel="stylesheet" />
+    <link id="bootstrap-rtl-link" href="" rel="stylesheet" />
+    <link href="{{STATIC_URL}}beyond/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="{{STATIC_URL}}beyond/css/weather-icons.min.css" rel="stylesheet" />
+
+    <!--Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300" rel="stylesheet" type="text/css">
+
+    <!--Beyond styles-->
+    <link href="{{STATIC_URL}}beyond/css/beyond.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{STATIC_URL}}beyond/css/demo.min.css" rel="stylesheet" />
+    <link href="{{STATIC_URL}}beyond/css/typicons.min.css" rel="stylesheet" />
+    <link href="{{STATIC_URL}}beyond/css/animate.min.css" rel="stylesheet" />
+    <link id="skin-link" href="" rel="stylesheet" type="text/css" />
+
+    <!--Page Related styles-->
+    <link href="{{STATIC_URL}}beyond/css/dataTables.bootstrap.css" rel="stylesheet" />
+
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <script src="{{STATIC_URL}}beyond/js/skins.min.js"></script>
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+    <!-- Loading Container -->
+    <div class="loading-container">
+        <div class="loading-progress">
+            <div class="rotator">
+                <div class="rotator">
+                    <div class="rotator colored">
+                        <div class="rotator">
+                            <div class="rotator colored">
+                                <div class="rotator colored"></div>
+                                <div class="rotator"></div>
+                            </div>
+                            <div class="rotator colored"></div>
+                        </div>
+                        <div class="rotator"></div>
+                    </div>
+                    <div class="rotator"></div>
+                </div>
+                <div class="rotator"></div>
+            </div>
+            <div class="rotator"></div>
+        </div>
+    </div>
+    <!--  /Loading Container -->
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-container">
+                <!-- Navbar Barnd -->
+                <!--<div class="navbar-header pull-left">
+                    <a href="#" class="navbar-brand">
+                        <small>
+                            <img src="assets/img/logo.png" alt="" />
+                        </small>
+                    </a>
+                </div> -->
+                <!-- /Navbar Barnd -->
+
+                <!-- Sidebar Collapse -->
+                <!--<div class="sidebar-collapse" id="sidebar-collapse">
+                    <i class="collapse-icon fa fa-bars"></i>
+                </div> -->
+                <!-- /Sidebar Collapse -->
+                <!-- Account Area and Settings -->
+                <!-- /Account Area and Settings -->
+            </div>
+        </div>
+    </div>
+    <!-- /Navbar -->
+    <!-- Main Container -->
+    <div class="main-container container-fluid">
+        <!-- Page Container -->
+        <div class="page-container">
+            <!-- Page Sidebar -->
+            <div class="page-sidebar" id="sidebar">
+                <!-- Page Sidebar Header-->
+                <!--<div class="sidebar-header-wrapper">
+                    <input type="text" class="searchinput" />
+                    <i class="searchicon fa fa-search"></i>
+                    <div class="searchhelper">Search Reports, Charts, Emails or Notifications</div>
+                </div> -->
+
+                <!-- /Page Sidebar Header -->
+                <!-- Sidebar Menu -->
+                <ul class="nav sidebar-menu">
+                    <!--Dashboard-->
+                    <li class="active">
+                        <a href="index_new.html">
+                            <i class="menu-icon glyphicon glyphicon-home"></i>
+                            <span class="menu-text"> Block Information </span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /Sidebar Menu -->
+            </div>
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="active">Block Information</li>
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+                <!-- Page Header -->
+                <div class="page-header position-relative">
+                    <div class="header-title">
+                        <h1>
+                            Block Information
+                        </h1>
+                    </div>
+                    <!--Header Buttons-->
+                    <div class="header-buttons">
+                        <a class="sidebar-toggler" href="#">
+                            <i class="fa fa-arrows-h"></i>
+                        </a>
+                        <a class="refresh" id="refresh-toggler" href="">
+                            <i class="glyphicon glyphicon-refresh"></i>
+                        </a>
+                        <a class="fullscreen" id="fullscreen-toggler" href="#">
+                            <i class="glyphicon glyphicon-fullscreen"></i>
+                        </a>
+                    </div>
+                    <!--Header Buttons End-->
+                </div>
+                <!-- /Page Header -->
+                <!-- Page Body -->
+                <div class="page-body">
+                     <div class="row">
+                        <div class="col-lg-6 col-sm-12 col-xs-6">
+                                    <div class="well with-header">
+                                        <div>
+                                            <h6>Select Timeline</h6>
+                                            <select id="TimeLine" style="width:100%;"  onchange ="createanewpiechart()">
+                                                <option value="LMonth1" />Last 1 Month
+                                                <option value="LMonth2" />Last 2 Months
+                                                <option value="LMonth3" />Last 3 Months
+                                                <option value="LMonth6" />Last 6 Months
+                                                <option value="LMonth10" />Beginning of Time
+                                            </select>
+                                            <hr class="wide" />
+                                        </div>
+                                        <div>
+                                            <h6>Select Blocks</h6>
+                                            <select id="Blocks" style="width:100%;" onchange ="createanewpiechart()">
+                                                <option value="allblocks" />AllBlocks
+                                                <option value="babina" />Babina
+                                                <option value="badagaon" />Badagaon
+                                                <option value="bamaur" />Bamaur
+                                                <option value="bangra" />Bangra
+                                                <option value="chirgaon" />Chirgaon
+                                                <option value="gursrai" />Gursrai
+                                                <option value="mauranipur" />Mauranipur
+                                                <option value="moth" />Moth
+                                            </select>
+                                            <hr class="wide" />
+                                        </div>
+                                  </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-4">
+                            <div class="databox databox-xxlg databox-vertical databox-shadowed bg-white radius-bordered padding-5">
+                                <!--<div class="databox-top">
+                                    <div class="databox-row row-12">
+                                        <div class="databox-cell cell-3 text-center">
+                                            <div class="databox-number number-xxlg sonic-silver">164</div>
+                                            <div class="databox-text storm-cloud">online</div>
+                                        </div>
+                                        <div class="databox-cell cell-9 text-align-center">
+                                            <div class="databox-row row-6 text-left">
+                                                <span class="badge badge-palegreen badge-empty margin-left-5"></span>
+                                                <span class="databox-inlinetext uppercase darkgray margin-left-5">NEW</span>
+                                                <span class="badge badge-yellow badge-empty margin-left-5"></span>
+                                                <span class="databox-inlinetext uppercase darkgray margin-left-5">RETURNING</span>
+                                            </div>
+                                            <div class="databox-row row-6">
+                                                <div class="progress bg-yellow progress-no-radius">
+                                                    <div class="progress-bar progress-bar-palegreen" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 78%">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>-->
+                                    <div class="databox-bottom">
+                                        <div class="databox-row row-12">
+                                            <div class="databox-cell cell-7 text-center  padding-5">
+                                                <div id="dashboard-pie-chart-sources" class="chart"></div>
+                                            </div>
+                                            <div class="databox-cell cell-5 text-center no-padding-left padding-bottom-30">
+                                                <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
+                                                    <span class="databox-text sonic-silver pull-left no-margin">Performane</span>
+                                                    <span class="databox-text sonic-silver pull-right no-margin uppercase">PCT</span>
+                                                </div>
+                                                <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
+                                                    <span class="badge badge-palegreen badge-empty pull-left margin-5"></span>
+                                                    <span class="databox-text darkgray pull-left no-margin hidden-xs">Good</span>
+                                                    <span class="databox-text darkgray pull-right no-margin uppercase" id="GoodId"></span>
+                                                </div>
+                                                <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
+                                                    <span class="badge badge-yellow badge-empty pull-left margin-5"></span>
+                                                    <span class="databox-text darkgray pull-left no-margin hidden-xs">Average</span>
+                                                    <span class="databox-text darkgray pull-right no-margin uppercase" id="AverageId"></span>
+                                                </div>
+                                                <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
+                                                    <span class="badge badge-orange badge-empty pull-left margin-5"></span>
+                                                    <span class="databox-text darkgray pull-left no-margin hidden-xs">Poor</span>
+                                                    <span class="databox-text darkgray pull-right no-margin uppercase" id="PoorId"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div> 
+                            </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="widget">
+                                <div class="widget-header bordered-bottom bordered-yellow">
+                                    <span class="widget-caption">Search on All Columns</span>
+                                    <div class="widget-buttons">
+                                        <a href="#" data-toggle="maximize">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="#" data-toggle="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="#" data-toggle="dispose">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="widget-body no-padding">
+                                    <table class="table table-bordered table-hover table-striped" id="searchable">
+                                        <thead class="bordered-darkorange">
+                                            <tr role="row">
+                                                <th>Serial Number</th>
+                                                <th>Status indicator </th>
+                                                <th>Number of beneficiaries</th>
+                                                <th>Adherence%</th>
+                                                <th>Overdue %</th>
+                                                <th>Subcenter</th>
+                                                <th>Asha worker name | Number</th>
+                                            </tr>
+                                        </thead>
+
+                                        <!--<tfoot>
+                                            <tr>
+                                                <th rowspan="1" colspan="1"><input type="text" name="search_engine" placeholder="Search engines" class="form-control input-sm"></th>
+                                                <th rowspan="1" colspan="1"><input type="text" name="search_browser" placeholder="Search browsers" class="form-control input-sm"></th>
+                                                <th rowspan="1" colspan="1"><input type="text" name="search_platform" placeholder="Search platforms" class="form-control input-sm"></th>
+                                                <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="Search versions" class="form-control input-sm"></th>
+                                                <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="Search grades" class="form-control input-sm"></th>
+                                            </tr>
+                                        </tfoot> -->
+                                        <tbody>
+                                            <!--<tr>
+                                                <td class=" sorting_1">Gecko</td>
+                                                <td class=" ">Firefox 1.0</td>
+                                                <td class=" ">Win 98+ / OSX.2+</td>
+                                                <td class="center ">1.7</td>
+                                                <td class="center ">A</td>
+                                                <td class="center ">A</td>
+                                                <td class="center ">A</td>
+                                            </tr>-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+        </div>
+        <!-- /Page Container -->
+        <!-- Main Container -->
+
+    </div>
+
+    <!--Basic Scripts-->
+    <script src="{{STATIC_URL}}beyond/js/jquery-2.0.3.min.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/bootstrap.min.js"></script>
+
+    <!--Beyond Scripts-->
+    <script src="{{STATIC_URL}}beyond/js/beyond.min.js"></script>
+
+
+    <!--Page Related Scripts-->
+    <!--Sparkline Charts Needed Scripts-->
+    <script src="{{STATIC_URL}}beyond/js/charts/sparkline/jquery.sparkline.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/charts/sparkline/sparkline-init.js"></script>
+
+    <!--Easy Pie Charts Needed Scripts-->
+    <script src="{{STATIC_URL}}beyond/js/charts/easypiechart/jquery.easypiechart.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/charts/easypiechart/easypiechart-init.js"></script>
+
+    <!--Flot Charts Needed Scripts-->
+    <script src="{{STATIC_URL}}beyond/js/charts/flot/jquery.flot.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/charts/flot/jquery.flot.resize.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/charts/flot/jquery.flot.pie.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/charts/flot/jquery.flot.tooltip.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/charts/flot/jquery.flot.orderBars.js"></script>
+        <!--Page Related Scripts-->
+    <script src="{{STATIC_URL}}beyond/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/datatable/ZeroClipboard.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/datatable/datatables-init.js"></script>
+    <script>
+        InitiateSimpleDataTable.init();
+        InitiateEditableDataTable.init();
+        InitiateExpandableDataTable.init();
+        InitiateSearchableDataTable.init();
+    </script>
+
+
+
+    <script>
+        // If you want to draw your charts with Theme colors you must run initiating charts after that current skin is loaded
+        $(window).bind("load", function () {
+
+            /*Sets Themed Colors Based on Themes*/
+            themeprimary = getThemeColorFromCss('themeprimary');
+            themesecondary = getThemeColorFromCss('themesecondary');
+            themethirdcolor = getThemeColorFromCss('themethirdcolor');
+            themefourthcolor = getThemeColorFromCss('themefourthcolor');
+            themefifthcolor = getThemeColorFromCss('themefifthcolor');
+
+            //Sets The Hidden Chart Width
+            $('#dashboard-bandwidth-chart')
+                .data('width', $('.box-tabbs')
+                    .width() - 20);
+
+            //-------------------------Visitor Sources Pie Chart----------------------------------------//
+             createanewpiechart();    
+
+            //------------------------------Visit Chart------------------------------------------------//
+            var data2 = [{
+                color: themesecondary,
+                label: "Direct Visits",
+                data: [[3, 2], [4, 5], [5, 4], [6, 11], [7, 12], [8, 11], [9, 8], [10, 14], [11, 12], [12, 16], [13, 9],
+                [14, 10], [15, 14], [16, 15], [17, 9]],
+
+                lines: {
+                    show: true,
+                    fill: true,
+                    lineWidth: .1,
+                    fillColor: {
+                        colors: [{
+                            opacity: 0
+                        }, {
+                            opacity: 0.4
+                        }]
+                    }
+                },
+                points: {
+                    show: false
+                },
+                shadowSize: 0
+            },
+                {
+                    color: themeprimary,
+                    label: "Referral Visits",
+                    data: [[3, 10], [4, 13], [5, 12], [6, 16], [7, 19], [8, 19], [9, 24], [10, 19], [11, 18], [12, 21], [13, 17],
+                    [14, 14], [15, 12], [16, 14], [17, 15]],
+                    bars: {
+                        order: 1,
+                        show: true,
+                        borderWidth: 0,
+                        barWidth: 0.4,
+                        lineWidth: .5,
+                        fillColor: {
+                            colors: [{
+                                opacity: 0.4
+                            }, {
+                                opacity: 1
+                            }]
+                        }
+                    }
+                },
+                {
+                    color: themethirdcolor,
+                    label: "Search Engines",
+                    data: [[3, 14], [4, 11], [5, 10], [6, 9], [7, 5], [8, 8], [9, 5], [10, 6], [11, 4], [12, 7], [13, 4],
+                    [14, 3], [15, 4], [16, 6], [17, 4]],
+                    lines: {
+                        show: true,
+                        fill: false,
+                        fillColor: {
+                            colors: [{
+                                opacity: 0.3
+                            }, {
+                                opacity: 0
+                            }]
+                        }
+                    },
+                    points: {
+                        show: true
+                    }
+                }
+            ];
+            var options = {
+                legend: {
+                    show: false
+                },
+                xaxis: {
+                    tickDecimals: 0,
+                    color: '#f3f3f3'
+                },
+                yaxis: {
+                    min: 0,
+                    color: '#f3f3f3',
+                    tickFormatter: function (val, axis) {
+                        return "";
+                    },
+                },
+                grid: {
+                    hoverable: true,
+                    clickable: false,
+                    borderWidth: 0,
+                    aboveData: false,
+                    color: '#fbfbfb'
+
+                },
+                tooltip: true,
+                tooltipOpts: {
+                    defaultTheme: false,
+                    content: " <b>%x May</b> , <b>%s</b> : <span>%y</span>",
+                }
+            };
+            var placeholder = $("#dashboard-chart-visits");
+            var plot = $.plot(placeholder, data2, options);
+
+            //------------------------------Real-Time Chart-------------------------------------------//
+            var data = [],
+                totalPoints = 300;
+
+            function getRandomData() {
+
+                if (data.length > 0)
+                    data = data.slice(1);
+
+                // Do a random walk
+
+                while (data.length < totalPoints) {
+
+                    var prev = data.length > 0 ? data[data.length - 1] : 50,
+                        y = prev + Math.random() * 10 - 5;
+
+                    if (y < 0) {
+                        y = 0;
+                    } else if (y > 100) {
+                        y = 100;
+                    }
+
+                    data.push(y);
+                }
+
+                // Zip the generated y values with the x values
+
+                var res = [];
+                for (var i = 0; i < data.length; ++i) {
+                    res.push([i, data[i]]);
+                }
+
+                return res;
+            }
+            // Set up the control widget
+            var updateInterval = 100;
+            var plot = $.plot("#dashboard-chart-realtime", [getRandomData()], {
+                yaxis: {
+                    color: '#f3f3f3',
+                    min: 0,
+                    max: 100,
+                    tickFormatter: function (val, axis) {
+                        return "";
+                    }
+                },
+                xaxis: {
+                    color: '#f3f3f3',
+                    min: 0,
+                    max: 100,
+                    tickFormatter: function (val, axis) {
+                        return "";
+                    }
+                },
+                colors: [themeprimary],
+                series: {
+                    lines: {
+                        lineWidth: 0,
+                        fill: true,
+                        fillColor: {
+                            colors: [{
+                                opacity: 0.5
+                            }, {
+                                opacity: 0
+                            }]
+                        },
+                        steps: false
+                    },
+                    shadowSize: 0
+                },
+                grid: {
+                    hoverable: true,
+                    clickable: false,
+                    borderWidth: 0,
+                    aboveData: false
+                }
+            });
+
+            function update() {
+
+                plot.setData([getRandomData()]);
+
+                plot.draw();
+                setTimeout(update, updateInterval);
+            }
+            update();
+
+
+            //-------------------------Initiates Easy Pie Chart instances in page--------------------//
+            InitiateEasyPieChart.init();
+
+            //-------------------------Initiates Sparkline Chart instances in page------------------//
+            InitiateSparklineCharts.init();
+        });
+
+        function createanewpiechart ()
+        {
+
+           var timelinevalue = document.getElementById("TimeLine").value;
+           var blockvalue = document.getElementById("Blocks").value;
+           var a,b ,c;
+           for (var i = dataForPieChart.Allblockdata.length - 1; i >= 0; i--) {
+               if(dataForPieChart.Allblockdata[i].block == blockvalue)
+                {
+                    if(timelinevalue== "LMonth1")
+                    {
+                       a = dataForPieChart.Allblockdata[i].data["LMonth1"].Rating.Good;
+                       b = dataForPieChart.Allblockdata[i].data["LMonth1"].Rating.Poor;
+                       c = dataForPieChart.Allblockdata[i].data["LMonth1"].Rating.Average;
+
+                    }
+                    else if(timelinevalue== "LMonth2")
+                    {
+                       a = dataForPieChart.Allblockdata[i].data["LMonth2"].Rating.Good;
+                       b = dataForPieChart.Allblockdata[i].data["LMonth2"].Rating.Poor;
+                       c = dataForPieChart.Allblockdata[i].data["LMonth2"].Rating.Average;
+
+                    }
+
+                    else if(timelinevalue== "LMonth3")
+                    {
+                       a = dataForPieChart.Allblockdata[i].data["LMonth3"].Rating.Good;
+                       b = dataForPieChart.Allblockdata[i].data["LMonth3"].Rating.Poor;
+                       c = dataForPieChart.Allblockdata[i].data["LMonth3"].Rating.Average;
+
+                    }
+
+                    else if(timelinevalue== "LMonth6")
+                    {
+                       a = dataForPieChart.Allblockdata[i].data["LMonth6"].Rating.Good;
+                       b = dataForPieChart.Allblockdata[i].data["LMonth6"].Rating.Poor;
+                       c = dataForPieChart.Allblockdata[i].data["LMonth6"].Rating.Average;
+
+                    }
+
+                    else if(timelinevalue== "LMonth10")
+                    {
+                       a = dataForPieChart.Allblockdata[i].data["LMonth10"].Rating.Good;
+                       b = dataForPieChart.Allblockdata[i].data["LMonth10"].Rating.Poor;
+                       c = dataForPieChart.Allblockdata[i].data["LMonth10"].Rating.Average;
+
+                    }
+
+ 
+                }
+           };
+
+
+           //-------------------------Visitor Sources Pie Chart----------------------------------------//
+            var data = [
+                {
+                    data: [[1, a]],
+                    color: '#fb6e52'
+                },
+                {
+                    data: [[1, b]],
+                    color: '#a0d468'
+                },
+                {
+                    data: [[1, c]],
+                    color: '#ffce55'
+                }
+            ];
+
+            var placeholder = $("#dashboard-pie-chart-sources");
+            placeholder.unbind();
+
+
+            $.plot(placeholder, data , {
+                series: {
+                    pie: {
+                        innerRadius: 0.0,
+                        show: true,
+                        stroke: {
+                            width: 4
+                        }
+                    }
+                }
+            });
+
+           
+           $("#GoodId").text( a );
+           $("#AverageId").text( b );
+          $("#PoorId").text( c );
+        }
+
+    </script>
+    <!--Google Analytics::Demo Only-->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-52103994-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    <script>
+               var jsonObject = [{"SrlNumber" : 1, "Status" :"Green" ,"Beneficiaries": 10, "Adherence" : 68 , "Overdue": 70, "Subcenter" : "badegaon", "AshaDetails" : "Ramvati:9177866663"},
+                                 {"SrlNumber" : 2, "Status" :"Green" ,"Beneficiaries": 10, "Adherence" : 68 , "Overdue": 70, "Subcenter" : "badegaon", "AshaDetails" : "Ramvati:9177866663"},
+                                 {"SrlNumber" : 3, "Status" :"Green" ,"Beneficiaries": 10, "Adherence" : 68 , "Overdue": 70, "Subcenter" : "badegaon", "AshaDetails" : "Ramvati:9177866663"}
+                                ]
+
+               for (var i = 0; i < jsonObject.length; i++) {
+                                    $("#searchable").append(createProviderFormFields(jsonObject[i]));
+                                };   
+
+                function createProviderFormFields(jsonRow) {
+                var tr = '<tr>' ;
+                // create a new Label Text
+                        tr += '<td>' + jsonRow.SrlNumber  + '</td>';
+                        tr += '<td>' + jsonRow.Status + '</td>';  
+                        tr += '<td>' + jsonRow.Beneficiaries  + '</td>';
+                        tr += '<td>' + jsonRow.Adherence + '</td>';  
+                        tr += '<td>' + jsonRow.Overdue  + '</td>';
+                        tr += '<td>' + jsonRow.Subcenter + '</td>';  
+                        tr += '<td>' + jsonRow.AshaDetails + '</td>'; 
+                tr +='</tr>';
+                return tr;
+                }               
+
+    </script>
+    <script>
+    var dataForPieChart = 
+{
+  "Allblockdata":
+ [ {
+ "block": "mauranipur", "data" :{
+ "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
+ "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
+ "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
+ "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
+ "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
+ }
+ },
+ {
+ "block": "babina","data" :{
+ "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
+ "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
+ "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
+ "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
+ "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
+ }
+ },
+ {"block": "badagaon" ,"data" :{
+ "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
+ "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
+ "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
+ "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
+ "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
+ }
+ },
+ {"block": "bamaur","data" :{
+ "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
+ "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
+ "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
+ "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
+ "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
+ }
+ },
+ {"block": "bangra","data" :{
+ "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
+ "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
+ "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
+ "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
+ "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
+ }
+ },
+{"block": "chirgaon","data" :{
+ "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
+ "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
+ "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
+ "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
+ "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
+ }
+ },
+ {"block": "gursrai", "data" :{
+ "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
+ "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
+ "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
+ "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
+ "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
+ }
+ },
+ {"block": "moth", "data" :{
+ "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
+ "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
+ "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
+ "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
+ "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
+ }
+ },
+ {"block": "allblocks", "data" :{
+ "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
+ "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
+ "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
+ "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
+ "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
+ }
+ }
+ ]
+ }
+
+    </script>
+
+</body>
+<!--  /Body -->
+</html>

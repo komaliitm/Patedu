@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Create your views here.
 from __future__ import absolute_import
 import json
@@ -27,6 +29,9 @@ from django.views.decorators.csrf import csrf_exempt
 import sys
 from mcts_transactions.models import DueEvents, ContentDelivered
 from sms.sender import SendSMSUnicode
+from django.template.loader import get_template
+from django.template import RequestContext
+from django.shortcuts import render
 
 class StaticData:
 	SCHEDULE_MSG =0
@@ -83,4 +88,5 @@ def SendSchSMS(role=StaticData.SCHEDULE_MSG, job=StaticData.SENDER, reach = Stat
 			ContentDelivered.objects.create(msg= sms_text, medium=ContentDelivered.SMS, timestamp = utcnow_aware(), status=0, beneficiary = benef)
 
 
-
+def DashboardPage(request):
+	return render(request, "dasboard_subcenteratblock.html", {})

@@ -16,5 +16,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^vaccination/', include('vaccination.urls')),
     url(r'^urlpattern/', include('sms.urls')),
-    url(r'^mctsdata/', include('mcts_data.urls'))
+    url(r'^mctsdata/', include('mcts_data.urls')),
+    url(r'^subcenter/', include('mcts_transactions.urls'))
 )

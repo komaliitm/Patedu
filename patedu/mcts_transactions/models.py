@@ -126,7 +126,7 @@ class ContentDelivered(models.Model):
 
 	DELIVERY_STATUS = (
 		(SUCCESS, "delivery is successful"),
-		(ISSUE, "delivery is not successful but has  to be retried")
+		(ISSUE, "delivery is not successful but has  to be retried"),
 		(FAILURE, "delivery is failed permanently")
 	)
 
