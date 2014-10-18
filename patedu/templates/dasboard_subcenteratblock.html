@@ -160,26 +160,28 @@ Purchase: http://wrapbootstrap.com
                                         <div>
                                             <h6>Select Timeline</h6>
                                             <select id="TimeLine" style="width:100%;"  onchange ="createanewpiechart()">
-                                                <option value="LMonth1" />Last 1 Month
-                                                <option value="LMonth2" />Last 2 Months
-                                                <option value="LMonth3" />Last 3 Months
-                                                <option value="LMonth6" />Last 6 Months
-                                                <option value="LMonth10" />Beginning of Time
+                                                <option value="1" />Last 1 Month
+                                                <option value="2" />Last 2 Months
+                                                <option value="3" />Last 3 Months
+                                                <option value="3" />Last 6 Months
+                                                <option value="36" />Beginning of Time
                                             </select>
                                             <hr class="wide" />
                                         </div>
                                         <div>
                                             <h6>Select Blocks</h6>
                                             <select id="Blocks" style="width:100%;" onchange ="createanewpiechart()">
-                                                <option value="allblocks" />AllBlocks
-                                                <option value="babina" />Babina
-                                                <option value="badagaon" />Badagaon
-                                                <option value="bamaur" />Bamaur
-                                                <option value="bangra" />Bangra
-                                                <option value="chirgaon" />Chirgaon
-                                                <option value="gursrai" />Gursrai
-                                                <option value="mauranipur" />Mauranipur
-                                                <option value="moth" />Moth
+                                                {% if blocks %}
+                                                        <option value="">
+                                                                AllBlocks 
+                                                        </option>
+                                                        
+                                                {% endif %}
+                                                {% for block in blocks %}
+                                                    <option value="{{block.id}}">
+                                                            {{block.name}}
+                                                    </option>
+                                                {% endfor %}
                                             </select>
                                             <hr class="wide" />
                                         </div>

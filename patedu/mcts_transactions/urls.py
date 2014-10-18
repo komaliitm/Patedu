@@ -5,5 +5,7 @@ from mcts_transactions import views
 from django.contrib import admin
 
 urlpatterns = patterns('',
-	url(r'^dashboard/$', views.DashboardPage)
+	url(r'^dashboard/$', views.DashboardPage),
+	url(r'^dashboard/data/(\d+)/$', views.DashboardData),
+	url(r'^dashboard/data/$', views.DashboardData)
 )
