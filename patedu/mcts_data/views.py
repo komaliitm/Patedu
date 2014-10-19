@@ -538,7 +538,7 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
     for service in gn_services:
         service = service.strip()
         event = Events.objects.get(val=service)
-        dt_then = datetime.datetime.combine(date_then, datetime.datetime.min.time()) + timedelta(days=1)
+        dt_then = datetime.datetime.combine(date_then, datetime.datetime.min.time()) +  datetime.timedelta(days=1)
         dt_cutoff = utcnow_aware() - datetime.timedelta(days=ANCBenef.ANC_SPAN)
         txs = Transactions.objects.filter(beneficiary=anc_benef, event=event, timestamp__gt = dt_cutoff)
         if txs.count() > 0:
@@ -766,7 +766,7 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
     for service in gn_services:
         service = service.strip()
         event = Events.objects.get(val=service)
-        dt_then = datetime.datetime.combine(date_then, datetime.datetime.min.time())  + timedelta(days=1)
+        dt_then = datetime.datetime.combine(date_then, datetime.datetime.min.time())  + datetime.timedelta(days=1)
         dt_cutoff = utcnow_aware() - datetime.timedelta(days=IMMBenef.IMM_SPAN)
         txs = Transactions.objects.filter(beneficiary=imm_benef, event=event, timestamp__gt = dt_cutoff)
         if txs.count() > 0:
