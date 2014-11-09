@@ -17,11 +17,10 @@
       function fetchDataCurrent(){
       	dashboardService.getDashboardData($scope.dashboardParams).then(function(dashdata){
         $scope.dashdata = dashdata;
+        DrawPieChart($scope.dashdata.summary.Good, $scope.dashdata.summary.Average, $scope.dashdata.summary.Poor);
         console.log($scope.dashdata);
       });	
       }
-      
-
   	}]);
 
     app.factory('dashboardService', function($http, $q) {
@@ -63,5 +62,51 @@
         return $q.reject(response.data.message);
       }
     });
+
+
+    function DrawPieChart(a, b, c) 
+    {
+//        var a = 50;
+//        var b = 50;
+//        var c = 50;
+        
+        var data = [{
+            data: [
+                [1, a]
+            ],
+            color: '#fb6e52'
+        }, {
+            data: [
+                [1, b]
+            ],
+            color: '#a0d468'
+        }, {
+            data: [
+                [1, c]
+            ],
+            color: '#ffce55'
+        }];
+
+        var placeholder = $("#dashboard-pie-chart-sources");
+        placeholder.unbind();
+
+
+        $.plot(placeholder, data, {
+            series: {
+                pie: {
+                    innerRadius: 0.0,
+                    show: true,
+                    stroke: {
+                        width: 4
+                    }
+                }
+            }
+        });
+
+
+        $("#GoodId").text(a);
+        $("#AverageId").text(b);
+        $("#PoorId").text(c);
+    }
 
 })();

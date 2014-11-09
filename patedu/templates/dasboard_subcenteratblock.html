@@ -7,6 +7,7 @@ Purchase: http://wrapbootstrap.com
 
 <html ng-app="MainApp">
 <!-- Head -->
+
 <head>
     <meta charset="utf-8" />
     <title>Block Infromation</title>
@@ -42,7 +43,8 @@ Purchase: http://wrapbootstrap.com
 </head>
 <!-- /Head -->
 <!-- Body -->
-<body ng-controller="DasboardController"> 
+
+<body ng-controller="DasboardController">
     <!-- Loading Container -->
     <div class="loading-container">
         <div class="loading-progress">
@@ -111,7 +113,7 @@ Purchase: http://wrapbootstrap.com
                     <li class="active">
                         <a href="index_new.html">
                             <i class="menu-icon glyphicon glyphicon-home"></i>
-                            <span class="menu-text"> Block Information </span>
+                            <span class="menu-text">Block Information</span>
                         </a>
                     </li>
                 </ul>
@@ -155,38 +157,37 @@ Purchase: http://wrapbootstrap.com
                 <!-- /Page Header -->
                 <!-- Page Body -->
                 <div class="page-body">
-                     <div class="row">
+                    <div class="row">
                         <div class="col-lg-6 col-sm-12 col-xs-6">
-                                    <div class="well with-header">
-                                        <div>
-                                            <h6>Select Timeline</h6>
-                                            <select id="TimeLine" style="width:100%;"  onchange ="fillInformationBlock()">
-                                                <option value="1" />Last 1 Month
-                                                <option value="2" />Last 2 Months
-                                                <option value="3" />Last 3 Months
-                                                <option value="6" />Last 6 Months
-                                                <option value="36" />Beginning of Time
-                                            </select>
-                                            <hr class="wide" />
-                                        </div>
-                                        <div>
-                                            <h6>Select Blocks</h6>
-                                            <select id="Blocks" style="width:100%;" onchange ="fillInformationBlock()">
-                                                {% if blocks %}
-                                                        <option value="">
-                                                                AllBlocks 
-                                                        </option>
-                                                        
-                                                {% endif %}
-                                                {% for block in blocks %}
-                                                    <option value="{{block.id}}">
-                                                            {{block.name}}
-                                                    </option>
-                                                {% endfor %}
-                                            </select>
-                                            <hr class="wide" />
-                                        </div>
-                                  </div>
+                            <div class="well with-header">
+                                <div>
+                                    <h6>Select Timeline</h6>
+                                    <select id="TimeLine" style="width:100%;" onchange="fillInformationBlock()">
+                                        <option value="1" />Last 1 Month
+                                        <option value="2" />Last 2 Months
+                                        <option value="3" />Last 3 Months
+                                        <option value="6" />Last 6 Months
+                                        <option value="36" />Beginning of Time
+                                    </select>
+                                    <hr class="wide" />
+                                </div>
+                                <div>
+                                    <h6>Select Blocks</h6>
+                                    <select id="Blocks" style="width:100%;" onchange="fillInformationBlock()">
+                                        {% if blocks %}
+                                        <option value="">
+                                            AllBlocks
+                                        </option>
+
+                                        {% endif %} {% for block in blocks %}
+                                        <option value="{{block.id}}">
+                                            {{block.name}}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                    <hr class="wide" />
+                                </div>
+                            </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-4">
                             <div class="databox databox-xxlg databox-vertical databox-shadowed bg-white radius-bordered padding-5">
@@ -212,38 +213,38 @@ Purchase: http://wrapbootstrap.com
                                         </div>
                                     </div> 
                                 </div>-->
-                                    <div class="databox-bottom">
-                                        <div class="databox-row row-12">
-                                            <div class="databox-cell cell-7 text-center  padding-5">
-                                                <div id="dashboard-pie-chart-sources" class="chart"></div>
+                                <div class="databox-bottom">
+                                    <div class="databox-row row-12">
+                                        <div class="databox-cell cell-7 text-center  padding-5">
+                                            <div id="dashboard-pie-chart-sources" class="chart"></div>
+                                        </div>
+                                        <div class="databox-cell cell-5 text-center no-padding-left padding-bottom-30">
+                                            <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
+                                                <span class="databox-text sonic-silver pull-left no-margin">Performane</span>
+                                                <span class="databox-text sonic-silver pull-right no-margin uppercase">PCT</span>
                                             </div>
-                                            <div class="databox-cell cell-5 text-center no-padding-left padding-bottom-30">
-                                                <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
-                                                    <span class="databox-text sonic-silver pull-left no-margin">Performane</span>
-                                                    <span class="databox-text sonic-silver pull-right no-margin uppercase">PCT</span>
-                                                </div>
-                                                <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
-                                                    <span class="badge badge-palegreen badge-empty pull-left margin-5"></span>
-                                                    <span class="databox-text darkgray pull-left no-margin hidden-xs">Good</span>
-                                                    <span class="databox-text darkgray pull-right no-margin uppercase" id="GoodId"></span>
-                                                </div>
-                                                <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
-                                                    <span class="badge badge-yellow badge-empty pull-left margin-5"></span>
-                                                    <span class="databox-text darkgray pull-left no-margin hidden-xs">Average</span>
-                                                    <span class="databox-text darkgray pull-right no-margin uppercase" id="AverageId"></span>
-                                                </div>
-                                                <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
-                                                    <span class="badge badge-orange badge-empty pull-left margin-5"></span>
-                                                    <span class="databox-text darkgray pull-left no-margin hidden-xs">Poor</span>
-                                                    <span class="databox-text darkgray pull-right no-margin uppercase" id="PoorId"></span>
-                                                </div>
+                                            <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
+                                                <span class="badge badge-palegreen badge-empty pull-left margin-5"></span>
+                                                <span class="databox-text darkgray pull-left no-margin hidden-xs">Good</span>
+                                                <span class="databox-text darkgray pull-right no-margin uppercase" id="GoodId"></span>
+                                            </div>
+                                            <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
+                                                <span class="badge badge-yellow badge-empty pull-left margin-5"></span>
+                                                <span class="databox-text darkgray pull-left no-margin hidden-xs">Average</span>
+                                                <span class="databox-text darkgray pull-right no-margin uppercase" id="AverageId"></span>
+                                            </div>
+                                            <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
+                                                <span class="badge badge-orange badge-empty pull-left margin-5"></span>
+                                                <span class="databox-text darkgray pull-left no-margin hidden-xs">Poor</span>
+                                                <span class="databox-text darkgray pull-right no-margin uppercase" id="PoorId"></span>
                                             </div>
                                         </div>
-                                </div> 
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                     </div>
-                     <div class="row">
+                    </div>
+                    <div class="row">
                         <div class="col-xs-12 col-md-12">
                             <div class="widget">
                                 <div class="widget-header bordered-bottom bordered-yellow">
@@ -265,47 +266,47 @@ Purchase: http://wrapbootstrap.com
                                         <thead class="bordered-darkorange">
                                             <tr role="row">
                                                 <th>Serial Number</th>
-                                                <th>Status indicator </th>
-                                                <th>Number of beneficiaries</th>
-                                                <th>Adherence%</th>
-                                                <th>Overdue %</th>
+                                                <th>Status indicator</th>
                                                 <th>Subcenter</th>
+                                                <th>Total Beneficiaries</th>
+                                                <th>New registrations</th>
+                                                <th>Given Services number </th>
+                                                <th>Overdue Services number</th>
+                                                <th>Overdue rate</th>
                                                 <th>Asha worker name | Number</th>
                                             </tr>
                                         </thead>
-
-                                        <!--<tfoot>
-                                            <tr>
-                                                <th rowspan="1" colspan="1"><input type="text" name="search_engine" placeholder="Search engines" class="form-control input-sm"></th>
-                                                <th rowspan="1" colspan="1"><input type="text" name="search_browser" placeholder="Search browsers" class="form-control input-sm"></th>
-                                                <th rowspan="1" colspan="1"><input type="text" name="search_platform" placeholder="Search platforms" class="form-control input-sm"></th>
-                                                <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="Search versions" class="form-control input-sm"></th>
-                                                <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="Search grades" class="form-control input-sm"></th>
-                                            </tr>
-                                        </tfoot> -->
                                         <tbody>
-                                            <!--<tr>
-                                                <td class=" sorting_1">Gecko</td>
-                                                <td class=" ">Firefox 1.0</td>
-                                                <td class=" ">Win 98+ / OSX.2+</td>
-                                                <td class="center ">1.7</td>
-                                                <td class="center ">A</td>
-                                                <td class="center ">A</td>
-                                                <td class="center ">A</td>
-                                            </tr>-->
+                                            <tr  ng-repeat="villageData in dashdata.data">
+                                                <td >#{$index}#</td>
+                                                <td >#{villageData.status}#</td>
+                                                <td >#{villageData.Subcenter}#</td>
+                                                <td >#{villageData.Beneficiaries_anc + villageData.Beneficiaries_pnc + villageData.Beneficiaries_imm}# </td>
+                                                <td >#{villageData.new_reg_anc + villageData.new_reg_pnc + villageData.new_reg_pnc}# </td>
+                                                <td >#{villageData.GivenServices_anc + villageData.GivenServices_pnc + villageData.GivenServices_imm}# </td>
+                                                <td >#{villageData.Overdue_anc + villageData.Overdue_pnc + villageData.Overdue_imm}# </td>
+                                                <td >#{(villageData.OverDueRate_imm + villageData.OverDueRate_pnc + villageData.OverDueRate_anc)/3 | number:2}# </td>
+                                                <td >
+                                                 <span ng-repeat="ashaWorker in villageData.AshaDetails"> 
+                                                    <span ng-show="$index>0">, </span>
+                                                    #{ashaWorker}#
+                                                    </span>
+                                                 </td>
+                                                
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                         <div class="row">
-                                                <div class="col-xs-12 col-md-12">
-                            <div class="widget">
-                            <div id="map-canvas"  style="width: 100%; height: 300px" ></div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12">
+                                <div class="widget">
+                                    <div id="map-canvas" style="width: 100%; height: 300px"></div>
+                                </div>
                             </div>
                         </div>
-                         </div>
-                     </div>
+                    </div>
                 </div>
                 <!-- /Page Body -->
             </div>
@@ -339,7 +340,7 @@ Purchase: http://wrapbootstrap.com
     <script src="{{STATIC_URL}}beyond/js/charts/flot/jquery.flot.pie.js"></script>
     <script src="{{STATIC_URL}}beyond/js/charts/flot/jquery.flot.tooltip.js"></script>
     <script src="{{STATIC_URL}}beyond/js/charts/flot/jquery.flot.orderBars.js"></script>
-        <!--Page Related Scripts-->
+    <!--Page Related Scripts-->
     <script src="{{STATIC_URL}}beyond/js/datatable/jquery.dataTables.min.js"></script>
     <script src="{{STATIC_URL}}beyond/js/datatable/ZeroClipboard.js"></script>
     <script src="{{STATIC_URL}}beyond/js/datatable/dataTables.tableTools.min.js"></script>
@@ -352,135 +353,177 @@ Purchase: http://wrapbootstrap.com
     <script type="text/javascript" src="{{STATIC_URL}}app/js/app.js"></script>
 
     <script>
-        InitiateSimpleDataTable.init();
-        InitiateEditableDataTable.init();
-        InitiateExpandableDataTable.init();
-        InitiateSearchableDataTable.init();
+    InitiateSimpleDataTable.init();
+    InitiateEditableDataTable.init();
+    InitiateExpandableDataTable.init();
+    InitiateSearchableDataTable.init();
     </script>
 
 
 
     <script>
-        // If you want to draw your charts with Theme colors you must run initiating charts after that current skin is loaded
-        $(window).bind("load", function () {
+    // If you want to draw your charts with Theme colors you must run initiating charts after that current skin is loaded
+    $(window).bind("load", function() {
 
-            /*Sets Themed Colors Based on Themes*/
-            themeprimary = getThemeColorFromCss('themeprimary');
-            themesecondary = getThemeColorFromCss('themesecondary');
-            themethirdcolor = getThemeColorFromCss('themethirdcolor');
-            themefourthcolor = getThemeColorFromCss('themefourthcolor');
-            themefifthcolor = getThemeColorFromCss('themefifthcolor');
+        /*Sets Themed Colors Based on Themes*/
+        themeprimary = getThemeColorFromCss('themeprimary');
+        themesecondary = getThemeColorFromCss('themesecondary');
+        themethirdcolor = getThemeColorFromCss('themethirdcolor');
+        themefourthcolor = getThemeColorFromCss('themefourthcolor');
+        themefifthcolor = getThemeColorFromCss('themefifthcolor');
 
-            //Sets The Hidden Chart Width
-            $('#dashboard-bandwidth-chart')
-                .data('width', $('.box-tabbs')
-                    .width() - 20);
+        //Sets The Hidden Chart Width
+        $('#dashboard-bandwidth-chart')
+            .data('width', $('.box-tabbs')
+                .width() - 20);
 
-            //-------------------------Visitor Sources Pie Chart----------------------------------------//
-             fillInformationBlock();    
+        //-------------------------Visitor Sources Pie Chart----------------------------------------//
+        fillInformationBlock();
 
-            //------------------------------Visit Chart------------------------------------------------//
-            var data2 = [{
-                color: themesecondary,
-                label: "Direct Visits",
-                data: [[3, 2], [4, 5], [5, 4], [6, 11], [7, 12], [8, 11], [9, 8], [10, 14], [11, 12], [12, 16], [13, 9],
-                [14, 10], [15, 14], [16, 15], [17, 9]],
+        //------------------------------Visit Chart------------------------------------------------//
+        var data2 = [{
+            color: themesecondary,
+            label: "Direct Visits",
+            data: [
+                [3, 2],
+                [4, 5],
+                [5, 4],
+                [6, 11],
+                [7, 12],
+                [8, 11],
+                [9, 8],
+                [10, 14],
+                [11, 12],
+                [12, 16],
+                [13, 9],
+                [14, 10],
+                [15, 14],
+                [16, 15],
+                [17, 9]
+            ],
 
-                lines: {
-                    show: true,
-                    fill: true,
-                    lineWidth: .1,
-                    fillColor: {
-                        colors: [{
-                            opacity: 0
-                        }, {
-                            opacity: 0.4
-                        }]
-                    }
-                },
-                points: {
-                    show: false
-                },
-                shadowSize: 0
+            lines: {
+                show: true,
+                fill: true,
+                lineWidth: .1,
+                fillColor: {
+                    colors: [{
+                        opacity: 0
+                    }, {
+                        opacity: 0.4
+                    }]
+                }
             },
-                {
-                    color: themeprimary,
-                    label: "Referral Visits",
-                    data: [[3, 10], [4, 13], [5, 12], [6, 16], [7, 19], [8, 19], [9, 24], [10, 19], [11, 18], [12, 21], [13, 17],
-                    [14, 14], [15, 12], [16, 14], [17, 15]],
-                    bars: {
-                        order: 1,
-                        show: true,
-                        borderWidth: 0,
-                        barWidth: 0.4,
-                        lineWidth: .5,
-                        fillColor: {
-                            colors: [{
-                                opacity: 0.4
-                            }, {
-                                opacity: 1
-                            }]
-                        }
-                    }
-                },
-                {
-                    color: themethirdcolor,
-                    label: "Search Engines",
-                    data: [[3, 14], [4, 11], [5, 10], [6, 9], [7, 5], [8, 8], [9, 5], [10, 6], [11, 4], [12, 7], [13, 4],
-                    [14, 3], [15, 4], [16, 6], [17, 4]],
-                    lines: {
-                        show: true,
-                        fill: false,
-                        fillColor: {
-                            colors: [{
-                                opacity: 0.3
-                            }, {
-                                opacity: 0
-                            }]
-                        }
-                    },
-                    points: {
-                        show: true
-                    }
+            points: {
+                show: false
+            },
+            shadowSize: 0
+        }, {
+            color: themeprimary,
+            label: "Referral Visits",
+            data: [
+                [3, 10],
+                [4, 13],
+                [5, 12],
+                [6, 16],
+                [7, 19],
+                [8, 19],
+                [9, 24],
+                [10, 19],
+                [11, 18],
+                [12, 21],
+                [13, 17],
+                [14, 14],
+                [15, 12],
+                [16, 14],
+                [17, 15]
+            ],
+            bars: {
+                order: 1,
+                show: true,
+                borderWidth: 0,
+                barWidth: 0.4,
+                lineWidth: .5,
+                fillColor: {
+                    colors: [{
+                        opacity: 0.4
+                    }, {
+                        opacity: 1
+                    }]
                 }
-            ];
-            var options = {
-                legend: {
-                    show: false
-                },
-                xaxis: {
-                    tickDecimals: 0,
-                    color: '#f3f3f3'
-                },
-                yaxis: {
-                    min: 0,
-                    color: '#f3f3f3',
-                    tickFormatter: function (val, axis) {
-                        return "";
-                    },
-                },
-                grid: {
-                    hoverable: true,
-                    clickable: false,
-                    borderWidth: 0,
-                    aboveData: false,
-                    color: '#fbfbfb'
-
-                },
-                tooltip: true,
-                tooltipOpts: {
-                    defaultTheme: false,
-                    content: " <b>%x May</b> , <b>%s</b> : <span>%y</span>",
+            }
+        }, {
+            color: themethirdcolor,
+            label: "Search Engines",
+            data: [
+                [3, 14],
+                [4, 11],
+                [5, 10],
+                [6, 9],
+                [7, 5],
+                [8, 8],
+                [9, 5],
+                [10, 6],
+                [11, 4],
+                [12, 7],
+                [13, 4],
+                [14, 3],
+                [15, 4],
+                [16, 6],
+                [17, 4]
+            ],
+            lines: {
+                show: true,
+                fill: false,
+                fillColor: {
+                    colors: [{
+                        opacity: 0.3
+                    }, {
+                        opacity: 0
+                    }]
                 }
-            };
-            var placeholder = $("#dashboard-chart-visits");
-            var plot = $.plot(placeholder, data2, options);
+            },
+            points: {
+                show: true
+            }
+        }];
+        var options = {
+            legend: {
+                show: false
+            },
+            xaxis: {
+                tickDecimals: 0,
+                color: '#f3f3f3'
+            },
+            yaxis: {
+                min: 0,
+                color: '#f3f3f3',
+                tickFormatter: function(val, axis) {
+                    return "";
+                },
+            },
+            grid: {
+                hoverable: true,
+                clickable: false,
+                borderWidth: 0,
+                aboveData: false,
+                color: '#fbfbfb'
 
-            //------------------------------Real-Time Chart-------------------------------------------//
-            var data = [],
-                totalPoints = 300;
+            },
+            tooltip: true,
+            tooltipOpts: {
+                defaultTheme: false,
+                content: " <b>%x May</b> , <b>%s</b> : <span>%y</span>",
+            }
+        };
+        var placeholder = $("#dashboard-chart-visits");
+        var plot = $.plot(placeholder, data2, options);
 
-            function getRandomData() {
+        //------------------------------Real-Time Chart-------------------------------------------//
+        var data = [],
+            totalPoints = 300;
+
+        function getRandomData() {
 
                 if (data.length > 0)
                     data = data.slice(1);
@@ -511,296 +554,161 @@ Purchase: http://wrapbootstrap.com
                 return res;
             }
             // Set up the control widget
-            var updateInterval = 100;
-            var plot = $.plot("#dashboard-chart-realtime", [getRandomData()], {
-                yaxis: {
-                    color: '#f3f3f3',
-                    min: 0,
-                    max: 100,
-                    tickFormatter: function (val, axis) {
-                        return "";
-                    }
-                },
-                xaxis: {
-                    color: '#f3f3f3',
-                    min: 0,
-                    max: 100,
-                    tickFormatter: function (val, axis) {
-                        return "";
-                    }
-                },
-                colors: [themeprimary],
-                series: {
-                    lines: {
-                        lineWidth: 0,
-                        fill: true,
-                        fillColor: {
-                            colors: [{
-                                opacity: 0.5
-                            }, {
-                                opacity: 0
-                            }]
-                        },
-                        steps: false
-                    },
-                    shadowSize: 0
-                },
-                grid: {
-                    hoverable: true,
-                    clickable: false,
-                    borderWidth: 0,
-                    aboveData: false
+        var updateInterval = 100;
+        var plot = $.plot("#dashboard-chart-realtime", [getRandomData()], {
+            yaxis: {
+                color: '#f3f3f3',
+                min: 0,
+                max: 100,
+                tickFormatter: function(val, axis) {
+                    return "";
                 }
-            });
-
-            function update() {
-
-                plot.setData([getRandomData()]);
-
-                plot.draw();
-                setTimeout(update, updateInterval);
+            },
+            xaxis: {
+                color: '#f3f3f3',
+                min: 0,
+                max: 100,
+                tickFormatter: function(val, axis) {
+                    return "";
+                }
+            },
+            colors: [themeprimary],
+            series: {
+                lines: {
+                    lineWidth: 0,
+                    fill: true,
+                    fillColor: {
+                        colors: [{
+                            opacity: 0.5
+                        }, {
+                            opacity: 0
+                        }]
+                    },
+                    steps: false
+                },
+                shadowSize: 0
+            },
+            grid: {
+                hoverable: true,
+                clickable: false,
+                borderWidth: 0,
+                aboveData: false
             }
-            update();
-
-
-            //-------------------------Initiates Easy Pie Chart instances in page--------------------//
-            InitiateEasyPieChart.init();
-
-            //-------------------------Initiates Sparkline Chart instances in page------------------//
-            InitiateSparklineCharts.init();
         });
 
-       function fillInformationBlock()
-       {
-            //draw pie chart
-            createanewpiechart()
+        function update() {
 
-            //populat data in table
+            plot.setData([getRandomData()]);
 
-            //populate data in google graph
-       }
-
-        function createanewpiechart()
-        {
-
-           var timelinevalue = document.getElementById("TimeLine").value;
-           var blockvalue = document.getElementById("Blocks").value;
-           var a,b ,c;
-           for (var i = dataForPieChart.Allblockdata.length - 1; i >= 0; i--) {
-               if(dataForPieChart.Allblockdata[i].block == blockvalue)
-                {
-                    if(timelinevalue== "LMonth1")
-                    {
-                       a = dataForPieChart.Allblockdata[i].data["LMonth1"].Rating.Good;
-                       b = dataForPieChart.Allblockdata[i].data["LMonth1"].Rating.Poor;
-                       c = dataForPieChart.Allblockdata[i].data["LMonth1"].Rating.Average;
-
-                    }
-                    else if(timelinevalue== "LMonth2")
-                    {
-                       a = dataForPieChart.Allblockdata[i].data["LMonth2"].Rating.Good;
-                       b = dataForPieChart.Allblockdata[i].data["LMonth2"].Rating.Poor;
-                       c = dataForPieChart.Allblockdata[i].data["LMonth2"].Rating.Average;
-
-                    }
-
-                    else if(timelinevalue== "LMonth3")
-                    {
-                       a = dataForPieChart.Allblockdata[i].data["LMonth3"].Rating.Good;
-                       b = dataForPieChart.Allblockdata[i].data["LMonth3"].Rating.Poor;
-                       c = dataForPieChart.Allblockdata[i].data["LMonth3"].Rating.Average;
-
-                    }
-
-                    else if(timelinevalue== "LMonth6")
-                    {
-                       a = dataForPieChart.Allblockdata[i].data["LMonth6"].Rating.Good;
-                       b = dataForPieChart.Allblockdata[i].data["LMonth6"].Rating.Poor;
-                       c = dataForPieChart.Allblockdata[i].data["LMonth6"].Rating.Average;
-
-                    }
-
-                    else if(timelinevalue== "LMonth10")
-                    {
-                       a = dataForPieChart.Allblockdata[i].data["LMonth10"].Rating.Good;
-                       b = dataForPieChart.Allblockdata[i].data["LMonth10"].Rating.Poor;
-                       c = dataForPieChart.Allblockdata[i].data["LMonth10"].Rating.Average;
-
-                    }
-
- 
-                }
-           };
-
-
-           //-------------------------Visitor Sources Pie Chart----------------------------------------//
-            var data = [
-                {
-                    data: [[1, a]],
-                    color: '#fb6e52'
-                },
-                {
-                    data: [[1, b]],
-                    color: '#a0d468'
-                },
-                {
-                    data: [[1, c]],
-                    color: '#ffce55'
-                }
-            ];
-
-            var placeholder = $("#dashboard-pie-chart-sources");
-            placeholder.unbind();
-
-
-            $.plot(placeholder, data , {
-                series: {
-                    pie: {
-                        innerRadius: 0.0,
-                        show: true,
-                        stroke: {
-                            width: 4
-                        }
-                    }
-                }
-            });
-
-           
-           $("#GoodId").text( a );
-           $("#AverageId").text( b );
-          $("#PoorId").text( c );
+            plot.draw();
+            setTimeout(update, updateInterval);
         }
+        update();
+
+
+        //-------------------------Initiates Easy Pie Chart instances in page--------------------//
+        InitiateEasyPieChart.init();
+
+        //-------------------------Initiates Sparkline Chart instances in page------------------//
+        InitiateSparklineCharts.init();
+        
+        // call the draw of pie chrt---------------------------------------//
+        DrawPieChart();
+    });
+
+    function fillInformationBlock() {
+        //draw pie chart
+        createanewpiechart()
+
+        //populat data in table
+
+        //populate data in google graph
+    }
+
+    function createanewpiechart() {
+
+        MainApp.dashboardParams.since_months = document.getElementById("TimeLine").value;
+        MainApp.dashboardParams.blockid = document.getElementById("Blocks").value;
+        MainApp.fetchDataCurrent();
+        console.log(" I was here buddy");
+       // DrawPieChart();      
+     }
+
+
 
     </script>
     <!--Google Analytics::Demo Only-->
     <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-52103994-1', 'auto');
-        ga('send', 'pageview');
-
+    ga('create', 'UA-52103994-1', 'auto');
+    ga('send', 'pageview');
     </script>
 
     <script>
-               var jsonObject = [{"SrlNumber" : 1, "Status" :"Green" ,"Beneficiaries": 10, "Adherence" : 68 , "Overdue": 70, "Subcenter" : "badegaon", "AshaDetails" : "Ramvati:9177866663"},
-                                 {"SrlNumber" : 2, "Status" :"Green" ,"Beneficiaries": 10, "Adherence" : 68 , "Overdue": 70, "Subcenter" : "badegaon", "AshaDetails" : "Ramvati:9177866663"},
-                                 {"SrlNumber" : 3, "Status" :"Green" ,"Beneficiaries": 10, "Adherence" : 68 , "Overdue": 70, "Subcenter" : "badegaon", "AshaDetails" : "Ramvati:9177866663"}
-                                ]
+    var jsonObject = [{
+        "SrlNumber": 1,
+        "Status": "Green",
+        "Beneficiaries": 10,
+        "Adherence": 68,
+        "Overdue": 70,
+        "Subcenter": "badegaon",
+        "AshaDetails": "Ramvati:9177866663"
+    }, {
+        "SrlNumber": 2,
+        "Status": "Green",
+        "Beneficiaries": 10,
+        "Adherence": 68,
+        "Overdue": 70,
+        "Subcenter": "badegaon",
+        "AshaDetails": "Ramvati:9177866663"
+    }, {
+        "SrlNumber": 3,
+        "Status": "Green",
+        "Beneficiaries": 10,
+        "Adherence": 68,
+        "Overdue": 70,
+        "Subcenter": "badegaon",
+        "AshaDetails": "Ramvati:9177866663"
+    }]
 
-               for (var i = 0; i < jsonObject.length; i++) {
-                                    $("#searchable").append(createProviderFormFields(jsonObject[i]));
-                                };   
+    for (var i = 0; i < jsonObject.length; i++) {
+        $("#searchable").append(createProviderFormFields(jsonObject[i]));
+    };
 
-                function createProviderFormFields(jsonRow) {
-                var tr = '<tr>' ;
-                // create a new Label Text
-                        tr += '<td>' + jsonRow.SrlNumber  + '</td>';
-                        tr += '<td>' + jsonRow.Status + '</td>';  
-                        tr += '<td>' + jsonRow.Beneficiaries  + '</td>';
-                        tr += '<td>' + jsonRow.Adherence + '</td>';  
-                        tr += '<td>' + jsonRow.Overdue  + '</td>';
-                        tr += '<td>' + jsonRow.Subcenter + '</td>';  
-                        tr += '<td>' + jsonRow.AshaDetails + '</td>'; 
-                tr +='</tr>';
-                return tr;
-                }               
-
+    function createProviderFormFields(jsonRow) {
+        var tr = '<tr>';
+        // create a new Label Text
+        tr += '<td>' + jsonRow.SrlNumber + '</td>';
+        tr += '<td>' + jsonRow.Status + '</td>';
+        tr += '<td>' + jsonRow.Beneficiaries + '</td>';
+        tr += '<td>' + jsonRow.Adherence + '</td>';
+        tr += '<td>' + jsonRow.Overdue + '</td>';
+        tr += '<td>' + jsonRow.Subcenter + '</td>';
+        tr += '<td>' + jsonRow.AshaDetails + '</td>';
+        tr += '</tr>';
+        return tr;
+    }
     </script>
     <script>
-    var dataForPieChart = 
-{
-  "Allblockdata":
- [ {
- "block": "mauranipur", "data" :{
- "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
- "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
- "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
- "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
- "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
- }
- },
- {
- "block": "babina","data" :{
- "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
- "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
- "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
- "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
- "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
- }
- },
- {"block": "badagaon" ,"data" :{
- "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
- "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
- "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
- "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
- "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
- }
- },
- {"block": "bamaur","data" :{
- "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
- "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
- "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
- "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
- "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
- }
- },
- {"block": "bangra","data" :{
- "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
- "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
- "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
- "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
- "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
- }
- },
-{"block": "chirgaon","data" :{
- "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
- "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
- "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
- "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
- "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
- }
- },
- {"block": "gursrai", "data" :{
- "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
- "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
- "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
- "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
- "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
- }
- },
- {"block": "moth", "data" :{
- "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
- "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
- "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
- "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
- "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
- }
- },
- {"block": "allblocks", "data" :{
- "LMonth1": {  "Rating" : { "Good":10 , "Poor":5 ,"Average":5}},
- "LMonth2": {  "Rating" :  { "Good":15 , "Poor":12 ,"Average":8}},
- "LMonth3": {  "Rating" :  { "Good":18 , "Poor":12 ,"Average":9}},
- "LMonth6": {  "Rating" :  { "Good":20 , "Poor":15 ,"Average":11}},
- "LMonth10": {  "Rating" :  { "Good":25 , "Poor":16 ,"Average":14}}
- }
- }
- ]
- }
-
-    </script>
-   
-     <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?v=3.15&key=AIzaSyBi0Oz6xouYIoWM3DWDJ0C9AllumEB9YXo">
     </script>
 
-     <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.10/src/markerwithlabel.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.15&key=AIzaSyBi0Oz6xouYIoWM3DWDJ0C9AllumEB9YXo">
+    </script>
 
-    <script type = "text/javascript" >
+    <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.10/src/markerwithlabel.js"></script>
+
+    <script type="text/javascript">
     var panchyatRajInput = [{
         "lat": 25.4486,
         "lang": 78.5696,
@@ -857,13 +765,13 @@ Purchase: http://wrapbootstrap.com
 
         for (var i = panchyatRajInput.length - 1; i >= 0; i--) {
 
-                var contentString = '<table style="width:100%">'  + 
-                  '<tr>     <td><h5> Subcenter </h5></td> <td> '+ panchyatRajInput[i].panchayatName + '</td> </tr>' +
-                       '<tr>    <td><h5>AshaDetails</h5></td> <td> '+ panchyatRajInput[i].AshaDetails   + '</td> </tr>' +
-                       '<tr>    <td>Beneficiaries</td> <td> '+ panchyatRajInput[i].beneficiaries   + '</td> </tr>' +
-                       '<tr>    <td>Adherence</td> <td> '+ panchyatRajInput[i].Adherence   + '</td> </tr>' +
-                       '<tr>    <td>Overdue</td> <td> '+ panchyatRajInput[i].Overdue   + '</td> </tr>' +
-      '</table>';                   
+            var contentString = '<table style="width:100%">' +
+                '<tr>     <td><h5> Subcenter </h5></td> <td> ' + panchyatRajInput[i].panchayatName + '</td> </tr>' +
+                '<tr>    <td><h5>AshaDetails</h5></td> <td> ' + panchyatRajInput[i].AshaDetails + '</td> </tr>' +
+                '<tr>    <td>Beneficiaries</td> <td> ' + panchyatRajInput[i].beneficiaries + '</td> </tr>' +
+                '<tr>    <td>Adherence</td> <td> ' + panchyatRajInput[i].Adherence + '</td> </tr>' +
+                '<tr>    <td>Overdue</td> <td> ' + panchyatRajInput[i].Overdue + '</td> </tr>' +
+                '</table>';
 
             var infowindow = new google.maps.InfoWindow({
                 content: contentString
@@ -877,7 +785,7 @@ Purchase: http://wrapbootstrap.com
             } else {
                 icon_new = "{{STATIC_URL}}beyond/img/Red.png";
             }
-          
+
             var marker = new MarkerWithLabel({
                 position: new google.maps.LatLng(panchyatRajInput[i].lat, panchyatRajInput[i].lang),
                 map: map,
@@ -889,19 +797,19 @@ Purchase: http://wrapbootstrap.com
                 labelInBackground: true,
                 icon: icon_new
             });
-             google.maps.event.addListener(marker, 'click', function() {
+            google.maps.event.addListener(marker, 'click', function() {
                 infowindow.open(map, marker);
             });
 
-         }
+        }
 
 
     }
-    google.maps.event.addDomListener(window, 'load', initialize); 
-
+    google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-    
+
 
 </body>
 <!--  /Body -->
+
 </html>
