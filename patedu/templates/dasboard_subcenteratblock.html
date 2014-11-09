@@ -5,7 +5,7 @@ Version: 1.0.0
 Purchase: http://wrapbootstrap.com
 -->
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html ng-app="MainApp">
 <!-- Head -->
 <head>
     <meta charset="utf-8" />
@@ -35,25 +35,14 @@ Purchase: http://wrapbootstrap.com
 
     <!--Page Related styles-->
     <link href="{{STATIC_URL}}beyond/css/dataTables.bootstrap.css" rel="stylesheet" />
-
+    <link href="{{STATIC_URL}}app/css/dashboard_subcenterblock.css" rel="stylesheet" />
     <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
     <script src="{{STATIC_URL}}beyond/js/skins.min.js"></script>
     <script src="{{STATIC_URL}}beyond/js/markerwithlabel.js"></script>
-      <style type="text/css">
-   .labels {
-     color: white;
-     background-color: red;
-     font-family: "Lucida Grande", "Arial", sans-serif;
-     font-size: 10px;
-     text-align: center;
-     width: 10px;
-     white-space: nowrap;
-   }
- </style>
 </head>
 <!-- /Head -->
 <!-- Body -->
-<body>
+<body ng-controller="DasboardController"> 
     <!-- Loading Container -->
     <div class="loading-container">
         <div class="loading-progress">
@@ -356,6 +345,12 @@ Purchase: http://wrapbootstrap.com
     <script src="{{STATIC_URL}}beyond/js/datatable/dataTables.tableTools.min.js"></script>
     <script src="{{STATIC_URL}}beyond/js/datatable/dataTables.bootstrap.min.js"></script>
     <script src="{{STATIC_URL}}beyond/js/datatable/datatables-init.js"></script>
+
+    <script type="text/javascript" src="{{STATIC_URL}}angular/js/angular.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}angular/js/angular-route.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}angular/js/ng-infinite-scroll.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}app/js/app.js"></script>
+
     <script>
         InitiateSimpleDataTable.init();
         InitiateEditableDataTable.init();
