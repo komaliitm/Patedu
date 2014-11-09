@@ -160,18 +160,18 @@ Purchase: http://wrapbootstrap.com
                                     <div class="well with-header">
                                         <div>
                                             <h6>Select Timeline</h6>
-                                            <select id="TimeLine" style="width:100%;"  onchange ="createanewpiechart()">
+                                            <select id="TimeLine" style="width:100%;"  onchange ="fillInformationBlock()">
                                                 <option value="1" />Last 1 Month
                                                 <option value="2" />Last 2 Months
                                                 <option value="3" />Last 3 Months
-                                                <option value="3" />Last 6 Months
+                                                <option value="6" />Last 6 Months
                                                 <option value="36" />Beginning of Time
                                             </select>
                                             <hr class="wide" />
                                         </div>
                                         <div>
                                             <h6>Select Blocks</h6>
-                                            <select id="Blocks" style="width:100%;" onchange ="createanewpiechart()">
+                                            <select id="Blocks" style="width:100%;" onchange ="fillInformationBlock()">
                                                 {% if blocks %}
                                                         <option value="">
                                                                 AllBlocks 
@@ -377,7 +377,7 @@ Purchase: http://wrapbootstrap.com
                     .width() - 20);
 
             //-------------------------Visitor Sources Pie Chart----------------------------------------//
-             createanewpiechart();    
+             fillInformationBlock();    
 
             //------------------------------Visit Chart------------------------------------------------//
             var data2 = [{
@@ -570,7 +570,17 @@ Purchase: http://wrapbootstrap.com
             InitiateSparklineCharts.init();
         });
 
-        function createanewpiechart ()
+       function fillInformationBlock()
+       {
+            //draw pie chart
+            createanewpiechart()
+
+            //populat data in table
+
+            //populate data in google graph
+       }
+
+        function createanewpiechart()
         {
 
            var timelinevalue = document.getElementById("TimeLine").value;
