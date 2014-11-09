@@ -220,22 +220,21 @@ def mother_name_husband_name(benef, subcenter):
         if _regSearch:
             vill_mcts_id = _regSearch.group(0)
     
-    #parse phone
     phone = None
     phone_type = None
     if phone_no_of_whom:
-        raw_phone = phone_no_of_whom.replace(" ","").replace("\n","")
+        raw_phone = phone_no_of_whom.replace("\n","").lower()
 
         _regSearch = re.search('(\d+)', raw_phone)
         if _regSearch:
             phone = _regSearch.group(0)
 
-        _regSearch = re.search('(\w+)', raw_phone)
+        _regSearch = re.search('([a-z]+)', raw_phone)
         if _regSearch:
             phone_type_str = _regSearch.group(0).lower()
             phone_type = Beneficiary.NUMBER_TYPE_MAP.get(phone_type_str)
             if phone_type is None:
-                phone_type = 1
+                phone_type = 0
 
     #parse mother mcts id
     mother_mcts_id = None
@@ -299,7 +298,7 @@ def mother_name_husband_name(benef, subcenter):
         if cgs.count() > 0:
             cg = cgs[0]
         else:
-            username = asha_name+"_"+asha_phone
+            username = asha_name+"_"+asha_phone+"_ASHA"
             cg = CareGiver.objects.create(first_name=asha_name, designation='ASHA', phone=asha_phone, address=village, username=username)
     else:
         cg = None
@@ -310,7 +309,7 @@ def mother_name_husband_name(benef, subcenter):
         if cps.count() > 0:
             cp = cps[0]
         else:
-            username = anm_name +"_"+anm_phone
+            username = anm_name +"_"+anm_phone+"_ANM"
             cp = CareProvider.objects.create(first_name=anm_name, designation='ANM', phone=anm_phone, username=username)
     else:
         cp = None
@@ -404,18 +403,18 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
     phone = None
     phone_type = None
     if phone_no_of_whom:
-        raw_phone = phone_no_of_whom.replace(" ","").replace("\n","")
+        raw_phone = phone_no_of_whom.replace("\n","").lower()
 
         _regSearch = re.search('(\d+)', raw_phone)
         if _regSearch:
             phone = _regSearch.group(0)
 
-        _regSearch = re.search('(\w+)', raw_phone)
+        _regSearch = re.search('([a-z]+)', raw_phone)
         if _regSearch:
             phone_type_str = _regSearch.group(0).lower()
             phone_type = Beneficiary.NUMBER_TYPE_MAP.get(phone_type_str)
             if phone_type is None:
-                phone_type = 1
+                phone_type = 0
 
     #parse mother mcts id
     mother_mcts_id = None
@@ -424,7 +423,7 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
 
     #parse ASHA phone, name
     asha_name = None
-    asha_phone = None
+    asha_phone = ''
     if asha_phone_name:
         asha_phone_name = asha_phone_name.replace("\n","").lower()
 
@@ -438,7 +437,7 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
 
     #parse anm phone, name
     anm_name = None
-    anm_phone = None
+    anm_phone = ''
     if anm_phone_name:
         anm_phone_name = anm_phone_name.replace("\n","").lower()
 
@@ -470,7 +469,7 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
         if cgs.count() > 0:
             cg = cgs[0]
         else:
-            username = asha_name+"_"+asha_phone
+            username = asha_name+"_"+asha_phone+"_ASHA"
             cg = CareGiver.objects.create(first_name=asha_name, designation='ASHA', phone=asha_phone, address=village, username=username)
     else:
         cg = None
@@ -481,7 +480,7 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
         if cps.count() > 0:
             cp = cps[0]
         else:
-            username = anm_name +"_"+anm_phone
+            username = anm_name +"_"+anm_phone+"_ANM"
             cp = CareProvider.objects.create(first_name=anm_name, designation='ANM', phone=anm_phone, username=username)
     else:
         cp = None
@@ -633,18 +632,18 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
     phone = None
     phone_type = None
     if phone_no_of_whom:
-        raw_phone = phone_no_of_whom.replace(" ","").replace("\n","")
+        raw_phone = phone_no_of_whom.replace("\n","").lower()
 
         _regSearch = re.search('(\d+)', raw_phone)
         if _regSearch:
             phone = _regSearch.group(0)
 
-        _regSearch = re.search('(\w+)', raw_phone)
+        _regSearch = re.search('([a-z]+)', raw_phone)
         if _regSearch:
             phone_type_str = _regSearch.group(0).lower()
             phone_type = Beneficiary.NUMBER_TYPE_MAP.get(phone_type_str)
             if phone_type is None:
-                phone_type = 1
+                phone_type = 0
 
     #parse mother mcts id
     child_mcts_id = None
@@ -653,7 +652,7 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
 
     #parse ASHA phone, name
     asha_name = None
-    asha_phone = None
+    asha_phone = ''
     if asha_phone_name:
         asha_phone_name = asha_phone_name.replace("\n","").lower()
 
@@ -667,7 +666,7 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
 
     #parse anm phone, name
     anm_name = None
-    anm_phone = None
+    anm_phone = ''
     if anm_phone_name:
         anm_phone_name = anm_phone_name.replace("\n","").lower()
 
@@ -699,7 +698,7 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
         if cgs.count() > 0:
             cg = cgs[0]
         else:
-            username = asha_name+"_"+asha_phone
+            username = asha_name+"_"+asha_phone+"_ASHA"
             cg = CareGiver.objects.create(first_name=asha_name, designation='ASHA', phone=asha_phone, address=village, username=username)
     else:
         cg = None
@@ -710,7 +709,7 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
         if cps.count() > 0:
             cp = cps[0]
         else:
-            username = anm_name +"_"+anm_phone
+            username = anm_name +"_"+anm_phone+"_ANM"
             cp = CareProvider.objects.create(first_name=anm_name, designation='ANM', phone=anm_phone, username=username)
     else:
         cp = None
@@ -860,10 +859,11 @@ def UploadAndSave(request):
             
             stamp = benef_type+"_"+state+"_"+district+"_"+block+"_"+health_facility+"_"+subfacility+"_"+subfacility_id+"_"+year+"_"+state
             if AvailableMCTSData.objects.filter(stamp=stamp).count() > 0:
+                print "This subcenter data already exists: "+stamp
                 continue
             #create chunk, file
             chunk = AvailableMCTSData.objects.create(stamp= stamp, benef_type=benef_type, block=block, district=district, health_facility=health_facility, month=month, year=year, state=state, subfacility=subfacility, subfacility_id=subfacility_id)
-            _fileObject = Document.objects.create(myfile = input_excel, stamp=stamp)
+            #_fileObject = Document.objects.create(myfile = input_excel, stamp=stamp)
 
             #create then date
             if month and year:
@@ -918,7 +918,7 @@ def UploadAndSave(request):
                     SaveANCBeneficiary(benef=benef, subcenter=subfacility, date_then=date_then)
                 elif benef_type == 'PNC':
                     SavePNCBeneficiary(benef=benef, subcenter=subfacility)
-                elif benef_type == 'IMM':
+                elif benef_type == 'IMM1' or benef_type == 'IMM2':
                     SaveIMMBeneficiary(benef=benef, subcenter=subfacility, date_then=date_then)
                     pass
 

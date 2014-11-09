@@ -34,6 +34,8 @@ from django.template.loader import get_template
 from django.template import RequestContext
 from django.shortcuts import render
 from math import ceil
+import unicodedata
+
 
 class StaticData:
 	SCHEDULE_MSG =0
@@ -42,52 +44,133 @@ class StaticData:
 	CLEANER = 1
 	REACHONLYSELF = 0
 
-def SendSchSMS(role=StaticData.SCHEDULE_MSG, job=StaticData.SENDER, reach = StaticData.REACHONLYSELF):
+
+def GenerateReport(month=None, year=None):
+	timezone = 'Asia/Kolkata'
+	tz = pytz.timezone(timezone)
+	now_utc = utcnow_aware()
+	now = now_utc.astimezone(tz)
+	if not month:
+		month = now.month
+	if not year:
+		year = now.year
+
+	f1 = open('MCTSDLPMCS_IMM_SMS_REPORT'+str(month)+', '+str(year), 'w')
+	f2 = open('MCTSDLPMCS_ANC_SMS_REPORT'+str(month)+', '+str(year), 'w')
+	cds = ContentDelivered.objects.filter(timestamp__year = year, timestamp__month=month, status=0)
+
+	i = 0
+	j = 0
+	for cd in cds:
+		if ANCBenef.objects.filter(id=cd.benefeciary.id).count() > 0:
+			f = f2
+			i = i + 1
+			cnt = i
+		elif IMMBenef.objects.filter(id=cd.benefeciary.id).count() > 0:
+			f = f1
+			j = j+1
+			cnt = j
+		else:
+			continue
+		f.write(str(cnt)+". ")
+		f.write('MSG: '+cd.msg.encode('utf8'))
+		f.write(', NUMBER: '+cd.benefeciary.notify_number)
+		f.write(', WHOM: self\n') 
+	f1.close()
+	f2.close()
+
+
+def SendSchSMS(role=StaticData.SCHEDULE_MSG, job=StaticData.SENDER, reach = StaticData.REACHONLYSELF, month=None, year=None):
 	#TODO pick timezone from DB
 	timezone = 'Asia/Kolkata'
 	tz = pytz.timezone(timezone)
 	now_utc = utcnow_aware()
 	now = now_utc.astimezone(tz)
-	month = now.month
-	year = now.year
-
-	# #Find all due and unhandled services this month.
-	_allDueCurrentMonth = DueEvents.objects.filter(date__year = year, date__month = month)
+	if not month:
+		month = now.month
+	if not year:
+		year = now.year
 
 	#if category == StaticData.SCHEDULE_MSG:
-	sms_template = u"<prelude> <name> की <event> <category> इस महीने होनी अति आवश्यक है. कृपया अविलंब अपनी आशा बहनजी <asha_name> से संपर्क करे. धन्यवाद!"
+	sms_template = u"prelude name की event category इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha से संपर्क करे. धन्यवाद!"
+	
+	_allBenefs = Beneficiary.objects.all()
+	i=0
+	f = open('SMSsendLog', 'w')
+	for benef in _allBenefs:
+		
+		cds = ContentDelivered.objects.filter(benefeciary=benef)
+		if cds.count() > 0:
+			print 'already sent'
+			continue
 
-	# #for each due service send an Message
-	for _dueService in _allDueCurrentMonth:
-		benef = _dueService.beneficiary
-		if benef.notify_number_type != Beneficiary.NUMBER_TYPE.SELF: 
+		if not benef.notify_number or benef.notify_number_type != Beneficiary.NUMBER_TYPE.SELF:
 			continue
 		benef_number = benef.notify_number
-		if benef.ancbenef:
+		if len(benef_number) == 11:
+			benef_number = benef_number[1:len(benef_number)]
+		if int(benef_number) == 0:
+			continue
+
+		# #Find all due and unhandled services this month.
+		_allDueCurrentMonth = DueEvents.objects.filter(date__year = year, date__month = month, beneficiary= benef)
+		event = None
+		_numEvents = 0
+		for _dueService in _allDueCurrentMonth:
+			if not event:
+				event = _dueService.event.val
+			else:
+				event = event +', '+_dueService.event.val
+				_numEvents = _numEvents + 1
+		if not event:
+			continue
+
+		if len(event) > 10:
+			event = unicode(event[0:10]) + u" आदि" +unicode(" ("+str(_numEvents)+")")
+		else: 
+			event = unicode(event)
+
+		if ANCBenef.objects.filter(id=benef.id).count() > 0:
 			prelude = u"श्रीमती"
 			category = u"जाँच/टीकाकरण"
-		elif benef.immbenef:
+		elif IMMBenef.objects.filter(id=benef.id).count() > 0:
 			prelude = u"बच्चे"
 			category = u"टीकाकरण"
 
 		name = unicode(benef.first_name)
-		event = unicode(_dueService.event.val)
 		asha_name = u''
 		if benef.caregiver:
-			asha_name = unicode(benef.caregiver.first_name) 
-
-		sms_text = sms_template.replace(u"<prelude>", prelude).replace(u"<name>", name).replace(u"<category>", category).replace(u"<event>", event).replace(u"<asha_name>", asha_name)
-		print sms_text
-		sms_msg_hexlified = toHex(sms_text)
-		#send sms
-		print 'sending sms'
+			asha_name = unicode(benef.caregiver.first_name)
 		
-		#sent_code = SendSMSUnicode(recNum=benef_number, msgtxt=sms_msg_hexlified)
+		#print unicodedata.normalize('NFKD', asha_name).encode('ascii', 'ignore')
+
+		sms_text = sms_template.replace(u"prelude", prelude).replace(u"name", name).replace(u"category", category).replace(u"event", event).replace(u"asha", asha_name)
+		#print sms_text
+		sms_msg_hexlified = toHex(sms_text)
+
+		print 'sending sms:'
+		
+		sms_indicator = "#"+str(i)+": "+benef_number+" : "+ unicodedata.normalize('NFKD', event).encode('ascii', 'ignore') 
+		print sms_indicator
+		print unicodedata.normalize('NFKD', sms_text).encode('ascii', 'ignore')
+		
+		f.write(sms_indicator)
+		f.write(unicodedata.normalize('NFKD', sms_text).encode('ascii', 'ignore'))
+		f.write('\n')
+
+		sent_code = SendSMSUnicode(recNum=benef_number, msgtxt=sms_msg_hexlified)
+		print sent_code
+		f.write(sent_code)
+		f.write('#################################\n')
+
+		i = i +1
 
 		if 'Status=1' in sent_code:
-			ContentDelivered.objects.create(msg= sms_text, medium=ContentDelivered.SMS, timestamp = utcnow_aware(), status=1, beneficiary = benef)
+			ContentDelivered.objects.create(msg= sms_text, medium=ContentDelivered.SMS, timestamp = utcnow_aware(), status=1, benefeciary = benef)
 		elif 'Status=0' in sent_code:
-			ContentDelivered.objects.create(msg= sms_text, medium=ContentDelivered.SMS, timestamp = utcnow_aware(), status=0, beneficiary = benef)
+			ContentDelivered.objects.create(msg= sms_text, medium=ContentDelivered.SMS, timestamp = utcnow_aware(), status=0, benefeciary = benef)	
+	f.close()
+	return HttpResponse('Succefully sent the SMS', mimetype="application/json")
 
 
 def DashboardPage(request):
