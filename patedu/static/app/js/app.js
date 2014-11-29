@@ -113,11 +113,9 @@
     var map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
-    var contentString = [];
-    //  var infowindow = [];
     for (var i = data.length - 1; i >= 0; i--) {
 
-      contentString[i] = '<table style="width:100%">' +
+      var contentString = '<table style="width:100%">' +
         '<tr>     <td><h5> Subcenter </h5></td> <td> ' + data[i].Subcenter + '</td> </tr>' +
         '<tr>    <td><h5>AshaDetails</h5></td> <td> ' + getAshaDetailString(data[i].AshaDetails) + '</td> </tr>' +
         '<tr>    <td>Beneficiaries</td> <td> ' + data[i].Beneficiaries_anc + data[i].Beneficiaries_pnc + data[i].Beneficiaries_imm + '</td> </tr>' +
@@ -126,10 +124,9 @@
         '<tr>    <td>Overdue</td> <td> ' + data[i].Overdue_anc + data[i].Overdue_pnc + data[i].Overdue_imm + '</td> </tr>' +
         '<tr>    <td>Overdue Rate</td> <td> ' + (data[i].OverDueRate_imm + data[i].OverDueRate_pnc + data[i].OverDueRate_anc) / 3 + '</td> </tr>' +
         '</table>';
+     
+      var infowindow = new google.maps.InfoWindow();
 
-      var infowindow = new google.maps.InfoWindow({
-        content: contentString[i]
-      });
       console.log("Print Values" + " " + data[i].lat + " " + data[i].long + " " + data[i].Subcenter);
       var icon_new;
       if (data[i].status == 0) {
@@ -140,7 +137,7 @@
         icon_new = "/static/beyond/img/Green.png";
       }
 
-      var marker = new MarkerWithLabel({
+      var marker = new  google.maps.Marker({
         position: new google.maps.LatLng(data[i].lat, data[i].long),
         map: map,
         labelContent: data[i].Subcenter,
@@ -148,10 +145,11 @@
         icon: icon_new
       });
 
-      google.maps.event.addListener(marker, 'click', function() {
-        infowindow.open(map, marker);
-      });
-   }
+       google.maps.event.addListener(marker, 'click', (function(mm,tt) {
+        // infowindow.setContent(tt)
+        // infowindow.open(map, mm)
+       })(marker, contentString));
+    }
   }
 
   function getAshaDetailString(AshaDetails) {
