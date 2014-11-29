@@ -66,10 +66,6 @@
 
     function DrawPieChart(a, b, c) 
     {
-//        var a = 50;
-//        var b = 50;
-//        var c = 50;
-        
         var data = [{
             data: [
                 [1, a]

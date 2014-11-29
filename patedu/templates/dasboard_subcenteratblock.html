@@ -244,26 +244,21 @@ Purchase: http://wrapbootstrap.com
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-12">
-                            <div class="widget">
-                                <div class="widget-header bordered-bottom bordered-yellow">
-                                    <span class="widget-caption">Search on All Columns</span>
-                                    <div class="widget-buttons">
-                                        <a href="#" data-toggle="maximize">
-                                            <i class="fa fa-expand"></i>
-                                        </a>
-                                        <a href="#" data-toggle="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </a>
-                                        <a href="#" data-toggle="dispose">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </div>
+                     <div class="row">
+                            <div class="col-xs-12 col-md-12">
+                                <div class="widget">
+                                    <div id="map-canvas" style="width: 100%; height: 300px"></div>
                                 </div>
-                                <div class="widget-body no-padding">
-                                    <table class="table table-bordered table-hover table-striped" id="searchable">
-                                        <thead class="bordered-darkorange">
+                            </div>
+                     </div>
+                    <div class="row" >
+                        <div class="col-xs-12 col-md-12">
+                            <div class="well with-header with-footer">
+                                <div class="header bordered-sky">
+                                    BlockWise Details
+                                </div>
+                                <table class="table table-bordered table-hover">
+                                       <thead>
                                             <tr role="row">
                                                 <th>Serial Number</th>
                                                 <th>Status indicator</th>
@@ -294,18 +289,11 @@ Purchase: http://wrapbootstrap.com
                                                  </td>
                                             </tr>
                                         </tbody>
-                                    </table>
-                                </div>
+                                </table>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12">
-                                <div class="widget">
-                                    <div id="map-canvas" style="width: 100%; height: 300px"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                     </div>   
+
                 </div>
                 <!-- /Page Body -->
             </div>
@@ -655,49 +643,49 @@ Purchase: http://wrapbootstrap.com
     </script>
 
     <script>
-    var jsonObject = [{
-        "SrlNumber": 1,
-        "Status": "Green",
-        "Beneficiaries": 10,
-        "Adherence": 68,
-        "Overdue": 70,
-        "Subcenter": "badegaon",
-        "AshaDetails": "Ramvati:9177866663"
-    }, {
-        "SrlNumber": 2,
-        "Status": "Green",
-        "Beneficiaries": 10,
-        "Adherence": 68,
-        "Overdue": 70,
-        "Subcenter": "badegaon",
-        "AshaDetails": "Ramvati:9177866663"
-    }, {
-        "SrlNumber": 3,
-        "Status": "Green",
-        "Beneficiaries": 10,
-        "Adherence": 68,
-        "Overdue": 70,
-        "Subcenter": "badegaon",
-        "AshaDetails": "Ramvati:9177866663"
-    }]
+    // var jsonObject = [{
+    //     "SrlNumber": 1,
+    //     "Status": "Green",
+    //     "Beneficiaries": 10,
+    //     "Adherence": 68,
+    //     "Overdue": 70,
+    //     "Subcenter": "badegaon",
+    //     "AshaDetails": "Ramvati:9177866663"
+    // }, {
+    //     "SrlNumber": 2,
+    //     "Status": "Green",
+    //     "Beneficiaries": 10,
+    //     "Adherence": 68,
+    //     "Overdue": 70,
+    //     "Subcenter": "badegaon",
+    //     "AshaDetails": "Ramvati:9177866663"
+    // }, {
+    //     "SrlNumber": 3,
+    //     "Status": "Green",
+    //     "Beneficiaries": 10,
+    //     "Adherence": 68,
+    //     "Overdue": 70,
+    //     "Subcenter": "badegaon",
+    //     "AshaDetails": "Ramvati:9177866663"
+    // }]
 
-    for (var i = 0; i < jsonObject.length; i++) {
-        $("#searchable").append(createProviderFormFields(jsonObject[i]));
-    };
+    // for (var i = 0; i < jsonObject.length; i++) {
+    //     $("#searchable").append(createProviderFormFields(jsonObject[i]));
+    // };
 
-    function createProviderFormFields(jsonRow) {
-        var tr = '<tr>';
-        // create a new Label Text
-        tr += '<td>' + jsonRow.SrlNumber + '</td>';
-        tr += '<td>' + jsonRow.Status + '</td>';
-        tr += '<td>' + jsonRow.Beneficiaries + '</td>';
-        tr += '<td>' + jsonRow.Adherence + '</td>';
-        tr += '<td>' + jsonRow.Overdue + '</td>';
-        tr += '<td>' + jsonRow.Subcenter + '</td>';
-        tr += '<td>' + jsonRow.AshaDetails + '</td>';
-        tr += '</tr>';
-        return tr;
-    }
+    // function createProviderFormFields(jsonRow) {
+    //     var tr = '<tr>';
+    //     // create a new Label Text
+    //     tr += '<td>' + jsonRow.SrlNumber + '</td>';
+    //     tr += '<td>' + jsonRow.Status + '</td>';
+    //     tr += '<td>' + jsonRow.Beneficiaries + '</td>';
+    //     tr += '<td>' + jsonRow.Adherence + '</td>';
+    //     tr += '<td>' + jsonRow.Overdue + '</td>';
+    //     tr += '<td>' + jsonRow.Subcenter + '</td>';
+    //     tr += '<td>' + jsonRow.AshaDetails + '</td>';
+    //     tr += '</tr>';
+    //     return tr;
+    // }
     </script>
     <script>
     </script>
