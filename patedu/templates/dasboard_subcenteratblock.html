@@ -162,7 +162,7 @@ Purchase: http://wrapbootstrap.com
                             <div class="well with-header">
                                 <div>
                                     <h6>Select Timeline</h6>
-                                    <select id="TimeLine" style="width:100%;" onchange="fillInformationBlock()">
+                                    <select id="TimeLine" style="width:100%;" ng-model="dashboardParams.since_months" ng-change="RefreshDataFromServer($event, 0)">
                                         <option value="1" />Last 1 Month
                                         <option value="2" />Last 2 Months
                                         <option value="3" />Last 3 Months
@@ -173,7 +173,7 @@ Purchase: http://wrapbootstrap.com
                                 </div>
                                 <div>
                                     <h6>Select Blocks</h6>
-                                    <select id="Blocks" style="width:100%;" onchange="fillInformationBlock()">
+                                    <select id="Blocks" style="width:100%;" ng-change="RefreshDataFromServer($event, 1)" ng-model="dashboardParams.blockid">
                                         {% if blocks %}
                                         <option value="">
                                             AllBlocks
@@ -191,28 +191,6 @@ Purchase: http://wrapbootstrap.com
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-4">
                             <div class="databox databox-xxlg databox-vertical databox-shadowed bg-white radius-bordered padding-5">
-                                <!--<div class="databox-top">
-                                    <div class="databox-row row-12">
-                                        <div class="databox-cell cell-3 text-center">
-                                            <div class="databox-number number-xxlg sonic-silver">164</div>
-                                            <div class="databox-text storm-cloud">online</div>
-                                        </div>
-                                        <div class="databox-cell cell-9 text-align-center">
-                                            <div class="databox-row row-6 text-left">
-                                                <span class="badge badge-palegreen badge-empty margin-left-5"></span>
-                                                <span class="databox-inlinetext uppercase darkgray margin-left-5">NEW</span>
-                                                <span class="badge badge-yellow badge-empty margin-left-5"></span>
-                                                <span class="databox-inlinetext uppercase darkgray margin-left-5">RETURNING</span>
-                                            </div>
-                                            <div class="databox-row row-6">
-                                                <div class="progress bg-yellow progress-no-radius">
-                                                    <div class="progress-bar progress-bar-palegreen" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 78%">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </div>-->
                                 <div class="databox-bottom">
                                     <div class="databox-row row-12">
                                         <div class="databox-cell cell-7 text-center  padding-5">
@@ -244,14 +222,95 @@ Purchase: http://wrapbootstrap.com
                             </div>
                         </div>
                     </div>
-                     <div class="row">
-                            <div class="col-xs-12 col-md-12">
-                                <div class="widget">
-                                    <div id="map-canvas" style="width: 100%; height: 300px"></div>
+
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs nav-justified">
+                            <li class="active">
+                                <a data-toggle="tab" href="#geobox">
+                                    Geo-Analysis
+                                </a>
+                            </li>
+
+                            <li>
+                                <a data-toggle="tab" href="#listviewbox">
+                                    Listview
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="row tab-pane in active" id="geobox">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="widget">
+                                         <div class="widget-header ">
+                                            <span class="widget-caption">Subcenter loations</span>
+                                            <div class="widget-buttons">
+                                            <a href="#" data-toggle="maximize">
+                                                <i class="fa fa-expand"></i>
+                                            </a>
+                                            </div>
+                                        </div>
+
+                                        <div id="map-canvas" style="width: 100%; height: 900px"></div>
+                                    </div>
                                 </div>
                             </div>
-                     </div>
-                    <div class="row" >
+
+                            <div class="row tab-pane" id="listviewbox">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="widget ">
+                                        <div class="widget-header ">
+                                            <span class="widget-caption">Blockwise Details</span>
+                                            <div class="widget-buttons">
+                                            <a href="#" data-toggle="maximize">
+                                                <i class="fa fa-expand"></i>
+                                            </a>
+                                            </div>
+                                        </div>
+
+                                        <table class="table table-bordered table-hover">
+                                               <thead>
+                                                    <tr role="row">
+                                                        <th>Serial Number</th>
+                                                        <th>Status indicator</th>
+                                                        <th>Subcenter</th>
+                                                        <th>Total Beneficiaries</th>
+                                                        <th>New registrations</th>
+                                                        <th>Given Services number </th>
+                                                        <th>Overdue Services number</th>
+                                                        <th>Overdue rate</th>
+                                                        <th>Asha worker name | Number</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr  ng-repeat="villageData in dashdata.data">
+                                                        <td >#{$index + 1}#</td>
+                                                        <td >
+                                                            <div ng-class="{'status_label_green':villageData.status==2,'status_label_red':villageData.status==0,
+                                                            'status_label_yellow':villageData.status==1}">
+                                                                  #{villageData.status}#
+                                                           </div>
+                                                        </td>
+                                                        <td >#{villageData.Subcenter}#</td>
+                                                        <td >#{villageData.Beneficiaries_anc + villageData.Beneficiaries_pnc + villageData.Beneficiaries_imm}# </td>
+                                                        <td >#{villageData.new_reg_anc + villageData.new_reg_pnc + villageData.new_reg_pnc}# </td>
+                                                        <td >#{villageData.GivenServices_anc + villageData.GivenServices_pnc + villageData.GivenServices_imm}# </td>
+                                                        <td >#{villageData.Overdue_anc + villageData.Overdue_pnc + villageData.Overdue_imm}# </td>
+                                                        <td >#{(villageData.OverDueRate_imm + villageData.OverDueRate_pnc + villageData.OverDueRate_anc)/3 | number:2}# </td>
+                                                        <td >
+                                                         <span ng-repeat="ashaWorker in villageData.AshaDetails"> 
+                                                            <span ng-show="$index>0">, </span>
+                                                            #{ashaWorker}#
+                                                            </span>
+                                                         </td>
+                                                    </tr>
+                                                </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                             </div>   
+                        </div>
+                     
+                    <!-- <div class="row" >
                         <div class="col-xs-12 col-md-12">
                             <div class="well with-header with-footer">
                                 <div class="header bordered-sky">
@@ -274,7 +333,12 @@ Purchase: http://wrapbootstrap.com
                                         <tbody>
                                             <tr  ng-repeat="villageData in dashdata.data">
                                                 <td >#{$index + 1}#</td>
-                                                <td >#{villageData.status}#</td>
+                                                <td >
+                                                    <div ng-class="{'status_label_green':villageData.status==2,'status_label_red':villageData.status==0,
+                                                    'status_label_yellow':villageData.status==1}">
+                                                          #{villageData.status}#
+                                                   </div>
+                                                </td>
                                                 <td >#{villageData.Subcenter}#</td>
                                                 <td >#{villageData.Beneficiaries_anc + villageData.Beneficiaries_pnc + villageData.Beneficiaries_imm}# </td>
                                                 <td >#{villageData.new_reg_anc + villageData.new_reg_pnc + villageData.new_reg_pnc}# </td>
@@ -292,7 +356,7 @@ Purchase: http://wrapbootstrap.com
                                 </table>
                             </div>
                         </div>
-                     </div>   
+                     </div>    -->
 
                 </div>
                 <!-- /Page Body -->
@@ -738,7 +802,7 @@ Purchase: http://wrapbootstrap.com
         "AshaDetails": "Ramvati:9177866663"
     }];
 
-
+ 
 
     // function initialize() {
     //     var output = new google.maps.LatLng(25.4486, 78.5696);

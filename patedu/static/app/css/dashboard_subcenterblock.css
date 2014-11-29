@@ -7,3 +7,63 @@
      width: 10px;
      white-space: nowrap;
   }
+
+.my_label 
+{
+    color: red;
+    background-color: beige;
+    font-family: "Lucida Grande", "Arial", sans-serif;
+    font-size: 10px;
+    text-align: center;
+    width: auto;     
+    white-space: nowrap;
+    padding: 4px;
+    border: 1px solid grey;
+    border-radius:3px;   
+    box-shadow: 2px 2px 20px #888888;
+}
+
+.status_label_red 
+{
+    color: #fb6e52;
+    background-color: #fb6e52;
+    font-family: "Lucida Grande", "Arial", sans-serif;
+    font-size: 7px;
+    text-align: center;
+    width: auto;     
+    white-space: nowrap;
+    padding: 2px;
+    border: 1px solid grey;
+    border-radius:2px;   
+    box-shadow: 2px 2px 20px #888888;
+}
+
+.status_label_green
+{
+    color: #a0d468;
+    background-color: #a0d468;
+    font-family: "Lucida Grande", "Arial", sans-serif;
+    font-size: 7px;
+    text-align: center;
+    width: auto;     
+    white-space: nowrap;
+    padding: 2px;
+    border: 1px solid grey;
+    border-radius:2px;   
+    box-shadow: 2px 2px 20px #888888;
+}
+
+.status_label_yellow 
+{
+    color: #ffce55;
+    background-color: #ffce55;
+    font-family: "Lucida Grande", "Arial", sans-serif;
+    font-size: 7px;
+    text-align: center;
+    width: auto;     
+    white-space: nowrap;
+    padding: 2px;
+    border: 1px solid grey;
+    border-radius:2px;   
+    box-shadow: 2px 2px 20px #888888;
+}
