@@ -740,59 +740,59 @@ Purchase: http://wrapbootstrap.com
 
 
 
-    function initialize() {
-        var output = new google.maps.LatLng(25.4486, 78.5696);
-        var mapOptions = {
-            center: output,
-            zoom: 10
-        };
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-            mapOptions);
+    // function initialize() {
+    //     var output = new google.maps.LatLng(25.4486, 78.5696);
+    //     var mapOptions = {
+    //         center: output,
+    //         zoom: 10
+    //     };
+    //     var map = new google.maps.Map(document.getElementById('map-canvas'),
+    //         mapOptions);
 
 
-        for (var i = panchyatRajInput.length - 1; i >= 0; i--) {
+    //     for (var i = panchyatRajInput.length - 1; i >= 0; i--) {
 
-            var contentString = '<table style="width:100%">' +
-                '<tr>     <td><h5> Subcenter </h5></td> <td> ' + panchyatRajInput[i].panchayatName + '</td> </tr>' +
-                '<tr>    <td><h5>AshaDetails</h5></td> <td> ' + panchyatRajInput[i].AshaDetails + '</td> </tr>' +
-                '<tr>    <td>Beneficiaries</td> <td> ' + panchyatRajInput[i].beneficiaries + '</td> </tr>' +
-                '<tr>    <td>Adherence</td> <td> ' + panchyatRajInput[i].Adherence + '</td> </tr>' +
-                '<tr>    <td>Overdue</td> <td> ' + panchyatRajInput[i].Overdue + '</td> </tr>' +
-                '</table>';
+    //         var contentString = '<table style="width:100%">' +
+    //             '<tr>     <td><h5> Subcenter </h5></td> <td> ' + panchyatRajInput[i].panchayatName + '</td> </tr>' +
+    //             '<tr>    <td><h5>AshaDetails</h5></td> <td> ' + panchyatRajInput[i].AshaDetails + '</td> </tr>' +
+    //             '<tr>    <td>Beneficiaries</td> <td> ' + panchyatRajInput[i].beneficiaries + '</td> </tr>' +
+    //             '<tr>    <td>Adherence</td> <td> ' + panchyatRajInput[i].Adherence + '</td> </tr>' +
+    //             '<tr>    <td>Overdue</td> <td> ' + panchyatRajInput[i].Overdue + '</td> </tr>' +
+    //             '</table>';
 
-            var infowindow = new google.maps.InfoWindow({
-                content: contentString
-            });
-            console.log("Print Values" + " " + panchyatRajInput[i].lat + " " + panchyatRajInput[i].lang + " " + panchyatRajInput[i].panchayatName);
-            var icon_new;
-            if (panchyatRajInput[i].Status == "Green") {
-                icon_new = "{{STATIC_URL}}beyond/img/Green.png";
-            } else if (panchyatRajInput[i].Status == "Yellow") {
-                icon_new = "{{STATIC_URL}}beyond/img/Yellow.png";
-            } else {
-                icon_new = "{{STATIC_URL}}beyond/img/Red.png";
-            }
+    //         var infowindow = new google.maps.InfoWindow({
+    //             content: contentString
+    //         });
+    //         console.log("Print Values" + " " + panchyatRajInput[i].lat + " " + panchyatRajInput[i].lang + " " + panchyatRajInput[i].panchayatName);
+    //         var icon_new;
+    //         if (panchyatRajInput[i].Status == "Green") {
+    //             icon_new = "{{STATIC_URL}}beyond/img/Green.png";
+    //         } else if (panchyatRajInput[i].Status == "Yellow") {
+    //             icon_new = "{{STATIC_URL}}beyond/img/Yellow.png";
+    //         } else {
+    //             icon_new = "{{STATIC_URL}}beyond/img/Red.png";
+    //         }
 
-            var marker = new MarkerWithLabel({
-                position: new google.maps.LatLng(panchyatRajInput[i].lat, panchyatRajInput[i].lang),
-                map: map,
-                //draggable: true,
-                //raiseOnDrag: true,
-                labelContent: panchyatRajInput[i].panchayatName,
-                //labelAnchor: new google.maps.Point(3, 30),
-                //labelClass: "labels", // the CSS class for the label
-                labelInBackground: true,
-                icon: icon_new
-            });
-            google.maps.event.addListener(marker, 'click', function() {
-                infowindow.open(map, marker);
-            });
+    //         var marker = new MarkerWithLabel({
+    //             position: new google.maps.LatLng(panchyatRajInput[i].lat, panchyatRajInput[i].lang),
+    //             map: map,
+    //             //draggable: true,
+    //             //raiseOnDrag: true,
+    //             labelContent: panchyatRajInput[i].panchayatName,
+    //             //labelAnchor: new google.maps.Point(3, 30),
+    //             //labelClass: "labels", // the CSS class for the label
+    //             labelInBackground: true,
+    //             icon: icon_new
+    //         });
+    //         google.maps.event.addListener(marker, 'click', function() {
+    //             infowindow.open(map, marker);
+    //         });
 
-        }
+    //     }
 
 
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
+    // }
+   // google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 
 
