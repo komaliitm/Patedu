@@ -74,17 +74,17 @@
             data: [
                 [1, a]
             ],
-            color: '#fb6e52'
+            color: '#a0d468'
         }, {
             data: [
                 [1, b]
             ],
-            color: '#a0d468'
+            color: '#ffce55'
         }, {
             data: [
                 [1, c]
             ],
-            color: '#ffce55'
+            color: '#fb6e52'
         }];
 
         var placeholder = $("#dashboard-pie-chart-sources");
