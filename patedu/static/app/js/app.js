@@ -8,8 +8,12 @@
   app.controller('DasboardController', ['$scope', 'dashboardService',
     function($scope, dashboardService) {
       $scope.dashboardParams = {
-        since_months: null,
-        blockid: null
+        since_months: 1,
+        blockid: ""
+      }
+
+      $scope.RefreshDataFromServer = function($event, type){
+        fetchDataCurrent();
       }
 
       $scope.dashdata = null;
@@ -108,23 +112,22 @@
     var output = new google.maps.LatLng(25.4486, 78.5696);
     var mapOptions = {
       center: output,
-      zoom: 7
+      zoom: 9
     };
     var map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
     for (var i = data.length - 1; i >= 0; i--) {
-
-      var contentString = '<table style="width:100%">' +
+      var contentString =  '<table style="width:100%">' +
         '<tr>     <td><h5> Subcenter </h5></td> <td> ' + data[i].Subcenter + '</td> </tr>' +
         '<tr>    <td><h5>AshaDetails</h5></td> <td> ' + getAshaDetailString(data[i].AshaDetails) + '</td> </tr>' +
         '<tr>    <td>Beneficiaries</td> <td> ' + data[i].Beneficiaries_anc + data[i].Beneficiaries_pnc + data[i].Beneficiaries_imm + '</td> </tr>' +
         '<tr>    <td>New Registration</td> <td> ' + data[i].new_reg_anc + data[i].new_reg_pnc + data[i].new_reg_pnc + '</td> </tr>' +
         '<tr>    <td>Given Services</td> <td> ' + data[i].GivenServices_anc + data[i].GivenServices_pnc + data[i].GivenServices_imm + '</td> </tr>' +
         '<tr>    <td>Overdue</td> <td> ' + data[i].Overdue_anc + data[i].Overdue_pnc + data[i].Overdue_imm + '</td> </tr>' +
-        '<tr>    <td>Overdue Rate</td> <td> ' + (data[i].OverDueRate_imm + data[i].OverDueRate_pnc + data[i].OverDueRate_anc) / 3 + '</td> </tr>' +
+        '<tr>    <td>Overdue Rate</td> <td> ' + ((data[i].OverDueRate_imm + data[i].OverDueRate_pnc + data[i].OverDueRate_anc) / 3).toFixed(2) + '</td> </tr>' +
         '</table>';
-     
+
       var infowindow = new google.maps.InfoWindow();
 
       console.log("Print Values" + " " + data[i].lat + " " + data[i].long + " " + data[i].Subcenter);
@@ -137,19 +140,26 @@
         icon_new = "/static/beyond/img/Green.png";
       }
 
-      var marker = new  google.maps.Marker({
+      var marker = new  MarkerWithLabel({
         position: new google.maps.LatLng(data[i].lat, data[i].long),
         map: map,
         labelContent: data[i].Subcenter,
+        labelClass: "my_label", // the CSS class for the label
+        labelStyle: {opacity: 0.8},
         labelInBackground: true,
         icon: icon_new
       });
 
-       google.maps.event.addListener(marker, 'click', (function(mm,tt) {
-        // infowindow.setContent(tt)
-        // infowindow.open(map, mm)
-       })(marker, contentString));
+       google.maps.event.addListener(marker, 'click', function_callback(map,marker,contentString,infowindow));
     }
+  }
+  function function_callback(map,marker,contentString,infowindow)
+  {
+    return function()
+    {
+      infowindow.setContent(contentString);
+      infowindow.open(map,marker);
+    };
   }
 
   function getAshaDetailString(AshaDetails) {
