@@ -492,6 +492,7 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
         anc_benef = anc_benefs[0]
     else:
         username = mother_mcts_id+"_"+mother_name
+        username = username[0:29]
         anc_benef = ANCBenef.objects.create(LMP= lmp_date, EDD= edd, husband= husband_name, \
         active=True, MCTS_ID=mother_mcts_id, \
         notify_number=phone, notify_number_type= phone_type, address=village, \
@@ -720,6 +721,7 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
         imm_benef = imm_benefs[0]
     else:
         username = child_mcts_id+"_"+child_name
+        username = username[0:29]
         imm_benef = IMMBenef.objects.create(dob = birthdate, child_name=child_name, child_sex=child_sex, \
         mother_name=mother_name, mother_mcts_id= mother_mcts_id, active=True, MCTS_ID=child_mcts_id, \
         notify_number=phone, notify_number_type= phone_type, address=village, \
