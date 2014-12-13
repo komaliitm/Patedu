@@ -32,6 +32,7 @@ Purchase: http://wrapbootstrap.com
     <link href="{{STATIC_URL}}beyond/css/demo.min.css" rel="stylesheet" />
     <link href="{{STATIC_URL}}beyond/css/typicons.min.css" rel="stylesheet" />
     <link href="{{STATIC_URL}}beyond/css/animate.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link id="skin-link" href="" rel="stylesheet" type="text/css" />
 
     <!--Page Related styles-->
@@ -266,18 +267,110 @@ Purchase: http://wrapbootstrap.com
                                             </a>
                                             </div>
                                         </div>
+<!--                                     <table class="table table-bordered table-hover table-striped" id="searchable">
+                                        <thead class="bordered-darkorange">
+                                            <tr role="row">
+                                                <th>Rendering engine</th>
+                                                <th>Browser</th>
+                                                <th>Platform(s)</th>
+                                                <th>Engine version</th>
+                                                <th>CSS grade</th>
+                                            </tr>
+                                        </thead>
 
-                                        <table class="table table-bordered table-hover">
+                                        <tfoot>
+                                            <tr>
+                                                <th rowspan="1" colspan="1"><input type="text" name="search_engine" placeholder="Search engines" class="form-control input-sm"></th>
+                                                <th rowspan="1" colspan="1"><input type="text" name="search_browser" placeholder="Search browsers" class="form-control input-sm"></th>
+                                                <th rowspan="1" colspan="1"><input type="text" name="search_platform" placeholder="Search platforms" class="form-control input-sm"></th>
+                                                <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="Search versions" class="form-control input-sm"></th>
+                                                <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="Search grades" class="form-control input-sm"></th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <tr>
+                                                <td class=" sorting_1">Gecko</td>
+                                                <td class=" ">Firefox 1.0</td>
+                                                <td class=" ">Win 98+ / OSX.2+</td>
+                                                <td class="center ">1.7</td>
+                                                <td class="center ">A</td>
+                                            </tr>
+                                            <tr>
+                                                <td class=" sorting_1">Gecko</td>
+                                                <td class=" ">Firefox 1.5</td>
+                                                <td class=" ">Win 98+ / OSX.2+</td>
+                                                <td class="center ">1.8</td>
+                                                <td class="center ">A</td>
+                                            </tr>
+                                            <tr>
+                                                <td class=" sorting_1">Gecko</td>
+                                                <td class=" ">Firefox 2.0</td>
+                                                <td class=" ">Win 98+ / OSX.2+</td>
+                                                <td class="center ">1.8</td>
+                                                <td class="center ">A</td>
+                                            </tr>
+                                            <tr>
+                                                <td class=" sorting_1">Gecko</td>
+                                                <td class=" ">Firefox 3.0</td>
+                                                <td class=" ">Win 2k+ / OSX.3+</td>
+                                                <td class="center ">1.9</td>
+                                                <td class="center ">A</td>
+                                            </tr>
+                                            <tr>
+                                                <td class=" sorting_1">Gecko</td>
+                                                <td class=" ">Camino 1.0</td>
+                                                <td class=" ">OSX.2+</td>
+                                                <td class="center ">1.8</td>
+                                                <td class="center ">A</td>
+                                            </tr>
+                                            <tr>
+                                                <td class=" sorting_1">Gecko</td>
+                                                <td class=" ">Camino 1.5</td>
+                                                <td class=" ">OSX.3+</td>
+                                                <td class="center ">1.8</td>
+                                                <td class="center ">A</td>
+                                            </tr>
+                                            <tr>
+                                                <td class=" sorting_1">Gecko</td>
+                                                <td class=" ">Netscape 7.2</td>
+                                                <td class=" ">Win 95+ / Mac OS 8.6-9.2</td>
+                                                <td class="center ">1.7</td>
+                                                <td class="center ">A</td>
+                                            </tr>
+                                            <tr>
+                                                <td class=" sorting_1">Gecko</td>
+                                                <td class=" ">Netscape Browser 8</td>
+                                                <td class=" ">Win 98SE+</td>
+                                                <td class="center ">1.7</td>
+                                                <td class="center ">A</td>
+                                            </tr>
+                                            <tr>
+                                                <td class=" sorting_1">Gecko</td>
+                                                <td class=" ">Netscape Navigator 9</td>
+                                                <td class=" ">Win 98+ / OSX.2+</td>
+                                                <td class="center ">1.8</td>
+                                                <td class="center ">A</td>
+                                            </tr>
+                                            <tr>
+                                                <td class=" sorting_1">Gecko</td>
+                                                <td class=" ">Mozilla 1.0</td>
+                                                <td class=" ">Win 95+ / OSX.1+</td>
+                                                <td class="center ">1</td>
+                                                <td class="center ">A</td>
+                                            </tr>
+                                        </tbody>
+                                    </table> --> 
+                                    <table class="table table-bordered table-hover table-striped">
                                                <thead>
                                                     <tr role="row">
-                                                        <th>Serial Number</th>
-                                                        <th>Status indicator</th>
-                                                        <th>Subcenter</th>
-                                                        <th>Total Beneficiaries</th>
-                                                        <th>New registrations</th>
-                                                        <th>Given Services number </th>
-                                                        <th>Overdue Services number</th>
-                                                        <th>Overdue rate</th>
+                                                        <th >Serial Number </th>
+                                                        <th ng-class="{'asc_label': SerialNum==1 && Asc ==1  , 'desc_label': SerialNum==1 && Asc == 0, 'no_label': SerialNum != 1}" ng-click="SortData($event, 1)">Status indicator&nbsp;</th>
+                                                        <th ng-class="{'asc_label': SerialNum==2 && Asc ==1  , 'desc_label': SerialNum==2 && Asc == 0, 'no_label': SerialNum != 2}" ng-click="SortData($event, 2)">Subcenter&nbsp;</th>
+                                                        <th ng-class="{'asc_label': SerialNum==3 && Asc ==1  , 'desc_label': SerialNum==3 && Asc == 0, 'no_label': SerialNum != 3}" ng-click="SortData($event, 3)">Total Beneficiaries&nbsp;</th>
+                                                        <th ng-class="{'asc_label': SerialNum==4 && Asc ==1  , 'desc_label': SerialNum==4 && Asc == 0, 'no_label': SerialNum != 4}" ng-click="SortData($event, 4)">New registrations&nbsp;</th>
+                                                        <th ng-class="{'asc_label': SerialNum==5 && Asc ==1  , 'desc_label': SerialNum==5 && Asc == 0, 'no_label': SerialNum != 5}" ng-click="SortData($event, 5)">Given Services number&nbsp;</th>
+                                                        <th ng-class="{'asc_label': SerialNum==6 && Asc ==1  , 'desc_label': SerialNum==6 && Asc == 0, 'no_label': SerialNum != 6}" ng-click="SortData($event, 6)">Overdue Services number&nbsp;</th>
+                                                        <th ng-class="{'asc_label': SerialNum==7 && Asc ==1  , 'desc_label': SerialNum==7 && Asc == 0, 'no_label': SerialNum != 7}" ng-click="SortData($event, 7)">Overdue rate&nbsp;</th>
                                                         <th>Asha worker name | Number</th>
                                                     </tr>
                                                 </thead>
@@ -292,7 +385,7 @@ Purchase: http://wrapbootstrap.com
                                                         </td>
                                                         <td >#{villageData.Subcenter}#</td>
                                                         <td >#{villageData.Beneficiaries_anc + villageData.Beneficiaries_pnc + villageData.Beneficiaries_imm}# </td>
-                                                        <td >#{villageData.new_reg_anc + villageData.new_reg_pnc + villageData.new_reg_pnc}# </td>
+                                                        <td >#{villageData.new_reg_anc + villageData.new_reg_pnc + villageData.new_reg_imm}# </td>
                                                         <td >#{villageData.GivenServices_anc + villageData.GivenServices_pnc + villageData.GivenServices_imm}# </td>
                                                         <td >#{villageData.Overdue_anc + villageData.Overdue_pnc + villageData.Overdue_imm}# </td>
                                                         <td >#{(villageData.OverDueRate_imm + villageData.OverDueRate_pnc + villageData.OverDueRate_anc)/3 | number:2}# </td>
@@ -304,7 +397,7 @@ Purchase: http://wrapbootstrap.com
                                                          </td>
                                                     </tr>
                                                 </tbody>
-                                        </table>
+                                    </table>
                                     </div>
                                 </div>
                              </div>   
@@ -392,7 +485,6 @@ Purchase: http://wrapbootstrap.com
     <script src="{{STATIC_URL}}beyond/js/charts/flot/jquery.flot.tooltip.js"></script>
     <script src="{{STATIC_URL}}beyond/js/charts/flot/jquery.flot.orderBars.js"></script>
     <!--Page Related Scripts-->
-    <script src="{{STATIC_URL}}beyond/js/datatable/jquery.dataTables.min.js"></script>
     <script src="{{STATIC_URL}}beyond/js/datatable/ZeroClipboard.js"></script>
     <script src="{{STATIC_URL}}beyond/js/datatable/dataTables.tableTools.min.js"></script>
     <script src="{{STATIC_URL}}beyond/js/datatable/dataTables.bootstrap.min.js"></script>

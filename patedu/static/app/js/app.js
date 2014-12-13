@@ -15,9 +15,74 @@
       $scope.RefreshDataFromServer = function($event, type){
         fetchDataCurrent();
       }
-
+      $scope.Asc =0; 
+      $scope.SerialNum=0;
       $scope.dashdata = null;
       fetchDataCurrent();
+
+    $scope.SortData = function($event, type) {
+        //Sort the dashdata according to type
+        if($scope.SerialNum == type)
+        {
+            $scope.Asc > 0 ? $scope.Asc =0 : $scope.Asc =1;
+        }
+        else
+          $scope.Asc =0;
+
+        $scope.dashdata.data.sort(function(a, b) {
+            var keyA;var keyB;
+            if (type == 1) {
+                keyA = a.status;
+                keyB = b.status;
+            }
+            else if (type == 2) {
+                var str1 = a.Subcenter;
+                var str2 = b.Subcenter;
+          console.log(str1+ " " + str2);
+            str1.toLowerCase()>str2.toLowerCase()?console.log(" a>b "):console.log(" a<b ")
+
+             if ($scope.Asc == 1) {
+                if (str1.toLowerCase() > str2.toLowerCase()) return -1;
+                if (str2.toLowerCase() > str1.toLowerCase()) return 1;
+            } else {
+                if (str1.toLowerCase() < str2.toLowerCase()) return -1;
+                if (str2.toLowerCase() < str1.toLowerCase()) return 1;
+            }
+            }
+            else if (type == 3) {
+                keyA = a.Beneficiaries_anc + a.Beneficiaries_pnc + a.Beneficiaries_imm;
+                keyB = b.Beneficiaries_anc + b.Beneficiaries_pnc + b.Beneficiaries_imm;
+            }
+            else if (type == 4) {
+                keyA = a.new_reg_anc + a.new_reg_pnc  + a.new_reg_imm;
+                keyB = b.new_reg_anc + b.new_reg_pnc  + b.new_reg_imm;
+            }
+            else if (type == 5) {
+                keyA = a.GivenServices_anc + a.GivenServices_pnc + a.GivenServices_imm;
+                keyB = b.GivenServices_anc + b.GivenServices_pnc + b.GivenServices_imm;
+            }
+            else if (type == 6) {
+                keyA = a.Overdue_anc + a.Overdue_pnc + a.Overdue_imm;
+                keyB = b.Overdue_anc + b.Overdue_pnc + b.Overdue_imm;
+            }
+            else {
+                keyA = a.OverDueRate_imm +  a.OverDueRate_pnc  + a.OverDueRate_anc;
+                keyB = b.OverDueRate_imm +  b.OverDueRate_pnc  + b.OverDueRate_anc;
+            }
+            if ($scope.Asc == 1) {
+                if (keyA < keyB) return -1;
+                if (keyA > keyB) return 1;
+            } else {
+                if (keyA > keyB) return -1;
+                if (keyA < keyB) return 1;
+            }
+            return 0;
+        });
+
+        $scope.SerialNum= type;
+
+    }
+
 
       function fetchDataCurrent() {
         dashboardService.getDashboardData($scope.dashboardParams).then(function(dashdata) {

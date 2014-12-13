@@ -67,3 +67,32 @@
     border-radius:2px;   
     box-shadow: 2px 2px 20px #888888;
 }
+
+.asc_label 
+{
+
+}
+
+.asc_label:after 
+{
+
+  font-family: FontAwesome;  
+  content: "\f107";
+}
+
+.desc_label 
+{
+
+}
+
+.desc_label:after 
+{
+
+  font-family: FontAwesome;  
+  content: "\f106";
+}
+
+.no_label 
+{
+
+}
