@@ -35,6 +35,7 @@ from django.template import RequestContext
 from django.shortcuts import render
 from math import ceil
 import unicodedata
+from dateutil.relativedelta import relativedelta
 
 
 class StaticData:
@@ -44,6 +45,80 @@ class StaticData:
 	CLEANER = 1
 	REACHONLYSELF = 0
 
+
+def GenerateReportPerVillage(month =None, year=None):
+	timezone = 'Asia/Kolkata'
+	tz = pytz.timezone(timezone)
+	now_utc = utcnow_aware()
+	now = now_utc.astimezone(tz)
+	if not month:
+		month = now.month
+	if not year:
+		year = now.year
+
+	f1 = open('MCTSDLPMCS_IMM_SMS_REPORT_PERVILLAGE'+str(month)+', '+str(year), 'w')
+	f2 = open('MCTSDLPMCS_ANC_SMS_REPORT_PERVILLAGE'+str(month)+', '+str(year), 'w')
+	cds = ContentDelivered.objects.filter(timestamp__year = year, timestamp__month=month, status=0)
+
+	ancReport = {}
+	ancNumber = 0
+	immReport = {}
+	immNumber = 0
+	for cd in cds:
+		msg_log = unicode(', MSG SENT: ','utf-8').encode('utf8')+cd.msg.encode('utf8')
+		msg_log = ('TO:'+cd.benefeciary.notify_number+'-'+cd.benefeciary.first_name+', TYPE:'+Beneficiary.NUMBER_TYPE_REVERSE_MAP[str(cd.benefeciary.notify_number_type)]).encode('utf8')+msg_log
+		if ANCBenef.objects.filter(id=cd.benefeciary.id).count() > 0:
+			if not cd.benefeciary.subcenter.MCTS_ID in ancReport:
+				ancReport[cd.benefeciary.subcenter.MCTS_ID] = []
+			ancReport[cd.benefeciary.subcenter.MCTS_ID].append(msg_log)
+			ancNumber = ancNumber + 1
+		elif IMMBenef.objects.filter(id=cd.benefeciary.id).count() > 0:
+			if not cd.benefeciary.subcenter.MCTS_ID in immReport:
+				immReport[cd.benefeciary.subcenter.MCTS_ID] = []
+			immReport[cd.benefeciary.subcenter.MCTS_ID].append(msg_log)
+			immNumber = immNumber + 1
+		else:
+			continue
+	
+	# print ancNumber
+	# print ancReport
+	# print immNumber
+	# print immReport
+
+	f2.write("================== ANC SMS REPORT ==================\n")
+	f2.write("================== "+ str(month)+', '+str(year) +" ==================\n")
+	f2.write("================== TOTAL BENEFECIARIES TOUCHED: "+ str(ancNumber)+" ==================\n")
+	for k,v in ancReport.iteritems():
+		subcenter = None
+		try:
+			subcenter = SubCenter.objects.get(MCTS_ID= k)
+		except ObjectDoesNotExist:
+			continue
+		f2.write("\n\n\nDISTRICT: "+subcenter.district.name+"\t BLOCK: "+subcenter.block.name+"\t SUBCENTER: "+subcenter.name+"\n\n")
+		i= 1
+		for cd in v:
+			f2.write("S.No. "+str(i))
+			f2.write(": "+cd+"\n")
+			i = i + 1
+
+	f1.write("================== IMMUNIZATION SMS REPORT ==================\n")
+	f1.write("================== "+ str(month)+', '+str(year) +" ==================\n")
+	f1.write("================== TOTAL BENEFECIARIES TOUCHED: "+ str(immNumber)+" ==================\n")
+	for k,v in immReport.iteritems():
+		subcenter = None
+		try:
+			subcenter = SubCenter.objects.get(MCTS_ID= k)
+		except ObjectDoesNotExist:
+			continue
+		f1.write("\n\n\nDISTRICT: "+subcenter.district.name+"\t BLOCK: "+subcenter.block.name+"\t SUBCENTER: "+subcenter.name+"\n\n")
+		i= 1
+		for cd in v:
+			f1.write("S.No. "+str(i))
+			f1.write(": "+cd+"\n")
+			i = i + 1
+
+	f1.close()
+	f2.close()
 
 def GenerateReport(month=None, year=None):
 	timezone = 'Asia/Kolkata'
@@ -154,14 +229,15 @@ def SendSchSMS(role=StaticData.SCHEDULE_MSG, job=StaticData.SENDER, reach = Stat
 		print sms_indicator
 		print unicodedata.normalize('NFKD', sms_text).encode('ascii', 'ignore')
 		
-		f.write(sms_indicator)
-		f.write(unicodedata.normalize('NFKD', sms_text).encode('ascii', 'ignore'))
-		f.write('\n')
+		#f.write(sms_indicator)
+		#f.write(unicodedata.normalize('NFKD', sms_text).encode('ascii', 'ignore'))
+		#f.write('\n')
 
-		sent_code = SendSMSUnicode(recNum=benef_number, msgtxt=sms_msg_hexlified)
-		print sent_code
-		f.write(sent_code)
-		f.write('#################################\n')
+		#sent_code = SendSMSUnicode(recNum=benef_number, msgtxt=sms_msg_hexlified)
+		sent_code = 'Status=0'
+		#print sent_code
+		#f.write(sent_code)
+		#f.write('#################################\n')
 
 		i = i +1
 
@@ -178,32 +254,69 @@ def DashboardPage(request):
 	blocks = [block for block in _allBlocks]
 	return render(request, "dasboard_subcenteratblock.html", {'blocks':blocks})
 
-def ProcessSubcenterData(benefs, sub, since_months, reg_type):
+
+def GetLastSixMonthsProgress(benefs, sub, reg_type):
 	timezone = 'Asia/Kolkata'
 	tz = pytz.timezone(timezone)
 	today_utc = utcnow_aware()
 	today = today_utc.astimezone(tz)
+
+	ProgressData = [0,0,0,0,0,0]
+	this_month_date = today.replace(hour=6, minute=0, second=0, day=1).astimezone(pytz.utc)
+	if benefs:
+		for month in range(1,6):
+			since_date = this_month_date - relativedelta(months=month)
+
+			#TODO: Introduce for new benef registration later
+			dues_service = DueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_date.date()) & Q(date__lt=this_month_date.date()) )
+			overdues_service = OverDueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_date.date()) & Q(date__lt=this_month_date.date()))
+			Overdue = overdues_service.count()
+
+			OverDueRate = 0
+			if Overdue > 0:
+				#TODO derive sample 
+				sample_size = dues_service.count() if dues_service.count() > 0 else benefs.count()
+				sample_size = sample_size if sample_size > 0 else 500
+
+				OverDueRate = (float(Overdue)/(month*sample_size))*100
+
+			ProgressData[month-1] = OverDueRate
+			this_month_date = since_date
+	return ProgressData
+
+
+
+def ProcessSubcenterData(benefs, sub, since_months, reg_type, months):
+	timezone = 'Asia/Kolkata'
+	tz = pytz.timezone(timezone)
+	today_utc = utcnow_aware()
+	today = today_utc.astimezone(tz)
+
+	this_month_date = today.replace(hour=6, minute=0, second=0, day=1).astimezone(pytz.utc)
 
 	Overdue = 0
 	new_reg = 0
 	GivenServices = 0
 	OverDueRate = 0
 	if benefs:
-		txs_service = Transactions.objects.filter(subcenter=sub, beneficiary__in = benefs, timestamp__gte=since_months).exclude(event__val=reg_type)
-		txs_reg = Transactions.objects.filter(subcenter=sub, event__val=reg_type, timestamp__gte=since_months)
-		dues_service = DueEvents.objects.filter(subcenter=sub, beneficiary__in = benefs, date__gte=since_months.date())
+		txs_service = Transactions.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(timestamp__gte=since_months.date()) & Q(timestamp__lt=this_month_date.date())).exclude(event__val=reg_type)
+		txs_reg = Transactions.objects.all().filter(Q(subcenter=sub), Q(event__val=reg_type), Q(timestamp__gte=since_months.date()) & Q(timestamp__lt=this_month_date.date()))
+		dues_service = DueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) & Q(date__lt=this_month_date.date()))
 
 		GivenServices = txs_service.count()
 
-		overdues_service = OverDueEvents.objects.filter(subcenter=sub, beneficiary__in = benefs, date__gte=since_months.date())
+		overdues_service = OverDueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) & Q(date__lt=this_month_date.date()))
 		Overdue = overdues_service.count()
 		new_reg = txs_reg.count()
 		
 		if Overdue > 0:
-			last_overdue = overdues_service.order_by('date')[0]
-			delta_months = ceil(float((today_utc.date() - last_overdue.date).days)/30)
-			OverDueRate = float(Overdue)/delta_months
+			#TODO derive sample 
+			sample_size = dues_service.count() if dues_service.count() > 0 else txs_service.count()
+			sample_size = sample_size if sample_size > 0 else benefs.count()
+			sample_size = sample_size if sample_size > 0 else 500
 
+			OverDueRate = (float(Overdue)/(months*sample_size))*100
+	
 		if dues_service:
 			Adherence = txs_service.count() * 100 / dues_service.count()
 		else:
@@ -212,12 +325,14 @@ def ProcessSubcenterData(benefs, sub, since_months, reg_type):
 	else:
 		Adherence = None
 
+	ProgressData = GetLastSixMonthsProgress(benefs, sub, reg_type)
 	return {
 			'Overdue':Overdue,
 			'new_reg':new_reg,
 			'GivenServices':GivenServices,
 			'OverDueRate':OverDueRate,
-			'Adherence':Adherence
+			'Adherence':Adherence,
+			'ProgressData':ProgressData
 	}
 
 def DashboardData(request, blockid = None):
@@ -235,12 +350,16 @@ def DashboardData(request, blockid = None):
 	today_utc = utcnow_aware()
 	today = today_utc.astimezone(tz)
 
+	this_month_date = today.replace(hour=6, minute=0, second=0, day=1).astimezone(pytz.utc)
 	#process GET params
 	since_months = int(request.GET.get('since_months')) if request.GET.get('since_months') else None
+	
 	if since_months:
-		since_months = today_utc - timedelta(days=since_months*30)
+		months = since_months
+		since_months = this_month_date - relativedelta(months=since_months)
 	else:
-		since_months = today_utc - timedelta(days=360)
+		months = 12
+		since_months = this_month_date - relativedelta(months=12)
 
 	data = []
 	summary = {}
@@ -262,9 +381,9 @@ def DashboardData(request, blockid = None):
 			sub_data["Beneficiaries_pnc"] = pnc_benefs.count()
 			sub_data["Beneficiaries_imm"] = imm_benefs.count()
 
-			data_anc = ProcessSubcenterData(anc_benefs, sub, since_months, Events.ANC_REG_VAL)
-			data_pnc = ProcessSubcenterData(pnc_benefs, sub, since_months, Events.PNC_REG_VAL)
-			data_imm = ProcessSubcenterData(imm_benefs, sub, since_months, Events.IMM_REG_VAL)
+			data_anc = ProcessSubcenterData(anc_benefs, sub, since_months, Events.ANC_REG_VAL, months)
+			data_pnc = ProcessSubcenterData(pnc_benefs, sub, since_months, Events.PNC_REG_VAL, months)
+			data_imm = ProcessSubcenterData(imm_benefs, sub, since_months, Events.IMM_REG_VAL, months)
 
 			sub_data["Beneficiaries_anc"] = anc_benefs.count()
 			sub_data["Beneficiaries_pnc"] = pnc_benefs.count()
@@ -284,16 +403,19 @@ def DashboardData(request, blockid = None):
 			sub_data["OverDueRate_anc"] = data_anc["OverDueRate"]
 			sub_data["OverDueRate_pnc"] = data_pnc["OverDueRate"]
 			sub_data["OverDueRate_imm"] = data_imm["OverDueRate"]
+			sub_data["ProgressData_anc"] = data_anc["ProgressData"]
+			sub_data["ProgressData_pnc"] = data_pnc["ProgressData"]
+			sub_data["ProgressData_imm"] = data_imm["ProgressData"]
 			
 			status = 2
-			if (data_anc["OverDueRate"] and data_anc["OverDueRate"] < 7 and data_anc["OverDueRate"] >2) \
-			or (data_pnc["OverDueRate"] and data_pnc["OverDueRate"] < 7 and data_pnc["OverDueRate"] >2) \
-			or (data_imm["OverDueRate"] and data_imm["OverDueRate"] < 7 and data_imm["OverDueRate"] >2):
+			if (data_anc["OverDueRate"] and data_anc["OverDueRate"] <= 6 and data_anc["OverDueRate"] >= 4) \
+			or (data_pnc["OverDueRate"] and data_pnc["OverDueRate"] <= 6 and data_pnc["OverDueRate"] >= 4) \
+			or (data_imm["OverDueRate"] and data_imm["OverDueRate"] <= 6 and data_imm["OverDueRate"] >= 4):
 				status = 1
 
-			if (data_anc["OverDueRate"] and data_anc["OverDueRate"] > 7) \
-			or (data_pnc["OverDueRate"] and data_pnc["OverDueRate"] > 7) \
-			or (data_imm["OverDueRate"] and data_imm["OverDueRate"] > 7):
+			if (data_anc["OverDueRate"] and data_anc["OverDueRate"] > 6) \
+			or (data_pnc["OverDueRate"] and data_pnc["OverDueRate"] > 6) \
+			or (data_imm["OverDueRate"] and data_imm["OverDueRate"] > 6):
 				status = 0
 
 			if status == 2:

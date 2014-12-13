@@ -1,0 +1,888 @@
+================== IMMUNIZATION SMS REPORT ==================
+================== 11, 2014 ==================
+================== TOTAL BENEFECIARIES TOUCHED: 835 ==================
+
+
+
+DISTRICT: jhansi	 BLOCK: gursaria	 SUBCENTER: Sonakpura
+
+S.No. 1: TO:8572910316-krishn, TYPE:self, MSG SENT: बच्चे krishn की opv2, dpt2 आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 2: TO:8572910316-anshika, TYPE:self, MSG SENT: बच्चे anshika की vita-a dos आदि (0) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 3: TO:8572910316-sohini, TYPE:self, MSG SENT: बच्चे sohini की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 4: TO:9885875494-chayendra, TYPE:self, MSG SENT: बच्चे chayendra की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 5: TO:9919279724-manvi, TYPE:self, MSG SENT: बच्चे manvi की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 6: TO:9919279724-rani, TYPE:self, MSG SENT: बच्चे rani की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 7: TO:9919279724-nandni, TYPE:self, MSG SENT: बच्चे nandni की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 8: TO:9919279724-arushi, TYPE:self, MSG SENT: बच्चे arushi की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 9: TO:9919279724-chanchal, TYPE:self, MSG SENT: बच्चे chanchal की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 10: TO:9935035964-amit, TYPE:self, MSG SENT: बच्चे amit की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 11: TO:9506893785-meera, TYPE:self, MSG SENT: बच्चे meera की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी aradhana से संपर्क करे. धन्यवाद!
+S.No. 12: TO:9506893785-shiv kumari, TYPE:self, MSG SENT: बच्चे shiv kumari की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी aradhana से संपर्क करे. धन्यवाद!
+S.No. 13: TO:9919279724-pari, TYPE:self, MSG SENT: बच्चे pari की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 14: TO:9651772894-sakshi, TYPE:self, MSG SENT: बच्चे sakshi की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 15: TO:9919279724-shashi, TYPE:self, MSG SENT: बच्चे shashi की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 16: TO:9919279724-dev, TYPE:self, MSG SENT: बच्चे dev की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 17: TO:9919279724-pyush, TYPE:self, MSG SENT: बच्चे pyush की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 18: TO:9919279724-pari, TYPE:self, MSG SENT: बच्चे pari की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी aradhana से संपर्क करे. धन्यवाद!
+S.No. 19: TO:9919279724-vivek, TYPE:self, MSG SENT: बच्चे vivek की opv2, dpt2 आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 20: TO:9935035964-gulal, TYPE:self, MSG SENT: बच्चे gulal की opv2, dpt2 आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 21: TO:9451483070-guduiya, TYPE:self, MSG SENT: बच्चे guduiya की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी aradhana से संपर्क करे. धन्यवाद!
+S.No. 22: TO:9919279724-sumitra, TYPE:self, MSG SENT: बच्चे sumitra की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 23: TO:9919279724-ramakant, TYPE:self, MSG SENT: बच्चे ramakant की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 24: TO:9919279724-ram narayan, TYPE:self, MSG SENT: बच्चे ram narayan की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 25: TO:9919279724-gaurab, TYPE:self, MSG SENT: बच्चे gaurab की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 26: TO:9506893785-anshka, TYPE:self, MSG SENT: बच्चे anshka की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी aradhana से संपर्क करे. धन्यवाद!
+S.No. 27: TO:9451483070-kapil, TYPE:self, MSG SENT: बच्चे kapil की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 28: TO:9919279724-shakuntla, TYPE:self, MSG SENT: बच्चे shakuntla की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 29: TO:9794809330-princka, TYPE:self, MSG SENT: बच्चे princka की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 30: TO:07607973228-shashi, TYPE:self, MSG SENT: बच्चे shashi की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 31: TO:09935084563-raj, TYPE:self, MSG SENT: बच्चे raj की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 32: TO:00995638266-chandrapal, TYPE:self, MSG SENT: बच्चे chandrapal की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 33: TO:09009556048-anshika, TYPE:self, MSG SENT: बच्चे anshika की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 34: TO:08127863644-rupesh, TYPE:self, MSG SENT: बच्चे rupesh की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 35: TO:09453481797-kirti, TYPE:self, MSG SENT: बच्चे kirti की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 36: TO:09198910054-kavita, TYPE:self, MSG SENT: बच्चे kavita की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 37: TO:09621467114-kalpana, TYPE:self, MSG SENT: बच्चे kalpana की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 38: TO:09956485133-anamika, TYPE:self, MSG SENT: बच्चे anamika की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 39: TO:07607180803-khushi, TYPE:self, MSG SENT: बच्चे khushi की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 40: TO:08953623060-gopal ji, TYPE:self, MSG SENT: बच्चे gopal ji की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 41: TO:09198836519-mansingh, TYPE:self, MSG SENT: बच्चे mansingh की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 42: TO:09794119989-mayank, TYPE:self, MSG SENT: बच्चे mayank की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 43: TO:09651044932-harsh, TYPE:self, MSG SENT: बच्चे harsh की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 44: TO:09794812230-sivam, TYPE:self, MSG SENT: बच्चे sivam की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 45: TO:07601913228-mayank, TYPE:self, MSG SENT: बच्चे mayank की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 46: TO:08793352428-chaya, TYPE:self, MSG SENT: बच्चे chaya की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 47: TO:09198361433-lovly, TYPE:self, MSG SENT: बच्चे lovly की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 48: TO:09198362408-sunil, TYPE:self, MSG SENT: बच्चे sunil की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 49: TO:08400132932-bhumika, TYPE:self, MSG SENT: बच्चे bhumika की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 50: TO:09935400287-sanju, TYPE:self, MSG SENT: बच्चे sanju की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 51: TO:09005553026-khusbu, TYPE:self, MSG SENT: बच्चे khusbu की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 52: TO:08127268088-dev, TYPE:self, MSG SENT: बच्चे dev की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 53: TO:09921590956-moti, TYPE:self, MSG SENT: बच्चे moti की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 54: TO:09621467114-harkuawar, TYPE:self, MSG SENT: बच्चे harkuawar की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 55: TO:07907998802-nitin, TYPE:self, MSG SENT: बच्चे nitin की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 56: TO:09936189010-reshu, TYPE:self, MSG SENT: बच्चे reshu की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 57: TO:09794674085-nitesh, TYPE:self, MSG SENT: बच्चे nitesh की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 58: TO:09935485133-princy, TYPE:self, MSG SENT: बच्चे princy की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 59: TO:09005076843-tani, TYPE:self, MSG SENT: बच्चे tani की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rupa devi से संपर्क करे. धन्यवाद!
+S.No. 60: TO:09794757112-shivani, TYPE:self, MSG SENT: बच्चे shivani की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 61: TO:09794674084-nihal, TYPE:self, MSG SENT: बच्चे nihal की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 62: TO:09198033198-shiva, TYPE:self, MSG SENT: बच्चे shiva की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 63: TO:09935829970-vinshika, TYPE:self, MSG SENT: बच्चे vinshika की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rupa devi से संपर्क करे. धन्यवाद!
+S.No. 64: TO:09956612789-mandakni, TYPE:self, MSG SENT: बच्चे mandakni की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 65: TO:09621165727-joyti, TYPE:self, MSG SENT: बच्चे joyti की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी neelam से संपर्क करे. धन्यवाद!
+S.No. 66: TO:09794573890-loveneesh, TYPE:self, MSG SENT: बच्चे loveneesh की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 67: TO:09651131696-ayushi, TYPE:self, MSG SENT: बच्चे ayushi की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 68: TO:09621467114-chandrapal, TYPE:self, MSG SENT: बच्चे chandrapal की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 69: TO:09956640400-arvind, TYPE:self, MSG SENT: बच्चे arvind की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rupa devi से संपर्क करे. धन्यवाद!
+S.No. 70: TO:09198033188-mohine, TYPE:self, MSG SENT: बच्चे mohine की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+S.No. 71: TO:09621519256-sharsti, TYPE:self, MSG SENT: बच्चे sharsti की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hira devi से संपर्क करे. धन्यवाद!
+
+
+
+DISTRICT: jhansi	 BLOCK: gursaria	 SUBCENTER: Khadora
+
+S.No. 1: TO:9935035964-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sudha से संपर्क करे. धन्यवाद!
+S.No. 2: TO:9198253025-girl, TYPE:self, MSG SENT: बच्चे girl की opv1, meas आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sudha से संपर्क करे. धन्यवाद!
+S.No. 3: TO:9793912075-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sudha से संपर्क करे. धन्यवाद!
+S.No. 4: TO:9198459975-harendra, TYPE:self, MSG SENT: बच्चे harendra की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sudha से संपर्क करे. धन्यवाद!
+S.No. 5: TO:9506893785-gaurav, TYPE:self, MSG SENT: बच्चे gaurav की opv1, meas आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी archana से संपर्क करे. धन्यवाद!
+S.No. 6: TO:8009566586-mayank, TYPE:self, MSG SENT: बच्चे mayank की opv3, dpt3 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी akhleshi से संपर्क करे. धन्यवाद!
+S.No. 7: TO:9452740123-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी archana से संपर्क करे. धन्यवाद!
+S.No. 8: TO:8572910316-manu, TYPE:self, MSG SENT: बच्चे manu की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी archana से संपर्क करे. धन्यवाद!
+S.No. 9: TO:7897363031-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sudha से संपर्क करे. धन्यवाद!
+S.No. 10: TO:9794157702-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी archana से संपर्क करे. धन्यवाद!
+S.No. 11: TO:8953112343-pinki, TYPE:self, MSG SENT: बच्चे pinki की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी akhleshi से संपर्क करे. धन्यवाद!
+S.No. 12: TO:9506893785-maya, TYPE:self, MSG SENT: बच्चे maya की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sudha से संपर्क करे. धन्यवाद!
+S.No. 13: TO:8009329576-sakshi, TYPE:self, MSG SENT: बच्चे sakshi की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी akhleshi से संपर्क करे. धन्यवाद!
+S.No. 14: TO:9919745161-munni, TYPE:self, MSG SENT: बच्चे munni की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी archana से संपर्क करे. धन्यवाद!
+S.No. 15: TO:9919745161-manvi, TYPE:self, MSG SENT: बच्चे manvi की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 16: TO:9621677962-yas, TYPE:self, MSG SENT: बच्चे yas की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 17: TO:09695244398-kush, TYPE:self, MSG SENT: बच्चे kush की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 18: TO:9621677962-priti, TYPE:self, MSG SENT: बच्चे priti की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 19: TO:09695244398-rajendra, TYPE:self, MSG SENT: बच्चे rajendra की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 20: TO:09695244398-maltui, TYPE:self, MSG SENT: बच्चे maltui की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 21: TO:09695244398-rahul, TYPE:self, MSG SENT: बच्चे rahul की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 22: TO:9838309236-manish, TYPE:self, MSG SENT: बच्चे manish की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी akhleshi से संपर्क करे. धन्यवाद!
+S.No. 23: TO:9838309236-arjun, TYPE:self, MSG SENT: बच्चे arjun की opv2, dpt2 आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी akhleshi से संपर्क करे. धन्यवाद!
+S.No. 24: TO:9621677962-raja, TYPE:self, MSG SENT: बच्चे raja की opv1, meas आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 25: TO:8953188971-aditi, TYPE:self, MSG SENT: बच्चे aditi की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 26: TO:09695244398-jitendra, TYPE:self, MSG SENT: बच्चे jitendra की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 27: TO:08422661453-roshni, TYPE:self, MSG SENT: बच्चे roshni की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 28: TO:09651539219-love, TYPE:self, MSG SENT: बच्चे love की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 29: TO:09793409630-sanjay, TYPE:self, MSG SENT: बच्चे sanjay की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 30: TO:9919745161-dharmendra, TYPE:self, MSG SENT: बच्चे dharmendra की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 31: TO:09695244398-abhishak, TYPE:self, MSG SENT: बच्चे abhishak की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 32: TO:09695244398-akash, TYPE:self, MSG SENT: बच्चे akash की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 33: TO:07388404108-kanha, TYPE:self, MSG SENT: बच्चे kanha की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 34: TO:07388407108-boy, TYPE:self, MSG SENT: बच्चे boy की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 35: TO:0969524498-vinita, TYPE:self, MSG SENT: बच्चे vinita की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 36: TO:09005077466-satish, TYPE:self, MSG SENT: बच्चे satish की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 37: TO:09651220773-aman, TYPE:self, MSG SENT: बच्चे aman की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 38: TO:09695244398-akash, TYPE:self, MSG SENT: बच्चे akash की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 39: TO:9621677962-kranti, TYPE:self, MSG SENT: बच्चे kranti की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी archana से संपर्क करे. धन्यवाद!
+S.No. 40: TO:09695244398-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 41: TO:09621798311-disha, TYPE:self, MSG SENT: बच्चे disha की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 42: TO:09794159542-nikhil, TYPE:self, MSG SENT: बच्चे nikhil की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 43: TO:09695244398-pari, TYPE:self, MSG SENT: बच्चे pari की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 44: TO:09695244398-girl, TYPE:self, MSG SENT: बच्चे girl की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 45: TO:08400664139-sangeeta, TYPE:self, MSG SENT: बच्चे sangeeta की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 46: TO:09695244398-gopal, TYPE:self, MSG SENT: बच्चे gopal की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 47: TO:09005463520-sangeeta, TYPE:self, MSG SENT: बच्चे sangeeta की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 48: TO:09695244398-vijay, TYPE:self, MSG SENT: बच्चे vijay की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 49: TO:09695244398-akash, TYPE:self, MSG SENT: बच्चे akash की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 50: TO:09695244398-varsha, TYPE:self, MSG SENT: बच्चे varsha की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 51: TO:09793912075-dev pratap, TYPE:self, MSG SENT: बच्चे dev pratap की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sudha से संपर्क करे. धन्यवाद!
+S.No. 52: TO:09794466368-retash, TYPE:self, MSG SENT: बच्चे retash की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 53: TO:08924077187-pratikchha, TYPE:self, MSG SENT: बच्चे pratikchha की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 54: TO:08924077188-priyanka, TYPE:self, MSG SENT: बच्चे priyanka की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 55: TO:09651688931-kapil, TYPE:self, MSG SENT: बच्चे kapil की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी akhleshi से संपर्क करे. धन्यवाद!
+S.No. 56: TO:09793323285-love, TYPE:self, MSG SENT: बच्चे love की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 57: TO:09956703711-himanshu, TYPE:self, MSG SENT: बच्चे himanshu की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 58: TO:09005425207-ruby, TYPE:self, MSG SENT: बच्चे ruby की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 59: TO:09125741070-bhagbandas, TYPE:self, MSG SENT: बच्चे bhagbandas की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 60: TO:09607865922-dropati, TYPE:self, MSG SENT: बच्चे dropati की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी akhleshi से संपर्क करे. धन्यवाद!
+S.No. 61: TO:09621172866-rashi, TYPE:self, MSG SENT: बच्चे rashi की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 62: TO:09596218807-akanchha, TYPE:self, MSG SENT: बच्चे akanchha की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 63: TO:09794491680-samrati, TYPE:self, MSG SENT: बच्चे samrati की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी akhleshi से संपर्क करे. धन्यवाद!
+S.No. 64: TO:09793914160-ansul, TYPE:self, MSG SENT: बच्चे ansul की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 65: TO:09794491680-abadh, TYPE:self, MSG SENT: बच्चे abadh की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी akhleshi से संपर्क करे. धन्यवाद!
+S.No. 66: TO:09621281810-abnish, TYPE:self, MSG SENT: बच्चे abnish की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 67: TO:09794491690-kajul, TYPE:self, MSG SENT: बच्चे kajul की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी akhleshi से संपर्क करे. धन्यवाद!
+S.No. 68: TO:09695532950-man, TYPE:self, MSG SENT: बच्चे man की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 69: TO:09621164866-kuldeep, TYPE:self, MSG SENT: बच्चे kuldeep की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 70: TO:09621164855-sanjay, TYPE:self, MSG SENT: बच्चे sanjay की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 71: TO:09794466405-vevhav, TYPE:self, MSG SENT: बच्चे vevhav की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 72: TO:09935483091-radhika, TYPE:self, MSG SENT: बच्चे radhika की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 73: TO:09005846252-shivani, TYPE:self, MSG SENT: बच्चे shivani की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी archana से संपर्क करे. धन्यवाद!
+S.No. 74: TO:09621164866-joyti, TYPE:self, MSG SENT: बच्चे joyti की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी archana से संपर्क करे. धन्यवाद!
+S.No. 75: TO:09776077358-ramji, TYPE:self, MSG SENT: बच्चे ramji की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 76: TO:09798302957-shivam, TYPE:self, MSG SENT: बच्चे shivam की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी uma से संपर्क करे. धन्यवाद!
+S.No. 77: TO:7607880254-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी archana से संपर्क करे. धन्यवाद!
+S.No. 78: TO:9936884872-tejpal, TYPE:self, MSG SENT: बच्चे tejpal की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sudha से संपर्क करे. धन्यवाद!
+S.No. 79: TO:8400270588-divya, TYPE:self, MSG SENT: बच्चे divya की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sudha से संपर्क करे. धन्यवाद!
+S.No. 80: TO:8756053552-girl, TYPE:self, MSG SENT: बच्चे girl की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sudha से संपर्क करे. धन्यवाद!
+S.No. 81: TO:8127325569-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sudha से संपर्क करे. धन्यवाद!
+S.No. 82: TO:8400042685-sargam, TYPE:self, MSG SENT: बच्चे sargam की opv2, dpt2 आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sudha से संपर्क करे. धन्यवाद!
+S.No. 83: TO:9718846051-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sudha से संपर्क करे. धन्यवाद!
+S.No. 84: TO:9695953472-boy, TYPE:self, MSG SENT: बच्चे boy की bcg, dpt1/ आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी archana से संपर्क करे. धन्यवाद!
+S.No. 85: TO:9935035964-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sudha से संपर्क करे. धन्यवाद!
+
+
+
+DISTRICT: jhansi	 BLOCK: gursaria	 SUBCENTER: Evni 1st
+
+S.No. 1: TO:9005225490-roshni, TYPE:self, MSG SENT: बच्चे roshni की opv3, dpt3 आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 2: TO:9198463656-khushdil, TYPE:self, MSG SENT: बच्चे khushdil की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 3: TO:7607809446-kalpna, TYPE:self, MSG SENT: बच्चे kalpna की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 4: TO:9198463656-vijay, TYPE:self, MSG SENT: बच्चे vijay की opv3, dpt3 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 5: TO:9695183694-palak, TYPE:self, MSG SENT: बच्चे palak की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 6: TO:07189414152-dev, TYPE:self, MSG SENT: बच्चे dev की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 7: TO:9795517710-anuj, TYPE:self, MSG SENT: बच्चे anuj की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 8: TO:7388872080-kajal, TYPE:self, MSG SENT: बच्चे kajal की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 9: TO:9933405936-mahak, TYPE:self, MSG SENT: बच्चे mahak की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 10: TO:09621677962-umesh, TYPE:self, MSG SENT: बच्चे umesh की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 11: TO:08545887452-mahak, TYPE:self, MSG SENT: बच्चे mahak की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 12: TO:9935405970-princy, TYPE:self, MSG SENT: बच्चे princy की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 13: TO:9621588039-ritik, TYPE:self, MSG SENT: बच्चे ritik की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 14: TO:9455259652-ritika, TYPE:self, MSG SENT: बच्चे ritika की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 15: TO:09621590972-amit, TYPE:self, MSG SENT: बच्चे amit की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 16: TO:09450012125-jooly, TYPE:self, MSG SENT: बच्चे jooly की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 17: TO:09198227052-surendra, TYPE:self, MSG SENT: बच्चे surendra की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 18: TO:8127163147-vikash, TYPE:self, MSG SENT: बच्चे vikash की opv3, dpt3 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 19: TO:09451200125-ardhana, TYPE:self, MSG SENT: बच्चे ardhana की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 20: TO:9935445381-asha, TYPE:self, MSG SENT: बच्चे lad kunwar की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 21: TO:8953929958-anshu, TYPE:self, MSG SENT: बच्चे anshu की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 22: TO:08748568211-ayushi, TYPE:self, MSG SENT: बच्चे ayushi की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 23: TO:9198233052-shiva, TYPE:self, MSG SENT: बच्चे shiva की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 24: TO:9005266860-mohit, TYPE:self, MSG SENT: बच्चे mohit की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 25: TO:8009316530-mohan, TYPE:self, MSG SENT: बच्चे mohan की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 26: TO:9198227052-rohini, TYPE:self, MSG SENT: बच्चे rohini की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 27: TO:9455259652-krish, TYPE:self, MSG SENT: बच्चे krish की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 28: TO:9198227052-satendra, TYPE:self, MSG SENT: बच्चे satendra की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 29: TO:7607535422-kresh, TYPE:self, MSG SENT: बच्चे kresh की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 30: TO:8127491355-ashwani, TYPE:self, MSG SENT: बच्चे ashwani की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 31: TO:9956682598-yaspal, TYPE:self, MSG SENT: बच्चे yaspal की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 32: TO:9198670328-ragni, TYPE:self, MSG SENT: बच्चे ragni की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 33: TO:9198227052-mandvi, TYPE:self, MSG SENT: बच्चे mandvi की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 34: TO:9910991872-rohini, TYPE:self, MSG SENT: बच्चे rohini की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 35: TO:9455259652-shiva, TYPE:self, MSG SENT: बच्चे shiva की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 36: TO:9794881101-ayushi, TYPE:self, MSG SENT: बच्चे ayushi की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 37: TO:09984183292-khushi, TYPE:self, MSG SENT: बच्चे khushi की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 38: TO:9794447368-swati, TYPE:self, MSG SENT: बच्चे swati की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 39: TO:9621677962-priyanka, TYPE:self, MSG SENT: बच्चे priyanka की opv3, dpt3 आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 40: TO:9455259652-raj nandni, TYPE:self, MSG SENT: बच्चे raj nandni की opv2, dpt2 आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 41: TO:9793211160-rinki devi, TYPE:self, MSG SENT: बच्चे rinki devi की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 42: TO:07891425836-veshnavi, TYPE:self, MSG SENT: बच्चे veshnavi की opv1, meas आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 43: TO:9956499024-bhupendra, TYPE:self, MSG SENT: बच्चे bhupendra की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 44: TO:9793932059-pukhan, TYPE:self, MSG SENT: बच्चे pukhan की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 45: TO:9935041809-vineeta, TYPE:self, MSG SENT: बच्चे vineeta की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 46: TO:09621677962-vavita, TYPE:self, MSG SENT: बच्चे vavita की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 47: TO:09621300394-bhupendra, TYPE:self, MSG SENT: बच्चे bhupendra की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 48: TO:09621300334-satish, TYPE:self, MSG SENT: बच्चे satish की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 49: TO:08953680065-dharmendra, TYPE:self, MSG SENT: बच्चे dharmendra की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 50: TO:09651044709-manvendra, TYPE:self, MSG SENT: बच्चे manvendra की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 51: TO:09198706533-rakhi, TYPE:self, MSG SENT: बच्चे rakhi की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 52: TO:09198624829-kelash, TYPE:self, MSG SENT: बच्चे kelash की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 53: TO:07862214581-boy a, TYPE:self, MSG SENT: बच्चे boy a की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 54: TO:9936762948-om shankar, TYPE:self, MSG SENT: बच्चे om shankar की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 55: TO:09794384559-krishna ji, TYPE:self, MSG SENT: बच्चे krishna ji की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 56: TO:9935933850-amar, TYPE:self, MSG SENT: बच्चे amar की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 57: TO:07858214684-krishna, TYPE:self, MSG SENT: बच्चे krishna की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 58: TO:9621601697-vijay, TYPE:self, MSG SENT: बच्चे vijay की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 59: TO:09651777796-resma, TYPE:self, MSG SENT: बच्चे resma की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 60: TO:09198133010-tej singh, TYPE:self, MSG SENT: बच्चे tej singh की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 61: TO:08953680065-kallo, TYPE:self, MSG SENT: बच्चे kallo की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 62: TO:09198706533-sanjana, TYPE:self, MSG SENT: बच्चे sanjana की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 63: TO:9651041546-sakshi, TYPE:self, MSG SENT: बच्चे sakshi की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 64: TO:09005562101-bobo, TYPE:self, MSG SENT: बच्चे bobo की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 65: TO:09621300394-goldy, TYPE:self, MSG SENT: बच्चे goldy की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 66: TO:9936769480-varsha, TYPE:self, MSG SENT: बच्चे varsha की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 67: TO:7897094693-sahil, TYPE:self, MSG SENT: बच्चे sahil की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 68: TO:09651757039-prince, TYPE:self, MSG SENT: बच्चे prince की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 69: TO:09794051487-sandeep, TYPE:self, MSG SENT: बच्चे sandeep की dpt3, mmr, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 70: TO:9935267707-monu, TYPE:self, MSG SENT: बच्चे monu की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 71: TO:08009373245-raghni, TYPE:self, MSG SENT: बच्चे raghni की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 72: TO:08953680065-lovekush, TYPE:self, MSG SENT: बच्चे lovekush की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 73: TO:9621590972-anshika, TYPE:self, MSG SENT: बच्चे anshika की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 74: TO:8127491353-ashik, TYPE:self, MSG SENT: बच्चे ashik की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 75: TO:9936210371-kartika, TYPE:self, MSG SENT: बच्चे kartika की vita-a dos आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 76: TO:08400539199-keshkali, TYPE:self, MSG SENT: बच्चे keshkali की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 77: TO:09927414497-raghni, TYPE:self, MSG SENT: बच्चे raghni की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 78: TO:7897059863-kapish, TYPE:self, MSG SENT: बच्चे kapish की vita-a dos आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 79: TO:07897597986-nenshi, TYPE:self, MSG SENT: बच्चे nenshi की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 80: TO:08009327001-harsh, TYPE:self, MSG SENT: बच्चे harsh की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 81: TO:08127825648-praveen, TYPE:self, MSG SENT: बच्चे praveen की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 82: TO:09198236796-vicky, TYPE:self, MSG SENT: बच्चे vicky की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 83: TO:09621590811-vivek, TYPE:self, MSG SENT: बच्चे vivek की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 84: TO:09794463679-mohit, TYPE:self, MSG SENT: बच्चे mohit की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 85: TO:09853467672-juli, TYPE:self, MSG SENT: बच्चे juli की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 86: TO:09695143279-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 87: TO:08127865274-satyama, TYPE:self, MSG SENT: बच्चे satyama की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 88: TO:09695143279-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 89: TO:09651746696-netik, TYPE:self, MSG SENT: बच्चे netik की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 90: TO:09935406634-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 91: TO:08009131601-shakchhi, TYPE:self, MSG SENT: बच्चे shakchhi की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 92: TO:09621164964-dikchha, TYPE:self, MSG SENT: बच्चे dikchha की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 93: TO:08756486198-suman, TYPE:self, MSG SENT: बच्चे suman की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 94: TO:00998477547-natashsa, TYPE:self, MSG SENT: बच्चे natashsa की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 95: TO:09984775473-natasha, TYPE:self, MSG SENT: बच्चे natlad kunwar की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 96: TO:08953031573-phaladh, TYPE:self, MSG SENT: बच्चे phaladh की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 97: TO:07607531354-rajendra, TYPE:self, MSG SENT: बच्चे rajendra की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 98: TO:08127861735-rahum, TYPE:self, MSG SENT: बच्चे rahum की vita-a dos आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 99: TO:09793778085-sonu, TYPE:self, MSG SENT: बच्चे sonu की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 100: TO:09005562178-hema devi, TYPE:self, MSG SENT: बच्चे hema devi की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 101: TO:09793778085-ajit, TYPE:self, MSG SENT: बच्चे ajit की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 102: TO:08127801356-kisan, TYPE:self, MSG SENT: बच्चे kisan की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 103: TO:09936570470-nandni, TYPE:self, MSG SENT: बच्चे nandni की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 104: TO:09621205993-mahak, TYPE:self, MSG SENT: बच्चे mahak की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 105: TO:09621125901-chootu, TYPE:self, MSG SENT: बच्चे chootu की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 106: TO:09005778396-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 107: TO:09956504316-harsh raja, TYPE:self, MSG SENT: बच्चे harsh raja की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 108: TO:07897609287-nenshi, TYPE:self, MSG SENT: बच्चे nenshi की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 109: TO:07897018790-radha, TYPE:self, MSG SENT: बच्चे radha की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 110: TO:09695706866-shivam, TYPE:self, MSG SENT: बच्चे shivam की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 111: TO:09621677962-jagitri, TYPE:self, MSG SENT: बच्चे jagitri की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 112: TO:09198227052-arti, TYPE:self, MSG SENT: बच्चे arti की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 113: TO:09198133419-abdesh, TYPE:self, MSG SENT: बच्चे abdesh की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 114: TO:09956307649-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की dpt3, vita आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 115: TO:08953680065-akachay, TYPE:self, MSG SENT: बच्चे akachay की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 116: TO:07607809419-deepak, TYPE:self, MSG SENT: बच्चे deepak की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 117: TO:09793439185-harsh, TYPE:self, MSG SENT: बच्चे harsh की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 118: TO:09005562178-chetana, TYPE:self, MSG SENT: बच्चे chetana की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 119: TO:09936163017-hemanth, TYPE:self, MSG SENT: बच्चे hemanth की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 120: TO:09198836348-shuk devi, TYPE:self, MSG SENT: बच्चे shuk devi की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी lad kunwar से संपर्क करे. धन्यवाद!
+S.No. 121: TO:07607809419-reshma, TYPE:self, MSG SENT: बच्चे reshma की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 122: TO:09005562561-pawan, TYPE:self, MSG SENT: बच्चे pawan की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 123: TO:07607809419-chotu, TYPE:self, MSG SENT: बच्चे chotu की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 124: TO:07607306839-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 125: TO:07607809695-amit, TYPE:self, MSG SENT: बच्चे amit की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 126: TO:09651041546-nitik, TYPE:self, MSG SENT: बच्चे nitik की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 127: TO:08953900752-dooli, TYPE:self, MSG SENT: बच्चे dooli की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 128: TO:8009553815-khushiram, TYPE:self, MSG SENT: बच्चे khushiram की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 129: TO:9794021350-vanshika, TYPE:self, MSG SENT: बच्चे vanshika की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+S.No. 130: TO:9621169740-chahat, TYPE:self, MSG SENT: बच्चे chahat की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी hamiden से संपर्क करे. धन्यवाद!
+
+
+
+DISTRICT: jhansi	 BLOCK: gursaria	 SUBCENTER: Evni 2nd
+
+S.No. 1: TO:7897598125-shivam, TYPE:self, MSG SENT: बच्चे shivam की opv3, dpt3 आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 2: TO:9919180245-ragini, TYPE:self, MSG SENT: बच्चे ragini की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 3: TO:8400548042-sulekha, TYPE:self, MSG SENT: बच्चे sulekha की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 4: TO:9793587829-ajay, TYPE:self, MSG SENT: बच्चे ajay की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 5: TO:7800029435-chotu, TYPE:self, MSG SENT: बच्चे chotu की mmr, jevac आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 6: TO:7800029435-pradeep, TYPE:self, MSG SENT: बच्चे pradeep की mmr, jevac आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 7: TO:9005924346-hemant, TYPE:self, MSG SENT: बच्चे hemant की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 8: TO:8009182212-pooja, TYPE:self, MSG SENT: बच्चे pooja की mmr, jevac आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 9: TO:9793587377-harchandi, TYPE:self, MSG SENT: बच्चे harchandi की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 10: TO:9198249870-deepika, TYPE:self, MSG SENT: बच्चे deepika की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 11: TO:8756783760-sandeep, TYPE:self, MSG SENT: बच्चे sandeep की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 12: TO:8953772764-khushbu, TYPE:self, MSG SENT: बच्चे khushbu की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 13: TO:9695261247-pavan, TYPE:self, MSG SENT: बच्चे pavan की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 14: TO:9415590596-dev, TYPE:self, MSG SENT: बच्चे dev की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 15: TO:9415590596-mahak, TYPE:self, MSG SENT: बच्चे mahak की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 16: TO:9415590596-archna, TYPE:self, MSG SENT: बच्चे archna की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 17: TO:9838309236-pooja, TYPE:self, MSG SENT: बच्चे pooja की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 18: TO:7897567846-pavan, TYPE:self, MSG SENT: बच्चे pavan की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 19: TO:9838309236-hemant, TYPE:self, MSG SENT: बच्चे hemant की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 20: TO:9415590596-ragni, TYPE:self, MSG SENT: बच्चे ragni की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 21: TO:9415590596-manvendra, TYPE:self, MSG SENT: बच्चे manvendra की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 22: TO:9415590596-bhupendra, TYPE:self, MSG SENT: बच्चे bhupendra की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 23: TO:9415590596-july, TYPE:self, MSG SENT: बच्चे july की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 24: TO:9415590596-aradhna, TYPE:self, MSG SENT: बच्चे aradhna की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 25: TO:9415590596-surendra, TYPE:self, MSG SENT: बच्चे surendra की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 26: TO:9415590596-saroj, TYPE:self, MSG SENT: बच्चे saroj की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 27: TO:9415590596-akash, TYPE:self, MSG SENT: बच्चे akash की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 28: TO:08853636365-boy, TYPE:self, MSG SENT: बच्चे boy की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 29: TO:9415590596-hemant, TYPE:self, MSG SENT: बच्चे hemant की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 30: TO:8400548042-mausam, TYPE:self, MSG SENT: बच्चे mausam की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 31: TO:09935970843-hariom, TYPE:self, MSG SENT: बच्चे hariom की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 32: TO:9415595960-hemant, TYPE:self, MSG SENT: बच्चे hemant की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 33: TO:9415590596-khushi, TYPE:self, MSG SENT: बच्चे khushi की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 34: TO:09793587373-satkar, TYPE:self, MSG SENT: बच्चे satkar की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 35: TO:9415590596-rashmi, TYPE:self, MSG SENT: बच्चे rashmi की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 36: TO:9415590596-veshnavi, TYPE:self, MSG SENT: बच्चे veshnavi की opv1, meas आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 37: TO:9415590596-bhupendra, TYPE:self, MSG SENT: बच्चे bhupendra की opv3, dpt3 आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 38: TO:09695244518-bhupendra, TYPE:self, MSG SENT: बच्चे bhupendra की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 39: TO:9415595960-anju, TYPE:self, MSG SENT: बच्चे anju की opv1, opv3 आदि (6) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 40: TO:07897846488-shivam, TYPE:self, MSG SENT: बच्चे shivam की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 41: TO:9415590596-raja, TYPE:self, MSG SENT: बच्चे raja की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 42: TO:09793470073-manshi, TYPE:self, MSG SENT: बच्चे manshi की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 43: TO:09198464256-kaushal, TYPE:self, MSG SENT: बच्चे kaushal की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 44: TO:9415590596-koushal, TYPE:self, MSG SENT: बच्चे koushal की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 45: TO:9415590596-khushbu, TYPE:self, MSG SENT: बच्चे khushbu की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 46: TO:9415590596-bashnavi, TYPE:self, MSG SENT: बच्चे bashnavi की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 47: TO:9415590596-ragni, TYPE:self, MSG SENT: बच्चे ragni की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 48: TO:9415590596-kavita, TYPE:self, MSG SENT: बच्चे kavita की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 49: TO:09621582137-akansha, TYPE:self, MSG SENT: बच्चे akansha की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 50: TO:09935927177-namirtha, TYPE:self, MSG SENT: बच्चे namirtha की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 51: TO:9415590596-manvendra, TYPE:self, MSG SENT: बच्चे manvendra की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 52: TO:9415590596-boby, TYPE:self, MSG SENT: बच्चे boby की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 53: TO:09936209149-anshika, TYPE:self, MSG SENT: बच्चे anshika की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 54: TO:9415590596-krishna, TYPE:self, MSG SENT: बच्चे krishna की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 55: TO:9415590596-devesh, TYPE:self, MSG SENT: बच्चे devesh की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 56: TO:0979466607-devesh, TYPE:self, MSG SENT: बच्चे devesh की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 57: TO:07800029435-gayan singh, TYPE:self, MSG SENT: बच्चे gayan singh की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 58: TO:08853636623-khushi, TYPE:self, MSG SENT: बच्चे khushi की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 59: TO:09793163865-sunny, TYPE:self, MSG SENT: बच्चे sunny की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 60: TO:9415590596-priti, TYPE:self, MSG SENT: बच्चे priti की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 61: TO:09936984566-preeti, TYPE:self, MSG SENT: बच्चे preeti की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 62: TO:9415590596-namrita, TYPE:self, MSG SENT: बच्चे namrita की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 63: TO:09127801362-basanti, TYPE:self, MSG SENT: बच्चे basanti की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 64: TO:08009554112-rohit, TYPE:self, MSG SENT: बच्चे rohit की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 65: TO:0812762262-sanjay, TYPE:self, MSG SENT: बच्चे sanjay की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 66: TO:09793170988-ashok, TYPE:self, MSG SENT: बच्चे ashok की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 67: TO:9415590596-ashik, TYPE:self, MSG SENT: बच्चे ashik की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी meera से संपर्क करे. धन्यवाद!
+S.No. 68: TO:09794875924-shurakshha, TYPE:self, MSG SENT: बच्चे shurakshha की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 69: TO:09695105100-anushka, TYPE:self, MSG SENT: बच्चे anushka की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 70: TO:09794099618-krishna, TYPE:self, MSG SENT: बच्चे krishna की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 71: TO:08009554112-mohine, TYPE:self, MSG SENT: बच्चे mohine की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 72: TO:09751777941-mamta, TYPE:self, MSG SENT: बच्चे mamta की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 73: TO:08853440270-saurabh, TYPE:self, MSG SENT: बच्चे saurabh की vita-a dos आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 74: TO:09695739528-rupesh, TYPE:self, MSG SENT: बच्चे rupesh की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 75: TO:09793587373-keshnath, TYPE:self, MSG SENT: बच्चे keshnath की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 76: TO:08953929586-chotu, TYPE:self, MSG SENT: बच्चे chotu की vita-a dos आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 77: TO:08953190291-shashi, TYPE:self, MSG SENT: बच्चे shashi की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 78: TO:09956013918-manju, TYPE:self, MSG SENT: बच्चे manju की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 79: TO:09794099618-ahim, TYPE:self, MSG SENT: बच्चे ahim की vita-a dos आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 80: TO:09695517594-bhupendra, TYPE:self, MSG SENT: बच्चे bhupendra की vita-a dos आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 81: TO:09198133803-k, TYPE:self, MSG SENT: बच्चे k की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 82: TO:08953772764-ramakhant, TYPE:self, MSG SENT: बच्चे ramakhant की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 83: TO:08127881278-sandhya, TYPE:self, MSG SENT: बच्चे sandhya की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 84: TO:09005920875-anuragh, TYPE:self, MSG SENT: बच्चे anuragh की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 85: TO:09794673320-usha, TYPE:self, MSG SENT: बच्चे usha की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 86: TO:09198133236-rakesh, TYPE:self, MSG SENT: बच्चे rakesh की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 87: TO:0885344017-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 88: TO:09198133236-nitesh, TYPE:self, MSG SENT: बच्चे nitesh की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 89: TO:09559085729-roonak, TYPE:self, MSG SENT: बच्चे roonak की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 90: TO:09559085729-baladin, TYPE:self, MSG SENT: बच्चे baladin की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 91: TO:09695024707-akash, TYPE:self, MSG SENT: बच्चे akash की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 92: TO:09695784902-rekha, TYPE:self, MSG SENT: बच्चे rekha की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 93: TO:09793196319-ashi, TYPE:self, MSG SENT: बच्चे ashi की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 94: TO:09936856682-chutoo, TYPE:self, MSG SENT: बच्चे chutoo की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 95: TO:09005543725-ashik, TYPE:self, MSG SENT: बच्चे ashik की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 96: TO:09198833950-arushi, TYPE:self, MSG SENT: बच्चे arushi की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 97: TO:09005543725-annnd kumar, TYPE:self, MSG SENT: बच्चे annnd kumar की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 98: TO:09793720036-roonak, TYPE:self, MSG SENT: बच्चे roonak की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 99: TO:09651260274-manoj, TYPE:self, MSG SENT: बच्चे manoj की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 100: TO:09198226993-raghni, TYPE:self, MSG SENT: बच्चे raghni की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 101: TO:09198464256-akancha, TYPE:self, MSG SENT: बच्चे akancha की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 102: TO:09695300150-goolu, TYPE:self, MSG SENT: बच्चे goolu की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 103: TO:09956914133-nenshi, TYPE:self, MSG SENT: बच्चे nenshi की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 104: TO:07897597846-abhishek, TYPE:self, MSG SENT: बच्चे abhishek की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 105: TO:09695300150-sanskar, TYPE:self, MSG SENT: बच्चे sanskar की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 106: TO:08127881278-pooja, TYPE:self, MSG SENT: बच्चे pooja की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 107: TO:09793122863-salik, TYPE:self, MSG SENT: बच्चे salik की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 108: TO:09005286979-dharmendra, TYPE:self, MSG SENT: बच्चे dharmendra की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 109: TO:09793174996-shakshi, TYPE:self, MSG SENT: बच्चे shakshi की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 110: TO:09695291247-pankaj, TYPE:self, MSG SENT: बच्चे pankaj की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 111: TO:07897567846-sumit, TYPE:self, MSG SENT: बच्चे sumit की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 112: TO:09388525407-kamla khant, TYPE:self, MSG SENT: बच्चे kamla khant की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 113: TO:09794875924-pooja, TYPE:self, MSG SENT: बच्चे pooja की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 114: TO:09198226993-anuradha, TYPE:self, MSG SENT: बच्चे anuradha की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 115: TO:09794655404-gaurabh, TYPE:self, MSG SENT: बच्चे gaurabh की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 116: TO:09935421606-pratikcha, TYPE:self, MSG SENT: बच्चे pratikcha की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 117: TO:09935421606-pratikchha, TYPE:self, MSG SENT: बच्चे pratikchha की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 118: TO:09956403953-pankaj, TYPE:self, MSG SENT: बच्चे pankaj की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 119: TO:09935705810-krishnakhant, TYPE:self, MSG SENT: बच्चे krishnakhant की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 120: TO:09794093618-adesh, TYPE:self, MSG SENT: बच्चे adesh की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 121: TO:09695707513-krishan, TYPE:self, MSG SENT: बच्चे krishan की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 122: TO:09198670328-mangal, TYPE:self, MSG SENT: बच्चे mangal की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 123: TO:09506722368-jagdish, TYPE:self, MSG SENT: बच्चे jagdish की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी poonam से संपर्क करे. धन्यवाद!
+S.No. 124: TO:09621590046-ayush, TYPE:self, MSG SENT: बच्चे ayush की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 125: TO:08853636623-rahul, TYPE:self, MSG SENT: बच्चे rahul की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 126: TO:09891726784-chutoo, TYPE:self, MSG SENT: बच्चे chutoo की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+S.No. 127: TO:09935675297-betu, TYPE:self, MSG SENT: बच्चे betu की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 128: TO:9793720036-sahil, TYPE:self, MSG SENT: बच्चे sahil की opv2, dpt2 आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 129: TO:9935529606-mahwan, TYPE:self, MSG SENT: बच्चे mahwan की opv3, dpt3 आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 130: TO:9793720036-hemant, TYPE:self, MSG SENT: बच्चे hemant की opv3, dpt3 आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 131: TO:9935421466-deepesh, TYPE:self, MSG SENT: बच्चे deepesh की opv3, dpt3 आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 132: TO:9794766600-laxmi, TYPE:self, MSG SENT: बच्चे laxmi की opv3, dpt3 आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 133: TO:8953929586-anyan, TYPE:self, MSG SENT: बच्चे anyan की opv2, dpt2 आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mithla से संपर्क करे. धन्यवाद!
+S.No. 134: TO:9889875495-pooja, TYPE:self, MSG SENT: बच्चे pooja की dpt1/penta आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी om kumari से संपर्क करे. धन्यवाद!
+
+
+
+DISTRICT: jhansi	 BLOCK: gursaria	 SUBCENTER: puchhi
+
+S.No. 1: TO:9794682834-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 2: TO:8874695748-khushi, TYPE:self, MSG SENT: बच्चे khushi की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 3: TO:9936716558-baby, TYPE:self, MSG SENT: बच्चे baby की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 4: TO:7897564551-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी chanda से संपर्क करे. धन्यवाद!
+S.No. 5: TO:9935006969-girl, TYPE:self, MSG SENT: बच्चे girl की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी chanda से संपर्क करे. धन्यवाद!
+S.No. 6: TO:8898188287-bandna, TYPE:self, MSG SENT: बच्चे bandna की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी pukhan से संपर्क करे. धन्यवाद!
+S.No. 7: TO:8898188287-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी pukhan से संपर्क करे. धन्यवाद!
+S.No. 8: TO:9621677962-divyanshi, TYPE:self, MSG SENT: बच्चे divyanshi की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 9: TO:9621677962-navya, TYPE:self, MSG SENT: बच्चे navya की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी chanda से संपर्क करे. धन्यवाद!
+S.No. 10: TO:9621677962-manish, TYPE:self, MSG SENT: बच्चे manish की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 11: TO:9621677962-nandni, TYPE:self, MSG SENT: बच्चे nandni की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 12: TO:9621677962-riya, TYPE:self, MSG SENT: बच्चे riya की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 13: TO:9621677962-sakshi, TYPE:self, MSG SENT: बच्चे sakshi की opv2, dpt2 आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी chanda से संपर्क करे. धन्यवाद!
+S.No. 14: TO:9621677962-ayushi, TYPE:self, MSG SENT: बच्चे ayushi की opv2, dpt2 आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी chanda से संपर्क करे. धन्यवाद!
+S.No. 15: TO:8953452279-deepak, TYPE:self, MSG SENT: बच्चे deepak की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 16: TO:9621519163-meenakshi, TYPE:self, MSG SENT: बच्चे meenakshi की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 17: TO:08009524300-kasav, TYPE:self, MSG SENT: बच्चे kasav की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 18: TO:07808385036-vikash, TYPE:self, MSG SENT: बच्चे vikash की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 19: TO:07607897253-sukku, TYPE:self, MSG SENT: बच्चे sukku की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 20: TO:09936212796-ritik, TYPE:self, MSG SENT: बच्चे ritik की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 21: TO:09919974595-anshu, TYPE:self, MSG SENT: बच्चे anshu की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 22: TO:08953058269-dikchha, TYPE:self, MSG SENT: बच्चे dikchha की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 23: TO:09621164837-varsha, TYPE:self, MSG SENT: बच्चे varsha की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 24: TO:09956001756-olendra, TYPE:self, MSG SENT: बच्चे olendra की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 25: TO:09621165832-shiva, TYPE:self, MSG SENT: बच्चे shiva की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 26: TO:09935430537-anjini, TYPE:self, MSG SENT: बच्चे anjini की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 27: TO:09839566923-harsh, TYPE:self, MSG SENT: बच्चे harsh की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 28: TO:9651769755-girl, TYPE:self, MSG SENT: बच्चे girl की bcg, dpt1/ आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी chanda से संपर्क करे. धन्यवाद!
+S.No. 29: TO:8756757210-anamika, TYPE:self, MSG SENT: बच्चे anamika की opv2, dpt2 आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 30: TO:8009335333-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी pukhan से संपर्क करे. धन्यवाद!
+S.No. 31: TO:9839566323-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी mamta से संपर्क करे. धन्यवाद!
+S.No. 32: TO:9956780152-girl, TYPE:self, MSG SENT: बच्चे girl की dpt1/penta आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kisaniya से संपर्क करे. धन्यवाद!
+
+
+
+DISTRICT: jhansi	 BLOCK: gursaria	 SUBCENTER: Nipan
+
+S.No. 1: TO:9857703200-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 2: TO:7857703200-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 3: TO:9451483070-khushi, TYPE:self, MSG SENT: बच्चे khushi की opv1, meas आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 4: TO:9919003820-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 5: TO:9956023752-bimla, TYPE:self, MSG SENT: बच्चे bimla की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 6: TO:8127197241-baby, TYPE:self, MSG SENT: बच्चे baby की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 7: TO:9984738526-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 8: TO:9624264296-rohini, TYPE:self, MSG SENT: बच्चे rohini की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 9: TO:9621264294-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 10: TO:9621264294-sanjna, TYPE:self, MSG SENT: बच्चे sanjna की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 11: TO:09918635934-anshuka, TYPE:self, MSG SENT: बच्चे anshuka की opv3, dpt3 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 12: TO:9450087925-nainasy, TYPE:self, MSG SENT: बच्चे nainasy की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 13: TO:08808387019-gaytri, TYPE:self, MSG SENT: बच्चे gaytri की opv3, dpt3 आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 14: TO:08795947255-goolu, TYPE:self, MSG SENT: बच्चे goolu की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 15: TO:08948958668-sheetal, TYPE:self, MSG SENT: बच्चे sheetal की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 16: TO:09918541293-prabha, TYPE:self, MSG SENT: बच्चे prabha की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 17: TO:0919446491-manoj, TYPE:self, MSG SENT: बच्चे manoj की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 18: TO:09721055569-anjali, TYPE:self, MSG SENT: बच्चे anjali की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 19: TO:09936041696-prince, TYPE:self, MSG SENT: बच्चे prince की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 20: TO:07800113556-bablu, TYPE:self, MSG SENT: बच्चे bablu की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 21: TO:07675744181-varsha, TYPE:self, MSG SENT: बच्चे varsha की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 22: TO:09695244237-abhilasha, TYPE:self, MSG SENT: बच्चे abhilsunita की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 23: TO:08795320318-panchal, TYPE:self, MSG SENT: बच्चे panchal की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 24: TO:08127154226-shahil, TYPE:self, MSG SENT: बच्चे shahil की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 25: TO:09559139838-anil, TYPE:self, MSG SENT: बच्चे anil की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 26: TO:09670327168-savita, TYPE:self, MSG SENT: बच्चे savita की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 27: TO:09005691396-ritik, TYPE:self, MSG SENT: बच्चे ritik की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 28: TO:09621590553-ansul, TYPE:self, MSG SENT: बच्चे ansul की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 29: TO:09721055698-harquawar, TYPE:self, MSG SENT: बच्चे harquawar की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 30: TO:08009060639-aman, TYPE:self, MSG SENT: बच्चे aman की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 31: TO:09161981925-hariom, TYPE:self, MSG SENT: बच्चे hariom की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 32: TO:08009528067-praveen, TYPE:self, MSG SENT: बच्चे praveen की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 33: TO:07800716237-shivam, TYPE:self, MSG SENT: बच्चे shivam की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 34: TO:07607735731-shivani, TYPE:self, MSG SENT: बच्चे shivani की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 35: TO:9621264294-ankit, TYPE:self, MSG SENT: बच्चे ankit की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 36: TO:08127522682-prince, TYPE:self, MSG SENT: बच्चे prince की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 37: TO:09005691394-madhu, TYPE:self, MSG SENT: बच्चे madhu की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 38: TO:09005350375-sogandh, TYPE:self, MSG SENT: बच्चे sogandh की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 39: TO:09198852314-mehar ashif, TYPE:self, MSG SENT: बच्चे mehar ashif की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 40: TO:08009528178-gaurabh, TYPE:self, MSG SENT: बच्चे gaurabh की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 41: TO:09005390375-jasodha, TYPE:self, MSG SENT: बच्चे jasodha की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 42: TO:09936564133-shusma, TYPE:self, MSG SENT: बच्चे shusma की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 43: TO:09651745963-amar singh, TYPE:self, MSG SENT: बच्चे amar singh की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 44: TO:09518632464-ajay, TYPE:self, MSG SENT: बच्चे ajay की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 45: TO:07607900610-deelip, TYPE:self, MSG SENT: बच्चे deelip की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 46: TO:09919641448-neeraj, TYPE:self, MSG SENT: बच्चे neeraj की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 47: TO:09935396820-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 48: TO:09889354068-nandni, TYPE:self, MSG SENT: बच्चे nandni की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 49: TO:0967042989-mahak, TYPE:self, MSG SENT: बच्चे mahak की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 50: TO:07607310545-vinita, TYPE:self, MSG SENT: बच्चे vinita की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 51: TO:09918722314-nikesh, TYPE:self, MSG SENT: बच्चे nikesh की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 52: TO:09935396820-sangeeta, TYPE:self, MSG SENT: बच्चे sangeeta की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 53: TO:09005350375-ajay, TYPE:self, MSG SENT: बच्चे ajay की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 54: TO:09506500173-raja, TYPE:self, MSG SENT: बच्चे raja की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 55: TO:09838477448-prince, TYPE:self, MSG SENT: बच्चे prince की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 56: TO:09198852314-mehar prasad, TYPE:self, MSG SENT: बच्चे mehar prasad की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 57: TO:08009528178-rupesh, TYPE:self, MSG SENT: बच्चे rupesh की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 58: TO:09838937567-kamine, TYPE:self, MSG SENT: बच्चे kamine की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 59: TO:09838477448-ashiki, TYPE:self, MSG SENT: बच्चे ashiki की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 60: TO:09838477448-ashif, TYPE:self, MSG SENT: बच्चे ashif की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 61: TO:09651590553-shiyaram, TYPE:self, MSG SENT: बच्चे shiyaram की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 62: TO:08009528178-prince, TYPE:self, MSG SENT: बच्चे prince की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 63: TO:9651461357-girl, TYPE:self, MSG SENT: बच्चे girl की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 64: TO:9621229265-girl, TYPE:self, MSG SENT: बच्चे girl की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी sunita से संपर्क करे. धन्यवाद!
+S.No. 65: TO:9695687952-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 66: TO:8894679602-girl, TYPE:self, MSG SENT: बच्चे girl की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 67: TO:9984738256-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+S.No. 68: TO:7388856809-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी maya से संपर्क करे. धन्यवाद!
+
+
+
+DISTRICT: jhansi	 BLOCK: gursaria	 SUBCENTER: gorpura
+
+S.No. 1: TO:9936084854-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 2: TO:8858100304-girl, TYPE:self, MSG SENT: बच्चे girl की opv1, meas आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 3: TO:9936506644-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 4: TO:9872981320-radhika, TYPE:self, MSG SENT: बच्चे radhika की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 5: TO:9614354009-vishnavy, TYPE:self, MSG SENT: बच्चे vishnavy की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 6: TO:7822420610-mahi, TYPE:self, MSG SENT: बच्चे mahi की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 7: TO:9651632261-baby, TYPE:self, MSG SENT: बच्चे baby की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 8: TO:9418360720-siyasharan, TYPE:self, MSG SENT: बच्चे siykapuriran की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 9: TO:9564732020-prince, TYPE:self, MSG SENT: बच्चे prince की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 10: TO:9418163302-princy, TYPE:self, MSG SENT: बच्चे princy की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 11: TO:9918042113-manu, TYPE:self, MSG SENT: बच्चे manu की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 12: TO:9695614715-baby, TYPE:self, MSG SENT: बच्चे baby की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 13: TO:9198835755-baby, TYPE:self, MSG SENT: बच्चे baby की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 14: TO:9877624325-shivam, TYPE:self, MSG SENT: बच्चे shivam की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 15: TO:9872634352-sahil, TYPE:self, MSG SENT: बच्चे sahil की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 16: TO:7607040057-deedesh, TYPE:self, MSG SENT: बच्चे deedesh की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 17: TO:8756134040-jay, TYPE:self, MSG SENT: बच्चे jay की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 18: TO:8009119402-boy, TYPE:self, MSG SENT: बच्चे boy की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 19: TO:9816831012-samay, TYPE:self, MSG SENT: बच्चे samay की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 20: TO:9794157702-rajni, TYPE:self, MSG SENT: बच्चे rajni की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 21: TO:9418251310-piyush, TYPE:self, MSG SENT: बच्चे piyush की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 22: TO:9695628519-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 23: TO:8009523994-mahak, TYPE:self, MSG SENT: बच्चे mahak की opv3, dpt3 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 24: TO:9415590596-nisha, TYPE:self, MSG SENT: बच्चे nisha की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 25: TO:9415590596-azad, TYPE:self, MSG SENT: बच्चे azad की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 26: TO:9984220236-pinki, TYPE:self, MSG SENT: बच्चे pinki की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 27: TO:9415483070-chand shekhar, TYPE:self, MSG SENT: बच्चे chand shekhar की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 28: TO:9559810505-muskan, TYPE:self, MSG SENT: बच्चे muskan की opv3, dpt3 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 29: TO:9919568025-dinesh, TYPE:self, MSG SENT: बच्चे dinesh की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 30: TO:9984220236-princu, TYPE:self, MSG SENT: बच्चे princu की mmr, jevac आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 31: TO:9415590596-sangeeta, TYPE:self, MSG SENT: बच्चे sangeeta की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 32: TO:9412756810-adarah, TYPE:self, MSG SENT: बच्चे adarah की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 33: TO:9415483070-ashik, TYPE:self, MSG SENT: बच्चे ashik की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 34: TO:9415483070-ritik, TYPE:self, MSG SENT: बच्चे ritik की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 35: TO:9415483070-vivek, TYPE:self, MSG SENT: बच्चे vivek की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 36: TO:9415590596-lakshmi, TYPE:self, MSG SENT: बच्चे lakshmi की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 37: TO:9984022236-priyanka, TYPE:self, MSG SENT: बच्चे priyanka की mmr, jevac आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 38: TO:9415483070-payal, TYPE:self, MSG SENT: बच्चे payal की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 39: TO:9903536986-raksha, TYPE:self, MSG SENT: बच्चे raksha की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 40: TO:09472231119-kaju, TYPE:self, MSG SENT: बच्चे kaju की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 41: TO:9415483070-prince, TYPE:self, MSG SENT: बच्चे prince की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 42: TO:9415483070-raj, TYPE:self, MSG SENT: बच्चे raj की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 43: TO:9415483070-muni, TYPE:self, MSG SENT: बच्चे muni की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 44: TO:09853921862-mansingh, TYPE:self, MSG SENT: बच्चे mansingh की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 45: TO:09926427529-kirpal, TYPE:self, MSG SENT: बच्चे kirpal की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 46: TO:9415483070-shivani, TYPE:self, MSG SENT: बच्चे shivani की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 47: TO:09482781709-abhishek, TYPE:self, MSG SENT: बच्चे abhishek की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 48: TO:09417264275-krishna, TYPE:self, MSG SENT: बच्चे krishna की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 49: TO:9415483070-vivek, TYPE:self, MSG SENT: बच्चे vivek की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 50: TO:09803739102-karisma, TYPE:self, MSG SENT: बच्चे karisma की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 51: TO:9415483070-bablu, TYPE:self, MSG SENT: बच्चे bablu की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 52: TO:09477554686-raj, TYPE:self, MSG SENT: बच्चे raj की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 53: TO:8127154739-dharmendra, TYPE:self, MSG SENT: बच्चे dharmendra की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 54: TO:9415483070-deepak, TYPE:self, MSG SENT: बच्चे deepak की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 55: TO:09887526210-nidhi, TYPE:self, MSG SENT: बच्चे nidhi की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 56: TO:8127775955-karan, TYPE:self, MSG SENT: बच्चे karan की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 57: TO:9415483070-raja, TYPE:self, MSG SENT: बच्चे raja की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 58: TO:8127454739-chandbhan, TYPE:self, MSG SENT: बच्चे chandbhan की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 59: TO:9415483070-vikash, TYPE:self, MSG SENT: बच्चे vikash की opv2, dpt2 आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 60: TO:8127154739-akanksha, TYPE:self, MSG SENT: बच्चे akanksha की opv2, dpt2 आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 61: TO:09984378610-rajpal, TYPE:self, MSG SENT: बच्चे rajpal की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 62: TO:9415483070-aman, TYPE:self, MSG SENT: बच्चे aman की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 63: TO:9415483070-rinki, TYPE:self, MSG SENT: बच्चे rinki की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 64: TO:09418167982-babli, TYPE:self, MSG SENT: बच्चे babli की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 65: TO:09005045032-boy, TYPE:self, MSG SENT: बच्चे boy की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 66: TO:9415483070-suhani, TYPE:self, MSG SENT: बच्चे suhani की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 67: TO:09798450229-yas, TYPE:self, MSG SENT: बच्चे yas की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 68: TO:0998207208-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 69: TO:09862139210-mahendra, TYPE:self, MSG SENT: बच्चे mahendra की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 70: TO:09716567401-shiva, TYPE:self, MSG SENT: बच्चे shiva की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 71: TO:09005012720-anarshi, TYPE:self, MSG SENT: बच्चे anarshi की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 72: TO:09415127202-rohine, TYPE:self, MSG SENT: बच्चे rohine की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 73: TO:09412897362-navya, TYPE:self, MSG SENT: बच्चे navya की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 74: TO:9412899321-ravi, TYPE:self, MSG SENT: बच्चे ravi की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 75: TO:8953994488-arun, TYPE:self, MSG SENT: बच्चे arun की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 76: TO:8127154739-hemant, TYPE:self, MSG SENT: बच्चे hemant की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 77: TO:9415483070-gayatri, TYPE:self, MSG SENT: बच्चे gayatri की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 78: TO:9415483070-suman, TYPE:self, MSG SENT: बच्चे suman की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 79: TO:09005072130-ena, TYPE:self, MSG SENT: बच्चे ena की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 80: TO:09418262110-sunil, TYPE:self, MSG SENT: बच्चे sunil की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 81: TO:9984220236-veerandra, TYPE:self, MSG SENT: बच्चे veerandra की mmr, jevac आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 82: TO:09415224701-kajul, TYPE:self, MSG SENT: बच्चे kajul की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 83: TO:08922170132-moorti, TYPE:self, MSG SENT: बच्चे moorti की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 84: TO:8127154739-jeevan, TYPE:self, MSG SENT: बच्चे jeevan की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 85: TO:09918107072-raja, TYPE:self, MSG SENT: बच्चे raja की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 86: TO:09412181720-mahak, TYPE:self, MSG SENT: बच्चे mahak की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 87: TO:09005834940-mahak, TYPE:self, MSG SENT: बच्चे mahak की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 88: TO:9918726032-khem chand, TYPE:self, MSG SENT: बच्चे khem chand की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 89: TO:09412136100-panshu, TYPE:self, MSG SENT: बच्चे panshu की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 90: TO:9415483070-shiv, TYPE:self, MSG SENT: बच्चे shiv की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 91: TO:09418227815-radhika, TYPE:self, MSG SENT: बच्चे radhika की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 92: TO:09672227802-ritik, TYPE:self, MSG SENT: बच्चे ritik की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 93: TO:09872130912-khushi, TYPE:self, MSG SENT: बच्चे khushi की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 94: TO:9873062649-ranjna, TYPE:self, MSG SENT: बच्चे ranjna की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 95: TO:9935026856-baishvi, TYPE:self, MSG SENT: बच्चे baishvi की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 96: TO:09817110379-madan, TYPE:self, MSG SENT: बच्चे madan की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 97: TO:09713418592-abtabh, TYPE:self, MSG SENT: बच्चे abtabh की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 98: TO:8127154739-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 99: TO:8127154739-bandna, TYPE:self, MSG SENT: बच्चे bandna की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 100: TO:9415483070-kamal, TYPE:self, MSG SENT: बच्चे kamal की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 101: TO:9415483070-golu, TYPE:self, MSG SENT: बच्चे golu की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 102: TO:09680134251-shilpi, TYPE:self, MSG SENT: बच्चे shilpi की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 103: TO:09872621301-chotu, TYPE:self, MSG SENT: बच्चे chotu की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 104: TO:8127775968-man singh, TYPE:self, MSG SENT: बच्चे man singh की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 105: TO:9415483070-jay, TYPE:self, MSG SENT: बच्चे jay की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 106: TO:8127154739-beerandra, TYPE:self, MSG SENT: बच्चे beerandra की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 107: TO:09005022131-upasna, TYPE:self, MSG SENT: बच्चे upasna की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 108: TO:09912797820-raj, TYPE:self, MSG SENT: बच्चे raj की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 109: TO:09801211332-pinky, TYPE:self, MSG SENT: बच्चे pinky की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 110: TO:9158814953-dyashankar, TYPE:self, MSG SENT: बच्चे dyraninkar की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 111: TO:09695024960-shivani, TYPE:self, MSG SENT: बच्चे shivani की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 112: TO:9935036856-manpyare, TYPE:self, MSG SENT: बच्चे manpyare की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 113: TO:09413296606-menka, TYPE:self, MSG SENT: बच्चे menka की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 114: TO:09005016011-upendra, TYPE:self, MSG SENT: बच्चे upendra की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 115: TO:09890035622-ramakhant, TYPE:self, MSG SENT: बच्चे ramakhant की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 116: TO:9415590596-krishkant, TYPE:self, MSG SENT: बच्चे krishkant की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 117: TO:09816928367-manisha, TYPE:self, MSG SENT: बच्चे manisha की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 118: TO:09670905091-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 119: TO:09496781361-soniya, TYPE:self, MSG SENT: बच्चे soniya की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 120: TO:09427450174-shikha, TYPE:self, MSG SENT: बच्चे shikha की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 121: TO:09616221504-madina, TYPE:self, MSG SENT: बच्चे madina की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 122: TO:9903535963-bandna, TYPE:self, MSG SENT: बच्चे bandna की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 123: TO:09418256507-ramkirpal, TYPE:self, MSG SENT: बच्चे ramkirpal की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 124: TO:09479657211-pinky, TYPE:self, MSG SENT: बच्चे pinky की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 125: TO:09981260179-prashant, TYPE:self, MSG SENT: बच्चे prbhagwatint की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 126: TO:08953071015-mamta, TYPE:self, MSG SENT: बच्चे mamta की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 127: TO:09005691509-sanjay, TYPE:self, MSG SENT: बच्चे sanjay की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 128: TO:09412237810-pushpa, TYPE:self, MSG SENT: बच्चे pushpa की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 129: TO:09450231605-sarita, TYPE:self, MSG SENT: बच्चे sarita की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 130: TO:09794439914-soniya, TYPE:self, MSG SENT: बच्चे soniya की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 131: TO:09459771210-mamta, TYPE:self, MSG SENT: बच्चे mamta की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 132: TO:09812256770-budh, TYPE:self, MSG SENT: बच्चे budh की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 133: TO:09005082110-pooja, TYPE:self, MSG SENT: बच्चे pooja की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 134: TO:09936780498-prince, TYPE:self, MSG SENT: बच्चे prince की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 135: TO:09821756213-hirdesh, TYPE:self, MSG SENT: बच्चे hirdesh की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 136: TO:09794439914-muskan, TYPE:self, MSG SENT: बच्चे muskan की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 137: TO:09005054672-kasturi, TYPE:self, MSG SENT: बच्चे kasturi की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 138: TO:09936704988-mukesh, TYPE:self, MSG SENT: बच्चे mukesh की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 139: TO:09823456110-ramdas, TYPE:self, MSG SENT: बच्चे ramdas की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 140: TO:09421244100-anita, TYPE:self, MSG SENT: बच्चे anita की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 141: TO:09416110057-navin, TYPE:self, MSG SENT: बच्चे navin की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 142: TO:09793364309-nandkisor, TYPE:self, MSG SENT: बच्चे nandkisor की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 143: TO:08953071015-rubina, TYPE:self, MSG SENT: बच्चे rubina की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 144: TO:09717110379-madan, TYPE:self, MSG SENT: बच्चे madan की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 145: TO:0991818515-anokhi, TYPE:self, MSG SENT: बच्चे anokhi की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 146: TO:08127197211-fanita, TYPE:self, MSG SENT: बच्चे fanita की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 147: TO:09695034138-chayana, TYPE:self, MSG SENT: बच्चे chayana की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 148: TO:09918185150-aman, TYPE:self, MSG SENT: बच्चे aman की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 149: TO:09918185150-ashif, TYPE:self, MSG SENT: बच्चे ashif की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 150: TO:9695033732-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 151: TO:9922140347-nitya, TYPE:self, MSG SENT: बच्चे nitya की opv2, dpt2 आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 152: TO:9678162023-chotu, TYPE:self, MSG SENT: बच्चे chotu की opv2, dpt2 आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 153: TO:9918185150-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 154: TO:9793307126-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 155: TO:9005084180-ajju, TYPE:self, MSG SENT: बच्चे ajju की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 156: TO:9818231503-sanjay, TYPE:self, MSG SENT: बच्चे sanjay की opv3, dpt3 आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 157: TO:9718742245-rinki, TYPE:self, MSG SENT: बच्चे rinki की opv2, dpt2 आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 158: TO:9005016142-bandna, TYPE:self, MSG SENT: बच्चे bandna की opv3, dpt3 आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 159: TO:9814121134-ansh, TYPE:self, MSG SENT: बच्चे ansh की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 160: TO:9415181412-neelul, TYPE:self, MSG SENT: बच्चे neelul की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 161: TO:8009119402-girl, TYPE:self, MSG SENT: बच्चे girl की opv3, dpt3 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 162: TO:8810784256-reshma, TYPE:self, MSG SENT: बच्चे reshma की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 163: TO:9412714309-muskan, TYPE:self, MSG SENT: बच्चे muskan की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 164: TO:7897424102-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 165: TO:9935383302-girl, TYPE:self, MSG SENT: बच्चे girl की dpt1/penta आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 166: TO:8712046722-nandni, TYPE:self, MSG SENT: बच्चे nandni की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 167: TO:8009403667-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 168: TO:9418326962-dheerandra, TYPE:self, MSG SENT: बच्चे dheerandra की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 169: TO:9918425401-mohini, TYPE:self, MSG SENT: बच्चे mohini की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 170: TO:9611071413-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 171: TO:9418130633-roshsingh, TYPE:self, MSG SENT: बच्चे roshsingh की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 172: TO:9811480220-neeraj, TYPE:self, MSG SENT: बच्चे neeraj की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 173: TO:9627144309-sonam, TYPE:self, MSG SENT: बच्चे sonam की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 174: TO:9005074181-rohini, TYPE:self, MSG SENT: बच्चे rohini की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 175: TO:9415612309-ashik, TYPE:self, MSG SENT: बच्चे ashik की opv3, dpt3 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी bhagwati से संपर्क करे. धन्यवाद!
+S.No. 176: TO:9818428696-atul, TYPE:self, MSG SENT: बच्चे atul की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी kapuri से संपर्क करे. धन्यवाद!
+S.No. 177: TO:9417084310-sagar, TYPE:self, MSG SENT: बच्चे sagar की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+S.No. 178: TO:9616203425-rashmi, TYPE:self, MSG SENT: बच्चे rashmi की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rani से संपर्क करे. धन्यवाद!
+
+
+
+DISTRICT: jhansi	 BLOCK: gursaria	 SUBCENTER: dhipkai
+
+S.No. 1: TO:8559303681-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 2: TO:9695614763-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 3: TO:8400233291-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 4: TO:9956311785-girl, TYPE:self, MSG SENT: बच्चे girl की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 5: TO:9198933005-ramu, TYPE:self, MSG SENT: बच्चे ramu की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 6: TO:8853321116-arti, TYPE:self, MSG SENT: बच्चे arti की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 7: TO:8853321160-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 8: TO:9451334108-ansh, TYPE:self, MSG SENT: बच्चे ansh की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 9: TO:9451483070-sama, TYPE:self, MSG SENT: बच्चे sama की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 10: TO:8853212712-krishna, TYPE:self, MSG SENT: बच्चे krishna की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 11: TO:9451483070-aditya, TYPE:self, MSG SENT: बच्चे aditya की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 12: TO:9451483070-jigar, TYPE:self, MSG SENT: बच्चे jigar की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 13: TO:9451483070-krishnkant, TYPE:self, MSG SENT: बच्चे krishnkant की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 14: TO:9451483070-ansh, TYPE:self, MSG SENT: बच्चे ansh की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 15: TO:09936341232-ranu, TYPE:self, MSG SENT: बच्चे ranu की opv2, dpt2 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 16: TO:08853596420-khusbhu, TYPE:self, MSG SENT: बच्चे khusbhu की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 17: TO:08400825803-manu, TYPE:self, MSG SENT: बच्चे manu की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 18: TO:09005273420-ansh, TYPE:self, MSG SENT: बच्चे ansh की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 19: TO:09452598782-dherend, TYPE:self, MSG SENT: बच्चे dherend की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 20: TO:09452598782-ritik, TYPE:self, MSG SENT: बच्चे ritik की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 21: TO:9451483070-abhinay, TYPE:self, MSG SENT: बच्चे abhinay की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 22: TO:8005966256-vikash, TYPE:self, MSG SENT: बच्चे vikash की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 23: TO:09451935982-divanshu, TYPE:self, MSG SENT: बच्चे divanshu की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 24: TO:09651445089-girl, TYPE:self, MSG SENT: बच्चे girl की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 25: TO:07607996986-dev, TYPE:self, MSG SENT: बच्चे dev की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 26: TO:07376525808-nirdesh, TYPE:self, MSG SENT: बच्चे nirdesh की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 27: TO:09198452230-bablu, TYPE:self, MSG SENT: बच्चे bablu की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 28: TO:07953071098-navab, TYPE:self, MSG SENT: बच्चे navab की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 29: TO:08796234842-raman, TYPE:self, MSG SENT: बच्चे raman की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 30: TO:09794440156-karuna, TYPE:self, MSG SENT: बच्चे karuna की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 31: TO:09793776659-karan, TYPE:self, MSG SENT: बच्चे karan की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 32: TO:08953072288-arvind, TYPE:self, MSG SENT: बच्चे arvind की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 33: TO:09794789807-kavita, TYPE:self, MSG SENT: बच्चे kavita की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 34: TO:08853491681-payal, TYPE:self, MSG SENT: बच्चे payal की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 35: TO:09670978243-love, TYPE:self, MSG SENT: बच्चे love की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 36: TO:09651445089-farid, TYPE:self, MSG SENT: बच्चे farid की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 37: TO:09839024931-pratigya, TYPE:self, MSG SENT: बच्चे pratigya की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 38: TO:0962112571-vimlesh, TYPE:self, MSG SENT: बच्चे vimlesh की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 39: TO:09621667842-bablu, TYPE:self, MSG SENT: बच्चे bablu की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 40: TO:07309362959-ankit, TYPE:self, MSG SENT: बच्चे ankit की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 41: TO:09198933005-shyam, TYPE:self, MSG SENT: बच्चे shyam की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 42: TO:09794397537-ayshi, TYPE:self, MSG SENT: बच्चे ayshi की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 43: TO:09198236086-divenshu, TYPE:self, MSG SENT: बच्चे divenshu की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 44: TO:09721745906-manshi, TYPE:self, MSG SENT: बच्चे manshi की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 45: TO:09695614703-bharat, TYPE:self, MSG SENT: बच्चे bharat की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 46: TO:08853491681-palak, TYPE:self, MSG SENT: बच्चे palak की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 47: TO:08009379690-vivek, TYPE:self, MSG SENT: बच्चे vivek की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 48: TO:08127870239-rahul, TYPE:self, MSG SENT: बच्चे rahul की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 49: TO:09198477509-bhanpratap, TYPE:self, MSG SENT: बच्चे bhanpratap की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 50: TO:08005966256-ranjeet, TYPE:self, MSG SENT: बच्चे ranjeet की vita-a dos आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 51: TO:09473592981-shashi, TYPE:self, MSG SENT: बच्चे shashi की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 52: TO:09935389010-princy, TYPE:self, MSG SENT: बच्चे princy की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 53: TO:08009392581-mahak, TYPE:self, MSG SENT: बच्चे mahak की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 54: TO:09559303681-krishma, TYPE:self, MSG SENT: बच्चे krishma की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 55: TO:09793776376-divya, TYPE:self, MSG SENT: बच्चे divya की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 56: TO:09971303634-kajal, TYPE:self, MSG SENT: बच्चे kajal की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 57: TO:09616173693-arooshi, TYPE:self, MSG SENT: बच्चे arooshi की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 58: TO:09005273714-yogendra, TYPE:self, MSG SENT: बच्चे yogendra की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 59: TO:07607880196-rajni, TYPE:self, MSG SENT: बच्चे rajni की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 60: TO:8826324558-hemlata, TYPE:self, MSG SENT: बच्चे hemlata की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 61: TO:8009451974-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 62: TO:9794444015-girl, TYPE:self, MSG SENT: बच्चे girl की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 63: TO:9793020512-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 64: TO:9794139912-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 65: TO:9189290629-girl, TYPE:self, MSG SENT: बच्चे girl की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 66: TO:8009123129-girl, TYPE:self, MSG SENT: बच्चे girl की dpt1/penta आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+S.No. 67: TO:8756312508-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी parvati से संपर्क करे. धन्यवाद!
+
+
+
+DISTRICT: jhansi	 BLOCK: gursaria	 SUBCENTER: Maheba
+
+S.No. 1: TO:9565076800-sushil, TYPE:self, MSG SENT: बच्चे sushil की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी girja से संपर्क करे. धन्यवाद!
+S.No. 2: TO:9695707078-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी girja से संपर्क करे. धन्यवाद!
+S.No. 3: TO:9919745161-mohini, TYPE:self, MSG SENT: बच्चे mohini की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी girja से संपर्क करे. धन्यवाद!
+S.No. 4: TO:8137916592-savita, TYPE:self, MSG SENT: बच्चे savita की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी savitri से संपर्क करे. धन्यवाद!
+S.No. 5: TO:7607543190-mohan, TYPE:self, MSG SENT: बच्चे mohan की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी foola devi से संपर्क करे. धन्यवाद!
+S.No. 6: TO:9919745161-subhash, TYPE:self, MSG SENT: बच्चे subhash की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी foola devi से संपर्क करे. धन्यवाद!
+S.No. 7: TO:9569591104-roshni, TYPE:self, MSG SENT: बच्चे roshni की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी girja से संपर्क करे. धन्यवाद!
+S.No. 8: TO:9919745161-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी girja से संपर्क करे. धन्यवाद!
+S.No. 9: TO:9919745161-mayank, TYPE:self, MSG SENT: बच्चे mayank की opv3, dpt3 आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी girja से संपर्क करे. धन्यवाद!
+S.No. 10: TO:9919745161-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की measles 1, आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी foola devi से संपर्क करे. धन्यवाद!
+S.No. 11: TO:7607543190-kranti, TYPE:self, MSG SENT: बच्चे kranti की dptbooster आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी foola devi से संपर्क करे. धन्यवाद!
+S.No. 12: TO:08953584019-seetal, TYPE:self, MSG SENT: बच्चे seetal की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी girja से संपर्क करे. धन्यवाद!
+S.No. 13: TO:09695881970-akanchha, TYPE:self, MSG SENT: बच्चे akanchha की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी girja से संपर्क करे. धन्यवाद!
+S.No. 14: TO:09935675194-mohit, TYPE:self, MSG SENT: बच्चे mohit की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी foola devi से संपर्क करे. धन्यवाद!
+S.No. 15: TO:09695280518-gaurabh, TYPE:self, MSG SENT: बच्चे gaurabh की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी girja से संपर्क करे. धन्यवाद!
+S.No. 16: TO:09598325520-satish, TYPE:self, MSG SENT: बच्चे satish की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी girja से संपर्क करे. धन्यवाद!
+S.No. 17: TO:09935575794-monika, TYPE:self, MSG SENT: बच्चे monika की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी foola devi से संपर्क करे. धन्यवाद!
+S.No. 18: TO:08955749464-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी girja से संपर्क करे. धन्यवाद!
+S.No. 19: TO:09621287796-manish, TYPE:self, MSG SENT: बच्चे manish की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी girja से संपर्क करे. धन्यवाद!
+S.No. 20: TO:09935921231-nisha, TYPE:self, MSG SENT: बच्चे nisha की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी foola devi से संपर्क करे. धन्यवाद!
+S.No. 21: TO:09388037334-virjendra, TYPE:self, MSG SENT: बच्चे virjendra की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी girja से संपर्क करे. धन्यवाद!
+S.No. 22: TO:09935921231-haribhajan, TYPE:self, MSG SENT: बच्चे haribhajan की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी girja से संपर्क करे. धन्यवाद!
+S.No. 23: TO:09935575794-dikchha, TYPE:self, MSG SENT: बच्चे dikchha की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी foola devi से संपर्क करे. धन्यवाद!
+S.No. 24: TO:09616684812-prince, TYPE:self, MSG SENT: बच्चे prince की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी foola devi से संपर्क करे. धन्यवाद!
+S.No. 25: TO:09935921231-urmila, TYPE:self, MSG SENT: बच्चे urmila की dptbooster आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी foola devi से संपर्क करे. धन्यवाद!
+S.No. 26: TO:09506718705-mohit, TYPE:self, MSG SENT: बच्चे mohit की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी foola devi से संपर्क करे. धन्यवाद!
+S.No. 27: TO:09936698008-ayushi, TYPE:self, MSG SENT: बच्चे ayushi की mmr, vita- आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी foola devi से संपर्क करे. धन्यवाद!
+S.No. 28: TO:9455916355-anushka, TYPE:self, MSG SENT: बच्चे anushka की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी girja से संपर्क करे. धन्यवाद!
+
+
+
+DISTRICT: jhansi	 BLOCK: gursaria	 SUBCENTER: Birauna
+
+S.No. 1: TO:9793343615-chotu, TYPE:self, MSG SENT: बच्चे chotu की measles 1, आदि (1) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 2: TO:9919681013-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 3: TO:9621416705-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 4: TO:9621416705-jasoda, TYPE:self, MSG SENT: बच्चे jasoda की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 5: TO:9936998178-boy, TYPE:self, MSG SENT: बच्चे boy की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 6: TO:9939473820-bedant, TYPE:self, MSG SENT: बच्चे bedant की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 7: TO:9935035964-ansh, TYPE:self, MSG SENT: बच्चे ansh की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 8: TO:9935035964-yashbi, TYPE:self, MSG SENT: बच्चे yashbi की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 9: TO:9935035964-chotu, TYPE:self, MSG SENT: बच्चे chotu की opv1, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 10: TO:9935035964-pooja, TYPE:self, MSG SENT: बच्चे pooja की opv1, meas आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 11: TO:9935035964-sanskar, TYPE:self, MSG SENT: बच्चे sanskar की opv2, dpt2 आदि (5) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 12: TO:09953668854-narendra, TYPE:self, MSG SENT: बच्चे narendra की opv1, meas आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 13: TO:09685815067-ansh, TYPE:self, MSG SENT: बच्चे ansh की opv1, meas आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 14: TO:09621386430-ajaz, TYPE:self, MSG SENT: बच्चे ajaz की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 15: TO:9935035964-lucky, TYPE:self, MSG SENT: बच्चे lucky की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 16: TO:9695244398-madhu, TYPE:self, MSG SENT: बच्चे madhu की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 17: TO:07607997621-nisha, TYPE:self, MSG SENT: बच्चे nisha की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 18: TO:8572910316-rulesh, TYPE:self, MSG SENT: बच्चे rulesh की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 19: TO:09651280070-laxmi, TYPE:self, MSG SENT: बच्चे laxmi की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 20: TO:09198043091-virjbhan, TYPE:self, MSG SENT: बच्चे virjbhan की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 21: TO:09198043091-laxmi, TYPE:self, MSG SENT: बच्चे laxmi की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 22: TO:9838309236-princy, TYPE:self, MSG SENT: बच्चे princy की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 23: TO:0800824102-priyanka, TYPE:self, MSG SENT: बच्चे priyanka की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 24: TO:09695372500-ankit, TYPE:self, MSG SENT: बच्चे ankit की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 25: TO:09919681013-parvati, TYPE:self, MSG SENT: बच्चे parvati की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 26: TO:08009522974-kashish, TYPE:self, MSG SENT: बच्चे kashish की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 27: TO:09539164572-gaurabh, TYPE:self, MSG SENT: बच्चे gaurabh की measles 1, आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 28: TO:08009524244-nisha, TYPE:self, MSG SENT: बच्चे nisha की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 29: TO:08128691728-rasmi, TYPE:self, MSG SENT: बच्चे rasmi की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 30: TO:09793187297-rajesh, TYPE:self, MSG SENT: बच्चे rajesh की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 31: TO:08128791728-radha, TYPE:self, MSG SENT: बच्चे radha की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 32: TO:09651199432-krishna, TYPE:self, MSG SENT: बच्चे krishna की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 33: TO:09198443247-prince, TYPE:self, MSG SENT: बच्चे prince की dpt3, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 34: TO:09848373629-gudiya, TYPE:self, MSG SENT: बच्चे gudiya की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 35: TO:09956009978-archana, TYPE:self, MSG SENT: बच्चे archana की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 36: TO:09919681013-premchand, TYPE:self, MSG SENT: बच्चे premchand की measles 1, आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 37: TO:09956504071-dikshha, TYPE:self, MSG SENT: बच्चे dikshha की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 38: TO:09198395021-rahul, TYPE:self, MSG SENT: बच्चे rahul की dpt2, meas आदि (3) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!
+S.No. 39: TO:8953069698-poonam, TYPE:self, MSG SENT: बच्चे poonam की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rubina से संपर्क करे. धन्यवाद!
+S.No. 40: TO:9794337064-girl, TYPE:self, MSG SENT: बच्चे girl की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rubina से संपर्क करे. धन्यवाद!
+S.No. 41: TO:7856234126-akash, TYPE:self, MSG SENT: बच्चे akash की dpt1/penta आदि (2) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी rubina से संपर्क करे. धन्यवाद!
+S.No. 42: TO:9956278904-boy, TYPE:self, MSG SENT: बच्चे boy की dpt1/penta आदि (4) टीकाकरण इस महीने होनी आवश्यक है. अविलंब आशा बहनजी asha not available से संपर्क करे. धन्यवाद!

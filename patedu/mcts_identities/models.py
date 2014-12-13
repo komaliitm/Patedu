@@ -80,6 +80,14 @@ class Beneficiary(User):
 		'relative':4,
 	}
 
+	NUMBER_TYPE_REVERSE_MAP = {
+		'0':'self',
+		'1':'other',
+		'2':'asha',
+		'3':'neighbour',
+		'4':'relative'
+	}
+
 	NUMBER_TYPE_CHOICES = (
 		(NUMBER_TYPE.SELF, 'personal or family'),
 		(NUMBER_TYPE.OTHER, 'others unknown'),

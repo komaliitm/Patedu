@@ -867,12 +867,19 @@ def UploadAndSave(request):
             chunk = AvailableMCTSData.objects.create(stamp= stamp, benef_type=benef_type, block=block, district=district, health_facility=health_facility, month=month, year=year, state=state, subfacility=subfacility, subfacility_id=subfacility_id)
             #_fileObject = Document.objects.create(myfile = input_excel, stamp=stamp)
 
-            #create then date
+
+            timezone = 'Asia/Kolkata'
+            tz = pytz.timezone(timezone)
+            today_utc = utcnow_aware()
+            today = today_utc.astimezone(tz)
+            #create then date, which is 1st of given month 12:00 PM noon IST
             if month and year:
                 date_str = month+','+year
-                date_then = datetime.datetime.strptime(date_str, "%B,%Y").date()
+                date_then = datetime.datetime.strptime(date_str, "%B,%Y")
+                date_then = date_then + datetime.timedelta(hours=12)
+                date_then = date_then.replace(second=0)
             else:
-                date_then = utcnow_aware().date()
+                date_then = today.replace(hour=12, minute=0, day=1, second=0).astimezone(pytz.utc)
 
             t_district = GetFacilityFromString(district)
             t_block = GetFacilityFromString(block)
