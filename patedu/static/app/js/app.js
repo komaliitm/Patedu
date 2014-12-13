@@ -246,9 +246,10 @@ app.directive('onFinishRender', function ($timeout) {
       var x3 = data[i].GivenServices_anc + data[i].GivenServices_pnc + data[i].GivenServices_imm;
       var x4 = data[i].Overdue_anc + data[i].Overdue_pnc + data[i].Overdue_imm;
       var x5 = ((data[i].OverDueRate_imm + data[i].OverDueRate_pnc + data[i].OverDueRate_anc) / 2).toFixed(2);
-      
+            
       var contentString =  '<table style="width:100%">' +
         '<tr>     <td><h5> Subcenter </h5></td> <td> ' + data[i].Subcenter + '</td> </tr>' +
+        '<tr>    <td><h5>ANMDetails</h5></td> <td> ' + getAshaDetailString(data[i].ANMDetails) + '</td> </tr>' +
         '<tr>    <td><h5>AshaDetails</h5></td> <td> ' + getAshaDetailString(data[i].AshaDetails) + '</td> </tr>' +
         '<tr>    <td>Beneficiaries</td> <td> ' + x + '</td> </tr>' +
         '<tr>    <td>New Registration</td> <td> ' + x2 + '</td> </tr>' +

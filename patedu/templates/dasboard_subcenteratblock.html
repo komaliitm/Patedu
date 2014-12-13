@@ -302,6 +302,7 @@ Purchase: http://wrapbootstrap.com
                                                         <th ng-class="{'asc_label': SerialNum==6 && Asc ==1  , 'desc_label': SerialNum==6 && Asc == 0, 'no_label': SerialNum != 6}" ng-click="SortData($event, 6)">Overdue Services number&nbsp;</th>
                                                         <th ng-class="{'asc_label': SerialNum==7 && Asc ==1  , 'desc_label': SerialNum==7 && Asc == 0, 'no_label': SerialNum != 7}" ng-click="SortData($event, 7)">Overdue rate&nbsp;</th>
                                                         <th>Overdue rate trends</th>
+                                                        <th>ANM name | Number</th>
                                                         <th>Asha worker name | Number</th>
                                                     </tr>
                                                 </thead>
@@ -327,6 +328,13 @@ Purchase: http://wrapbootstrap.com
                                                             </div>
 
                                                         </td>
+
+                                                        <td >
+                                                         <span ng-repeat="anmPerson in villageData.ANMDetails"> 
+                                                            <span ng-show="$index>0">, </span>
+                                                            #{anmPerson}#
+                                                            </span>
+                                                         </td>
                                                         <td >
                                                          <span ng-repeat="ashaWorker in villageData.AshaDetails"> 
                                                             <span ng-show="$index>0">, </span>
