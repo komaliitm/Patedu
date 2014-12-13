@@ -29,6 +29,8 @@ app.directive('onFinishRender', function ($timeout) {
       }
       $scope.Asc =0; 
       $scope.SerialNum=0;
+      $scope.loading = false;
+      $scope.Completeloading = true;
       $scope.dashdata = null;
       fetchDataCurrent();
 
@@ -134,11 +136,18 @@ app.directive('onFinishRender', function ($timeout) {
 
 
       function fetchDataCurrent() {
-        dashboardService.getDashboardData($scope.dashboardParams).then(function(dashdata) {
+        $scope.loading = true;
+        $scope.Completeloading = false;
+        $('.loading-container').removeClass('loading-inactive');
+
+         dashboardService.getDashboardData($scope.dashboardParams).then(function(dashdata) {
           $scope.dashdata = dashdata;
           DrawPieChart($scope.dashdata.summary.Good, $scope.dashdata.summary.Average, $scope.dashdata.summary.Poor);
           PoplatePoints($scope.dashdata.data);
           console.log($scope.dashdata);
+          $scope.loading = false;
+         $scope.Completeloading = true;
+         $('.loading-container').addClass('loading-inactive');
         });
       }
     }

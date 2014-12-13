@@ -46,6 +46,7 @@ Purchase: http://wrapbootstrap.com
 <!-- Body -->
 
 <body ng-controller="DasboardController">
+
     <!-- Loading Container -->
     <div class="loading-container">
         <div class="loading-progress">
@@ -157,8 +158,28 @@ Purchase: http://wrapbootstrap.com
                 </div>
                 <!-- /Page Header -->
                 <!-- Page Body -->
+<!--                 <div class="spinner" ng-show="loading">
+                  <div class="spinner-container container1">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container2">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container3">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                </div> -->
                 <div class="page-body">
-                    <div class="row">
+                    <div class="row" >
 
                         <div class="col-lg-6 col-sm-12 col-xs-6">
                             <div class="well with-header">
@@ -225,7 +246,7 @@ Purchase: http://wrapbootstrap.com
                         </div>
                     </div>
 
-                    <div class="tabbable">
+                    <div class="tabbable"  >
                         <ul class="nav nav-tabs nav-justified">
                             <li class="active">
                                 <a data-toggle="tab" href="#geobox">
@@ -268,99 +289,7 @@ Purchase: http://wrapbootstrap.com
                                             </a>
                                             </div>
                                         </div>
-<!--                                     <table class="table table-bordered table-hover table-striped" id="searchable">
-                                        <thead class="bordered-darkorange">
-                                            <tr role="row">
-                                                <th>Rendering engine</th>
-                                                <th>Browser</th>
-                                                <th>Platform(s)</th>
-                                                <th>Engine version</th>
-                                                <th>CSS grade</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tfoot>
-                                            <tr>
-                                                <th rowspan="1" colspan="1"><input type="text" name="search_engine" placeholder="Search engines" class="form-control input-sm"></th>
-                                                <th rowspan="1" colspan="1"><input type="text" name="search_browser" placeholder="Search browsers" class="form-control input-sm"></th>
-                                                <th rowspan="1" colspan="1"><input type="text" name="search_platform" placeholder="Search platforms" class="form-control input-sm"></th>
-                                                <th rowspan="1" colspan="1"><input type="text" name="search_version" placeholder="Search versions" class="form-control input-sm"></th>
-                                                <th rowspan="1" colspan="1"><input type="text" name="search_grade" placeholder="Search grades" class="form-control input-sm"></th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <tr>
-                                                <td class=" sorting_1">Gecko</td>
-                                                <td class=" ">Firefox 1.0</td>
-                                                <td class=" ">Win 98+ / OSX.2+</td>
-                                                <td class="center ">1.7</td>
-                                                <td class="center ">A</td>
-                                            </tr>
-                                            <tr>
-                                                <td class=" sorting_1">Gecko</td>
-                                                <td class=" ">Firefox 1.5</td>
-                                                <td class=" ">Win 98+ / OSX.2+</td>
-                                                <td class="center ">1.8</td>
-                                                <td class="center ">A</td>
-                                            </tr>
-                                            <tr>
-                                                <td class=" sorting_1">Gecko</td>
-                                                <td class=" ">Firefox 2.0</td>
-                                                <td class=" ">Win 98+ / OSX.2+</td>
-                                                <td class="center ">1.8</td>
-                                                <td class="center ">A</td>
-                                            </tr>
-                                            <tr>
-                                                <td class=" sorting_1">Gecko</td>
-                                                <td class=" ">Firefox 3.0</td>
-                                                <td class=" ">Win 2k+ / OSX.3+</td>
-                                                <td class="center ">1.9</td>
-                                                <td class="center ">A</td>
-                                            </tr>
-                                            <tr>
-                                                <td class=" sorting_1">Gecko</td>
-                                                <td class=" ">Camino 1.0</td>
-                                                <td class=" ">OSX.2+</td>
-                                                <td class="center ">1.8</td>
-                                                <td class="center ">A</td>
-                                            </tr>
-                                            <tr>
-                                                <td class=" sorting_1">Gecko</td>
-                                                <td class=" ">Camino 1.5</td>
-                                                <td class=" ">OSX.3+</td>
-                                                <td class="center ">1.8</td>
-                                                <td class="center ">A</td>
-                                            </tr>
-                                            <tr>
-                                                <td class=" sorting_1">Gecko</td>
-                                                <td class=" ">Netscape 7.2</td>
-                                                <td class=" ">Win 95+ / Mac OS 8.6-9.2</td>
-                                                <td class="center ">1.7</td>
-                                                <td class="center ">A</td>
-                                            </tr>
-                                            <tr>
-                                                <td class=" sorting_1">Gecko</td>
-                                                <td class=" ">Netscape Browser 8</td>
-                                                <td class=" ">Win 98SE+</td>
-                                                <td class="center ">1.7</td>
-                                                <td class="center ">A</td>
-                                            </tr>
-                                            <tr>
-                                                <td class=" sorting_1">Gecko</td>
-                                                <td class=" ">Netscape Navigator 9</td>
-                                                <td class=" ">Win 98+ / OSX.2+</td>
-                                                <td class="center ">1.8</td>
-                                                <td class="center ">A</td>
-                                            </tr>
-                                            <tr>
-                                                <td class=" sorting_1">Gecko</td>
-                                                <td class=" ">Mozilla 1.0</td>
-                                                <td class=" ">Win 95+ / OSX.1+</td>
-                                                <td class="center ">1</td>
-                                                <td class="center ">A</td>
-                                            </tr>
-                                        </tbody>
-                                    </table> --> 
+ 
                                     <table class="table table-bordered table-hover table-striped">
                                                <thead>
                                                     <tr role="row">
@@ -413,55 +342,7 @@ Purchase: http://wrapbootstrap.com
                              </div>   
                         </div>
                      
-                    <!-- <div class="row" >
-                        <div class="col-xs-12 col-md-12">
-                            <div class="well with-header with-footer">
-                                <div class="header bordered-sky">
-                                    BlockWise Details
-                                </div>
-                                <table class="table table-bordered table-hover">
-                                       <thead>
-                                            <tr role="row">
-                                                <th>Serial Number</th>
-                                                <th>Status indicator</th>
-                                                <th>Subcenter</th>
-                                                <th>Total Beneficiaries</th>
-                                                <th>New registrations</th>
-                                                <th>Given Services number </th>
-                                                <th>Overdue Services number</th>
-                                                <th>Overdue rate</th>
-                                                <th>Asha worker name | Number</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr  ng-repeat="villageData in dashdata.data">
-                                                <td >#{$index + 1}#</td>
-                                                <td >
-                                                    <div ng-class="{'status_label_green':villageData.status==2,'status_label_red':villageData.status==0,
-                                                    'status_label_yellow':villageData.status==1}">
-                                                          #{villageData.status}#
-                                                   </div>
-                                                </td>
-                                                <td >#{villageData.Subcenter}#</td>
-                                                <td >#{villageData.Beneficiaries_anc + villageData.Beneficiaries_pnc + villageData.Beneficiaries_imm}# </td>
-                                                <td >#{villageData.new_reg_anc + villageData.new_reg_pnc + villageData.new_reg_pnc}# </td>
-                                                <td >#{villageData.GivenServices_anc + villageData.GivenServices_pnc + villageData.GivenServices_imm}# </td>
-                                                <td >#{villageData.Overdue_anc + villageData.Overdue_pnc + villageData.Overdue_imm}# </td>
-                                                <td >#{(villageData.OverDueRate_imm + villageData.OverDueRate_pnc + villageData.OverDueRate_anc)/3 | number:2}# </td>
-                                                <td >
-                                                 <span ng-repeat="ashaWorker in villageData.AshaDetails"> 
-                                                    <span ng-show="$index>0">, </span>
-                                                    #{ashaWorker}#
-                                                    </span>
-                                                 </td>
-                                            </tr>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-                     </div>    -->
-
-                </div>
+                 </div>
                 <!-- /Page Body -->
             </div>
             <!-- /Page Content -->
