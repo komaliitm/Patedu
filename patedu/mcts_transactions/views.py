@@ -437,6 +437,17 @@ def DashboardData(request, blockid = None):
 					AshaDetails.append(_cg.first_name+':'+_cg.phone)
 
 			sub_data["AshaDetails"] = AshaDetails
+			
+			ANMDetails = []
+			cps = Beneficiary.objects.all().filter(subcenter = sub).values("careprovider").distinct()
+			for cp in cps:
+				if cp["careprovider"]:
+					_cp = CareProvider.objects.get(id=cp["careprovider"])
+					ANMDetails.append(_cp.first_name+':'+_cp.phone)
+
+			sub_data["ANMDetails"] = ANMDetails
+
+
 			sub_data["lat"] = sub._lat
 			sub_data["long"] = sub._long
 			#TODO remove dummy lat, long later
