@@ -159,6 +159,7 @@ Purchase: http://wrapbootstrap.com
                 <!-- Page Body -->
                 <div class="page-body">
                     <div class="row">
+
                         <div class="col-lg-6 col-sm-12 col-xs-6">
                             <div class="well with-header">
                                 <div>
@@ -371,11 +372,12 @@ Purchase: http://wrapbootstrap.com
                                                         <th ng-class="{'asc_label': SerialNum==5 && Asc ==1  , 'desc_label': SerialNum==5 && Asc == 0, 'no_label': SerialNum != 5}" ng-click="SortData($event, 5)">Given Services number&nbsp;</th>
                                                         <th ng-class="{'asc_label': SerialNum==6 && Asc ==1  , 'desc_label': SerialNum==6 && Asc == 0, 'no_label': SerialNum != 6}" ng-click="SortData($event, 6)">Overdue Services number&nbsp;</th>
                                                         <th ng-class="{'asc_label': SerialNum==7 && Asc ==1  , 'desc_label': SerialNum==7 && Asc == 0, 'no_label': SerialNum != 7}" ng-click="SortData($event, 7)">Overdue rate&nbsp;</th>
+                                                        <th>Overdue rate trends</th>
                                                         <th>Asha worker name | Number</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr  ng-repeat="villageData in dashdata.data">
+                                                    <tr  ng-repeat="villageData in dashdata.data" on-finish-render>
                                                         <td >#{$index + 1}#</td>
                                                         <td >
                                                             <div ng-class="{'status_label_green':villageData.status==2,'status_label_red':villageData.status==0,
@@ -388,13 +390,21 @@ Purchase: http://wrapbootstrap.com
                                                         <td >#{villageData.new_reg_anc + villageData.new_reg_pnc + villageData.new_reg_imm}# </td>
                                                         <td >#{villageData.GivenServices_anc + villageData.GivenServices_pnc + villageData.GivenServices_imm}# </td>
                                                         <td >#{villageData.Overdue_anc + villageData.Overdue_pnc + villageData.Overdue_imm}# </td>
-                                                        <td >#{(villageData.OverDueRate_imm + villageData.OverDueRate_pnc + villageData.OverDueRate_anc)/3 | number:2}# </td>
+                                                        <td >#{(villageData.OverDueRate_imm + villageData.OverDueRate_pnc + villageData.OverDueRate_anc)/2 | number:2}# </td>
+                                                        <td>
+                                                            <div class="databox-sparkline">
+                                                                <span data-height="25px" data-width="100%" data-fillcolor="false" data-linecolor="#03c" data-spotcolor="#03c" data-linewidth="1" data-spotradius="0" id="sparkline-#{$index}#">
+                                                                </span>
+                                                            </div>
+
+                                                        </td>
                                                         <td >
                                                          <span ng-repeat="ashaWorker in villageData.AshaDetails"> 
                                                             <span ng-show="$index>0">, </span>
                                                             #{ashaWorker}#
                                                             </span>
                                                          </td>
+
                                                     </tr>
                                                 </tbody>
                                     </table>
@@ -500,6 +510,7 @@ Purchase: http://wrapbootstrap.com
     InitiateEditableDataTable.init();
     InitiateExpandableDataTable.init();
     InitiateSearchableDataTable.init();
+
     </script>
 
 
@@ -514,6 +525,8 @@ Purchase: http://wrapbootstrap.com
         themethirdcolor = getThemeColorFromCss('themethirdcolor');
         themefourthcolor = getThemeColorFromCss('themefourthcolor');
         themefifthcolor = getThemeColorFromCss('themefifthcolor');
+
+        
 
         //Sets The Hidden Chart Width
         $('#dashboard-bandwidth-chart')
@@ -852,6 +865,7 @@ Purchase: http://wrapbootstrap.com
     <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.10/src/markerwithlabel.js"></script>
 
     <script type="text/javascript">
+        InitiateSparklineCharts.init();
     var panchyatRajInput = [{
         "lat": 25.4486,
         "lang": 78.5696,

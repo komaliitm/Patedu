@@ -5,6 +5,18 @@
     $interpolateProvider.endSymbol('}#');
   });
 
+app.directive('onFinishRender', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit('ngRepeatFinished');
+                });
+            }
+        }
+    }
+    });
   app.controller('DasboardController', ['$scope', 'dashboardService',
     function($scope, dashboardService) {
       $scope.dashboardParams = {
@@ -80,8 +92,45 @@
         });
 
         $scope.SerialNum= type;
-
     }
+
+     var initSparkLines = function() {
+        console.log("Init Spark Lines")
+        for(var i=0;i<$scope.dashdata.data.length;i++)
+        {
+          SparkLineInit('sparkline-'+i, $scope.dashdata.data[i].ProgressData_anc,$scope.dashdata.data[i].ProgressData_pnc,$scope.dashdata.data[i].ProgressData_imm)
+        }
+      }
+
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+          initSparkLines();
+    });
+
+    var SparkLineInit = function(spark_line_id, data1,data2,data3){
+          var data=[];
+            for(var i=0;i<data1.length;i++)
+            {
+                data[i] = (data1[i] + data2[i] + data3[i])/2;
+            } 
+
+            var sparklinelines =  $('#'+spark_line_id);
+            $.each(sparklinelines, function () {
+                $(this).sparkline(data, {
+                    type: 'line',
+                    disableHiddenCheck: true,
+                    height: $(this).data('height'),
+                    width: $(this).data('width'),
+                    fillColor: getcolor($(this).data('fillcolor')),
+                    lineColor: getcolor($(this).data('linecolor')),
+                    spotRadius: $(this).data('spotradius'),
+                    lineWidth: $(this).data('linewidth'),
+                    spotColor: getcolor($(this).data('spotcolor')),
+                    highlightLineColor: getcolor($(this).data('highlightlinecolor')),
+                    chartRangeMin: 0,
+                    chartRangeMax: 10
+                });
+            });
+      }
 
 
       function fetchDataCurrent() {
@@ -183,15 +232,22 @@
       mapOptions);
 
     for (var i = data.length - 1; i >= 0; i--) {
+      var x = data[i].Beneficiaries_anc + data[i].Beneficiaries_pnc + data[i].Beneficiaries_imm;
+      var x2 = data[i].new_reg_anc + data[i].new_reg_pnc + data[i].new_reg_pnc;
+      var x3 = data[i].GivenServices_anc + data[i].GivenServices_pnc + data[i].GivenServices_imm;
+      var x4 = data[i].Overdue_anc + data[i].Overdue_pnc + data[i].Overdue_imm;
+      var x5 = ((data[i].OverDueRate_imm + data[i].OverDueRate_pnc + data[i].OverDueRate_anc) / 2).toFixed(2);
+      
       var contentString =  '<table style="width:100%">' +
         '<tr>     <td><h5> Subcenter </h5></td> <td> ' + data[i].Subcenter + '</td> </tr>' +
         '<tr>    <td><h5>AshaDetails</h5></td> <td> ' + getAshaDetailString(data[i].AshaDetails) + '</td> </tr>' +
-        '<tr>    <td>Beneficiaries</td> <td> ' + data[i].Beneficiaries_anc + data[i].Beneficiaries_pnc + data[i].Beneficiaries_imm + '</td> </tr>' +
-        '<tr>    <td>New Registration</td> <td> ' + data[i].new_reg_anc + data[i].new_reg_pnc + data[i].new_reg_pnc + '</td> </tr>' +
-        '<tr>    <td>Given Services</td> <td> ' + data[i].GivenServices_anc + data[i].GivenServices_pnc + data[i].GivenServices_imm + '</td> </tr>' +
-        '<tr>    <td>Overdue</td> <td> ' + data[i].Overdue_anc + data[i].Overdue_pnc + data[i].Overdue_imm + '</td> </tr>' +
-        '<tr>    <td>Overdue Rate</td> <td> ' + ((data[i].OverDueRate_imm + data[i].OverDueRate_pnc + data[i].OverDueRate_anc) / 3).toFixed(2) + '</td> </tr>' +
+        '<tr>    <td>Beneficiaries</td> <td> ' + x + '</td> </tr>' +
+        '<tr>    <td>New Registration</td> <td> ' + x2 + '</td> </tr>' +
+        '<tr>    <td>Given Services</td> <td> ' + x3 + '</td> </tr>' +
+        '<tr>    <td>Overdue</td> <td> ' + x4 + '</td> </tr>' +
+        '<tr>    <td>Overdue Rate</td> <td> ' + x5 + '</td> </tr>' +
         '</table>';
+
 
       var infowindow = new google.maps.InfoWindow();
 
@@ -235,6 +291,7 @@
       }
       output += AshaDetails[i];
     }
+    return output;
   }
 
 })();
