@@ -24,4 +24,4 @@ class LatLangData(models.Model):
 	lat = models.FloatField(null=True)
 	lang = models.FloatField(null=True)
 	block = models.CharField(max_length=50)
-	blockRefernece = models.CharField(max_length=50)
+	blockRefernece = models.CharField(max_length=50, null=True)

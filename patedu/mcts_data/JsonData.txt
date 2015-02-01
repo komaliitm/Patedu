@@ -1,0 +1,20 @@
+{
+"langlatdata" :
+[
+ {
+   "lang" : 25.4833,
+   "lat" : 78.7167,
+   "sublock": "Gudha"
+ },
+ {
+   "lang" : 25.2896,
+   "lat" : 78.3604,
+   "sublock": "Baragaon First"
+ },
+ {
+   "lang" : 25.659626,
+   "lat" : 80.120409,
+   "sublock": "jouri"
+ }
+]
+}

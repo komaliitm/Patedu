@@ -140,6 +140,7 @@ app.directive('onFinishRender', function ($timeout) {
         $scope.Completeloading = false;
         $('.loading-container').removeClass('loading-inactive');
 
+
          dashboardService.getDashboardData($scope.dashboardParams).then(function(dashdata) {
           $scope.dashdata = dashdata;
           DrawPieChart($scope.dashdata.summary.Good, $scope.dashdata.summary.Average, $scope.dashdata.summary.Poor);
