@@ -5,7 +5,7 @@ from django.template import Context, RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 
 from .forms import Document
-from .models import Document, AvailableMCTSData
+from .models import Document, AvailableMCTSData, LatLangData
 from mcts_transactions.models import *
 from mcts_identities import * 
 
@@ -47,6 +47,16 @@ def UploadPage(request):
     # Render list page with the documents and the form
     return render_to_response(
         'myapp/list.html',
+        {'documents': documents},
+        context_instance=RequestContext(request)
+    )
+
+def uploadLangLatpage(request):
+    documents = Document.objects.all()
+
+    # Render list page with the documents and the form
+    return render_to_response(
+        'myapp/langlat.html',
         {'documents': documents},
         context_instance=RequestContext(request)
     )
@@ -941,6 +951,179 @@ def UploadAndSave(request):
          parsed = parsed + " " +str(len(wp["data"]))
 
         print parsed
+        #newdoc = Document(myfile = request.FILES['file'])
+        #newdoc.save()
+            # Redirect to the document list after POST
+        return HttpResponse('Saved successfully')
+    return HttpResponse('Error in saving')
+
+    
+
+
+def uploadandsaveLangLatData(request):
+    # Handle file upload
+    if request.method == 'POST':        
+        input_file = request.FILES['file']
+        file_type = request.POST.get('file_type')
+         
+        print "hello data"  
+        print file_type
+        print input_file
+
+        if file_type == "Json" :
+            file_contents=input_file.read()
+        else:
+            return HttpResponse('Error in saving')
+  
+
+        data = json.loads(file_contents.strip())
+        
+        print data
+        print data['langlatdata'][0]['lang']
+
+        for blockNumber in range(0,len(data['langlatdata'])):
+            print blockNumber
+            LatLangData.objects.create(lat= data['langlatdata'][blockNumber]['lat'], lang=data['langlatdata'][blockNumber]['lang'], block=data['langlatdata'][blockNumber]['sublock'])
+
+        # book = xlrd.open_workbook(file_contents=input_excel.read())
+        # sheet = book.sheet_by_index(0)
+        # initialIndex = 0
+        # workplan_list = []
+
+        # w=0
+        # while(1==1):
+        #     w=w+1
+        #     startIndex = getStartingRow(sheet, initialIndex)
+           
+        #     if startIndex == "NoData":
+        #         break
+        #     else:
+        #         chunk_dict={}
+        #         columnArray = []
+        #         dict_header = getHeaderDict(sheet, initialIndex, startIndex)
+        #         columnArray = getColumnNames(sheet, startIndex)
+        #         #print "colIndexes="+str(colIndexes)
+        #         rowIndex= startIndex                
+        #         t=0
+        #         row_list=[]
+        #         dict_row = {}
+        #         rowIndex=rowIndex+1
+        #         try:
+        #             while sheet.cell_value(rowIndex,colIndexes[0])!="" and sheet.cell_value(rowIndex,colIndexes[1])!="":
+                       
+        #                 t=t+1
+        #                 dict_row = getRowDict(rowIndex, columnArray , sheet)
+                       
+        #                 row_list.append(dict_row)
+        #                 rowIndex=rowIndex+1
+        #         except:
+        #             print "Exception Main Loop"
+
+        #         chunk_dict["header"] = dict_header
+        #         chunk_dict["data"] = row_list
+        #         workplan_list.append(chunk_dict)
+        #         initialIndex = rowIndex
+        
+        # _fileObject = None
+        # for workplan_chunk in workplan_list:           
+        #     header = workplan_chunk["header"]
+        #     data = workplan_chunk["data"]
+
+        #     if len(data) == 0:
+        #         continue
+
+        #     #header data
+        #     block = header.get("Health_Block").replace("\n","").strip()
+        #     district = header.get("District").replace("\n","").strip()
+        #     health_facility = header.get("Health_Facility").replace("\n","").strip()
+        #     month = header.get("ReportMonth").replace("\n","").strip()
+        #     year = header.get("ReportYear").replace("\n","").strip()
+        #     state = header.get("State").replace("\n","").strip()
+        #     subfacility = header.get("SubFacility").replace("\n","").strip()
+        #     subfacility_id = header.get("SubFacilityID").replace("\n","").strip()
+            
+        #     stamp = benef_type+"_"+state+"_"+district+"_"+block+"_"+health_facility+"_"+subfacility+"_"+subfacility_id+"_"+year+"_"+state
+        #     if AvailableMCTSData.objects.filter(stamp=stamp).count() > 0:
+        #         print "This subcenter data already exists: "+stamp
+        #         continue
+        #     #create chunk, file
+        #     chunk = AvailableMCTSData.objects.create(stamp= stamp, benef_type=benef_type, block=block, district=district, health_facility=health_facility, month=month, year=year, state=state, subfacility=subfacility, subfacility_id=subfacility_id)
+        #     #_fileObject = Document.objects.create(myfile = input_excel, stamp=stamp)
+
+
+        #     timezone = 'Asia/Kolkata'
+        #     tz = pytz.timezone(timezone)
+        #     today_utc = utcnow_aware()
+        #     today = today_utc.astimezone(tz)
+        #     #create then date, which is 1st of given month 12:00 PM noon IST
+        #     if month and year:
+        #         date_str = month+','+year
+        #         date_then = datetime.datetime.strptime(date_str, "%B,%Y")
+        #         date_then = date_then + datetime.timedelta(hours=12)
+        #         date_then = date_then.replace(second=0)
+        #     else:
+        #         date_then = today.replace(hour=12, minute=0, day=1, second=0).astimezone(pytz.utc)
+
+        #     t_district = GetFacilityFromString(district)
+        #     t_block = GetFacilityFromString(block)
+        #     t_health_facility = GetFacilityFromString(health_facility)
+
+        #     #check and create district
+        #     if t_district:
+        #         dsts = District.objects.filter(MCTS_ID = t_district[1])
+        #         if dsts.count()>0:
+        #             district = dsts[0]
+        #         else:
+        #             district = District.objects.create(MCTS_ID = t_district[1], name=t_district[0])
+        #     else:
+        #         district = None
+
+        #     #check and create block
+        #     if t_block:
+        #         blocks = Block.objects.filter(MCTS_ID = t_block[1])
+        #         if blocks.count()>0:
+        #             block = blocks[0]
+        #         else:
+        #             block = Block.objects.create(MCTS_ID = t_block[1], name=t_block[0])
+        #     else:
+        #         block = None
+
+        #     #check and create health facility
+        #     if t_health_facility:
+        #         hfs = HealthFacility.objects.filter(MCTS_ID = t_health_facility[1])
+        #         if hfs.count()>0:
+        #             health_facility = hfs[0]
+        #         else:
+        #             health_facility = HealthFacility.objects.create(MCTS_ID = t_health_facility[1], name = t_health_facility[0])
+        #     else:
+        #         health_facility = None
+
+        #     #check and create subcenter
+        #     sbs = SubCenter.objects.filter(MCTS_ID = subfacility_id)
+        #     if sbs.count() > 0:
+        #         subfacility = sbs[0]
+        #     else:
+        #         subfacility = SubCenter.objects.create(MCTS_ID = subfacility_id, name=subfacility, district=district, block=block, health_facility=health_facility)
+
+        #     for benef in data:
+        #         if benef_type == 'ANC':
+        #             SaveANCBeneficiary(benef=benef, subcenter=subfacility, date_then=date_then)
+        #         elif benef_type == 'PNC':
+        #             SavePNCBeneficiary(benef=benef, subcenter=subfacility)
+        #         elif benef_type == 'IMM1' or benef_type == 'IMM2':
+        #             SaveIMMBeneficiary(benef=benef, subcenter=subfacility, date_then=date_then)
+        #             pass
+
+        # #print workplan_list
+        # print workplan_list[0]["header"]
+        # print workplan_list[0]["data"][0]
+        # print workplan_list[0]["data"][len(workplan_list[0]["data"])-1]
+
+        # parsed = ""
+        # for wp in workplan_list:
+        #  parsed = parsed + " " +str(len(wp["data"]))
+
+        # print parsed
         #newdoc = Document(myfile = request.FILES['file'])
         #newdoc.save()
             # Redirect to the document list after POST

@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Upload lang lat for blocks</title>
+</head>
+
+<body>
+    <!-- List of uploaded documents -->
+
+
+    <!-- Upload form. Note enctype attribute! -->
+    <form action="/mctsdata/uploadandsaveLangLatData/" method="POST" enctype="multipart/form-data">
+        <input name="file" type="file" id="file" /> {% csrf_token %}
+
+        <p>
+            <input type="submit" value="Upload" />
+        </p>
+        <p>
+            <select type="submit" value="Upload" name="file_type">
+                <option value="Json">Json</option>
+                <option value="Excel">Excel</option>
+            </select>
+        </p>
+    </form>
+
+</body>
+
+</html>
