@@ -1,0 +1,50 @@
+#export C_FAKEFORK=1
+#export C_FORCE_ROOT="true"
+# Names of nodes to start
+#   most will only start one node:
+CELERYD_NODES="worker1"
+#   but you can also start multiple and configure settings
+#   for each in CELERYD_OPTS (see `celery multi --help` for examples).
+CELERYD_NODES="worker1"
+
+CELERYD_USER_HOME="%WSGIHOME%"
+
+# Absolute or relative path to the 'celery' command:
+CELERY_BIN=$CELERYD_USER_HOME"/dlpmcs/venv/local/bin/celery"
+
+# App instance to use
+# comment out this line if you don't use an app
+CELERY_APP="patedu"
+# or fully qualified:
+#CELERY_APP="proj.tasks:app"
+
+# Where to chdir at start.
+CELERYD_CHDIR=$CELERYD_USER_HOME"/%PROJECTDIR%"
+
+# Where to chdir at start.
+CELERYBEAT_CHDIR=$CELERYD_USER_HOME"/%PROJECTDIR%"
+
+# Extra command-line arguments to the worker
+CELERYD_OPTS="--time-limit=1000 --concurrency=8"
+CELERYBEAT_OPTS="--scheduler=djcelery.schedulers.DatabaseScheduler"
+
+# %N will be replaced with the first part of the nodename.
+CELERYD_LOG_FILE="/var/log/celery/%N.log"
+CELERYD_PID_FILE="/var/run/celery/%N.pid"
+CELERYBEAT_LOG_FILE="/var/log/celery/celerybeat.log"
+CELERYBEAT_PID_FILE="/var/run/celery/celerybeat.pid"
+
+# Workers should run as an unprivileged user.
+#   You need to create this user manually (or you can choose
+#   a user/group combination that already exists, e.g. nobody).
+CELERYD_USER="%WSGIUSER%"
+CELERYD_GROUP="%WSGIGROUP%"
+CELERYBEAT_USER="%WSGIUSER%"
+CELERYBEAT_GROUP="%WSGIGROUP%"
+
+
+# If enabled pid and log directories will be created if missing,
+# and owned by the userid/group configured.
+CELERY_CREATE_DIRS=1
+CELERY_CREATE_RUNDIR=1
+CELERY_CREATE_LOGDIR=1
