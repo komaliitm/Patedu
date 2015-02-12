@@ -30,7 +30,7 @@ sudo apt-get install libapache2-mod-wsgi -y
 sudo apt-get install rabbitmq-server -y
 
 #Prepare the postgres db
-sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'Doctl123';"
+sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'dlpmcs';"
 sudo -u postgres createdb dlpmcs_psqldb
 
 #Enable Apache2 mpm worker mod

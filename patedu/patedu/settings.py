@@ -12,6 +12,8 @@ import site
 SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__).decode('utf-8'))
 PROJECT_DIR = os.path.dirname(SETTINGS_DIR).decode('utf-8')
 
+CONSOLELOG = True
+
 # Celery imports
 import djcelery
 djcelery.setup_loader()
@@ -59,28 +61,38 @@ DB_Password = os.getenv('DB_PASSWORD','')
 DB_Host = os.getenv('DB_HOST','')
 DB_Port = os.getenv('DB_PORT','')
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': DB_Engine, # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+#         'NAME': DB_Name,                      # Or path to database file if using sqlite3.
+#         'USER': DB_UserName,                      # Not used with sqlite3.
+#         'PASSWORD': DB_Password,                  # Not used with sqlite3.
+#         'HOST': DB_Host,                      # Set to empty string for localhost. Not used with sqlite3.
+#         'PORT': DB_Port,                      # Set to empty string for default. Not used with sqlite3.
+#         'ATOMIC_REQUESTS': True
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': DB_Engine, # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': DB_Name,                      # Or path to database file if using sqlite3.
-        'USER': DB_UserName,                      # Not used with sqlite3.
-        'PASSWORD': DB_Password,                  # Not used with sqlite3.
-        'HOST': DB_Host,                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': DB_Port,                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE':'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME':'dlpmcs_psqldb',                      # Or path to database file if using sqlite3.
+        'USER':'postgres',                      # Not used with sqlite3.
+        'PASSWORD':'dlpmcs',                  # Not used with sqlite3.
+        'HOST':'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT':'',                    # Set to empty string for default. Not used with sqlite3.
         'ATOMIC_REQUESTS': True
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE':'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-#         'NAME':'dlpmcs_psqldb',                      # Or path to database file if using sqlite3.
-#         'USER':'postgres',                      # Not used with sqlite3.
-#         'PASSWORD':'dlpmcs',                  # Not used with sqlite3.
-#         'HOST':'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
-#         'PORT':'',                    # Set to empty string for default. Not used with sqlite3.
-#     }
-# }
+#EMAIL
+
+ADMINS = (
+    ('Komal Prajapati', 'komal@dlpmcs.org')
+)
+
+SEND_BROKEN_LINK_EMAILS = True
+CELERY_SEND_TASK_ERROR_EMAILS = True
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.4/ref/settings/#allowed-hosts
@@ -242,4 +254,3 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 2621440
 FILE_UPLOAD_PERMISSIONS = 0644
 
 FILE_UPLOAD_TEMP_DIR = None
-
