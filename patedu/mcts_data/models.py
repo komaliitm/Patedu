@@ -19,6 +19,7 @@ class AvailableMCTSData(models.Model):
 	subfacility = models.CharField(max_length=32)
 	subfacility_id = models.CharField(max_length=10)
 	benef_type = models.CharField(max_length=10)
+	time_stamp = models.DateTimeField()
 
 class LatLangData(models.Model):
 	lat = models.FloatField(null=True)

@@ -1,5 +1,5 @@
 import json
-
+import pytz
 from django.http import HttpResponse
 from django.template import Context, RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
@@ -340,6 +340,7 @@ def mother_name_husband_name(benef, subcenter):
 
 
 def SaveANCBeneficiary(benef, subcenter, date_then):
+    print "In ANC Parser"
     expected_delivery_date = benef.get("expected_delivery_date")
     address = benef.get("address")
     phone_no_of_whom = benef.get("phone_no_of_whom")
@@ -500,6 +501,7 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
     anc_benefs = ANCBenef.objects.filter(MCTS_ID = mother_mcts_id)
     if anc_benefs.count() > 0:
         anc_benef = anc_benefs[0]
+        print 'benefeciary exists'
     else:
         username = mother_mcts_id+"_"+mother_name
         username = username[0:29]
@@ -532,6 +534,10 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
     for service in d_services:
         service = service.strip()
         event = Events.objects.get(val=service)
+        des = DueEvents.objects.all().filter(event=event, subcenter=subcenter, beneficiary=anc_benef, date__month=date_then.month, date__year=date_then.year)
+        if des:
+            print 'DueEvent exists'
+            continue
         try:
             DueEvents.objects.create(event=event, subcenter=subcenter, beneficiary= anc_benef, date=date_then)
         except:
@@ -540,6 +546,10 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
     for service in od_services:
         service = service.strip()
         event = Events.objects.get(val=service)
+        odes = OverDueEvents.objects.all().filter(event=event, subcenter=subcenter, beneficiary=anc_benef, date__month=date_then.month, date__year=date_then.year)
+        if odes:
+            print 'Overdue event exists'
+            continue
         try:
             OverDueEvents.objects.create(event=event, subcenter=subcenter, beneficiary= anc_benef, date=date_then)
         except:
@@ -552,6 +562,7 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
         dt_cutoff = utcnow_aware() - datetime.timedelta(days=ANCBenef.ANC_SPAN)
         txs = Transactions.objects.filter(beneficiary=anc_benef, event=event, timestamp__gt = dt_cutoff)
         if txs.count() > 0:
+            print 'Transaction exists'
             continue
         try:
             Transactions.objects.create(event=event, subcenter=subcenter, beneficiary= anc_benef, timestamp=date_then)
@@ -729,6 +740,7 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
     imm_benefs = IMMBenef.objects.filter(MCTS_ID = child_mcts_id)
     if imm_benefs.count() > 0:
         imm_benef = imm_benefs[0]
+        print 'Beneficiary Exists'
     else:
         username = child_mcts_id+"_"+child_name
         username = username[0:29]
@@ -761,6 +773,10 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
     for service in d_services:
         service = service.strip()
         event = Events.objects.get(val=service)
+        des = DueEvents.objects.all().filter(event=event, subcenter=subcenter, beneficiary=imm_benef, date__month=date_then.month, date__year=date_then.year)
+        if des:
+            print 'Due service already exists'
+            continue
         try:
             DueEvents.objects.create(event=event, subcenter=subcenter, beneficiary= imm_benef, date=date_then)
         except:
@@ -769,6 +785,10 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
     for service in od_services:
         service = service.strip()
         event = Events.objects.get(val=service)
+        odes = OverDueEvents.objects.all().filter(event=event, subcenter=subcenter, beneficiary=imm_benef, date__month=date_then.month, date__year=date_then.year)
+        if odes:
+            print 'OverDue service already exists'
+            continue
         try:
             OverDueEvents.objects.create(event=event, subcenter=subcenter, beneficiary= imm_benef, date=date_then)
         except:
@@ -781,6 +801,7 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
         dt_cutoff = utcnow_aware() - datetime.timedelta(days=IMMBenef.IMM_SPAN)
         txs = Transactions.objects.filter(beneficiary=imm_benef, event=event, timestamp__gt = dt_cutoff)
         if txs.count() > 0:
+            print 'Transaction service already exists'
             continue
         try:
             Transactions.objects.create(event=event, subcenter=subcenter, beneficiary= imm_benef, timestamp=date_then)
@@ -870,14 +891,9 @@ def UploadAndSave(request):
             subfacility_id = header.get("SubFacilityID").replace("\n","").strip()
             
             stamp = benef_type+"_"+state+"_"+district+"_"+block+"_"+health_facility+"_"+subfacility+"_"+subfacility_id+"_"+year+"_"+state
-            if AvailableMCTSData.objects.filter(stamp=stamp).count() > 0:
-                print "This subcenter data already exists: "+stamp
-                continue
-            #create chunk, file
-            chunk = AvailableMCTSData.objects.create(stamp= stamp, benef_type=benef_type, block=block, district=district, health_facility=health_facility, month=month, year=year, state=state, subfacility=subfacility, subfacility_id=subfacility_id)
-            #_fileObject = Document.objects.create(myfile = input_excel, stamp=stamp)
-
-
+            if not AvailableMCTSData.objects.filter(stamp=stamp):
+                chunk = AvailableMCTSData.objects.create(stamp= stamp, benef_type=benef_type, block=block, district=district, health_facility=health_facility, month=month, year=year, state=state, subfacility=subfacility, subfacility_id=subfacility_id, time_stamp=utcnow_aware())
+       
             timezone = 'Asia/Kolkata'
             tz = pytz.timezone(timezone)
             today_utc = utcnow_aware()
@@ -934,6 +950,7 @@ def UploadAndSave(request):
 
             for benef in data:
                 if benef_type == 'ANC':
+                    print 'Prcessing subcenter for ANC'
                     SaveANCBeneficiary(benef=benef, subcenter=subfacility, date_then=date_then)
                 elif benef_type == 'PNC':
                     SavePNCBeneficiary(benef=benef, subcenter=subfacility)
