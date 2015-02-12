@@ -309,6 +309,7 @@ def mother_name_husband_name(benef, subcenter):
             cg = cgs[0]
         else:
             username = asha_name+"_"+asha_phone+"_ASHA"
+            username = username[0:29]
             cg = CareGiver.objects.create(first_name=asha_name, designation='ASHA', phone=asha_phone, address=village, username=username)
     else:
         cg = None
@@ -320,6 +321,7 @@ def mother_name_husband_name(benef, subcenter):
             cp = cps[0]
         else:
             username = anm_name +"_"+anm_phone+"_ANM"
+            username = username[0:29]
             cp = CareProvider.objects.create(first_name=anm_name, designation='ANM', phone=anm_phone, username=username)
     else:
         cp = None
@@ -481,6 +483,7 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
             cg = cgs[0]
         else:
             username = asha_name+"_"+asha_phone+"_ASHA"
+            username = username[0:29]
             cg = CareGiver.objects.create(first_name=asha_name, designation='ASHA', phone=asha_phone, address=village, username=username)
     else:
         cg = None
@@ -492,6 +495,7 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
             cp = cps[0]
         else:
             username = anm_name +"_"+anm_phone+"_ANM"
+            username = username[0:29]
             cp = CareProvider.objects.create(first_name=anm_name, designation='ANM', phone=anm_phone, username=username)
     else:
         cp = None
@@ -721,6 +725,7 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
             cg = cgs[0]
         else:
             username = asha_name+"_"+asha_phone+"_ASHA"
+            username = username[0:29]
             cg = CareGiver.objects.create(first_name=asha_name, designation='ASHA', phone=asha_phone, address=village, username=username)
     else:
         cg = None
@@ -732,6 +737,7 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
             cp = cps[0]
         else:
             username = anm_name +"_"+anm_phone+"_ANM"
+            username = username[0:29]
             cp = CareProvider.objects.create(first_name=anm_name, designation='ANM', phone=anm_phone, username=username)
     else:
         cp = None
