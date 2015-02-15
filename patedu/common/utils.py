@@ -19,6 +19,19 @@ from django.core.exceptions import ObjectDoesNotExist
 import pytz
 from schedule_api.models import TaskScheduler
 
+def AddInitialUsers():
+    from mcts_identities.models import CareProvider
+    cp = CareProvider(designation='DOC', username="dpm_jhansi")
+    cp.save()
+    cp.set_password("doj_1602")
+    cp.save()
+
+    cp = CareProvider(designation='DOC', username='cmo_jhansi')
+    cp.save()
+    cp.set_password("coj_1602")
+    cp.save()
+    #cp.set_password("coj_1602")
+
 def toHex(s):
     res = ""
     for c in s:

@@ -36,7 +36,7 @@ from django.shortcuts import render
 from math import ceil
 import unicodedata
 from dateutil.relativedelta import relativedelta
-
+from django.contrib.auth.decorators import login_required
 
 class StaticData:
 	SCHEDULE_MSG =0
@@ -248,7 +248,7 @@ def SendSchSMS(role=StaticData.SCHEDULE_MSG, job=StaticData.SENDER, reach = Stat
 	f.close()
 	return HttpResponse('Succefully sent the SMS', mimetype="application/json")
 
-
+@login_required
 def DashboardPage(request):
 	_allBlocks = Block.objects.all()
 	blocks = [block for block in _allBlocks]
@@ -335,6 +335,7 @@ def ProcessSubcenterData(benefs, sub, since_months, reg_type, months):
 			'ProgressData':ProgressData
 	}
 
+@login_required
 def DashboardData(request, blockid = None):
 	if blockid:
 		blocks = Block.objects.filter(id=blockid)

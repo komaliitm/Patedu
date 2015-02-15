@@ -32,7 +32,7 @@ for path, subdir, files in os.walk(abs_reports_path):
 		print type
 
 		if type:
-			url = 'http://localhost:8000/mctsdata/uploadandsave/'
+			url = 'http://mcts-analytics.cloudapp.net/mctsdata/uploadandsave/'
 			file = {'file': open(mcts_report, 'rb')}
 			r = requests.post(url, files=file, data={'benef_type':type})
 			print 'file: '+str(mcts_report)+' was parsed for category '+str(type)+' with status: '+str(r.status_code)+' '+r.reason
