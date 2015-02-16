@@ -449,18 +449,19 @@ def DashboardData(request, blockid = None):
 			sub_data["ANMDetails"] = ANMDetails
 
 
-			sub_data["lat"] = sub._lat
-			sub_data["long"] = sub._long
+			sub_data["lat"] = sub._lat if sub._lat else block._lat
+			sub_data["long"] = sub._long if sub._long else block._long
+
 			#TODO remove dummy lat, long later
-			_lat = 25.619626
-			_long = 79.180409
-			sign = randint(1,2)
-			if sign == 1:
-				sub_data["lat"] = _lat + randint(1,100)*0.01
-				sub_data["long"] = _long + randint(1,100)*0.01
-			else:
-				sub_data["lat"] = _lat - randint(1,100)*0.01
-				sub_data["long"] = _long - randint(1,100)*0.01
+			#_lat = 25.619626
+			#_long = 79.180409
+			#sign = randint(1,2)
+			#if sign == 1:
+			#	sub_data["lat"] = _lat + randint(1,100)*0.01
+			#	sub_data["long"] = _long + randint(1,100)*0.01
+			#else:
+			#	sub_data["lat"] = _lat - randint(1,100)*0.01
+			#	sub_data["long"] = _long - randint(1,100)*0.01
 
 			data.append(sub_data)
 
