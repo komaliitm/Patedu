@@ -409,14 +409,14 @@ def DashboardData(request, blockid = None):
 			sub_data["ProgressData_imm"] = data_imm["ProgressData"]
 			
 			status = 2
-			if (data_anc["OverDueRate"] and data_anc["OverDueRate"] <= 6 and data_anc["OverDueRate"] >= 4) \
-			or (data_pnc["OverDueRate"] and data_pnc["OverDueRate"] <= 6 and data_pnc["OverDueRate"] >= 4) \
-			or (data_imm["OverDueRate"] and data_imm["OverDueRate"] <= 6 and data_imm["OverDueRate"] >= 4):
+			if (data_anc["OverDueRate"] and data_anc["OverDueRate"] <= 9 and data_anc["OverDueRate"] >= 6) \
+			or (data_pnc["OverDueRate"] and data_pnc["OverDueRate"] <= 9 and data_pnc["OverDueRate"] >= 6) \
+			or (data_imm["OverDueRate"] and data_imm["OverDueRate"] <= 9 and data_imm["OverDueRate"] >= 6):
 				status = 1
 
-			if (data_anc["OverDueRate"] and data_anc["OverDueRate"] > 6) \
-			or (data_pnc["OverDueRate"] and data_pnc["OverDueRate"] > 6) \
-			or (data_imm["OverDueRate"] and data_imm["OverDueRate"] > 6):
+			if (data_anc["OverDueRate"] and data_anc["OverDueRate"] > 9) \
+			or (data_pnc["OverDueRate"] and data_pnc["OverDueRate"] > 9) \
+			or (data_imm["OverDueRate"] and data_imm["OverDueRate"] > 9):
 				status = 0
 
 			if status == 2:
