@@ -965,15 +965,15 @@ def UploadAndSave(request):
                     pass
 
         #print workplan_list
-        print workplan_list[0]["header"]
-        print workplan_list[0]["data"][0]
-        print workplan_list[0]["data"][len(workplan_list[0]["data"])-1]
+        # print workplan_list[0]["header"]
+        # print workplan_list[0]["data"][0]
+        # print workplan_list[0]["data"][len(workplan_list[0]["data"])-1]
 
-        parsed = ""
-        for wp in workplan_list:
-         parsed = parsed + " " +str(len(wp["data"]))
+        # parsed = ""
+        # for wp in workplan_list:
+        #  parsed = parsed + " " +str(len(wp["data"]))
 
-        print parsed
+        # print parsed
         #newdoc = Document(myfile = request.FILES['file'])
         #newdoc.save()
             # Redirect to the document list after POST

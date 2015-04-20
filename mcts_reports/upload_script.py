@@ -20,7 +20,7 @@ for path, subdir, files in os.walk(abs_reports_path):
 		mcts_report_basename = os.path.basename(mcts_report)
 
 		type= None
-		if 'imm' in mcts_report_basename.lower() and 'infant' in mcts_report_basename.lower():
+		if 'imm' in mcts_report_basename.lower() and 'inf' in mcts_report_basename.lower():
 			type = 'IMM1'
 		elif 'imm' in mcts_report_basename.lower() and 'child' in mcts_report_basename.lower():
 			type = 'IMM2'

@@ -9,6 +9,7 @@ import datetime
 import time
 import cookielib
 import re
+import time
 
 LOGIN_URL = 'http://nrhm-mctsrpt.nic.in/MCHRPT/SSO.aspx'
 WORKPLAN_URL = 'http://nrhm-mctsrpt.nic.in/MCHRPT/Workplan/Rpt_WorkPlan.aspx'
@@ -33,7 +34,7 @@ def authenticate(br):
 
 def browse_workplan_page(br):
 	br.open(WORKPLAN_URL)
-	if br.geturl() != WORKPLAN_URL:
+	if br.response().geturl() != WORKPLAN_URL or list(br.forms())[0].name != 'form1':
 		print "Authenticating again..."
 		authenticate(br)
 		br.open(WORKPLAN_URL)
@@ -51,99 +52,91 @@ def get_token(br, event_target=None, tsm1=None, client_token_vs=None, client_tok
 		children = []
 		return server_token_vs, server_token_ev, children
 
-	#Add additional controls for async request
-	br.form.new_control('text', 'ToolkitScriptManager1', {'value':''})
-	#br.form.new_control('text', '__ASYNCPOST', {'value':'true'})
-	br.form.fixup()
+	for ticker in range(1,3):
+		try:
+			#Add additional controls for async request
+			br.form.new_control('text', 'ToolkitScriptManager1', {'value':''})
+			#br.form.new_control('text', '__ASYNCPOST', {'value':'true'})
+			br.form.fixup()
 
-	#Add the values to controls
-	tsm_control = br.form.find_control("ToolkitScriptManager1")
-	phc_ctrl = br.form.find_control("CmbPHC")
-	subcenter_ctrl = br.form.find_control("CmbSubCentre")
-	report_type_ctrl = br.form.find_control("ddlWorkPlan_TYPE")
-	month_ctrl = br.form.find_control("ddl_Month")
-	year_ctrl = br.form.find_control("ddlYear")
-	block_ctrl = br.form.find_control("CmbBlock")
-	view_state_control = br.form.find_control("__VIEWSTATE")
-	event_validation_control = br.form.find_control("__EVENTVALIDATION")
-	event_target_control = br.form.find_control("__EVENTTARGET")
+			#Add the values to controls
+			tsm_control = br.form.find_control("ToolkitScriptManager1")
+			phc_ctrl = br.form.find_control("CmbPHC")
+			subcenter_ctrl = br.form.find_control("CmbSubCentre")
+			report_type_ctrl = br.form.find_control("ddlWorkPlan_TYPE")
+			month_ctrl = br.form.find_control("ddl_Month")
+			year_ctrl = br.form.find_control("ddlYear")
+			block_ctrl = br.form.find_control("CmbBlock")
+			view_state_control = br.form.find_control("__VIEWSTATE")
+			event_validation_control = br.form.find_control("__EVENTVALIDATION")
+			event_target_control = br.form.find_control("__EVENTTARGET")
 
-	event_target_control.readonly = False
-	event_validation_control.readonly = False
-	view_state_control.readonly = False
+			event_target_control.readonly = False
+			event_validation_control.readonly = False
+			view_state_control.readonly = False
 
-	event_target_control.value = event_target
-	tsm_control.value = tsm1
-	report_type_ctrl.value = [report_type]
-	if year and month:
-		month_ctrl.value = [month]
-		year_ctrl.value = [year]
-	if block:
-		block_ctrl.value = [block]
-	if phc:
-		phc_ctrl.value = [phc]
-	if subcenter:
-		subc_item = mechanize.Item(subcenter_ctrl, {"contents":subcenter, "value":subcenter})
-		subc_item.selected = True
+			event_target_control.value = event_target
+			tsm_control.value = tsm1
+			report_type_ctrl.value = [report_type]
+			if year and month:
+				month_ctrl.value = [month]
+				year_ctrl.value = [year]
+			if block:
+				block_ctrl.value = [block]
+			if phc:
+				phc_ctrl.value = [phc]
+			if subcenter:
+				subc_item = mechanize.Item(subcenter_ctrl, {"contents":subcenter, "value":subcenter})
+				subc_item.selected = True
 
-	event_validation_control.value = client_token_ev
-	view_state_control.value = client_token_vs
-	
-	submit_btn_ctrl = br.form.find_control("btnSUBMIT")
-	dwld_btn_ctrl = br.form.find_control("btndownload")
-	br.form.controls.remove(submit_btn_ctrl)
-	br.form.controls.remove(dwld_btn_ctrl)
+			event_validation_control.value = client_token_ev
+			view_state_control.value = client_token_vs
+			
+			submit_btn_ctrl = br.form.find_control("btnSUBMIT")
+			dwld_btn_ctrl = br.form.find_control("btndownload")
+			br.form.controls.remove(submit_btn_ctrl)
+			br.form.controls.remove(dwld_btn_ctrl)
 
-	#print br.form
-	response = br.submit()
-	br.select_form(nr=0)
-	if phc:
-		child_ctrl = br.form.find_control("CmbSubCentre")
-		children = filter(lambda x: x != "0", [item.name for item in child_ctrl.items])		
-	elif block:
-		child_ctrl = br.form.find_control("CmbPHC")
-		children = filter(lambda x: x != "0", [item.name for item in child_ctrl.items])
-	elif year:
-		child_ctrl = br.form.find_control("CmbBlock")
-		children = filter(lambda x: x != "0", [item.name for item in child_ctrl.items])
-	else:
-		children = []
-	server_token_vs = br.form["__VIEWSTATE"]
-	server_token_ev = br.form["__EVENTVALIDATION"]
-	return server_token_vs, server_token_ev, children
+			#print br.form
+			response = br.submit()
+			br.select_form(nr=0)
+			if phc:
+				child_ctrl = br.form.find_control("CmbSubCentre")
+				children = filter(lambda x: x != "0", [item.name for item in child_ctrl.items])		
+			elif block:
+				child_ctrl = br.form.find_control("CmbPHC")
+				children = filter(lambda x: x != "0", [item.name for item in child_ctrl.items])
+			elif year:
+				child_ctrl = br.form.find_control("CmbBlock")
+				children = filter(lambda x: x != "0", [item.name for item in child_ctrl.items])
+			else:
+				children = []
+			server_token_vs = br.form["__VIEWSTATE"]
+			server_token_ev = br.form["__EVENTVALIDATION"]
+			return server_token_vs, server_token_ev, children
+		except Exception, e:
+			if ticker == 1:
+				print "First Error in Token Refresh: ", e, " Will be authenticating, waiting for 1 seconds and retrying."
+				print "Error in Token refresh for ", event_target, report_type, year, month, block, phc, subcenter
+				authenticate(br)
+				browse_workplan_page(br)
+				time.sleep(1)
+			else:
+				print "Second Error in token refresh: ", e, " Will be breaking."
+				exit()
+
 
 num_months = 6
 mcts_jhs_username = "nrhm-up.jh"
 mcts_jhs_passwd = "4e4d1b7432c708f094401f4cc7029ccc678e72d3"
 stn_value = "637dd3894df6b16a956ab46ed377e5d85a7b2310"
-# district_map = {
-# 	400:{
-# 		1609:[10115, 10116, 24098, 10120, 10123, 10122, 10124, 10119, 10121, 23956, 10118, 10117, 23954, 10125, 23957 ],
-# 		1612:[10148, 10139, 10140, 10142, 10144, 10149, 10145, 10147, 10146, 10141, 10150, 26350, 10143],
-# 		1611:[10137, 26352, 10134, 10135, 10138, 26353, 10136],
-# 		1613:[10153, 10154, 26351, 10155, 10152, 10151, 10156],
-# 		1610:[10132, 10129, 10130, 10127, 10128, 10131, 10133, 10126]
-# 	},
-# 	401:{
-# 		1614:[10157, 10158, 10163, 10159, 10164, 24306, 10161, 10162, 10160, 10165],
-# 		1615:[10170, 10173, 10166, 10172, 10168, 10174, 10167, 10171, 10169],
-# 		1617:[10184, 25357, 10188, 10186, 10185, 10187, 25359, 25358],
-# 		1618:[10190, 10191, 10194, 10189, 25356, 10193, 10192, 10195],
-# 		1616:[25355, 10183, 10180, 10181, 10179, 10182, 10178, 10177, 10175, 10176]
-# 	},
-# 	396:{},
-# 	398:{},
-# 	395:{},
-# 	397:{},
-# 	399:{},
-# 	394:{}
-# }
 
 report_types = {
 	'ANC':'Rpt_WorkPlan_Registration.aspx?rpt=wpwa', 
 	'INF_IMM':'Rpt_WorkPlan_Registration.aspx?rpt=wii',
 	'CHILD_IMM':'Rpt_WorkPlan_Registration.aspx?rpt=wci'
 }
+
 dictrict = 'Jhansi'
 state = 'UP'
 f = open('dump.html', 'w')
@@ -199,90 +192,104 @@ try:
 					__VS4, __EV4, subc_list = get_token(br=br, event_target="CmbPHC", tsm1="UpdatePanel10|CmbPHC", \
 						client_token_vs=__VS3, client_token_ev=__EV3, report_type=report_type, year=str(cFinYear), month=str(cMonth)+"/"+str(cYear), block=str(block), phc=str(phc))					
 					for subc in subc_list:
-						try:
-							file_name = benef_type+"_"+dictrict+"_"+state+"_"+str(block)+"_"+str(subc)+".xls"
-							file_path = "xls/"+str(cMonth)+"-"+str(cYear)+"/"+state+"/"+dictrict+"/"+str(block)+"/"+str(subc)
-							file_abs_path = os.path.join(file_path, file_name)
-
-							if os.path.isfile(file_abs_path):
-								print "File "+file_abs_path+" already exists. Skipping..."
-								continue;
-
-							browse_workplan_page(br)
-							print "\n\n\n Opening page..." + str(br.response().code)
-							
-							phc_ctrl = br.form.find_control("CmbPHC")
-							subcenter_ctrl = br.form.find_control("CmbSubCentre")
-							report_type_ctrl = br.form.find_control("ddlWorkPlan_TYPE")
-							month_ctrl = br.form.find_control("ddl_Month")
-							year_ctrl = br.form.find_control("ddlYear")
-							block_ctrl = br.form.find_control("CmbBlock")
-							submit_btn_ctrl = br.form.find_control("btnSUBMIT")
-							dwld_btn_ctrl = br.form.find_control("btndownload")
-							view_state_control = br.form.find_control("__VIEWSTATE")
-							event_validation_control = br.form.find_control("__EVENTVALIDATION")
-							
-							view_state_control.readonly = False
-							event_validation_control.readonly = False
-
-							#Remove extra controls
-							br.form.controls.remove(submit_btn_ctrl)
-							br.form.controls.remove(br.form.find_control("CmbBeneficiary"))
-							br.form.controls.remove(br.form.find_control("CmbDistrict"))
-							br.form.controls.remove(br.form.find_control("TxtStateCode"))
-							br.form.controls.remove(br.form.find_control("State_Code"))
-
-							month_ctrl.value = [str(cMonth)+"/"+str(cYear)]
-							year_ctrl.value = [str(cFinYear)]
-							block_ctrl.value = [str(block)]
-							phc_ctrl.value = [str(phc)]
-							subc_item = mechanize.Item(subcenter_ctrl, {"contents":str(subc), "value":str(subc)})
-							subc_item.selected = True
-
-							event_validation_control.value = __EV4
-							view_state_control.value = __VS4
-							
-							report_type_ctrl.value = [report_type]
-
-							print "Downloading below report...."
-							print month_ctrl.value
-							print block_ctrl.value
-							print phc_ctrl.value
-							print subcenter_ctrl.value
-							print report_type_ctrl.value					
-							
-							#Submit the form
-							response = br.submit()
-
-							print "Submitted report download form..." + str(br.response().code)
-
-							#Find the report URL
-							regex = "(gid=.{64})"
-							m = re.search(regex, response.read())
-							gid_param = m.group(0)
-
-							#Generate report
-							report_uri = "http://nrhm-mctsrpt.nic.in/MCHRPT/Workplan/"+report_type+"&"+gid_param
-							file_name = benef_type+"_"+dictrict+"_"+state+"_"+str(block)+"_"+str(subc)+".xls"
-							file_path = "xls/"+str(cMonth)+"-"+str(cYear)+"/"+state+"/"+dictrict+"/"+str(block)+"/"+str(subc)
+						for ticker in range(1,3):
 							try:
-								os.makedirs(file_path)
-							except:
-								pass
-							
-							print report_uri
-							br.retrieve(report_uri, file_abs_path)
-							num_reports = num_reports + 1
-						except Exception,e:
-							print "\n\n\n Error while downloading below report...."
-							print month_ctrl.value
-							print block_ctrl.value
-							print phc_ctrl.value
-							print subcenter_ctrl.value
-							print report_type_ctrl.value
-							print br.response().code
-							print "Error message as: %s" % e
-							f.write(br.response().read())
+								file_name = benef_type+"_"+dictrict+"_"+state+"_"+str(block)+"_"+str(subc)+".xls"
+								file_path = "xls/"+str(cMonth)+"-"+str(cYear)+"/"+state+"/"+dictrict+"/"+str(block)+"/"+str(subc)
+								file_abs_path = os.path.join(file_path, file_name)
+
+								if os.path.isfile(file_abs_path):
+									print "File "+file_abs_path+" already exists. Skipping..."
+									continue;
+
+								browse_workplan_page(br)
+								print "\n\n\n Opening page..." + str(br.response().code)
+								
+								phc_ctrl = br.form.find_control("CmbPHC")
+								subcenter_ctrl = br.form.find_control("CmbSubCentre")
+								report_type_ctrl = br.form.find_control("ddlWorkPlan_TYPE")
+								month_ctrl = br.form.find_control("ddl_Month")
+								year_ctrl = br.form.find_control("ddlYear")
+								block_ctrl = br.form.find_control("CmbBlock")
+								submit_btn_ctrl = br.form.find_control("btnSUBMIT")
+								dwld_btn_ctrl = br.form.find_control("btndownload")
+								view_state_control = br.form.find_control("__VIEWSTATE")
+								event_validation_control = br.form.find_control("__EVENTVALIDATION")
+								
+								view_state_control.readonly = False
+								event_validation_control.readonly = False
+
+								#Remove extra controls
+								br.form.controls.remove(submit_btn_ctrl)
+								br.form.controls.remove(br.form.find_control("CmbBeneficiary"))
+								br.form.controls.remove(br.form.find_control("CmbDistrict"))
+								br.form.controls.remove(br.form.find_control("TxtStateCode"))
+								br.form.controls.remove(br.form.find_control("State_Code"))
+
+								month_ctrl.value = [str(cMonth)+"/"+str(cYear)]
+								year_ctrl.value = [str(cFinYear)]
+								block_ctrl.value = [str(block)]
+								phc_ctrl.value = [str(phc)]
+								subc_item = mechanize.Item(subcenter_ctrl, {"contents":str(subc), "value":str(subc)})
+								subc_item.selected = True
+
+								event_validation_control.value = __EV4
+								view_state_control.value = __VS4
+								
+								report_type_ctrl.value = [report_type]
+
+								print "Downloading below report...."
+								print month_ctrl.value
+								print block_ctrl.value
+								print phc_ctrl.value
+								print subcenter_ctrl.value
+								print report_type_ctrl.value					
+								
+								#Submit the form
+								response = br.submit()
+
+								print "Submitted report download form..." + str(br.response().code)
+
+								#Find the report URL
+								regex = "(gid=.{64})"
+								m = re.search(regex, response.read())
+								gid_param = m.group(0)
+
+								#Generate report
+								report_uri = "http://nrhm-mctsrpt.nic.in/MCHRPT/Workplan/"+report_type+"&"+gid_param
+								file_name = benef_type+"_"+dictrict+"_"+state+"_"+str(block)+"_"+str(subc)+".xls"
+								file_path = "xls/"+str(cMonth)+"-"+str(cYear)+"/"+state+"/"+dictrict+"/"+str(block)+"/"+str(subc)
+								try:
+									os.makedirs(file_path)
+								except:
+									pass
+								
+								print report_uri
+								br.retrieve(report_uri, file_abs_path)
+								num_reports = num_reports + 1
+								break
+							except Exception, e:
+								if ticker == 1:
+									print "\n\n\n Error while downloading below report...."
+									print month_ctrl.value
+									print block_ctrl.value
+									print phc_ctrl.value
+									print subcenter_ctrl.value
+									print report_type_ctrl.value
+									print "First Error in fetch file: ", e, " Will be authenticating, waiting for 2 seconds and retrying."
+									authenticate(br)
+									time.sleep(1)
+								else:
+									print "Second Error: ", e, " Will be breaking."
+									print "\n\n\n Error while downloading below report...."
+									print month_ctrl.value
+									print block_ctrl.value
+									print phc_ctrl.value
+									print subcenter_ctrl.value
+									print report_type_ctrl.value
+									print "Error message as: %s" % e
+									f.write(br.response().read())
+									exit()
 			if cMonth == 0:
 				cYear = cYear - 1
 				cMonth = 12
