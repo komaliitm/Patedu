@@ -192,34 +192,51 @@ Purchase: http://wrapbootstrap.com
                     <div class="row" >
 
                         <div class="col-lg-6 col-sm-12 col-xs-6">
-                            <div class="well with-header">
-                                <div>
-                                    <h6>Select Timeline</h6>
-                                    <select id="TimeLine" style="width:100%;" ng-model="dashboardParams.since_months" ng-change="RefreshDataFromServer($event, 0)">
-                                        <option value="1" />Last 1 Month
-                                        <option value="2" />Last 2 Months
-                                        <option value="3" />Last 3 Months
-                                        <option value="6" />Last 6 Months
-                                        <option value="36" />Beginning of Time
-                                    </select>
-                                    <hr class="wide" />
-                                </div>
-                                <div>
-                                    <h6>Select Blocks</h6>
-                                    <select id="Blocks" style="width:100%;" ng-change="RefreshDataFromServer($event, 1)" ng-model="dashboardParams.blockid">
-                                        {% if blocks %}
-                                        <option value="">
-                                            AllBlocks
-                                        </option>
+                            <div class="well">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-lg-6">
+                                        <h6>Select Timeline</h6>
+                                        <select id="TimeLine" style="width:100%;" ng-model="dashboardParams.since_months" ng-change="RefreshDataFromServer($event, 0)">
+                                            <option value="1" />Last 1 Month
+                                            <option value="2" />Last 2 Months
+                                            <option value="3" />Last 3 Months
+                                            <option value="6" />Last 6 Months
+                                            <option value="36" />Beginning of Time
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-lg-6">
+                                        <h6>Select Blocks</h6>
+                                        <select id="Blocks" style="width:100%;" ng-change="RefreshDataFromServer($event, 1)" ng-model="dashboardParams.blockid">
+                                            {% if blocks %}
+                                            <option value="">
+                                                AllBlocks
+                                            </option>
 
-                                        {% endif %} {% for block in blocks %}
-                                        <option value="{{block.id}}">
-                                            {{block.name}}
-                                        </option>
-                                        {% endfor %}
-                                    </select>
-                                    <hr class="wide" />
+                                            {% endif %} {% for block in blocks %}
+                                            <option value="{{block.id}}">
+                                                {{block.name}}
+                                            </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
                                 </div>
+                                <hr class="wide"/>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-lg-6">
+                                    <h6> Select Domain</h6>
+                                    <select id="Type" style="width:100%;" ng-model="dashboardParams.domain">
+                                        <option value="1"/> Ante Natal Care (ANC)
+                                        <option value="2"/> Immunization (Child & Infant) 
+                                    </select>
+                                    </div>
+                                </div>
+                                <hr class="wide"/>
+                                <div>
+                                    <h6> Block Statistics:</h6>
+                                    Lorem Ipsum<br>
+                                    Lorem Ipsum
+                                </div>
+
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-4">
@@ -300,7 +317,7 @@ Purchase: http://wrapbootstrap.com
                                             </div>
                                         </div>
  
-                                    <table class="table table-bordered table-hover table-striped">
+                                    <table id="tabular-anc" ng-show="dashboardParams.domain==1" class="table table-bordered table-hover table-striped">
                                                <thead>
                                                     <tr role="row">
                                                         <th >Serial Number </th>
@@ -308,12 +325,13 @@ Purchase: http://wrapbootstrap.com
                                                         <th ng-class="{'asc_label': SerialNum==2 && Asc ==1  , 'desc_label': SerialNum==2 && Asc == 0, 'no_label': SerialNum != 2}" ng-click="SortData($event, 2)">Subcenter&nbsp;</th>
                                                         <th ng-class="{'asc_label': SerialNum==3 && Asc ==1  , 'desc_label': SerialNum==3 && Asc == 0, 'no_label': SerialNum != 3}" ng-click="SortData($event, 3)">Total Beneficiaries&nbsp;</th>
                                                         <th ng-class="{'asc_label': SerialNum==4 && Asc ==1  , 'desc_label': SerialNum==4 && Asc == 0, 'no_label': SerialNum != 4}" ng-click="SortData($event, 4)">New registrations&nbsp;</th>
-                                                        <th ng-class="{'asc_label': SerialNum==5 && Asc ==1  , 'desc_label': SerialNum==5 && Asc == 0, 'no_label': SerialNum != 5}" ng-click="SortData($event, 5)">Given Services number&nbsp;</th>
                                                         <th ng-class="{'asc_label': SerialNum==6 && Asc ==1  , 'desc_label': SerialNum==6 && Asc == 0, 'no_label': SerialNum != 6}" ng-click="SortData($event, 6)">Overdue Services number&nbsp;</th>
+                                                        <th ng-class="{'asc_label': SerialNum==8 && Asc ==1  , 'desc_label': SerialNum==8 && Asc == 0, 'no_label': SerialNum != 8}" ng-click="SortData($event, 8)">Overdue Services map&nbsp;</th>
+                                                        <th ng-class="{'asc_label': SerialNum==5 && Asc ==1  , 'desc_label': SerialNum==5 && Asc == 0, 'no_label': SerialNum != 5}" ng-click="SortData($event, 5)">Given Services number&nbsp;</th>
                                                         <th ng-class="{'asc_label': SerialNum==7 && Asc ==1  , 'desc_label': SerialNum==7 && Asc == 0, 'no_label': SerialNum != 7}" ng-click="SortData($event, 7)">Overdue rate&nbsp;</th>
-                                                        <th>Overdue rate trends</th>
+                                                        <th>Overdue rate trends</th><!-- 
                                                         <th>ANM name | Number</th>
-                                                        <th>Asha worker name | Number</th>
+                                                        <th>Asha worker name | Number</th> -->
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -322,24 +340,30 @@ Purchase: http://wrapbootstrap.com
                                                         <td >
                                                             <div ng-class="{'status_label_green':villageData.status==2,'status_label_red':villageData.status==0,
                                                             'status_label_yellow':villageData.status==1}">
-                                                                  #{villageData.status}#
+                                                                  #{villageData.status_anc}#
                                                            </div>
                                                         </td>
                                                         <td >#{villageData.Subcenter}#</td>
-                                                        <td >#{villageData.Beneficiaries_anc + villageData.Beneficiaries_pnc + villageData.Beneficiaries_imm}# </td>
-                                                        <td >#{villageData.new_reg_anc + villageData.new_reg_pnc + villageData.new_reg_imm}# </td>
-                                                        <td >#{villageData.GivenServices_anc + villageData.GivenServices_pnc + villageData.GivenServices_imm}# </td>
-                                                        <td >#{villageData.Overdue_anc + villageData.Overdue_pnc + villageData.Overdue_imm}# </td>
-                                                        <td >#{(villageData.OverDueRate_imm + villageData.OverDueRate_pnc + villageData.OverDueRate_anc)/2 | number:2}# </td>
+                                                        <td >#{villageData.Beneficiaries_anc}# </td>
+                                                        <td >#{villageData.new_reg_anc}# </td>
+                                                        <td >#{villageData.Overdue_anc }# </td>
+                                                        <td>
+                                                            <span ng-repeat="osg in villageData.overdue_sg_anc">
+                                                            #{osg.event_name}#:#{osg.ods_count}#
+                                                            &nbsp;
+                                                            </span> 
+                                                        </td>
+                                                        <td >#{villageData.GivenServices_anc}# </td>
+                                                        <td >#{villageData.OverDueRate_anc | number:2}# </td>
                                                         <td>
                                                             <div class="databox-sparkline">
-                                                                <span data-height="25px" data-width="100%" data-fillcolor="false" data-linecolor="#03c" data-spotcolor="#03c" data-linewidth="1" data-spotradius="0" id="sparkline-#{$index}#">
+                                                                <span data-height="25px" data-width="100%" data-fillcolor="false" data-linecolor="#03c" data-spotcolor="#03c" data-linewidth="1" data-spotradius="0" id="sparkline-anc-#{$index}#">
                                                                 </span>
                                                             </div>
 
                                                         </td>
 
-                                                        <td >
+<!--                                                         <td >
                                                          <span ng-repeat="anmPerson in villageData.ANMDetails"> 
                                                             <span ng-show="$index>0">, </span>
                                                             #{anmPerson}#
@@ -350,7 +374,70 @@ Purchase: http://wrapbootstrap.com
                                                             <span ng-show="$index>0">, </span>
                                                             #{ashaWorker}#
                                                             </span>
+                                                         </td> -->
+
+                                                    </tr>
+                                                </tbody>
+                                    </table>
+
+                                    <table id="tabular_imm" ng-show="dashboardParams.domain==2" class="table table-bordered table-hover table-striped">
+                                               <thead>
+                                                    <tr role="row">
+                                                        <th >Serial Number </th>
+                                                        <th ng-class="{'asc_label': SerialNum==1 && Asc ==1  , 'desc_label': SerialNum==1 && Asc == 0, 'no_label': SerialNum != 1}" ng-click="SortData($event, 1)">Status indicator&nbsp;</th>
+                                                        <th ng-class="{'asc_label': SerialNum==2 && Asc ==1  , 'desc_label': SerialNum==2 && Asc == 0, 'no_label': SerialNum != 2}" ng-click="SortData($event, 2)">Subcenter&nbsp;</th>
+                                                        <th ng-class="{'asc_label': SerialNum==3 && Asc ==1  , 'desc_label': SerialNum==3 && Asc == 0, 'no_label': SerialNum != 3}" ng-click="SortData($event, 3)">Total Beneficiaries&nbsp;</th>
+                                                        <th ng-class="{'asc_label': SerialNum==4 && Asc ==1  , 'desc_label': SerialNum==4 && Asc == 0, 'no_label': SerialNum != 4}" ng-click="SortData($event, 4)">New registrations&nbsp;</th>
+                                                        <th ng-class="{'asc_label': SerialNum==6 && Asc ==1  , 'desc_label': SerialNum==6 && Asc == 0, 'no_label': SerialNum != 6}" ng-click="SortData($event, 6)">Overdue Services number&nbsp;</th>
+                                                        <th ng-class="{'asc_label': SerialNum==8 && Asc ==1  , 'desc_label': SerialNum==8 && Asc == 0, 'no_label': SerialNum != 8}" ng-click="SortData($event, 8)">Overdue Services map&nbsp;</th>
+                                                        <th ng-class="{'asc_label': SerialNum==5 && Asc ==1  , 'desc_label': SerialNum==5 && Asc == 0, 'no_label': SerialNum != 5}" ng-click="SortData($event, 5)">Given Services number&nbsp;</th>
+                                                        <th ng-class="{'asc_label': SerialNum==7 && Asc ==1  , 'desc_label': SerialNum==7 && Asc == 0, 'no_label': SerialNum != 7}" ng-click="SortData($event, 7)">Overdue rate&nbsp;</th>
+                                                        <th>Overdue rate trends</th><!-- 
+                                                        <th>ANM name | Number</th>
+                                                        <th>Asha worker name | Number</th> -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr  ng-repeat="villageData in dashdata.data" on-finish-render>
+                                                        <td >#{$index + 1}#</td>
+                                                        <td >
+                                                            <div ng-class="{'status_label_green':villageData.status==2,'status_label_red':villageData.status==0,
+                                                            'status_label_yellow':villageData.status==1}">
+                                                                  #{villageData.status_imm}#
+                                                           </div>
+                                                        </td>
+                                                        <td >#{villageData.Subcenter}#</td>
+                                                        <td >#{villageData.Beneficiaries_imm}# </td>
+                                                        <td >#{villageData.new_reg_imm}# </td>
+                                                        <td >#{villageData.Overdue_imm }# </td>
+                                                        <td>
+                                                            <span ng-repeat="osg in villageData.overdue_sg_anc">
+                                                            #{osg.event_name}#:#{osg.ods_count}#
+                                                            &nbsp;
+                                                            </span> 
+                                                        </td>
+                                                        <td >#{villageData.GivenServices_imm}# </td>
+                                                        <td >#{villageData.OverDueRate_imm | number:2}# </td>
+                                                        <td>
+                                                            <div class="databox-sparkline">
+                                                                <span data-height="25px" data-width="100%" data-fillcolor="false" data-linecolor="#03c" data-spotcolor="#03c" data-linewidth="1" data-spotradius="0" id="sparkline-imm-#{$index}#">
+                                                                </span>
+                                                            </div>
+
+                                                        </td>
+
+<!--                                                         <td >
+                                                         <span ng-repeat="anmPerson in villageData.ANMDetails"> 
+                                                            <span ng-show="$index>0">, </span>
+                                                            #{anmPerson}#
+                                                            </span>
                                                          </td>
+                                                        <td >
+                                                         <span ng-repeat="ashaWorker in villageData.AshaDetails"> 
+                                                            <span ng-show="$index>0">, </span>
+                                                            #{ashaWorker}#
+                                                            </span>
+                                                         </td> -->
 
                                                     </tr>
                                                 </tbody>

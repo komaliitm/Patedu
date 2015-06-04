@@ -24,7 +24,7 @@ from celery import shared_task
 import unicodedata
 from sms.sender import SendSMSUnicode
 import binascii
-from django.db.models import Q
+from django.db.models import Q, Count, Max
 from django.views.decorators.csrf import csrf_exempt
 import sys
 from mcts_transactions.models import *
@@ -223,7 +223,7 @@ def SendSchSMS(role=StaticData.SCHEDULE_MSG, job=StaticData.SENDER, reach = Stat
 		#print sms_text
 		sms_msg_hexlified = toHex(sms_text)
 
-		print 'sending sms:'
+		print 'sending Voice Call:'
 		
 		sms_indicator = "#"+str(i)+": "+benef_number+" : "+ unicodedata.normalize('NFKD', event).encode('ascii', 'ignore') 
 		print sms_indicator
@@ -298,6 +298,7 @@ def ProcessSubcenterData(benefs, sub, since_months, reg_type, months):
 	new_reg = 0
 	GivenServices = 0
 	OverDueRate = 0
+	overdue_services_group = []
 	if benefs:
 		txs_service = Transactions.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(timestamp__gte=since_months.date()) & Q(timestamp__lt=this_month_date.date())).exclude(event__val=reg_type)
 		txs_reg = Transactions.objects.all().filter(Q(subcenter=sub), Q(event__val=reg_type), Q(timestamp__gte=since_months.date()) & Q(timestamp__lt=this_month_date.date()))
@@ -306,6 +307,7 @@ def ProcessSubcenterData(benefs, sub, since_months, reg_type, months):
 		GivenServices = txs_service.count()
 
 		overdues_service = OverDueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) & Q(date__lt=this_month_date.date()))
+		overdue_services_group = list(overdues_service.values('event_id').annotate(ods_count=Count('id'), event_name=Max('event__val')))
 		Overdue = overdues_service.count()
 		new_reg = txs_reg.count()
 		
@@ -328,12 +330,31 @@ def ProcessSubcenterData(benefs, sub, since_months, reg_type, months):
 	ProgressData = GetLastSixMonthsProgress(benefs, sub, reg_type)
 	return {
 			'Overdue':Overdue,
+			'overdue_sg':overdue_services_group,
 			'new_reg':new_reg,
 			'GivenServices':GivenServices,
 			'OverDueRate':OverDueRate,
 			'Adherence':Adherence,
 			'ProgressData':ProgressData
 	}
+
+def get_status(value, cutoff1, cutoff2):
+	if value > cutoff2:
+		return 0
+	elif value >=cutoff1:
+		return 1
+	else:
+		return 2
+
+def increment_count_on_status(value, good, avg, poor):
+	if value == 2:
+		good = good + 1
+	elif value ==1:
+		avg = avg + 1
+	elif value == 0:
+		poor = poor + 1
+
+	return (good, avg, poor)
 
 @login_required
 def DashboardData(request, blockid = None):
@@ -364,9 +385,15 @@ def DashboardData(request, blockid = None):
 
 	data = []
 	summary = {}
-	num_good = 0
-	num_poor = 0
-	num_avg = 0
+	num_good_anc = 0
+	num_poor_anc = 0
+	num_avg_anc = 0
+	num_good_pnc = 0
+	num_poor_pnc = 0
+	num_avg_pnc = 0
+	num_good_imm = 0
+	num_poor_imm = 0
+	num_avg_imm = 0
 	for block in blocks:
 		#find all the subcenters in the block
 		subs = SubCenter.objects.filter(block=block)
@@ -398,6 +425,9 @@ def DashboardData(request, blockid = None):
  			sub_data["Overdue_anc"] = data_anc["Overdue"]
 			sub_data["Overdue_pnc"] = data_pnc["Overdue"]
 			sub_data["Overdue_imm"] = data_imm["Overdue"]
+			sub_data["overdue_sg_anc"] = data_anc["overdue_sg"]
+			sub_data["overdue_sg_pnc"] = data_pnc["overdue_sg"]
+			sub_data["overdue_sg_imm"] = data_imm["overdue_sg"]
 			sub_data["GivenServices_anc"] = data_anc["GivenServices"]
 			sub_data["GivenServices_pnc"] = data_pnc["GivenServices"]
 			sub_data["GivenServices_imm"] = data_imm["GivenServices"]
@@ -407,26 +437,20 @@ def DashboardData(request, blockid = None):
 			sub_data["ProgressData_anc"] = data_anc["ProgressData"]
 			sub_data["ProgressData_pnc"] = data_pnc["ProgressData"]
 			sub_data["ProgressData_imm"] = data_imm["ProgressData"]
+
+			status_anc = get_status(data_anc["OverDueRate"], 5, 7)
+			status_pnc = get_status(data_pnc["OverDueRate"], 5, 7)
+			status_imm = get_status(data_imm["OverDueRate"], 5, 7)
 			
-			status = 2
-			if (data_anc["OverDueRate"] and data_anc["OverDueRate"] <= 9 and data_anc["OverDueRate"] >= 6) \
-			or (data_pnc["OverDueRate"] and data_pnc["OverDueRate"] <= 9 and data_pnc["OverDueRate"] >= 6) \
-			or (data_imm["OverDueRate"] and data_imm["OverDueRate"] <= 9 and data_imm["OverDueRate"] >= 6):
-				status = 1
+			num_good_anc, num_avg_anc, num_poor_anc = increment_count_on_status(status_anc, num_good_anc, num_avg_anc, num_poor_anc)
+			num_good_pnc, num_avg_pnc, num_poor_pnc = increment_count_on_status(status_pnc, num_good_pnc, num_avg_pnc, num_poor_pnc)
+			num_good_imm, num_avg_imm, num_poor_imm = increment_count_on_status(status_imm, num_good_imm, num_avg_imm, num_poor_imm) 
 
-			if (data_anc["OverDueRate"] and data_anc["OverDueRate"] > 9) \
-			or (data_pnc["OverDueRate"] and data_pnc["OverDueRate"] > 9) \
-			or (data_imm["OverDueRate"] and data_imm["OverDueRate"] > 9):
-				status = 0
-
-			if status == 2:
-				num_good = num_good + 1
-			elif status == 1:
-				num_avg = num_avg + 1
-			else:
-				num_poor = num_poor +1
-
-			sub_data["status"] = status
+			sub_data["status_anc"] = status_anc
+			sub_data["status_pnc"] = status_pnc
+			sub_data["status_imm"] = status_imm
+			from math import ceil
+			sub_data["status"] = ceil((status_anc + status_pnc + status_imm)/3 - 0.5)
 			sub_data["Subcenter"] = sub.name
 			sub_data["SubcenterId"] = sub.id
 
@@ -467,7 +491,10 @@ def DashboardData(request, blockid = None):
 
 	block_data = {}
 	block_data["data"] = data
-	block_data["summary"] = { "Good":num_good , "Poor":num_poor ,"Average":num_avg }
+	block_data["summary"] = { "Good":num_good_anc , "Poor":num_poor_anc ,"Average":num_avg_anc }	
+	block_data["summary_anc"] = { "Good":num_good_anc , "Poor":num_poor_anc ,"Average":num_avg_anc }
+	block_data["summary_pnc"] = { "Good":num_good_pnc , "Poor":num_poor_pnc ,"Average":num_avg_pnc }
+	block_data["summary_imm"] = { "Good":num_good_imm , "Poor":num_poor_imm ,"Average":num_avg_imm }
 	block_data["blockid"] = blockid
 	block_data["blockname"] = blockname
 	

@@ -21,7 +21,8 @@ app.directive('onFinishRender', function ($timeout) {
     function($scope, dashboardService) {
       $scope.dashboardParams = {
         since_months: 1,
-        blockid: ""
+        blockid: "",
+        domain: "1"
       }
 
       $scope.RefreshDataFromServer = function($event, type){
@@ -100,7 +101,8 @@ app.directive('onFinishRender', function ($timeout) {
         console.log("Init Spark Lines")
         for(var i=0;i<$scope.dashdata.data.length;i++)
         {
-          SparkLineInit('sparkline-'+i, $scope.dashdata.data[i].ProgressData_anc,$scope.dashdata.data[i].ProgressData_pnc,$scope.dashdata.data[i].ProgressData_imm)
+          SparkLineInit('sparkline-anc-'+i, $scope.dashdata.data[i].ProgressData_anc);
+          SparkLineInit('sparkline-imm-'+i,$scope.dashdata.data[i].ProgressData_imm);
         }
       }
 
@@ -108,13 +110,7 @@ app.directive('onFinishRender', function ($timeout) {
           initSparkLines();
     });
 
-    var SparkLineInit = function(spark_line_id, data1,data2,data3){
-          var data=[];
-            for(var i=0;i<data1.length;i++)
-            {
-                data[i] = (data1[i] + data2[i] + data3[i])/2;
-            } 
-
+    var SparkLineInit = function(spark_line_id, data){
             var sparklinelines =  $('#'+spark_line_id);
             $.each(sparklinelines, function () {
                 $(this).sparkline(data, {
