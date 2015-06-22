@@ -19,6 +19,7 @@ from django.core.exceptions import ObjectDoesNotExist
 import pytz
 from schedule_api.models import TaskScheduler
 import requests, re
+import xlsxwriter
 
 def BuildCallMap(rs):
     rsp = {}
@@ -64,12 +65,26 @@ def FindActiveFromIVR():
     print rsp_ta
     print rsp_we
 
-    f= open('IVRActivityReport_ANMs_Jhansi.txt', 'w')
+    # f= open('IVRActivityReport_ANMs_Jhansi.txt', 'w')
+    
+    workbook = xlsxwriter.Workbook('IVRActivityReport_ANMs_Jhansi.xlsx')
+    worksheet = workbook.add_worksheet()
+    worksheet.write('A1', 'NAME')
+    worksheet.write('B1', 'ROLE')
+    worksheet.write('C1', 'BLOCK')
+    worksheet.write('D1', 'PHONE')
+    worksheet.write('E1', 'DND')
+    worksheet.write('F1', 'ANSWERED')
+    worksheet.write('G1', 'ACTIVE')
+    worksheet.write('H1', 'Wed Eve(17/06)')
+    worksheet.write('I1', 'Thur Aft(18/06)')
+    worksheet.write('J1', 'Sat Mor(20/06)')
     from mcts_identities.models import CareProvider, Beneficiary
     anms = CareProvider.objects.filter(designation='ANM')
     num_active_ans = 0
     num_active_total = 0
     num_dnd = 0
+    row = 1
     import traceback, sys
     for anm in anms:
         try:
@@ -86,30 +101,62 @@ def FindActiveFromIVR():
         num_dnd = num_dnd + 1 if is_dnd else num_dnd
         num_active_ans = num_active_ans + 1 if is_active_ans else num_active_ans
         num_active_total = num_active_total + 1 if is_active_total else num_active_total
-        f.write("\n\n")
-        f.write("NAME: "+anm.first_name+" "+anm.last_name+"\t")
-        f.write("ROLE: "+anm.designation+"\t")
-        f.write("BLOCK: "+block.name+"\t")
-        f.write("PHONE: "+anm.phone+"\t")
+        #Write txt file and excel file
+        # f.write("\n\n")
+        # f.write("NAME: "+anm.first_name+" "+anm.last_name+"\t")
+        # f.write("ROLE: "+anm.designation+"\t")
+        # f.write("BLOCK: "+block.name+"\t")
+        # f.write("PHONE: "+anm.phone+"\t")
+        row = row + 1
+        worksheet.write('A'+str(row), anm.first_name+" "+anm.last_name)
+        worksheet.write('B'+str(row), anm.designation)
+        worksheet.write('C'+str(row), block.name)
+        worksheet.write('D'+str(row), anm.phone)
+    
         if is_dnd:
             f.write("DND: Yes\t")
+            worksheet.write('E'+str(row), 'Yes')
+            worksheet.write('F'+str(row), 'N/A')
+            worksheet.write('G'+str(row), 'N/A')
+            worksheet.write('H'+str(row), 'N/A')
+            worksheet.write('I'+str(row), 'N/A')
+            worksheet.write('J'+str(row), 'N/A')
         else:
             answered = "Yes" if is_active_ans else "No"
             active = "Yes" if is_active_total else "No"
             sm_we = status_map[status_we] if status_we else "NA"
             sm_ta = status_map[status_ta] if status_ta else "NA"
             sm_sm = status_map[status_sm] if status_sm else "NA"
-            f.write("ANSWERED: "+answered+"\t")
-            f.write("ACTIVE: "+active+"\n")
-            f.write("Wednesday Evening(17/06): "+sm_we+"\n")
-            f.write("Thursday Afternoon(18/06): "+sm_ta+"\n")
-            f.write("Saturday Morning(20/06): "+sm_sm+"\n")
-        f.write("\n================================================================================\n")
-    f.write("\n Total Numbers: "+str(anms.count())+"\n")
-    f.write("Total DND: "+str(num_dnd)+"\n")
-    f.write("Total Answered: "+str(num_active_ans)+"\n")
-    f.write("Total Active: "+str(num_active_total)+"\n")
-    f.close()
+            # f.write("ANSWERED: "+answered+"\t")
+            # f.write("ACTIVE: "+active+"\n")
+            # f.write("Wednesday Evening(17/06): "+sm_we+"\n")
+            # f.write("Thursday Afternoon(18/06): "+sm_ta+"\n")
+            # f.write("Saturday Morning(20/06): "+sm_sm+"\n")
+            worksheet.write('E'+str(row), 'NO')
+            worksheet.write('F'+str(row), answered)
+            worksheet.write('G'+str(row), active)
+            worksheet.write('H'+str(row), sm_we)
+            worksheet.write('I'+str(row), sm_ta)
+            worksheet.write('J'+str(row), sm_sm)
+    #     f.write("\n================================================================================\n")
+    # f.write("\nTotal Numbers: "+str(anms.count())+"\n")
+    # f.write("Total DND: "+str(num_dnd)+"\n")
+    # f.write("Total Answered: "+str(num_active_ans)+"\n")
+    # f.write("Total Active: "+str(num_active_total)+"\n")
+    row = row+2
+    worksheet.write('A'+str(row), 'Total Numbers')
+    worksheet.write('B'+str(row), 'Total DND')
+    worksheet.write('C'+str(row), 'Total Answered')
+    worksheet.write('D'+str(row), 'Total Active')
+
+    row = row + 1
+    worksheet.write('A'+str(row), str(anms.count()))
+    worksheet.write('B'+str(row), str(num_dnd))
+    worksheet.write('C'+str(row), str(num_active_ans))
+    worksheet.write('D'+str(row), str(num_active_total))
+
+    # f.close()
+    workbook.close()
 
 def AddInitialUsers():
     from mcts_identities.models import CareProvider
