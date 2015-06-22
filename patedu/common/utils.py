@@ -114,7 +114,7 @@ def FindActiveFromIVR():
         worksheet.write('D'+str(row), anm.phone)
     
         if is_dnd:
-            f.write("DND: Yes\t")
+            # f.write("DND: Yes\t")
             worksheet.write('E'+str(row), 'Yes')
             worksheet.write('F'+str(row), 'N/A')
             worksheet.write('G'+str(row), 'N/A')
