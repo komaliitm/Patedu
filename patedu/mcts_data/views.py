@@ -613,7 +613,7 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
             child_name = _regSearch.group(0).strip()
 
         if len(child_details) > 1:
-            _regSearch = re.search('([a-z]+)', child_details[1])
+            _regSearch = re.search('([a-z]+$)', child_details[1])
             if _regSearch:
                 child_sex = _regSearch.group(0).strip()
     
@@ -879,11 +879,13 @@ def UploadAndSave(request):
                 initialIndex = rowIndex
         
         _fileObject = None
+        ret = "Saved successfully"
         for workplan_chunk in workplan_list:           
             header = workplan_chunk["header"]
             data = workplan_chunk["data"]
 
             if len(data) == 0:
+                ret = 'Data length is zero'
                 continue
 
             #header data
@@ -900,6 +902,7 @@ def UploadAndSave(request):
             if not AvailableMCTSData.objects.filter(stamp=stamp):
                 chunk = AvailableMCTSData.objects.create(stamp= stamp, benef_type=benef_type, block=block, district=district, health_facility=health_facility, month=month, year=year, state=state, subfacility=subfacility, subfacility_id=subfacility_id, time_stamp=utcnow_aware())
             else:
+                ret = 'Report already exists'
                 continue
 
             timezone = 'Asia/Kolkata'
@@ -965,7 +968,6 @@ def UploadAndSave(request):
                 elif benef_type == 'IMM1' or benef_type == 'IMM2':
                     SaveIMMBeneficiary(benef=benef, subcenter=subfacility, date_then=date_then)
                     pass
-
         #print workplan_list
         # print workplan_list[0]["header"]
         # print workplan_list[0]["data"][0]
@@ -979,7 +981,7 @@ def UploadAndSave(request):
         #newdoc = Document(myfile = request.FILES['file'])
         #newdoc.save()
             # Redirect to the document list after POST
-        return HttpResponse('Saved successfully')
+        return HttpResponse(ret)
     return HttpResponse('Error in saving')
 
     
