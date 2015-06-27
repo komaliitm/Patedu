@@ -899,7 +899,9 @@ def UploadAndSave(request):
             stamp = benef_type+"_"+state+"_"+district+"_"+block+"_"+health_facility+"_"+subfacility+"_"+subfacility_id+"_"+year+"_"+state
             if not AvailableMCTSData.objects.filter(stamp=stamp):
                 chunk = AvailableMCTSData.objects.create(stamp= stamp, benef_type=benef_type, block=block, district=district, health_facility=health_facility, month=month, year=year, state=state, subfacility=subfacility, subfacility_id=subfacility_id, time_stamp=utcnow_aware())
-       
+            else:
+                continue
+
             timezone = 'Asia/Kolkata'
             tz = pytz.timezone(timezone)
             today_utc = utcnow_aware()
