@@ -206,19 +206,20 @@ def BeneficiariesPerVillage():
     tz = pytz.timezone(timezone)
     today = utcnow_aware().replace(tzinfo=tz) 
     date_then = today.replace(hour=12, minute=0, day=1, second=0).date()
-    due_services_now = DueEvents.objects.filter(date = date_then)
-    odue_services_now = OverDueEvents.objects.filter(date = date_then)
-    benef_ids = []
-    print due_services_now.count()
-    print odue_services_now.count()
-    for dsn in due_services_now:
-        if not dsn.beneficiary.id in benef_ids:
-            benef_ids.append(dsn.beneficiary.id)
-    for osn in odue_services_now:
-        if not osn.beneficiary.id in benef_ids:
-            benef_ids.append(osn.beneficiary.id)
+    # due_services_now = DueEvents.objects.filter(date = date_then)
+    # odue_services_now = OverDueEvents.objects.filter(date = date_then)
+    # benef_ids = []
+    # print due_services_now.count()
+    # print odue_services_now.count()
+    # for dsn in due_services_now:
+    #     if not dsn.beneficiary_id in benef_ids:
+    #         benef_ids.append(dsn.beneficiary_id)
+    # for osn in odue_services_now:
+    #     if not osn.beneficiary_id in benef_ids:
+    #         benef_ids.append(osn.beneficiary_id)
     
-    benefs = Beneficiary.objects.filter(id__in = benef_ids)
+    benefs = Beneficiary.objects.all().filter(due_events__date=date_then).distinct() | Beneficiary.objects.filter(odue_events__date=date_then).distinct()
+    
     print 'Obtained beneficiaries'
     block_ids = benefs.values('subcenter__block').distinct()
     print 'Obtained blocks'
