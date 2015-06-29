@@ -4,7 +4,7 @@ import base64
 import uuid
 #from django.contrib.auth.models import User
 from django.conf import settings
-from datetime import date, datetime, time
+from datetime import date, datetime, time, timedelta
 from functools import reduce
 import sys
 import os
@@ -20,6 +20,8 @@ import pytz
 from schedule_api.models import TaskScheduler
 import requests, re
 import xlsxwriter
+from mcts_identities.models import IMMBenef, IMMBenef, Beneficiary, Block
+from mcts_transactions.models import DueEvents, OverDueEvents
 
 def BuildCallMap(rs):
     rsp = {}
@@ -157,6 +159,89 @@ def FindActiveFromIVR():
 
     # f.close()
     workbook.close()
+
+def get_benef_counter(benef, date_then):
+    benef_type = benef.get_type()
+    date_then = date_then + timedelta(days=5)
+    if benef_type == Beneficiary.ANC:
+        ret = (1,0,0,0)
+    elif benef_type == Beneficiary.IMM:
+        imm_benef = benef.immbenef
+        age = (date_then - imm_benef.dob).days
+        if age <= 30:
+            ret = (0,1,0,0)
+        elif age <= 365:
+            ret = (0, 0, 1, 0)
+        else:
+            ret = (0,0,0,1)
+    return ret
+
+def generate_counts_per_village(benefs, date_then):
+    anc_v2c_map = {}
+    inf1_v2c_map = {}
+    inf2_v2c_map = {}
+    kid_v2c_map = {}
+
+    for benef in benefs:
+        village = benef.address.village
+        if not anc_v2c_map.get(village):
+            anc_v2c_map[village] = 0
+        if not inf1_v2c_map.get(village):
+            inf1_v2c_map[village] = 0
+        if not inf2_v2c_map.get(village):
+            inf2_v2c_map[village] = 0
+        if not kid_v2c_map.get(village):
+            kid_v2c_map[village] = 0
+
+        benef_counter = get_benef_counter(benef, date_then) 
+        anc_v2c_map[village] += benef_counter[0]
+        inf1_v2c_map[village] += benef_counter[1]
+        inf2_v2c_map[village] += benef_counter[2]
+        kid_v2c_map[village] += benef_counter[3] 
+    return (anc_v2c_map, inf1_v2c_map, inf2_v2c_map, kid_v2c_map)
+
+def BeneficiariesPerVillage():
+    timezone = 'Asia/Kolkata'
+    tz = pytz.timezone(timezone)
+    today = utcnow_aware().replace(tzinfo=tz) 
+    date_then = today.replace(hour=12, minute=0, day=1, second=0).date()
+    due_services_now = DueEvents.objects.filter(date = date_then)
+    odue_services_now = OverDueEvents.objects.filter(date = date_then)
+    benef_ids = []
+    for dsn in due_services_now:
+        if not dsn.beneficiary.id in benef_ids:
+            benef_ids.append(dsn.beneficiary.id)
+    for osn in odue_services_now:
+        if not osn.beneficiary.id in benef_ids:
+            benef_ids.append(osn.beneficiary.id)
+    
+    benefs = Beneficiary.objects.filter(id__in = benef_ids)
+    block_ids = benefs.values('subcenter__block').distinct()
+    for block_id in block_ids:
+        if block_id['subcenter__block']:
+            block = Block.objects.get(id = block_id['subcenter__block'])
+            benefs_block = benefs.filter(subcenter__block=block)
+            anc_v2c_map, inf1_v2c_map, inf2_v2c_map, kid_v2c_map = generate_counts_per_village(benefs_block, date_then)
+            workbook = xlsxwriter.Workbook('HeadCountFromWorkplan_'+block.name+'.xlsx')
+            worksheet = workbook.add_worksheet()
+            worksheet.write('A1', block.name)
+            worksheet.write('A2', 'Serial')
+            worksheet.write('B2', 'Village')
+            worksheet.write('C2', 'Total Pregnant Ladies')
+            worksheet.write('D2', 'Infants 0-1 month')
+            worksheet.write('E2', 'Infants 1-12 months')
+            worksheet.write('F2', 'Children 1-2 years')
+            row = 2
+            for village, value in anc_v2c_map.iteritems():
+                row += 1
+                worksheet.write('A'+str(row), str(row - 2))
+                worksheet.write('B'+str(row), village)
+                worksheet.write('C'+str(row), anc_v2c_map[village])
+                worksheet.write('D'+str(row), inf1_v2c_map[village])
+                worksheet.write('E'+str(row), inf2_v2c_map[village])
+                worksheet.write('F'+str(row), kid_v2c_map[village])
+            workbook.close()
+
 
 def AddInitialUsers():
     from mcts_identities.models import CareProvider

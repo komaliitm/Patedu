@@ -65,6 +65,11 @@ class SubCenter(models.Model):
 	
 
 class Beneficiary(User):
+	ANC = 'ANC'
+	IMM = 'IMM'
+	PNC = 'PNC'
+	UNKNOWN = 'UNKNOWN'
+
 	class NUMBER_TYPE():
 		SELF = 0
 		OTHER = 1
@@ -119,6 +124,18 @@ class Beneficiary(User):
 		(LANGUAGE.ENGLISH, 'English'),
 		(LANGUAGE.TELUGU, 'Telugu')
 	)
+
+	def get_type(self):
+		if hasattr(self, 'ancbenef'):
+			return self.ANC
+		elif hasattr(self, 'immbenef'):
+			return self.IMM
+		elif hasattr(self, 'pncbenef'):
+			return self.PNC
+		else:
+			return self.UNKNOWN
+		
+
 	active = models.BooleanField(default=True)
 	MCTS_ID = models.CharField(max_length=100, null=True)
 	notify_number = models.CharField(max_length=15, null=True)

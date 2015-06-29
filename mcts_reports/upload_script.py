@@ -12,6 +12,11 @@ abspath = os.path.abspath(os.path.dirname(__file__).decode('utf-8'))
 
 abs_reports_path = os.path.join(abspath, rel_reports_path)  
 
+count_empty_files = 0
+total = 0
+failed = 0
+existing = 0
+uploaded = 0
 for path, subdir, files in os.walk(abs_reports_path):
 	for name in files:
 
@@ -35,5 +40,20 @@ for path, subdir, files in os.walk(abs_reports_path):
 			url = 'http://mcts-analytics.cloudapp.net/mctsdata/uploadandsave/'
 			file = {'file': open(mcts_report, 'rb')}
 			r = requests.post(url, files=file, data={'benef_type':type})
-			print 'file: '+str(mcts_report)+' was parsed for category '+str(type)+' with status: '+str(r.status_code)+' '+r.reason
+			print 'file: '+str(mcts_report)+' was parsed for category '+str(type)+' with status: '+str(r.status_code)+' '+r.text
+			total += 1
+			if r.status_code == 500:
+				failed += 1
+			elif 'zero' in r.text:
+				count_empty_files += 1  
+			elif 'exists' in r.text:
+				existing += 1
+			elif 'successfully' in r.text:
+				uploaded += 1
+			
 			r.close()
+print "\nTotal: "+str(total)
+print "\nZero: "+str(count_empty_files)
+print "\nExisting: "+str(existing)
+print "\nFailed: "+str(failed)
+print "\nUploaded: "+str(uploaded)
