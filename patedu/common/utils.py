@@ -35,9 +35,10 @@ def BuildCallMap(rs):
         rsp[number] = status
     return rsp
 
-def FindActiveFromIVR():
+def FindActiveFromIVR(campaigns=None):
     #Sat morning, Thursay Afternoon, Wed evening
-    campaigns = ['camp_ins37_14347806900202', 'camp_ins37_14346230655561', 'camp_ins37_14345489653181']
+    if not campaigns:
+        campaigns = ['camp_ins37_14347806900202', 'camp_ins37_14346230655561', 'camp_ins37_14345489653181']
     url1 = 'http://voiceapi.mvaayoo.com/voiceapi/CampaignReport?user=komalvis007g@gmail.com:babboo&campaign_id='
     url2 = '&start_date=2015-05-01&end_date=2015-12-31'
     rsp_sm = {}
@@ -216,12 +217,16 @@ def BeneficiariesPerVillage():
             benef_ids.append(osn.beneficiary.id)
     
     benefs = Beneficiary.objects.filter(id__in = benef_ids)
+    print 'Obtained beneficiaries'
     block_ids = benefs.values('subcenter__block').distinct()
+    print 'Obtained blocks'
     for block_id in block_ids:
         if block_id['subcenter__block']:
             block = Block.objects.get(id = block_id['subcenter__block'])
             benefs_block = benefs.filter(subcenter__block=block)
+            print "Start HC generator, Block "+block.name
             anc_v2c_map, inf1_v2c_map, inf2_v2c_map, kid_v2c_map = generate_counts_per_village(benefs_block, date_then)
+            print "End HC generator and start report generator, Block "+block.name
             workbook = xlsxwriter.Workbook('HeadCountFromWorkplan_'+block.name+'.xlsx')
             worksheet = workbook.add_worksheet()
             worksheet.write('A1', block.name)
@@ -241,7 +246,7 @@ def BeneficiariesPerVillage():
                 worksheet.write('E'+str(row), inf2_v2c_map[village])
                 worksheet.write('F'+str(row), kid_v2c_map[village])
             workbook.close()
-
+            print 'Reporting done for block '+block.name
 
 def AddInitialUsers():
     from mcts_identities.models import CareProvider
