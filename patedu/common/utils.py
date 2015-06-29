@@ -173,7 +173,7 @@ def get_benef_counter(benef, date_then):
             ret = (0,1,0,0)
         elif age <= 365:
             ret = (0, 0, 1, 0)
-        else:
+        elif age <=740:
             ret = (0,0,0,1)
     return ret
 
