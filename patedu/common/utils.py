@@ -240,7 +240,7 @@ def BeneficiariesPerVillage():
             worksheet.write('E2', 'Infants 1-12 months')
             worksheet.write('F2', 'Children 1-2 years')
             row = 2
-            sum1, sum2, sum3, sum4 = 0
+            sum1 = sum2 = sum3 = sum4 = 0
             for village, value in anc_v2c_map.iteritems():
                 row += 1
                 worksheet.write('A'+str(row), str(row - 2))
