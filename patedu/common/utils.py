@@ -209,6 +209,8 @@ def BeneficiariesPerVillage():
     due_services_now = DueEvents.objects.filter(date = date_then)
     odue_services_now = OverDueEvents.objects.filter(date = date_then)
     benef_ids = []
+    print due_services_now.count()
+    print odue_services_now.count()
     for dsn in due_services_now:
         if not dsn.beneficiary.id in benef_ids:
             benef_ids.append(dsn.beneficiary.id)
