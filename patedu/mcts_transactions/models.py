@@ -1,6 +1,18 @@
 from django.db import models
 from mcts_identities.models import *
 
+class AnalyticsData(models.Model):
+	subcenter = models.ForeignKey(SubCenter)
+	month = models.IntegerField()
+	year = models.IntegerField()
+	data_1 = models.TextField()
+	data_2 = models.TextField()
+	data_3 = models.TextField()
+	data_4 = models.TextField()
+	data_5 = models.TextField()
+	data_6 = models.TextField()
+	data_n = models.TextField()
+	
 class Events(models.Model):
 	ANC_REG_VAL = 'anc_reg'
 	PNC_REG_VAL = 'pnc_reg'
@@ -42,7 +54,7 @@ class Events(models.Model):
 	category = models.IntegerField(choices=CATEGORY_CHOICES, null=True)
 
 class Transactions(models.Model):
-	beneficiary = models.ForeignKey(Beneficiary)
+	beneficiary = models.ForeignKey(Beneficiary, related_name='txns')
 	timestamp = models.DateTimeField()
 	event = models.ForeignKey(Events)
 	subcenter = models.ForeignKey(SubCenter)
@@ -61,7 +73,7 @@ class DueEvents(models.Model):
 		(SCHAW, 'both awareness and schedule message sent')
 	)
 
-	beneficiary = models.ForeignKey(Beneficiary)
+	beneficiary = models.ForeignKey(Beneficiary, related_name='due_events')
 	date = models.DateField()
 	event = models.ForeignKey(Events)
 	subcenter = models.ForeignKey(SubCenter)
@@ -69,7 +81,7 @@ class DueEvents(models.Model):
 	handled = models.IntegerField(choices=HANDLED_LEVELS, default=UNHANDLED)
 
 class OverDueEvents(models.Model):
-	beneficiary = models.ForeignKey(Beneficiary)
+	beneficiary = models.ForeignKey(Beneficiary, related_name='odue_events')
 	date = models.DateField()
 	event = models.ForeignKey(Events)
 	subcenter = models.ForeignKey(SubCenter)
