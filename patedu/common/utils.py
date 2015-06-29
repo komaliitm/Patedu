@@ -240,6 +240,7 @@ def BeneficiariesPerVillage():
             worksheet.write('E2', 'Infants 1-12 months')
             worksheet.write('F2', 'Children 1-2 years')
             row = 2
+            sum1, sum2, sum3, sum4 = 0
             for village, value in anc_v2c_map.iteritems():
                 row += 1
                 worksheet.write('A'+str(row), str(row - 2))
@@ -248,6 +249,16 @@ def BeneficiariesPerVillage():
                 worksheet.write('D'+str(row), inf1_v2c_map[village])
                 worksheet.write('E'+str(row), inf2_v2c_map[village])
                 worksheet.write('F'+str(row), kid_v2c_map[village])
+                sum1 += anc_v2c_map[village]
+                sum2 += inf1_v2c_map[village]
+                sum3 += inf2_v2c_map[village]
+                sum4 += kid_v2c_map[village]
+            row += 1
+            worksheet.write('B'+str(row), 'TOTAL')
+            worksheet.write('C'+str(row), sum1)
+            worksheet.write('D'+str(row), sum2)
+            worksheet.write('E'+str(row), sum3)
+            worksheet.write('F'+str(row), sum4)
             workbook.close()
             print 'Reporting done for block '+block.name
 
