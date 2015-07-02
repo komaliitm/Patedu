@@ -32,7 +32,7 @@ def DumpSubCList():
         }
         sub_dict['name'] = subcenter.name
         sub_dict['MCTS_Id'] = subcenter.MCTS_ID
-        subs.append(subs)
+        subs.append(sub_dict)
     if subs:
         f = open('SunCenter_List.json', 'w')
         f.write(json.dumps(subs))
