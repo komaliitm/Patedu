@@ -20,8 +20,107 @@ import pytz
 from schedule_api.models import TaskScheduler
 import requests, re
 import xlsxwriter
-from mcts_identities.models import IMMBenef, IMMBenef, Beneficiary, Block
+from mcts_identities.models import IMMBenef, ANCBenef, Beneficiary, Block, SubCenter, Address, CareProvider
 from mcts_transactions.models import DueEvents, OverDueEvents
+
+def DumpSubCList():
+    subcenters = SubCenter.objects.all()
+    subs = []
+    for subcenter in subcenters:
+        sub_dict = {
+            'type':'SubCenter'
+        }
+        sub_dict['name'] = subcenter.name
+        sub_dict['MCTS_Id'] = subcenter.MCTS_ID
+        subs.append(subs)
+    if subs:
+        f = open('SunCenter_List.json', 'w')
+        f.write(json.dumps(subs))
+        f.close() 
+
+def GenerateNumberString_ANM(benefs):
+    due_anms = CareProvider.objects.filter(beneficiaries__in=benefs).distinct()
+    number_string = ''
+    for due_anm in due_anms:
+        if number_string:
+            number_string += ','
+        number_string += '91'+due_anm.phone
+    return number_string
+    
+def ANMIvrForOverdueServices(test=True):
+    timezone = 'Asia/Kolkata'
+    tz = pytz.timezone(timezone)
+    today = utcnow_aware().replace(tzinfo=tz)
+    date_then = today.replace(hour=12, minute=0, day=1, second=0).date()
+    from sms.sender import SendVoiceCall
+
+    #Voice call for IMM due services
+    imm_benefs = IMMBenef.objects.filter(odue_events__date=date_then).distinct()
+    imm_voice_file = ''
+    imm_number_string = GenerateNumberString_ANM(imm_benefs)
+    print 'ANMs for IMM over due services'
+    print imm_number_string
+    if test:
+        imm_number_string = '919390681183' 
+
+    #Voice call for ANC
+    anc_benefs = ANCBenef.objects.filter(odue_events__date=date_then).distinct()
+    anc_number_string = GenerateNumberString_ANM(anc_benefs)
+    anc_voice_file = ''
+    print 'ANMs for ANC over due services'
+    print anc_number_string
+    if test:
+        anc_number_string = '919390681183'
+    
+    try:
+        SendVoiceCall(rec_num = imm_number_string, voice_file=imm_voice_file, campaign_name='ANM_ODS_IMM_'+str(date_then))
+        SendVoiceCall(rec_num = anc_number_string, voice_file=anc_voice_file, campaign_name='ANM_ODS_ANC_'+str(date_then))
+    except:
+        # Put exception detail here
+        sys.exc_info()[0]
+        pass
+    
+
+def BenefIVRForDueServices(test=True):
+    timezone = 'Asia/Kolkata'
+    tz = pytz.timezone(timezone)
+    today = utcnow_aware().replace(tzinfo=tz)
+    date_then = today.replace(hour=12, minute=0, day=1, second=0).date()
+    from sms.sender import SendVoiceCall
+
+    #IMM
+    imm_benefs = IMMBenef.objects.filter(due_events__date=date_then).distinct()
+    imm_benef_voice_file = ''
+    imm_benef_number_string = ''
+    for benef in imm_benefs:
+        if imm_benef_number_string:
+            imm_benef_number_string += ','
+        imm_benef_number_string += benef.notify_number
+    print 'IMM beneficiaries to be reminded for due services this month'
+    print imm_benef_number_string
+
+    #ANC
+    anc_benefs = ANCBenef.objects.filter(due_events__date=date_then).distinct()
+    anc_benef_voice_file = ''
+    anc_benef_number_string = ''
+    for benef in anc_benefs:
+        if anc_benef_number_string:
+            anc_benef_number_string += ','
+        anc_benef_number_string += benef.notify_number
+    print 'ANC beneficiaries to be reminded for due services this month'
+    print anc_benef_number_string
+
+    if test:
+        imm_benef_number_string = anc_benef_number_string = '919390681183'
+
+    print 'Sending voice calls'
+    try:
+        SendVoiceCall(rec_num = imm_benef_number_string, voice_file=imm_benef_voice_file, campaign_name='BENEF_ODS_IMM_'+str(date_then))
+        SendVoiceCall(rec_num = anc_benef_number_string, voice_file=anc_benef_voice_file, campaign_name='BENEF_ODS_ANC_'+str(date_then))
+    except:
+        #Put exception detail here
+        print sys.exc_info()[0]
+        pass
 
 def BuildCallMap(rs):
     rsp = {}
@@ -274,6 +373,34 @@ def AddInitialUsers():
     cp.set_password("coj_1602")
     cp.save()
     #cp.set_password("coj_1602")
+
+def CleanVillageNames():
+    import jellyfish
+    subcenters = SubCenter.objects.all()
+    for subc in subcenters:
+        villages = Address.objects.filter(beneficiaries__subcenter=subc).distinct()
+        nl_vills = villages.filter(village_mcts_id = None) 
+        l_vills = villages.exclude(village_mcts_id = None)
+        phonetic_codes = []
+        for l_vill in l_vills:
+            phonetic_codes.append(jellyfish.nysiis(l_vill.village))
+        #match the non-legitimate ones
+        for nl_vill in nl_vills:
+            pc = jellyfish.nysiis(nl_vill.village)
+            min_dist = 100
+            min_ind = 0
+            ind = 0
+            for spc in phonetic_codes:
+                dist = jellyfish.jaro_distance(spc ,pc)
+                if dist <= min_dist:
+                    min_ind = ind
+                    min_dist = dist
+                ind +=1
+            if min_dist < 1.0:
+                match_vill = l_vills[min_ind]
+                nl_vill.village_mcts_id = match_vill.village_mcts_id
+                nl_vill.value = nl_vill.value+'_m'
+                nl_vill.save()
 
 def toHex(s):
     res = ""
