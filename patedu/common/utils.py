@@ -56,7 +56,7 @@ def ANMIvrForOverdueServices(test=True):
 
     #Voice call for IMM due services
     imm_benefs = IMMBenef.objects.filter(odue_events__date=date_then).distinct()
-    imm_voice_file = ''
+    imm_voice_file = 'ANM_ODUE_IMM_REMINDER_20150703142712856239.wav'
     imm_number_string = GenerateNumberString_ANM(imm_benefs)
     print 'ANMs for IMM over due services'
     print imm_number_string
@@ -66,7 +66,7 @@ def ANMIvrForOverdueServices(test=True):
     #Voice call for ANC
     anc_benefs = ANCBenef.objects.filter(odue_events__date=date_then).distinct()
     anc_number_string = GenerateNumberString_ANM(anc_benefs)
-    anc_voice_file = ''
+    anc_voice_file = 'ANM_ODUE_ANC_REMINDER_20150703142527385436.wav'
     print 'ANMs for ANC over due services'
     print anc_number_string
     if test:
