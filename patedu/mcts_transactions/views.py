@@ -398,7 +398,7 @@ def DashboardData(request, blockid = None):
 	# num_good_imm = 0
 	# num_poor_imm = 0
 	# num_avg_imm = 0
-	from mcts_transactions.models import AnalyticsData
+	from common.models import AnalyticsData
 	from mcts_transactions.tasks import analytics_aggregator_allblocks
 	for block in blocks:
 		analytics_data = AnalyticsData.objects.filter(block=block, since_months=months, month= this_month_date.month, year=this_month_date.year)

@@ -146,6 +146,7 @@ app.directive('onFinishRender', function ($timeout) {
          $scope.Completeloading = true;
          $('.loading-container').addClass('loading-inactive');
         }, function(error){
+            $scope.Completeloading = true;
             if($.isNumeric(error) && error==405)
             {
               alert('Data is getting loaded. Please try again after 10 mins.');

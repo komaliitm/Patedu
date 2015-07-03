@@ -15,6 +15,7 @@ from celery import shared_task
 import sys
 from mcts_transactions.models import *
 from mcts_identities.models import *
+from common.models import AnalyticsData
 from math import ceil
 import unicodedata
 from dateutil.relativedelta import relativedelta

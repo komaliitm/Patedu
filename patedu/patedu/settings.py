@@ -35,6 +35,7 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 
 SMSPROVIDER_URL = 'http://api.mVaayoo.com/mvaayooapi/MessageCompose'
+VOICECALLPROVIDER_URL = 'http://voiceapi.mvaayoo.com/voiceapi/SendVoice'
 SMSPROVIDERRECEIVE_URL = 'http://api.mVaayoo.com/mvaayooapi/MessageReply'
 SMSPROVIDER_USER = 'komalvis007g@gmail.com'
 SMSPROVIDER_PASS = 'babboo'
@@ -211,7 +212,8 @@ INSTALLED_APPS = (
     'sms',
     'mcts_identities',
     'mcts_transactions',
-    'mcts_data'
+    'mcts_data',
+    'common'
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
