@@ -145,13 +145,16 @@ app.directive('onFinishRender', function ($timeout) {
           $scope.loading = false;
          $scope.Completeloading = true;
          $('.loading-container').addClass('loading-inactive');
-        }, function(error, status){
-            if(status== 405)
+        }, function(error){
+            if($.isNumeric(error) && error==405)
             {
               alert('Data is getting loaded. Please try again after 10 mins.');
             }
+            else if(!$.isNumeric(error)){
+              alert(error);
+            }
             else{
-              alert('Unknown error occured. Try again later');
+             alert('Unknown error occured. Please try again later.'); 
             }
           }
         );
@@ -191,9 +194,9 @@ app.directive('onFinishRender', function ($timeout) {
 
     function handleError(response) {
       if (!angular.isObject(response.data) || !response.data.message) {
-        return ($q.reject('An unknown error occurred.'));
+        return ($q.reject(response.status) );
       }
-      return $q.reject(response.data.message, response.status);
+      return $q.reject(response.data.message);
     }
   });
 
