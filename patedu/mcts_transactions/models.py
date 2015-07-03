@@ -2,16 +2,15 @@ from django.db import models
 from mcts_identities.models import *
 
 class AnalyticsData(models.Model):
-	subcenter = models.ForeignKey(SubCenter)
 	month = models.IntegerField()
 	year = models.IntegerField()
-	data_1 = models.TextField()
-	data_2 = models.TextField()
-	data_3 = models.TextField()
-	data_4 = models.TextField()
-	data_5 = models.TextField()
-	data_6 = models.TextField()
-	data_n = models.TextField()
+	data = models.TextField()
+	since_months = models.IntegerField()
+	block = models.ForeignKey(Block)
+	summary = models.TextField()
+	summary_anc = models.TextField()
+	summary_pnc = models.TextField()
+	summary_imm = models.TextField()
 	
 class Events(models.Model):
 	ANC_REG_VAL = 'anc_reg'

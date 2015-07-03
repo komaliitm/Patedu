@@ -300,13 +300,13 @@ def ProcessSubcenterData(benefs, sub, since_months, reg_type, months):
 	OverDueRate = 0
 	overdue_services_group = []
 	if benefs:
-		txs_service = Transactions.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(timestamp__gte=since_months.date()) & Q(timestamp__lt=this_month_date.date())).exclude(event__val=reg_type)
-		txs_reg = Transactions.objects.all().filter(Q(subcenter=sub), Q(event__val=reg_type), Q(timestamp__gte=since_months.date()) & Q(timestamp__lt=this_month_date.date()))
-		dues_service = DueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) & Q(date__lt=this_month_date.date()))
+		txs_service = Transactions.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(timestamp__gte=since_months.date())).exclude(event__val=reg_type)
+		txs_reg = Transactions.objects.all().filter(Q(subcenter=sub), Q(event__val=reg_type), Q(timestamp__gte=since_months.date()) )
+		dues_service = DueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) )
 
 		GivenServices = txs_service.count()
 
-		overdues_service = OverDueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) & Q(date__lt=this_month_date.date()))
+		overdues_service = OverDueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) )
 		overdue_services_group = list(overdues_service.values('event_id').annotate(ods_count=Count('id'), event_name=Max('event__val')))
 		Overdue = overdues_service.count()
 		new_reg = txs_reg.count()
@@ -375,7 +375,8 @@ def DashboardData(request, blockid = None):
 	this_month_date = today.replace(hour=6, minute=0, second=0, day=1).astimezone(pytz.utc)
 	#process GET params
 	since_months = int(request.GET.get('since_months')) if request.GET.get('since_months') else None
-	
+	if since_months > 12:
+		since_months =12 	
 	if since_months:
 		months = since_months
 		since_months = this_month_date - relativedelta(months=since_months)
@@ -384,117 +385,143 @@ def DashboardData(request, blockid = None):
 		since_months = this_month_date - relativedelta(months=12)
 
 	data = []
-	summary = {}
-	num_good_anc = 0
-	num_poor_anc = 0
-	num_avg_anc = 0
-	num_good_pnc = 0
-	num_poor_pnc = 0
-	num_avg_pnc = 0
-	num_good_imm = 0
-	num_poor_imm = 0
-	num_avg_imm = 0
+	summary = {"Good":0, "Poor":0, "Average":0}
+	summary_anc = {"Good":0, "Poor":0, "Average":0}
+	summary_pnc = {"Good":0, "Poor":0, "Average":0}
+	summary_imm = {"Good":0, "Poor":0, "Average":0}
+	# num_good_anc = 0
+	# num_poor_anc = 0
+	# num_avg_anc = 0
+	# num_good_pnc = 0
+	# num_poor_pnc = 0
+	# num_avg_pnc = 0
+	# num_good_imm = 0
+	# num_poor_imm = 0
+	# num_avg_imm = 0
+	from mcts_transactions.models import AnalyticsData
+	from mcts_transactions.tasks import analytics_aggregator_allblocks
 	for block in blocks:
-		#find all the subcenters in the block
-		subs = SubCenter.objects.filter(block=block)
-		for sub in subs:
-			sub_data = {}
+		analytics_data = AnalyticsData.objects.filter(block=block, since_months=months, month= this_month_date.month, year=this_month_date.year)
+		if not analytics_data:
+			analytics_aggregator_allblocks.delay()
+			return HttpResponseNotAllowed('Check after 5 mins. Data generation in progress.') 
+		data += json.loads(analytics_data[0].data)
+		summary["Good"] += json.loads(analytics_data[0].summary)["Good"]
+		summary["Poor"] += json.loads(analytics_data[0].summary)["Poor"]
+		summary["Average"] += json.loads(analytics_data[0].summary)["Average"]
 
-			#total beneficiaries.
-			anc_benefs = ANCBenef.objects.filter(subcenter = sub)
-			pnc_benefs = PNCBenef.objects.filter(subcenter = sub)
-			imm_benefs = IMMBenef.objects.filter(subcenter = sub)
+		summary_anc["Good"] += json.loads(analytics_data[0].summary_anc)["Good"]
+		summary_anc["Poor"] += json.loads(analytics_data[0].summary_anc)["Poor"]
+		summary_anc["Average"] += json.loads(analytics_data[0].summary_anc)["Average"]
 
-			sub_data["Beneficiaries_anc"] = anc_benefs.count()
-			sub_data["Beneficiaries_pnc"] = pnc_benefs.count()
-			sub_data["Beneficiaries_imm"] = imm_benefs.count()
+		summary_pnc["Good"] += json.loads(analytics_data[0].summary_pnc)["Good"]
+		summary_pnc["Poor"] += json.loads(analytics_data[0].summary_pnc)["Poor"]
+		summary_pnc["Average"] += json.loads(analytics_data[0].summary_pnc)["Average"]
 
-			data_anc = ProcessSubcenterData(anc_benefs, sub, since_months, Events.ANC_REG_VAL, months)
-			data_pnc = ProcessSubcenterData(pnc_benefs, sub, since_months, Events.PNC_REG_VAL, months)
-			data_imm = ProcessSubcenterData(imm_benefs, sub, since_months, Events.IMM_REG_VAL, months)
+		summary_imm["Good"] += json.loads(analytics_data[0].summary_imm)["Good"]
+		summary_imm["Poor"] += json.loads(analytics_data[0].summary_imm)["Poor"]
+		summary_imm["Average"] += json.loads(analytics_data[0].summary_imm)["Average"]
 
-			sub_data["Beneficiaries_anc"] = anc_benefs.count()
-			sub_data["Beneficiaries_pnc"] = pnc_benefs.count()
-			sub_data["Beneficiaries_imm"] = imm_benefs.count()
-			sub_data["Adherence_anc"] = data_anc["Adherence"]
-			sub_data["Adherence_pnc"] = data_pnc["Adherence"]
-			sub_data["Adherence_imm"] = data_imm["Adherence"]
-			sub_data["new_reg_anc"] = data_anc["new_reg"]
-			sub_data["new_reg_pnc"] = data_pnc["new_reg"]
-			sub_data["new_reg_imm"] = data_imm["new_reg"]
- 			sub_data["Overdue_anc"] = data_anc["Overdue"]
-			sub_data["Overdue_pnc"] = data_pnc["Overdue"]
-			sub_data["Overdue_imm"] = data_imm["Overdue"]
-			sub_data["overdue_sg_anc"] = data_anc["overdue_sg"]
-			sub_data["overdue_sg_pnc"] = data_pnc["overdue_sg"]
-			sub_data["overdue_sg_imm"] = data_imm["overdue_sg"]
-			sub_data["GivenServices_anc"] = data_anc["GivenServices"]
-			sub_data["GivenServices_pnc"] = data_pnc["GivenServices"]
-			sub_data["GivenServices_imm"] = data_imm["GivenServices"]
-			sub_data["OverDueRate_anc"] = data_anc["OverDueRate"]
-			sub_data["OverDueRate_pnc"] = data_pnc["OverDueRate"]
-			sub_data["OverDueRate_imm"] = data_imm["OverDueRate"]
-			sub_data["ProgressData_anc"] = data_anc["ProgressData"]
-			sub_data["ProgressData_pnc"] = data_pnc["ProgressData"]
-			sub_data["ProgressData_imm"] = data_imm["ProgressData"]
+		# #find all the subcenters in the block
+		# subs = SubCenter.objects.filter(block=block)
+		# for sub in subs:
+		# 	sub_data = {}
 
-			status_anc = get_status(data_anc["OverDueRate"], 5, 7)
-			status_pnc = get_status(data_pnc["OverDueRate"], 5, 7)
-			status_imm = get_status(data_imm["OverDueRate"], 5, 7)
+		# 	#total beneficiaries.
+		# 	anc_benefs = ANCBenef.objects.filter(subcenter = sub)
+		# 	pnc_benefs = PNCBenef.objects.filter(subcenter = sub)
+		# 	imm_benefs = IMMBenef.objects.filter(subcenter = sub)
+
+		# 	sub_data["Beneficiaries_anc"] = anc_benefs.count()
+		# 	sub_data["Beneficiaries_pnc"] = pnc_benefs.count()
+		# 	sub_data["Beneficiaries_imm"] = imm_benefs.count()
+
+		# 	data_anc = ProcessSubcenterData(anc_benefs, sub, since_months, Events.ANC_REG_VAL, months)
+		# 	data_pnc = ProcessSubcenterData(pnc_benefs, sub, since_months, Events.PNC_REG_VAL, months)
+		# 	data_imm = ProcessSubcenterData(imm_benefs, sub, since_months, Events.IMM_REG_VAL, months)
+
+		# 	sub_data["Beneficiaries_anc"] = anc_benefs.count()
+		# 	sub_data["Beneficiaries_pnc"] = pnc_benefs.count()
+		# 	sub_data["Beneficiaries_imm"] = imm_benefs.count()
+		# 	sub_data["Adherence_anc"] = data_anc["Adherence"]
+		# 	sub_data["Adherence_pnc"] = data_pnc["Adherence"]
+		# 	sub_data["Adherence_imm"] = data_imm["Adherence"]
+		# 	sub_data["new_reg_anc"] = data_anc["new_reg"]
+		# 	sub_data["new_reg_pnc"] = data_pnc["new_reg"]
+		# 	sub_data["new_reg_imm"] = data_imm["new_reg"]
+ 	# 		sub_data["Overdue_anc"] = data_anc["Overdue"]
+		# 	sub_data["Overdue_pnc"] = data_pnc["Overdue"]
+		# 	sub_data["Overdue_imm"] = data_imm["Overdue"]
+		# 	sub_data["overdue_sg_anc"] = data_anc["overdue_sg"]
+		# 	sub_data["overdue_sg_pnc"] = data_pnc["overdue_sg"]
+		# 	sub_data["overdue_sg_imm"] = data_imm["overdue_sg"]
+		# 	sub_data["GivenServices_anc"] = data_anc["GivenServices"]
+		# 	sub_data["GivenServices_pnc"] = data_pnc["GivenServices"]
+		# 	sub_data["GivenServices_imm"] = data_imm["GivenServices"]
+		# 	sub_data["OverDueRate_anc"] = data_anc["OverDueRate"]
+		# 	sub_data["OverDueRate_pnc"] = data_pnc["OverDueRate"]
+		# 	sub_data["OverDueRate_imm"] = data_imm["OverDueRate"]
+		# 	sub_data["ProgressData_anc"] = data_anc["ProgressData"]
+		# 	sub_data["ProgressData_pnc"] = data_pnc["ProgressData"]
+		# 	sub_data["ProgressData_imm"] = data_imm["ProgressData"]
+
+		# 	status_anc = get_status(data_anc["OverDueRate"], 5, 7)
+		# 	status_pnc = get_status(data_pnc["OverDueRate"], 5, 7)
+		# 	status_imm = get_status(data_imm["OverDueRate"], 5, 7)
 			
-			num_good_anc, num_avg_anc, num_poor_anc = increment_count_on_status(status_anc, num_good_anc, num_avg_anc, num_poor_anc)
-			num_good_pnc, num_avg_pnc, num_poor_pnc = increment_count_on_status(status_pnc, num_good_pnc, num_avg_pnc, num_poor_pnc)
-			num_good_imm, num_avg_imm, num_poor_imm = increment_count_on_status(status_imm, num_good_imm, num_avg_imm, num_poor_imm) 
+		# 	num_good_anc, num_avg_anc, num_poor_anc = increment_count_on_status(status_anc, num_good_anc, num_avg_anc, num_poor_anc)
+		# 	num_good_pnc, num_avg_pnc, num_poor_pnc = increment_count_on_status(status_pnc, num_good_pnc, num_avg_pnc, num_poor_pnc)
+		# 	num_good_imm, num_avg_imm, num_poor_imm = increment_count_on_status(status_imm, num_good_imm, num_avg_imm, num_poor_imm) 
 
-			sub_data["status_anc"] = status_anc
-			sub_data["status_pnc"] = status_pnc
-			sub_data["status_imm"] = status_imm
-			from math import ceil
-			sub_data["status"] = ceil((status_anc + status_pnc + status_imm)/3 - 0.5)
-			sub_data["Subcenter"] = sub.name
-			sub_data["SubcenterId"] = sub.id
+		# 	sub_data["status_anc"] = status_anc
+		# 	sub_data["status_pnc"] = status_pnc
+		# 	sub_data["status_imm"] = status_imm
+		# 	from math import ceil
+		# 	sub_data["status"] = ceil((status_anc + status_pnc + status_imm)/3 - 0.5)
+		# 	sub_data["Subcenter"] = sub.name
+		# 	sub_data["SubcenterId"] = sub.id
 
-			AshaDetails = []
-			cgs = Beneficiary.objects.all().filter(subcenter = sub).values("caregiver").distinct()
-			for cg in cgs:
-				if cg["caregiver"]:
-					_cg = CareGiver.objects.get(id=cg["caregiver"])
-					AshaDetails.append(_cg.first_name+':'+_cg.phone)
+		# 	AshaDetails = []
+		# 	cgs = Beneficiary.objects.all().filter(subcenter = sub).values("caregiver").distinct()
+		# 	for cg in cgs:
+		# 		if cg["caregiver"]:
+		# 			_cg = CareGiver.objects.get(id=cg["caregiver"])
+		# 			AshaDetails.append(_cg.first_name+':'+_cg.phone)
 
-			sub_data["AshaDetails"] = AshaDetails
+		# 	sub_data["AshaDetails"] = AshaDetails
 			
-			ANMDetails = []
-			cps = Beneficiary.objects.all().filter(subcenter = sub).values("careprovider").distinct()
-			for cp in cps:
-				if cp["careprovider"]:
-					_cp = CareProvider.objects.get(id=cp["careprovider"])
-					ANMDetails.append(_cp.first_name+':'+_cp.phone)
+		# 	ANMDetails = []
+		# 	cps = Beneficiary.objects.all().filter(subcenter = sub).values("careprovider").distinct()
+		# 	for cp in cps:
+		# 		if cp["careprovider"]:
+		# 			_cp = CareProvider.objects.get(id=cp["careprovider"])
+		# 			ANMDetails.append(_cp.first_name+':'+_cp.phone)
 
-			sub_data["ANMDetails"] = ANMDetails
+		# 	sub_data["ANMDetails"] = ANMDetails
 
 
-			sub_data["lat"] = sub._lat if sub._lat else block._lat
-			sub_data["long"] = sub._long if sub._long else block._long
+		# 	sub_data["lat"] = sub._lat if sub._lat else block._lat
+		# 	sub_data["long"] = sub._long if sub._long else block._long
 
-			#TODO remove dummy lat, long later
-			#_lat = 25.619626
-			#_long = 79.180409
-			#sign = randint(1,2)
-			#if sign == 1:
-			#	sub_data["lat"] = _lat + randint(1,100)*0.01
-			#	sub_data["long"] = _long + randint(1,100)*0.01
-			#else:
-			#	sub_data["lat"] = _lat - randint(1,100)*0.01
-			#	sub_data["long"] = _long - randint(1,100)*0.01
+		# 	#TODO remove dummy lat, long later
+		# 	#_lat = 25.619626
+		# 	#_long = 79.180409
+		# 	#sign = randint(1,2)
+		# 	#if sign == 1:
+		# 	#	sub_data["lat"] = _lat + randint(1,100)*0.01
+		# 	#	sub_data["long"] = _long + randint(1,100)*0.01
+		# 	#else:
+		# 	#	sub_data["lat"] = _lat - randint(1,100)*0.01
+		# 	#	sub_data["long"] = _long - randint(1,100)*0.01
 
-			data.append(sub_data)
+		# 	data.append(sub_data)
 
 	block_data = {}
 	block_data["data"] = data
-	block_data["summary"] = { "Good":num_good_anc , "Poor":num_poor_anc ,"Average":num_avg_anc }	
-	block_data["summary_anc"] = { "Good":num_good_anc , "Poor":num_poor_anc ,"Average":num_avg_anc }
-	block_data["summary_pnc"] = { "Good":num_good_pnc , "Poor":num_poor_pnc ,"Average":num_avg_pnc }
-	block_data["summary_imm"] = { "Good":num_good_imm , "Poor":num_poor_imm ,"Average":num_avg_imm }
+	block_data["summary"] = summary
+	block_data["summary_anc"] = summary_anc
+	block_data["summary_pnc"] = summary_pnc
+	block_data["summary_imm"] = summary_imm
 	block_data["blockid"] = blockid
 	block_data["blockname"] = blockname
 	

@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class Address(models.Model):
 	value = models.CharField(max_length=256)
 	_lat = models.FloatField(null=True)
@@ -143,13 +142,13 @@ class Beneficiary(User):
 	gaurdian = models.CharField(max_length=50, null=True)
 	gaurdian_relation = models.IntegerField(choices=RELATION_TYPE_CHOICES, null=True)
 	language = models.IntegerField(choices=LANGUAGE_CHOICES, default=LANGUAGE.HINDI) 
-	address = models.ForeignKey(Address, null=True)
+	address = models.ForeignKey(Address, null=True, related_name='beneficiaries')
 	createdon = models.DateTimeField()
 	modifiedon = models.DateTimeField()
 	subcenter = models.ForeignKey(SubCenter)
 	registration_year = models.CharField(max_length=20, null=True)
 	caregiver = models.ForeignKey(CareGiver, null=True)
-	careprovider = models.ForeignKey(CareProvider, null=True)
+	careprovider = models.ForeignKey(CareProvider, null=True, related_name="beneficiaries")
 
 class ANCBenef(Beneficiary):
 	ANC_SPAN = 270
