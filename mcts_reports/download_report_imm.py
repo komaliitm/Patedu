@@ -132,8 +132,11 @@ if len(sys.argv) ==1:
 else:
 	num_months = int(sys.argv[1])
 mcts_jhs_username = "nrhm-up.jh"
-mcts_jhs_passwd = "4e4d1b7432c708f094401f4cc7029ccc678e72d3"
+# mcts_jhs_passwd = "4e4d1b7432c708f094401f4cc7029ccc678e72d3"
+# stn_value = "637dd3894df6b16a956ab46ed377e5d85a7b2310"
+
 stn_value = "637dd3894df6b16a956ab46ed377e5d85a7b2310"
+mcts_jhs_passwd = "a297c9af64869ca1407a6cf140209863fdb711d2"
 
 report_types = {
 	'INF_IMM':'Rpt_WorkPlan_Registration.aspx?rpt=wii'
