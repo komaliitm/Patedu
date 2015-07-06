@@ -403,6 +403,7 @@ def DashboardData(request, blockid = None):
 	for block in blocks:
 		analytics_data = AnalyticsData.objects.filter(block=block, since_months=months, month= this_month_date.month, year=this_month_date.year)
 		if not analytics_data:
+			continue
 			analytics_aggregator_allblocks.delay()
 			return HttpResponseNotAllowed('Check after 5 mins. Data generation in progress.') 
 		data += json.loads(analytics_data[0].data)
