@@ -44,7 +44,7 @@ def analytics_aggregator_allblocks(district_mcts_id='36'):
 		blocks = SubCenter.objects.filter(district=district).values('block_id')
 		for block_entry in blocks:
 			block = Block.objects.get(id=block_entry['block_id'])
-			if AnalyticsData.objects.filter(block=block, since_months=months, month= this_month_date.month, year=this_month_date.year)
+			if AnalyticsData.objects.filter(block=block, since_months=months, month= this_month_date.month, year=this_month_date.year):
 				continue
 			subcenters = SubCenter.objects.filter(block=block)
 			data = []
