@@ -23,6 +23,23 @@ import xlsxwriter
 from mcts_identities.models import IMMBenef, ANCBenef, Beneficiary, Block, SubCenter, Address, CareProvider
 from mcts_transactions.models import DueEvents, OverDueEvents
 
+def LoadLatLong():
+    with open("sublatlong.json", 'r') as f:
+        j_string = f.read()
+
+    subcenters = json.loads(j_string)
+    f.close()
+
+    for subc in subcenters:
+        try:
+            sub = SubCenter.objects.get(MCTS_ID=subc["MCTS_Id"])
+            print "Updating for "+sub.name
+            sub._lat = subc["lat"]
+            sub._long = subc["long"]
+            sub.save()
+        except:
+            continue
+
 def DumpSubCList():
     subcenters = SubCenter.objects.all()
     subs = []
