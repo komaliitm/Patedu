@@ -158,7 +158,7 @@ def analytics_aggregator_allblocks(district_mcts_id='36'):
 			block_data["blockid"] = block.id
 			block_data["blockname"] = block.name
 			if not AnalyticsData.objects.filter(block=block, since_months=months, month= this_month_date.month, year=this_month_date.year):
-				print "adding: "+block.id+" , "+"months "
+				print "adding: "+str(block.id)+" , "+"months "
 				ad = AnalyticsData.objects.create(block = block, data = json.dumps(block_data["data"]), summary=json.dumps(block_data["summary"]),\
 			 		summary_anc=json.dumps(block_data["summary_anc"]), summary_imm=json.dumps(block_data["summary_imm"]),\
 			 		summary_pnc=json.dumps(block_data["summary_pnc"]), since_months = months, month = this_month_date.month, year=this_month_date.year)
