@@ -133,20 +133,19 @@ def analytics_aggregator_allblocks(district_mcts_id='36'):
 
 				sub_data["ANMDetails"] = ANMDetails
 
-
-				# sub_data["lat"] = sub._lat if sub._lat else block._lat
-				# sub_data["long"] = sub._long if sub._long else block._long
-
 				# TODO remove dummy lat, long later
 				_lat = block._lat if block._lat else 25.619626 
 				_long = block._long if block._long else 79.180409
 				sign = randint(1,2)
 				if sign == 1:
-					sub_data["lat"] = _lat + randint(1,100)*0.005
-					sub_data["long"] = _long + randint(1,100)*0.005
+					_lat = _lat + randint(1,100)*0.005
+					_long = _long + randint(1,100)*0.005
 				else:
-					sub_data["lat"] = _lat - randint(1,100)*0.005
-					sub_data["long"] = _long - randint(1,100)*0.005
+					_lat = _lat - randint(1,100)*0.005
+					_long = _long - randint(1,100)*0.005
+
+				sub_data["lat"] = sub._lat if sub._lat else _lat
+				sub_data["long"] = sub._long if sub._long else _long
 
 				data.append(sub_data)
 			block_data = {}
