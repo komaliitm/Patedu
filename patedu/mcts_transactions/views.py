@@ -527,3 +527,34 @@ def DashboardData(request, blockid = None):
 	block_data["blockname"] = blockname
 	
 	return HttpResponse(json.dumps(block_data), mimetype="application/json")
+
+def ODSANMANC(request):
+	if request.method == 'GET':
+		anm_id = request.GET.get('CustomField')
+		if not anm_id:
+			return HttpResponseBadRequest('ANM ID is not provided')
+		try:
+			anm = CareProvider.objects.get(id=int(anm_id))
+		except:
+			return HttpResponseBadRequest('ANM does not exist')
+
+		timezone = 'Asia/Kolkata'
+		tz = pytz.timezone(timezone)
+		today = utcnow_aware().replace(tzinfo=tz)
+		date_then = today.replace(hour=12, minute=0, day=1, second=0).date()
+		
+		#All ANC overdue services for given ANM
+		from django.db.models import Count
+		anc_benefs = ANCBenef.objects.filter(careprovider=anm)
+		anc_ods = OverDueEvents.objects.filter(beneficiary__in=anc_benefs).values('event').annotate(count=Count('event'))
+
+		anm_stats_anc = ''
+		for anc_od in anc_ods:
+			if anm_stats_anc:
+				anm_stats_anc +='. '
+			event = Events.objects.get(id=anc_od.get('event'))
+			event_count = anc_od.get('count')
+			anm_stats_anc += event.val+' '+str(event_count)
+		return HttpResponse(anm_stats_anc)
+	else:
+		return HttpResponseBadRequest('HTTP method type not allowed')

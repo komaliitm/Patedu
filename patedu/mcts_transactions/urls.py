@@ -7,5 +7,6 @@ from django.contrib import admin
 urlpatterns = patterns('',
 	url(r'^dashboard/$', views.DashboardPage),
 	url(r'^dashboard/data/(\d+)/$', views.DashboardData),
-	url(r'^dashboard/data/$', views.DashboardData)
+	url(r'^dashboard/data/$', views.DashboardData),
+	url(r'^wp_call/ods/anm/$', views.ODSANMANC)
 )
