@@ -546,7 +546,7 @@ def ODSANMANC(request):
 		#All ANC overdue services for given ANM
 		from django.db.models import Count
 		anc_benefs = ANCBenef.objects.filter(careprovider=anm)
-		anc_ods = OverDueEvents.objects.filter(beneficiary__in=anc_benefs, date=date_then).values('event').annotate(count=Count('event'))
+		anc_ods = OverDueEvents.objects.filter(beneficiary__in=anc_benefs).values('event').annotate(count=Count('event'))
 
 		anm_stats_anc = ''
 		for anc_od in anc_ods:
@@ -554,7 +554,7 @@ def ODSANMANC(request):
 				anm_stats_anc +='. '
 			event = Events.objects.get(id=anc_od.get('event'))
 			event_count = anc_od.get('count')
-			anm_stats_anc += event.val+' '+str(event_count)
+			anm_stats_anc += event.val+' '+str(event_count)+' Overdue'
 		return HttpResponse(anm_stats_anc, content_type='text/plain')
 	else:
 		return HttpResponseBadRequest('HTTP method type not allowed')
