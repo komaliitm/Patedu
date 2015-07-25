@@ -554,7 +554,7 @@ def ODSANMANC(request):
 				anm_stats_anc +='. '
 			event = Events.objects.get(id=anc_od.get('event'))
 			event_count = anc_od.get('count')
-			anm_stats_anc += event.val+' '+str(event_count)+' Overdue'
+			anm_stats_anc += event.val+' '+str(event_count)+' Overdue!'
 		return HttpResponse(anm_stats_anc, content_type='text/plain')
 	else:
 		return HttpResponseBadRequest('HTTP method type not allowed')
