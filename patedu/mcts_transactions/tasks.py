@@ -22,7 +22,7 @@ from dateutil.relativedelta import relativedelta
 from mcts_identities.models import District, SubCenter, Block, Beneficiary, ANCBenef, PNCBenef, IMMBenef
 
 @shared_task
-def analytics_aggregator_allblocks(district_mcts_id='36'):
+def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 	try:
 		district = District.objects.get(MCTS_ID=district_mcts_id)
 	except ObjectDoesNotExist:
@@ -34,6 +34,11 @@ def analytics_aggregator_allblocks(district_mcts_id='36'):
 	today_utc = utcnow_aware()
 	today = today_utc.astimezone(tz) 
 	
+	today_date = today.date()
+	anc_cutoff = today_date - timedelta(days=280)
+	imm_cutoff = today_date - timedelta(days=365)
+	yesterday_utc = today_utc - timedelta(days=1)
+
 	dt_month = today.date().month
 	dt_year = today.date().year
 
@@ -44,7 +49,7 @@ def analytics_aggregator_allblocks(district_mcts_id='36'):
 		blocks = SubCenter.objects.filter(district=district).values('block_id')
 		for block_entry in blocks:
 			block = Block.objects.get(id=block_entry['block_id'])
-			if AnalyticsData.objects.filter(block=block, since_months=months, month= this_month_date.month, year=this_month_date.year):
+			if not rw and AnalyticsData.objects.filter(block=block, since_months=months, month= this_month_date.month, year=this_month_date.year):
 				continue
 			subcenters = SubCenter.objects.filter(block=block)
 			data = []
@@ -65,9 +70,9 @@ def analytics_aggregator_allblocks(district_mcts_id='36'):
 				pnc_benefs = PNCBenef.objects.filter(subcenter = sub)
 				imm_benefs = IMMBenef.objects.filter(subcenter = sub)
 
-				sub_data["Beneficiaries_anc"] = anc_benefs.count()
+				sub_data["Beneficiaries_anc"] = anc_benefs.filter(LMP__gte=anc_cutoff, createdon__gt=yesterday_utc).count()
 				sub_data["Beneficiaries_pnc"] = pnc_benefs.count()
-				sub_data["Beneficiaries_imm"] = imm_benefs.count()
+				sub_data["Beneficiaries_imm"] = imm_benefs.count(dob__gte=imm_cutoff, createdon__gt=yesterday_utc).count()
 
 				from mcts_transactions.views import ProcessSubcenterData, get_status, increment_count_on_status
 				data_anc = ProcessSubcenterData(anc_benefs, sub, since_months, Events.ANC_REG_VAL, months)
@@ -156,8 +161,7 @@ def analytics_aggregator_allblocks(district_mcts_id='36'):
 			block_data["summary_imm"] = { "Good":num_good_imm , "Poor":num_poor_imm ,"Average":num_avg_imm }
 			block_data["blockid"] = block.id
 			block_data["blockname"] = block.name
-			if not AnalyticsData.objects.filter(block=block, since_months=months, month= this_month_date.month, year=this_month_date.year):
-				print "adding: "+str(block.id)+" , "+"months "
-				ad = AnalyticsData.objects.create(block = block, data = json.dumps(block_data["data"]), summary=json.dumps(block_data["summary"]),\
-			 		summary_anc=json.dumps(block_data["summary_anc"]), summary_imm=json.dumps(block_data["summary_imm"]),\
-			 		summary_pnc=json.dumps(block_data["summary_pnc"]), since_months = months, month = this_month_date.month, year=this_month_date.year)
+			print "adding: "+str(block.id)+" , "+"months "
+			ad = AnalyticsData.objects.create(block = block, data = json.dumps(block_data["data"]), summary=json.dumps(block_data["summary"]),\
+		 		summary_anc=json.dumps(block_data["summary_anc"]), summary_imm=json.dumps(block_data["summary_imm"]),\
+		 		summary_pnc=json.dumps(block_data["summary_pnc"]), since_months = months, month = this_month_date.month, year=this_month_date.year)
