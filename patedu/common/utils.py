@@ -20,7 +20,7 @@ import pytz
 from schedule_api.models import TaskScheduler
 import requests, re
 import xlsxwriter
-from mcts_identities.models import IMMBenef, ANCBenef, Beneficiary, Block, SubCenter, Address, CareProvider
+from mcts_identities.models import IMMBenef, ANCBenef, Beneficiary, Block, SubCenter, Address,  CareProvider, CareGiver, HealthFacility, District
 from mcts_transactions.models import DueEvents, OverDueEvents
 
 def LoadLatLong():
@@ -64,7 +64,7 @@ def GenerateNumberString_ANM(benefs):
         number_string += '91'+due_anm.phone
     return number_string
     
-def ANMIvrForOverdueServices(test=True):
+def ANMIvrForOverdueServices_MVaayoo(test=True):
     timezone = 'Asia/Kolkata'
     tz = pytz.timezone(timezone)
     today = utcnow_aware().replace(tzinfo=tz)
@@ -96,7 +96,403 @@ def ANMIvrForOverdueServices(test=True):
         # Put exception detail here
         sys.exc_info()[0]
         pass
+
+def SaveANCBenef(benef):
+    lmp_date = benef.get('LMP Date')
+    if lmp_date:
+        lmp_date = datetime.strptime(lmp_date, "%d/%m/%Y").date() 
+    else:
+        lmp_date = None
+    edd = benef.get('Expected Date Of delivery')
+    if edd:
+        edd = datetime.strptime(edd, "%d/%m/%Y").date()
+    else:
+        edd = None
+
+    husband_name = benef.get("Husband's Name").strip()
+    mother_mcts_id = benef.get("Mother ID").strip()
+    mother_name = benef.get('Mother Name').strip()
+    notify_number = benef.get('Phone No.')
+    notify_number_type = Beneficiary.NUMBER_TYPE.SELF
+    subcenter_rs = benef.get('SubFacility / SubCentr')
+    address  = benef.get(' Village')
+    anm_phone  = benef.get('ANM Phone No.')
+    anm_name = benef.get('ANM Name').strip()
+    asha_phone = benef.get('ASHA Phone No.')
+    asha_name = benef.get('ASHA Name').strip()
+    benef_username = mother_mcts_id+'_'+mother_name
+    benef_username = benef_username[-29:]
+    district_rs = benef.get('Distric')
+    block_rs = benef.get('Health Bloc')
+    health_facility_rs = benef.get('Health Facilit')
     
+    if ANCBenef.objects.filter(MCTS_ID=mother_mcts_id):
+        print 'IMM Benef Already exists'
+        return
+
+    t_district = []
+    if district_rs:
+        district_rs = district_rs.lower()
+        _regSearch = re.search('([a-z ]+)', district_rs)
+        if _regSearch:
+            district_name = _regSearch.group(0).strip()
+        _regSearch= re.search('(\d+)', district_rs)
+        if _regSearch:
+            district_id = _regSearch.group(0).strip()
+        if district_id and district_name:
+            t_district = [district_name, district_id]
+    
+    t_block = []
+    if block_rs:
+        block_rs = block_rs.lower()
+        _regSearch = re.search('([a-z ]+)', block_rs)
+        if _regSearch:
+            block_name = _regSearch.group(0).strip()
+        _regSearch= re.search('(\d+)', block_rs)
+        if _regSearch:
+            block_id = _regSearch.group(0).strip()
+        if block_id and block_name:
+            t_block = [block_name, block_id]
+
+    t_health_facility = []
+    if health_facility_rs:
+        health_facility_rs = health_facility_rs.lower()
+        _regSearch = re.search('([a-z ]+)', health_facility_rs)
+        if _regSearch:
+            health_facility_name = _regSearch.group(0).strip()
+        _regSearch= re.search('(\d+)', health_facility_rs)
+        if _regSearch:
+            health_facility_id = _regSearch.group(0).strip()
+        if health_facility_name and health_facility_id:
+            t_health_facility = [health_facility_name, health_facility_id]
+
+    #check and create district
+    if t_district:
+        dsts = District.objects.filter(MCTS_ID = t_district[1])
+        if dsts:
+            district = dsts[0]
+        else:
+            district = District.objects.create(MCTS_ID = t_district[1], name=t_district[0])
+    else:
+        district = None
+
+    #check and create block
+    if t_block:
+        blocks = Block.objects.filter(MCTS_ID = t_block[1])
+        if blocks:
+            block = blocks[0]
+        else:
+            block = Block.objects.create(MCTS_ID = t_block[1], name=t_block[0])
+    else:
+        block = None
+
+    #check and create health facility
+    if t_health_facility:
+        hfs = HealthFacility.objects.filter(MCTS_ID = t_health_facility[1])
+        if hfs:
+            health_facility = hfs[0]
+        else:
+            health_facility = HealthFacility.objects.create(MCTS_ID = t_health_facility[1], name = t_health_facility[0])
+    else:
+        health_facility = None
+
+    #process subcenter
+    subcenter = None
+    if subcenter_rs:
+        subcenter_rs = subcenter_rs.replace("\n","").lower().strip()
+        _regSearch = re.search('(\d+)',subcenter_rs)
+        if _regSearch:
+            subc_id = _regSearch.group(0)
+            existing_subc = SubCenter.objects.filter(MCTS_ID=subc_id)
+            if existing_subc:
+                subcenter = existing_subc[0]
+            else:
+                _regSearch = re.search('([a-z ]+)',subcenter_rs)
+                if _regSearch:
+                    subc_name = _regSearch.group(0).strip()
+                else:
+                    subc_name = subc_id
+                subcenter = SubCenter.objects.create(MCTS_ID = subc_id, name=subc_name, district=district, block=block, health_facility=health_facility)
+
+    #Process address
+    vill_name = None
+    vill_mcts_id = None
+    vill_value = None
+    if address:
+        address = address.replace("\n", "").lower()
+        vill_value = address
+        _regSearch = re.search('([a-z ]+)', address)
+        if _regSearch:
+            vill_name = _regSearch.group(0).strip()
+        _regSearch = re.search('(\d+)', address)
+        if _regSearch:
+            vill_mcts_id = _regSearch.group(0)
+    #check and create address
+    addrs = None
+    if vill_mcts_id is not None:
+        addrs = Address.objects.filter(village_mcts_id=vill_mcts_id)
+    if not addrs and vill_value is not None:
+        addrs = Address.objects.filter(value=vill_value)
+    if addrs:
+        village = addrs[0]
+    else: 
+        try:
+            village = Address.objects.create(value=vill_value, village=vill_name, village_mcts_id = vill_mcts_id)
+        except:
+            village = None
+
+    #process caregiver
+    if asha_name:
+        cgs = CareGiver.objects.filter(designation='ASHA', phone=asha_phone)
+        if cgs:
+            cg = cgs[0]
+            if cg.first_name != asha_name:
+                cg.first_name = asha_name
+                cg.save()
+        else:
+            username = asha_name+"_"+asha_phone+"_ASHA"
+            username = username[0:29]
+            cg = CareGiver.objects.create(first_name=asha_name, designation='ASHA', phone=asha_phone, address=village, username=username)
+    else:
+        cg = None
+
+    #process careprovider
+    if anm_name:
+        cps = CareProvider.objects.filter(designation='ANM', phone=anm_phone)
+        if cps:
+            cp = cps[0]
+            if cp.first_name != anm_name:
+                cp.first_name = anm_name
+                cp.save()
+        else:
+            username = anm_name +"_"+anm_phone+"_ANM"
+            username = username[0:29]
+            cp = CareProvider.objects.create(first_name=anm_name, designation='ANM', phone=anm_phone, username=username, address=village)
+    else:
+        cp = None
+
+    print benef_username
+    anc_benef = ANCBenef.objects.create(LMP= lmp_date, EDD= edd, husband= husband_name, \
+        active=True, MCTS_ID=mother_mcts_id, notify_number=notify_number, notify_number_type= notify_number_type, \
+        address=village, createdon=utcnow_aware(), modifiedon=utcnow_aware(), subcenter=subcenter, \
+        first_name=mother_name, caregiver=cg, careprovider=cp, username=benef_username)
+
+
+def SaveIMMBenef(benef):
+    birthdate = benef.get('Date of Birth')
+    if birthdate:
+        birthdate = datetime.strptime(birthdate, "%d/%m/%Y").date()
+    else:
+        birthdate = None
+
+    child_name = benef.get('Child Name')
+    child_sex = benef.get('Sex')
+    mother_name = benef.get("Mother's Name")
+    mother_mcts_id = benef.get('Mother ID')
+    child_mcts_id = benef.get('Child ID').strip()
+    notify_number = benef.get('Phone No.')
+    notify_number_type = Beneficiary.NUMBER_TYPE.SELF
+    subcenter_rs = benef.get('SubFacility / SubCentr')
+    address  = benef.get(' Village')
+    anm_phone  = benef.get('ANM Phone No.')
+    anm_name = benef.get('ANM Name').strip()
+    asha_phone = benef.get('ASHA Phone No.')
+    asha_name = benef.get('ASHA Name').strip()
+    benef_username = child_mcts_id+'_'+child_name
+    benef_username = benef_username[-29:]
+    district_rs = benef.get('Distric')
+    block_rs = benef.get('Health Bloc')
+    health_facility_rs = benef.get('Health Facilit')
+    
+    if IMMBenef.objects.filter(MCTS_ID=child_mcts_id):
+        print 'IMM Benef already exists'
+        return
+
+        t_district = []
+    if district_rs:
+        district_rs = district_rs.lower()
+        _regSearch = re.search('([a-z ]+)', district_rs)
+        if _regSearch:
+            district_name = _regSearch.group(0).strip()
+        _regSearch= re.search('(\d+)', district_rs)
+        if _regSearch:
+            district_id = _regSearch.group(0).strip()
+        if district_id and district_name:
+            t_district = [district_name, district_id]
+    
+    t_block = []
+    if block_rs:
+        block_rs = block_rs.lower()
+        _regSearch = re.search('([a-z ]+)', block_rs)
+        if _regSearch:
+            block_name = _regSearch.group(0).strip()
+        _regSearch= re.search('(\d+)', block_rs)
+        if _regSearch:
+            block_id = _regSearch.group(0).strip()
+        if block_id and block_name:
+            t_block = [block_name, block_id]
+
+    t_health_facility = []
+    if health_facility_rs:
+        health_facility_rs = health_facility_rs.lower()
+        _regSearch = re.search('([a-z ]+)', health_facility_rs)
+        if _regSearch:
+            health_facility_name = _regSearch.group(0).strip()
+        _regSearch= re.search('(\d+)', health_facility_rs)
+        if _regSearch:
+            health_facility_id = _regSearch.group(0).strip()
+        if health_facility_name and health_facility_id:
+            t_health_facility = [health_facility_name, health_facility_id]
+
+    #check and create district
+    if t_district:
+        dsts = District.objects.filter(MCTS_ID = t_district[1])
+        if dsts:
+            district = dsts[0]
+        else:
+            district = District.objects.create(MCTS_ID = t_district[1], name=t_district[0])
+    else:
+        district = None
+
+    #check and create block
+    if t_block:
+        blocks = Block.objects.filter(MCTS_ID = t_block[1])
+        if blocks:
+            block = blocks[0]
+        else:
+            block = Block.objects.create(MCTS_ID = t_block[1], name=t_block[0])
+    else:
+        block = None
+
+    #check and create health facility
+    if t_health_facility:
+        hfs = HealthFacility.objects.filter(MCTS_ID = t_health_facility[1])
+        if hfs:
+            health_facility = hfs[0]
+        else:
+            health_facility = HealthFacility.objects.create(MCTS_ID = t_health_facility[1], name = t_health_facility[0])
+    else:
+        health_facility = None
+
+    #process subcenter
+    subcenter = None
+    if subcenter_rs:
+        subcenter_rs = subcenter_rs.replace("\n","").lower().strip()
+        _regSearch = re.search('(\d+)',subcenter_rs)
+        if _regSearch:
+            subc_id = _regSearch.group(0)
+            existing_subc = SubCenter.objects.filter(MCTS_ID=subc_id)
+            if existing_subc:
+                subcenter = existing_subc[0]
+            else:
+                _regSearch = re.search('([a-z ]+)',subcenter_rs)
+                if _regSearch:
+                    subc_name = _regSearch.group(0).strip()
+                else:
+                    subc_name = subc_id
+                subcenter = SubCenter.objects.create(MCTS_ID = subc_id, name=subc_name, district=district, block=block, health_facility=health_facility)
+
+    #Process address
+    vill_name = None
+    vill_mcts_id = None
+    vill_value = None
+    if address:
+        address = address.replace("\n", "").lower()
+        vill_value = address
+        _regSearch = re.search('([a-z ]+)', address)
+        if _regSearch:
+            vill_name = _regSearch.group(0).strip()
+        _regSearch = re.search('(\d+)', address)
+        if _regSearch:
+            vill_mcts_id = _regSearch.group(0)
+    #check and create address
+    addrs = None
+    if vill_mcts_id is not None:
+        addrs = Address.objects.filter(village_mcts_id=vill_mcts_id)
+    if not addrs and vill_value is not None:
+        addrs = Address.objects.filter(value=vill_value)
+    if addrs:
+        village = addrs[0]
+    else: 
+        try:
+            village = Address.objects.create(value=vill_value, village=vill_name, village_mcts_id = vill_mcts_id)
+        except:
+            village = None
+
+    #process caregiver
+    if asha_name:
+        cgs = CareGiver.objects.filter(designation='ASHA', phone=asha_phone)
+        if cgs:
+            cg = cgs[0]
+            if cg.first_name != asha_name:
+                cg.first_name = asha_name
+                cg.save()
+        else:
+            username = asha_name+"_"+asha_phone+"_ASHA"
+            username = username[0:29]
+            cg = CareGiver.objects.create(first_name=asha_name, designation='ASHA', phone=asha_phone, address=village, username=username)
+    else:
+        cg = None
+
+    #process careprovider
+    if anm_name:
+        cps = CareProvider.objects.filter(designation='ANM', phone=anm_phone)
+        if cps:
+            cp = cps[0]
+            if cp.first_name != anm_name:
+                cp.first_name = anm_name
+                cp.save()
+        else:
+            username = anm_name +"_"+anm_phone+"_ANM"
+            username = username[0:29]
+            cp = CareProvider.objects.create(first_name=anm_name, designation='ANM', phone=anm_phone, username=username, address=village)
+    else:
+        cp = None
+
+    print benef_username
+    imm_benef = IMMBenef.objects.create(dob = birthdate, child_name=child_name, child_sex=child_sex, \
+    mother_name=mother_name, mother_mcts_id= mother_mcts_id, active=True, MCTS_ID=child_mcts_id, \
+    notify_number=notify_number, notify_number_type= notify_number_type, address=village, \
+    createdon=utcnow_aware(), modifiedon=utcnow_aware(), subcenter=subcenter, \
+    first_name=child_name, caregiver=cg, careprovider=cp, username=benef_username)
+
+def LoadBenefsFromJson(json_data_file, Type=ANCBenef):
+    with open(json_data_file, 'r') as f:
+        j_string = f.read()
+    
+    benefs = json.loads(j_string)
+    print len(benefs)
+    i = 0
+    for benef in benefs:
+        if Type == ANCBenef:
+            SaveANCBenef(benef)
+        elif Type == IMMBenef:
+            SaveIMMBenef(benef)
+        i +=1
+
+def ANMIvrForOverdueServices_Exotel():
+    timezone = 'Asia/Kolkata'
+    tz = pytz.timezone(timezone)
+    today = utcnow_aware().replace(tzinfo=tz)
+    date_then = today.replace(hour=12, minute=0, day=1, second=0).date()
+    from sms.sender import SendVoiceCall
+
+    #Voice call for ANC
+    anc_benefs = ANCBenef.objects.filter(odue_events__date=date_then).distinct()
+    anc_number_string = GenerateNumberString_ANM(anc_benefs)
+    anc_voice_file = 'ANM_ODUE_ANC_REMINDER_20150703142527385436.wav'
+    print 'ANMs for ANC over due services'
+    print anc_number_string
+    if test:
+        anc_number_string = '919390681183'
+    
+    try:
+        SendVoiceCall(rec_num = imm_number_string, voice_file=imm_voice_file, campaign_name='ANM_ODS_IMM_'+str(date_then))
+        SendVoiceCall(rec_num = anc_number_string, voice_file=anc_voice_file, campaign_name='ANM_ODS_ANC_'+str(date_then))
+    except:
+        # Put exception detail here
+        sys.exc_info()[0]
+        pass
 
 def BenefIVRForDueServices(test=True):
     timezone = 'Asia/Kolkata'

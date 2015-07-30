@@ -96,7 +96,11 @@ def get_token(br, event_target=None, tsm1=None, client_token_vs=None, client_tok
                 tsmhf_control.value = ";;AjaxControlToolkit, Version=3.5.51116.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e:en:2a06c7e2-728e-4b15-83d6-9b269fb7261e:475a4ef5:addc6819:5546a2b:d2e10b12:effe2a26:37e2e5c9:5a682656:c7029a2:e9e598a9;" 
                 tsmhf_control.readonly = True
             if month:
-                month_ctrl.value=[fin_month]
+                try:
+                    month_ctrl.value=[fin_month]
+                except:
+                    finm_item = mechanize.Item(month_ctrl, {"contents":str(fin_month), "value":str(fin_month)})
+                    finm_item.selected = True
             if block:
                 block_ctrl.value = [block]
             if phc:
@@ -230,7 +234,7 @@ try:
                         for ticker in range(1,3):
                             try:
                                 file_name = "DetailsMother_"+dictrict+"_"+state+"_"+str(block)+"_"+str(subc)+".xls"
-                                file_path = "xls/"+str(cMonth)+"-"+str(cYear)+"/"+state+"/"+dictrict+"/"+str(block)+"/"+str(subc)
+                                file_path = "xls/"+str(fin_year)+"/"+state+"/"+dictrict+"/"+str(block)+"/"+str(subc)
                                 file_abs_path = os.path.join(file_path, file_name)
 
                                 if os.path.isfile(file_abs_path):
@@ -266,7 +270,11 @@ try:
                                 br.form.controls.remove(br.form.find_control("TxtStateCode"))
                                 # br.form.controls.remove(br.form.find_control("State_Code"))
 
-                                month_ctrl.value = [fin_month]
+                                try:
+                                    month_ctrl.value=[fin_month]
+                                except:
+                                    finm_item = mechanize.Item(month_ctrl, {"contents":str(fin_month), "value":str(fin_month)})
+                                    finm_item.selected = True
                                 year_ctrl.value = [fin_year]
                                 block_ctrl.value = [str(block)]
                                 phc_ctrl.value = [str(phc)]
@@ -304,8 +312,6 @@ try:
 
                                 #Generate report
                                 report_uri = "http://nrhm-mctsrpt.nic.in/MCHRPT/Report/Report_Resistration.aspx?rpt=DetailsMother&"+gid_param
-                                file_name = "DetailsMother_"+dictrict+"_"+state+"_"+str(block)+"_"+str(subc)+".xls"
-                                file_path = "xls/"+str(cMonth)+"-"+str(cYear)+"/"+state+"/"+dictrict+"/"+str(block)+"/"+str(subc)
                                 try:
                                     os.makedirs(file_path)
                                 except:
