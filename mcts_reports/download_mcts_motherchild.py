@@ -235,7 +235,7 @@ try:
                             try:
                                 benef_tag = "DetailsChild" if benef_type == "Child_Details" else "DetailsMother"
                                 file_name = benef_tag+"_"+dictrict+"_"+state+"_"+str(block)+"_"+str(subc)+".xls"
-                                file_path = "xls/"+str(fin_year)+"/"+state+"/"+dictrict+"/"+str(block)+"/"+str(subc)
+                                file_path = "xls/benef_list/"+str(cMonth)+"-"+str(fin_year)+"/"+state+"/"+dictrict+"/"+str(block)+"/"+str(subc)
                                 file_abs_path = os.path.join(file_path, file_name)
 
                                 if os.path.isfile(file_abs_path):

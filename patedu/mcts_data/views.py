@@ -250,7 +250,8 @@ def mother_name_husband_name(benef, subcenter):
     mother_mcts_id = None
     if year_of_reg_mother_id:
         mother_mcts_id = year_of_reg_mother_id.replace(" ","").replace("\n","").replace("(","").replace(")","_").replace("-","_")
-
+        if '_' in mother_mcts_id:
+            mother_mcts_id = mother_mcts_id.split('_')[2]
     #parse delivery date
     dd = None
     if delivery_date:
@@ -272,7 +273,7 @@ def mother_name_husband_name(benef, subcenter):
 
         _regSearch = re.search('([a-z ]+)', asha_phone_name)
         if _regSearch:
-            asha_name = _regSearch.group(0).strip()
+            asha_name = _regSearch.group(0).strip().lower()
 
     #parse anm phone, name
     anm_name = None
@@ -286,7 +287,7 @@ def mother_name_husband_name(benef, subcenter):
 
         _regSearch = re.search('([a-z ]+)', anm_phone_name)
         if _regSearch:
-            anm_name = _regSearch.group(0).strip()
+            anm_name = _regSearch.group(0).strip().lower()
 
     #check and create address
     addrs = None
@@ -304,9 +305,12 @@ def mother_name_husband_name(benef, subcenter):
 
     #check and create care giver
     if asha_name:
-        cgs = CareGiver.objects.filter(first_name=asha_name, designation='ASHA', phone=asha_phone)
+        cgs = CareGiver.objects.filter(designation='ASHA', phone=asha_phone)
         if cgs.count() > 0:
             cg = cgs[0]
+            if cg.first_name != asha_name:
+                cg.first_name = asha_name
+                cg.save()
         else:
             username = asha_name+"_"+asha_phone+"_ASHA"
             username = username[0:29]
@@ -316,9 +320,12 @@ def mother_name_husband_name(benef, subcenter):
 
     #check and create care provider
     if anm_name:
-        cps = CareProvider.objects.filter(first_name=anm_name, designation='ANM', phone=anm_phone)
+        cps = CareProvider.objects.filter(designation='ANM', phone=anm_phone)
         if cps.count() > 0:
             cp = cps[0]
+            if cp.first_name != anm_name:
+                cp.first_name = anm_name
+                cp.save()
         else:
             username = anm_name +"_"+anm_phone+"_ANM"
             username = username[0:29]
@@ -433,7 +440,8 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
     mother_mcts_id = None
     if year_of_reg_mother_id:
         mother_mcts_id = year_of_reg_mother_id.replace(" ","").replace("\n","").replace("(","").replace(")","_").replace("-","_")
-
+        if '_' in mother_mcts_id:
+            mother_mcts_id = mother_mcts_id.split('_')[2]
     #parse ASHA phone, name
     asha_name = None
     asha_phone = ''
@@ -446,7 +454,7 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
 
         _regSearch = re.search('([a-z ]+)', asha_phone_name)
         if _regSearch:
-            asha_name = _regSearch.group(0).strip()
+            asha_name = _regSearch.group(0).strip().lower()
 
     #parse anm phone, name
     anm_name = None
@@ -460,7 +468,7 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
 
         _regSearch = re.search('([a-z ]+)', anm_phone_name)
         if _regSearch:
-            anm_name = _regSearch.group(0).strip()
+            anm_name = _regSearch.group(0).strip().lower()
 
     #check and create address
     addrs = None
@@ -477,22 +485,28 @@ def SaveANCBeneficiary(benef, subcenter, date_then):
             village = None
 
     #check and create care giver
-    if asha_name:
-        cgs = CareGiver.objects.filter(first_name=asha_name, designation='ASHA', phone=asha_phone)
+    if asha_name:        
+        username = asha_name+"_"+asha_phone+"_ASHA"
+        username = username[0:29]
+        cgs = CareGiver.objects.filter(designation='ASHA', phone=asha_phone)
         if cgs.count() > 0:
             cg = cgs[0]
+            if asha_name != cg.first_name:
+                cg.first_name = asha_name
+                cg.save() 
         else:
-            username = asha_name+"_"+asha_phone+"_ASHA"
-            username = username[0:29]
             cg = CareGiver.objects.create(first_name=asha_name, designation='ASHA', phone=asha_phone, address=village, username=username)
     else:
         cg = None
 
     #check and create care provider
     if anm_name:
-        cps = CareProvider.objects.filter(first_name=anm_name, designation='ANM', phone=anm_phone)
+        cps = CareProvider.objects.filter(designation='ANM', phone=anm_phone)
         if cps.count() > 0:
             cp = cps[0]
+            if anm_name != cp.first_name:
+                cp.first_name = anm_name
+                cp.save()
         else:
             username = anm_name +"_"+anm_phone+"_ANM"
             username = username[0:29]
@@ -675,6 +689,8 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
     child_mcts_id = None
     if year_of_reg_child_id:
         child_mcts_id = year_of_reg_child_id.replace(" ","").replace("\n","").replace("(","").replace(")","_").replace("-","_")
+        if '_' in child_mcts_id:
+            child_mcts_id = child_mcts_id.split('_')[2]
 
     #parse ASHA phone, name
     asha_name = None
@@ -688,7 +704,7 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
 
         _regSearch = re.search('([a-z ]+)', asha_phone_name)
         if _regSearch:
-            asha_name = _regSearch.group(0).strip()
+            asha_name = _regSearch.group(0).strip().lower()
 
     #parse anm phone, name
     anm_name = None
@@ -702,7 +718,7 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
 
         _regSearch = re.search('([a-z ]+)', anm_phone_name)
         if _regSearch:
-            anm_name = _regSearch.group(0).strip()
+            anm_name = _regSearch.group(0).strip().lower()
 
     #check and create address
     addrs = None
@@ -720,9 +736,12 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
 
     #check and create care giver
     if asha_name:
-        cgs = CareGiver.objects.filter(first_name=asha_name, designation='ASHA', phone=asha_phone)
+        cgs = CareGiver.objects.filter(designation='ASHA', phone=asha_phone)
         if cgs.count() > 0:
             cg = cgs[0]
+            if cg.first_name != asha_name:
+                cg.first_name = asha_name
+                cg.save()
         else:
             username = asha_name+"_"+asha_phone+"_ASHA"
             username = username[0:29]
@@ -732,9 +751,12 @@ def SaveIMMBeneficiary(benef, subcenter, date_then):
 
     #check and create care provider
     if anm_name:
-        cps = CareProvider.objects.filter(first_name=anm_name, designation='ANM', phone=anm_phone)
+        cps = CareProvider.objects.filter(designation='ANM', phone=anm_phone)
         if cps.count() > 0:
             cp = cps[0]
+            if cp.first_name != anm_name:
+                cp.first_name = anm_name
+                cp.save()
         else:
             username = anm_name +"_"+anm_phone+"_ANM"
             username = username[0:29]

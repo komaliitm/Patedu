@@ -46,7 +46,7 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 	for months in month_span:
 		this_month_date = today.replace(hour=6, minute=0, second=0, day=1).astimezone(pytz.utc)
 		since_months = this_month_date - relativedelta(months=(months-1))
-		blocks = SubCenter.objects.filter(district=district).values('block_id')
+		blocks = SubCenter.objects.filter(district=district).values('block_id').distinct()
 		for block_entry in blocks:
 			block = Block.objects.get(id=block_entry['block_id'])
 			if not rw and AnalyticsData.objects.filter(block=block, since_months=months, month= this_month_date.month, year=this_month_date.year):
@@ -72,16 +72,14 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 
 				sub_data["Beneficiaries_anc"] = anc_benefs.filter(LMP__gte=anc_cutoff, createdon__gt=yesterday_utc).count()
 				sub_data["Beneficiaries_pnc"] = pnc_benefs.count()
-				sub_data["Beneficiaries_imm"] = imm_benefs.count(dob__gte=imm_cutoff, createdon__gt=yesterday_utc).count()
+				sub_data["Beneficiaries_imm"] = imm_benefs.filter(dob__gte=imm_cutoff, createdon__gt=yesterday_utc).count()
 
 				from mcts_transactions.views import ProcessSubcenterData, get_status, increment_count_on_status
 				data_anc = ProcessSubcenterData(anc_benefs, sub, since_months, Events.ANC_REG_VAL, months)
 				data_pnc = ProcessSubcenterData(pnc_benefs, sub, since_months, Events.PNC_REG_VAL, months)
 				data_imm = ProcessSubcenterData(imm_benefs, sub, since_months, Events.IMM_REG_VAL, months)
 
-				sub_data["Beneficiaries_anc"] = anc_benefs.count()
-				sub_data["Beneficiaries_pnc"] = pnc_benefs.count()
-				sub_data["Beneficiaries_imm"] = imm_benefs.count()
+
 				sub_data["Adherence_anc"] = data_anc["Adherence"]
 				sub_data["Adherence_pnc"] = data_pnc["Adherence"]
 				sub_data["Adherence_imm"] = data_imm["Adherence"]
