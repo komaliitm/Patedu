@@ -40,7 +40,11 @@ def browse_report_page(br):
         authenticate(br)
         br.open(REPORT_URL)
         if br.geturl() != REPORT_URL:
+            f = open('debug_dump.html', 'w')
+            f.write(br.response().read())
+            f.close()
             raise Exception("Can't browse report url even after Authenticating.")
+            
     br.select_form(nr=0)
 
 def get_token(br, event_target=None, tsm1=None, client_token_vs=None, client_token_ev=None, report_type=None, \
@@ -164,7 +168,7 @@ mcts_jhs_passwd = "4e4d1b7432c708f094401f4cc7029ccc678e72d3"
 stn_value = "637dd3894df6b16a956ab46ed377e5d85a7b2310"
 
 report_types = {
-    'Child_Details':'Report_Resistration.aspx?rpt=Details'
+    'Mother_Details':'Report_Resistration.aspx?rpt=Details'
 }
 
 dictrict = 'Jhansi'
@@ -281,7 +285,7 @@ try:
                                 phc_ctrl.value = [str(phc)]
                                 subc_item = mechanize.Item(subcenter_ctrl, {"contents":str(subc), "value":str(subc)})
                                 subc_item.selected = True
-                                mother_ctrl = ["Child_Details"]
+                                mother_ctrl = [benef_type]
 
                                 view_state_control.readonly = False
                                 event_validation_control.readonly = False

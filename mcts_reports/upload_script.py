@@ -40,7 +40,7 @@ for path, subdir, files in os.walk(abs_reports_path):
 			url = 'http://mcts-analytics.cloudapp.net/mctsdata/uploadandsave/'
 			file = {'file': open(mcts_report, 'rb')}
 			r = requests.post(url, files=file, data={'benef_type':type})
-			print 'file: '+str(mcts_report)+' was parsed for category '+str(type)+' with status: '+str(r.status_code)+' '+r.text
+			print 'file: '+str(mcts_report)+' was parsed for category '+str(type)+' with status: '+str(r.status_code)
 			total += 1
 			if r.status_code == 500:
 				failed += 1

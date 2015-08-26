@@ -297,17 +297,23 @@ def ProcessSubcenterData(benefs, sub, since_months, reg_type, months):
 	Overdue = 0
 	new_reg = 0
 	GivenServices = 0
+	DueServices = 0
 	OverDueRate = 0
 	overdue_services_group = []
+	due_srvices_group = []
+	given_services_group = []
 	if benefs:
 		txs_service = Transactions.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(timestamp__gte=since_months.date())).exclude(event__val=reg_type)
 		txs_reg = Transactions.objects.all().filter(Q(subcenter=sub), Q(event__val=reg_type), Q(timestamp__gte=since_months.date()) )
 		dues_service = DueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) )
 
 		GivenServices = txs_service.count()
+		DueServices = dues_service.count()
 
 		overdues_service = OverDueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) )
 		overdue_services_group = list(overdues_service.values('event_id').annotate(ods_count=Count('id'), event_name=Max('event__val')))
+		given_services_group = list(txs_service.values('event_id').annotate(ods_count=Count('id'), event_name=Max('event__val')))
+		due_srvices_group = list(dues_service.values('event_id').annotate(ods_count=Count('id'), event_name=Max('event__val')))
 		Overdue = overdues_service.count()
 		new_reg = txs_reg.count()
 		
@@ -330,7 +336,10 @@ def ProcessSubcenterData(benefs, sub, since_months, reg_type, months):
 	ProgressData = GetLastSixMonthsProgress(benefs, sub, reg_type)
 	return {
 			'Overdue':Overdue,
+			'DueServices':DueServices,
 			'overdue_sg':overdue_services_group,
+			'due_sg':due_srvices_group,
+			'given_sg':given_services_group,
 			'new_reg':new_reg,
 			'GivenServices':GivenServices,
 			'OverDueRate':OverDueRate,
@@ -422,101 +431,6 @@ def DashboardData(request, blockid = None):
 		summary_imm["Good"] += json.loads(analytics_data[0].summary_imm)["Good"]
 		summary_imm["Poor"] += json.loads(analytics_data[0].summary_imm)["Poor"]
 		summary_imm["Average"] += json.loads(analytics_data[0].summary_imm)["Average"]
-
-		# #find all the subcenters in the block
-		# subs = SubCenter.objects.filter(block=block)
-		# for sub in subs:
-		# 	sub_data = {}
-
-		# 	#total beneficiaries.
-		# 	anc_benefs = ANCBenef.objects.filter(subcenter = sub)
-		# 	pnc_benefs = PNCBenef.objects.filter(subcenter = sub)
-		# 	imm_benefs = IMMBenef.objects.filter(subcenter = sub)
-
-		# 	sub_data["Beneficiaries_anc"] = anc_benefs.count()
-		# 	sub_data["Beneficiaries_pnc"] = pnc_benefs.count()
-		# 	sub_data["Beneficiaries_imm"] = imm_benefs.count()
-
-		# 	data_anc = ProcessSubcenterData(anc_benefs, sub, since_months, Events.ANC_REG_VAL, months)
-		# 	data_pnc = ProcessSubcenterData(pnc_benefs, sub, since_months, Events.PNC_REG_VAL, months)
-		# 	data_imm = ProcessSubcenterData(imm_benefs, sub, since_months, Events.IMM_REG_VAL, months)
-
-		# 	sub_data["Beneficiaries_anc"] = anc_benefs.count()
-		# 	sub_data["Beneficiaries_pnc"] = pnc_benefs.count()
-		# 	sub_data["Beneficiaries_imm"] = imm_benefs.count()
-		# 	sub_data["Adherence_anc"] = data_anc["Adherence"]
-		# 	sub_data["Adherence_pnc"] = data_pnc["Adherence"]
-		# 	sub_data["Adherence_imm"] = data_imm["Adherence"]
-		# 	sub_data["new_reg_anc"] = data_anc["new_reg"]
-		# 	sub_data["new_reg_pnc"] = data_pnc["new_reg"]
-		# 	sub_data["new_reg_imm"] = data_imm["new_reg"]
- 	# 		sub_data["Overdue_anc"] = data_anc["Overdue"]
-		# 	sub_data["Overdue_pnc"] = data_pnc["Overdue"]
-		# 	sub_data["Overdue_imm"] = data_imm["Overdue"]
-		# 	sub_data["overdue_sg_anc"] = data_anc["overdue_sg"]
-		# 	sub_data["overdue_sg_pnc"] = data_pnc["overdue_sg"]
-		# 	sub_data["overdue_sg_imm"] = data_imm["overdue_sg"]
-		# 	sub_data["GivenServices_anc"] = data_anc["GivenServices"]
-		# 	sub_data["GivenServices_pnc"] = data_pnc["GivenServices"]
-		# 	sub_data["GivenServices_imm"] = data_imm["GivenServices"]
-		# 	sub_data["OverDueRate_anc"] = data_anc["OverDueRate"]
-		# 	sub_data["OverDueRate_pnc"] = data_pnc["OverDueRate"]
-		# 	sub_data["OverDueRate_imm"] = data_imm["OverDueRate"]
-		# 	sub_data["ProgressData_anc"] = data_anc["ProgressData"]
-		# 	sub_data["ProgressData_pnc"] = data_pnc["ProgressData"]
-		# 	sub_data["ProgressData_imm"] = data_imm["ProgressData"]
-
-		# 	status_anc = get_status(data_anc["OverDueRate"], 5, 7)
-		# 	status_pnc = get_status(data_pnc["OverDueRate"], 5, 7)
-		# 	status_imm = get_status(data_imm["OverDueRate"], 5, 7)
-			
-		# 	num_good_anc, num_avg_anc, num_poor_anc = increment_count_on_status(status_anc, num_good_anc, num_avg_anc, num_poor_anc)
-		# 	num_good_pnc, num_avg_pnc, num_poor_pnc = increment_count_on_status(status_pnc, num_good_pnc, num_avg_pnc, num_poor_pnc)
-		# 	num_good_imm, num_avg_imm, num_poor_imm = increment_count_on_status(status_imm, num_good_imm, num_avg_imm, num_poor_imm) 
-
-		# 	sub_data["status_anc"] = status_anc
-		# 	sub_data["status_pnc"] = status_pnc
-		# 	sub_data["status_imm"] = status_imm
-		# 	from math import ceil
-		# 	sub_data["status"] = ceil((status_anc + status_pnc + status_imm)/3 - 0.5)
-		# 	sub_data["Subcenter"] = sub.name
-		# 	sub_data["SubcenterId"] = sub.id
-
-		# 	AshaDetails = []
-		# 	cgs = Beneficiary.objects.all().filter(subcenter = sub).values("caregiver").distinct()
-		# 	for cg in cgs:
-		# 		if cg["caregiver"]:
-		# 			_cg = CareGiver.objects.get(id=cg["caregiver"])
-		# 			AshaDetails.append(_cg.first_name+':'+_cg.phone)
-
-		# 	sub_data["AshaDetails"] = AshaDetails
-			
-		# 	ANMDetails = []
-		# 	cps = Beneficiary.objects.all().filter(subcenter = sub).values("careprovider").distinct()
-		# 	for cp in cps:
-		# 		if cp["careprovider"]:
-		# 			_cp = CareProvider.objects.get(id=cp["careprovider"])
-		# 			ANMDetails.append(_cp.first_name+':'+_cp.phone)
-
-		# 	sub_data["ANMDetails"] = ANMDetails
-
-
-		# 	sub_data["lat"] = sub._lat if sub._lat else block._lat
-		# 	sub_data["long"] = sub._long if sub._long else block._long
-
-		# 	#TODO remove dummy lat, long later
-		# 	#_lat = 25.619626
-		# 	#_long = 79.180409
-		# 	#sign = randint(1,2)
-		# 	#if sign == 1:
-		# 	#	sub_data["lat"] = _lat + randint(1,100)*0.01
-		# 	#	sub_data["long"] = _long + randint(1,100)*0.01
-		# 	#else:
-		# 	#	sub_data["lat"] = _lat - randint(1,100)*0.01
-		# 	#	sub_data["long"] = _long - randint(1,100)*0.01
-
-		# 	data.append(sub_data)
-
 	block_data = {}
 	block_data["data"] = data
 	block_data["summary"] = summary
@@ -556,5 +470,46 @@ def ODSANMANC(request):
 			event_count = anc_od.get('count')
 			anm_stats_anc += event.val+' '+str(event_count)+' Overdue!'
 		return HttpResponse(anm_stats_anc, content_type='text/plain')
+	else:
+		return HttpResponseBadRequest('HTTP method type not allowed')
+
+def GenerateWorkplan(subcenter, report_type, since_months):
+	timezone = 'Asia/Kolkata'
+	tz = pytz.timezone(timezone)
+	today = utcnow_aware().replace(tzinfo=tz)
+	date_this = today.replace(hour=12, minute=0, day=1, second=0).date()
+	date_then = date_this - relativedelta(months=(since_months-1))
+
+	benefs = report_type.objects.filter(subcenter = subcenter, odue_events__date__gte=date_then).distinct() | report_type.objects.filter(subcenter = subcenter, due_events__date__gte=date_then).distinct()
+	workplan = [benef.json(date_then) for benef in benefs]
+	data = {
+		'workplan':workplan,
+		'subcenter':subcenter.json(),
+		'since_months':since_months,
+		'date_then':date_then.isoformat(),
+		'date_this':date_then.isoformat(),
+		'area':report_type.TYPE
+	}
+	return data
+
+def SubcWorkplan(request):
+	if request.method == 'GET':
+		subc_id = request.GET.get('subc_id')
+		domain = request.GET.get('report_type')
+		since_months = int(request.GET.get('since_months')) if request.GET.get('since_months') else 1
+
+		if not subc_id or not domain:
+			return HttpResponseBadRequest('Details not specified properly')
+		try:
+			subcenter = SubCenter.objects.get(id=int(subc_id))
+		except:
+			return HttpResponseBadRequest('Subcenter specified is not correct')
+
+		report_type = ANCBenef
+		if type == 'IMM':
+			report_type = IMMBenef
+
+		data = GenerateWorkplan(subcenter, report_type, since_months)
+		return HttpResponse(json.dumps(data), mimetype='application/json')
 	else:
 		return HttpResponseBadRequest('HTTP method type not allowed')

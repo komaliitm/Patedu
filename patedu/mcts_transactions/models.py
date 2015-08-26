@@ -1,5 +1,6 @@
 from django.db import models
 from mcts_identities.models import *
+from isodate import datetime_isoformat
 	
 class Events(models.Model):
 	ANC_REG_VAL = 'anc_reg'
@@ -41,12 +42,30 @@ class Events(models.Model):
 	content_index = models.CharField(max_length=20, null=True)
 	category = models.IntegerField(choices=CATEGORY_CHOICES, null=True)
 
+	def json(self):
+		json_dict = {
+			'MCTS_ID':self.MCTS_ID,
+			'val':self.val,
+			'content_index':self.content_index,
+			'category':self.category
+		}
+		return json_dict
+
+
 class Transactions(models.Model):
 	beneficiary = models.ForeignKey(Beneficiary, related_name='txns')
 	timestamp = models.DateTimeField()
 	event = models.ForeignKey(Events)
 	subcenter = models.ForeignKey(SubCenter)
 	notes = models.CharField(max_length=256, null=True)
+
+	def json(self):
+		json_dict = {
+			'beneficiary_id':self.beneficiary.username,
+			'timestamp':datetime_isoformat(self.timestamp),
+			'event':self.event.json()
+		}
+		return json_dict
 
 class DueEvents(models.Model):
 	UNHANDLED = 0
@@ -68,6 +87,14 @@ class DueEvents(models.Model):
 	notes = models.CharField(max_length=256, null=True)
 	handled = models.IntegerField(choices=HANDLED_LEVELS, default=UNHANDLED)
 
+	def json(self):
+		json_dict = {
+			'beneficiary_id':self.beneficiary.username,
+			'timestamp':self.date.isoformat(),
+			'event':self.event.json()
+		}
+		return json_dict
+
 class OverDueEvents(models.Model):
 	beneficiary = models.ForeignKey(Beneficiary, related_name='odue_events')
 	date = models.DateField()
@@ -75,6 +102,14 @@ class OverDueEvents(models.Model):
 	subcenter = models.ForeignKey(SubCenter)
 	notes = models.CharField(max_length=256)
 	
+	def json(self):
+		json_dict = {
+			'beneficiary_id':self.beneficiary.username,
+			'timestamp':self.date.isoformat(),
+			'event':self.event.json()
+		}
+		return json_dict
+
 class Content(models.Model):
 	# SMS = 0
 	# EMAIL =1

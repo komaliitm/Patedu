@@ -16,7 +16,8 @@ app.directive('onFinishRender', function ($timeout) {
             }
         }
     }
-    });
+  });
+
   app.controller('DasboardController', ['$scope', 'dashboardService',
     function($scope, dashboardService) {
       $scope.dashboardParams = {
@@ -33,71 +34,135 @@ app.directive('onFinishRender', function ($timeout) {
       $scope.loading = false;
       $scope.Completeloading = true;
       $scope.dashdata = null;
+      $scope.currentWP = {}; 
       fetchDataCurrent();
 
-    $scope.SortData = function($event, type) {
-        //Sort the dashdata according to type
-        if($scope.SerialNum == type)
-        {
-            $scope.Asc > 0 ? $scope.Asc =0 : $scope.Asc =1;
+      $scope.$watch(function (scope) {
+          return scope.dashboardParams.domain;
+        },
+        function (newValue, oldValue) {
+          $scope.SerialNum = 0;
         }
-        else
-          $scope.Asc =0;
+      );
+       
+      $scope.PrintElem = function (elem)
+      {
+          Popup($(elem).html());
+      }
 
-        $scope.dashdata.data.sort(function(a, b) {
-            var keyA;var keyB;
-            if (type == 1) {
-                keyA = a.status;
-                keyB = b.status;
-            }
-            else if (type == 2) {
-                var str1 = a.Subcenter;
-                var str2 = b.Subcenter;
-          console.log(str1+ " " + str2);
-            str1.toLowerCase()>str2.toLowerCase()?console.log(" a>b "):console.log(" a<b ")
+      var Popup = function(data) 
+      {
+          var mywindow = window.open('', 'my div', 'height=400,width=600');
+          mywindow.document.write('<html><head><title>my div</title>');
+          mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/bootstrap.min.css" type="text/css" />');
+          mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/font-awesome.min.css" type="text/css" />');
+          mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/beyond.min.css" type="text/css" />');
+          mywindow.document.write('<link rel="stylesheet" href="/static/app/css/dashboard_subcenterblock.css" type="text/css" />');
+          mywindow.document.write('</head><body >');
+          mywindow.document.write(data);
+          mywindow.document.write('</body></html>');
 
-             if ($scope.Asc == 1) {
-                if (str1.toLowerCase() > str2.toLowerCase()) return -1;
-                if (str2.toLowerCase() > str1.toLowerCase()) return 1;
-            } else {
-                if (str1.toLowerCase() < str2.toLowerCase()) return -1;
-                if (str2.toLowerCase() < str1.toLowerCase()) return 1;
-            }
-            }
-            else if (type == 3) {
-                keyA = a.Beneficiaries_anc + a.Beneficiaries_pnc + a.Beneficiaries_imm;
-                keyB = b.Beneficiaries_anc + b.Beneficiaries_pnc + b.Beneficiaries_imm;
-            }
-            else if (type == 4) {
-                keyA = a.new_reg_anc + a.new_reg_pnc  + a.new_reg_imm;
-                keyB = b.new_reg_anc + b.new_reg_pnc  + b.new_reg_imm;
-            }
-            else if (type == 5) {
-                keyA = a.GivenServices_anc + a.GivenServices_pnc + a.GivenServices_imm;
-                keyB = b.GivenServices_anc + b.GivenServices_pnc + b.GivenServices_imm;
-            }
-            else if (type == 6) {
-                keyA = a.Overdue_anc + a.Overdue_pnc + a.Overdue_imm;
-                keyB = b.Overdue_anc + b.Overdue_pnc + b.Overdue_imm;
-            }
-            else {
-                keyA = a.OverDueRate_imm +  a.OverDueRate_pnc  + a.OverDueRate_anc;
-                keyB = b.OverDueRate_imm +  b.OverDueRate_pnc  + b.OverDueRate_anc;
-            }
-            if ($scope.Asc == 1) {
-                if (keyA < keyB) return -1;
-                if (keyA > keyB) return 1;
-            } else {
-                if (keyA > keyB) return -1;
-                if (keyA < keyB) return 1;
-            }
-            return 0;
+          mywindow.document.close(); // necessary for IE >= 10
+          mywindow.focus(); // necessary for IE >= 10
+
+          mywindow.print();
+          mywindow.close();
+
+          return true;
+      }
+
+      $scope.SortData = function($event, type) {
+          //Sort the dashdata according to type
+          if($scope.SerialNum == type)
+          {
+              $scope.Asc > 0 ? $scope.Asc =0 : $scope.Asc =1;
+          }
+          else
+            $scope.Asc =0;
+
+          var context = $scope.dashboardParams.domain;
+
+          $scope.dashdata.data.sort(function(a, b) {
+              var keyA;var keyB;
+              if (type == 1) {
+                  keyA = a.status;
+                  keyB = b.status;
+              }
+              else if (type == 2) {
+                  var str1 = a.Subcenter;
+                  var str2 = b.Subcenter;
+                  console.log(str1+ " " + str2);
+                  str1.toLowerCase()>str2.toLowerCase()?console.log(" a>b "):console.log(" a<b ")
+
+                  if ($scope.Asc == 1) {
+                      if (str1.toLowerCase() > str2.toLowerCase()) return -1;
+                      if (str2.toLowerCase() > str1.toLowerCase()) return 1;
+                  } else {
+                      if (str1.toLowerCase() < str2.toLowerCase()) return -1;
+                      if (str2.toLowerCase() < str1.toLowerCase()) return 1;
+                  }
+              }
+              else if (type == 3) {
+                  keyA = context=='1'?a.Beneficiaries_anc:a.Beneficiaries_imm;
+                  keyB = context=='1'?b.Beneficiaries_anc:b.Beneficiaries_imm;
+              }
+              else if (type == 4) {
+                  keyA = context=='1'?a.DueServices_anc:a.DueServices_imm;
+                  keyB = context=='1'?b.DueServices_anc:b.DueServices_imm;
+              }
+              else if (type == 5) {
+                  keyA = context=='1'?a.GivenServices_anc:a.GivenServices_imm;
+                  keyB = context=='1'?b.GivenServices_anc:b.GivenServices_imm;
+              }
+              else if (type == 6) {
+                  keyA = context=='1'?a.Overdue_anc:a.Overdue_imm;
+                  keyB = context=='1'?b.Overdue_anc:b.Overdue_imm;
+              }
+              else {
+                  keyA = context=='1'?a.OverDueRate_anc:a.OverDueRate_imm;
+                  keyB = context=='1'?b.OverDueRate_anc:b.OverDueRate_imm;
+              }
+              if ($scope.Asc == 1) {
+                  if (keyA < keyB) return -1;
+                  if (keyA > keyB) return 1;
+              } else {
+                  if (keyA > keyB) return -1;
+                  if (keyA < keyB) return 1;
+              }
+              return 0;
+          });
+
+          $scope.SerialNum= type;
+      }
+
+      $scope.WorkplanModal = function(subc_id)
+      {
+        var mode = 'ANC';
+        if($scope.dashboardParams.domain == '2')
+        {
+          mode = 'IMM';
+        }
+
+        //Get Workplan data for current subcenter
+        $scope.loading = true;
+        $scope.Completeloading = false;
+        $('.loading-container').removeClass('loading-inactive');
+        dashboardService.getWorkplanData(subc_id, mode, $scope.dashboardParams.since_months).then( function(wpData){
+          $scope.currentWP = wpData;
+          $scope.loading = false;
+          $scope.Completeloading = true;
+          $('.loading-container').addClass('loading-inactive');
+          $('#workplan_modal').modal({show:'true'});
+        }, function(error){
+          $scope.loading = false;
+          $scope.Completeloading = true;
+          alert('Unknown error. Please try after sometime.')
         });
 
-        $scope.SerialNum= type;
-    }
-
-     var initSparkLines = function() {
+        return;
+      } 
+           
+      var initSparkLines = function() {
         console.log("Init Spark Lines")
         for(var i=0;i<$scope.dashdata.data.length;i++)
         {
@@ -106,67 +171,145 @@ app.directive('onFinishRender', function ($timeout) {
         }
       }
 
-    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-          initSparkLines();
-    });
+      $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+            initSparkLines();
+            initToolTips();
+      });
 
-    var SparkLineInit = function(spark_line_id, data){
-            var sparklinelines =  $('#'+spark_line_id);
-            $.each(sparklinelines, function () {
-                $(this).sparkline(data, {
-                    type: 'line',
-                    disableHiddenCheck: true,
-                    height: $(this).data('height'),
-                    width: $(this).data('width'),
-                    fillColor: getcolor($(this).data('fillcolor')),
-                    lineColor: getcolor($(this).data('linecolor')),
-                    spotRadius: $(this).data('spotradius'),
-                    lineWidth: $(this).data('linewidth'),
-                    spotColor: getcolor($(this).data('spotcolor')),
-                    highlightLineColor: getcolor($(this).data('highlightlinecolor')),
-                    chartRangeMin: 0,
-                    chartRangeMax: 10
-                });
-            });
+      var initToolTips = function(){
+        $('[data-toggle="popover"]').popover();
       }
 
+      var SparkLineInit = function(spark_line_id, data){
+              var sparklinelines =  $('#'+spark_line_id);
+              $.each(sparklinelines, function () {
+                  $(this).sparkline(data, {
+                      type: 'line',
+                      disableHiddenCheck: true,
+                      height: $(this).data('height'),
+                      width: $(this).data('width'),
+                      fillColor: getcolor($(this).data('fillcolor')),
+                      lineColor: getcolor($(this).data('linecolor')),
+                      spotRadius: $(this).data('spotradius'),
+                      lineWidth: $(this).data('linewidth'),
+                      spotColor: getcolor($(this).data('spotcolor')),
+                      highlightLineColor: getcolor($(this).data('highlightlinecolor')),
+                      chartRangeMin: 0,
+                      chartRangeMax: 10
+                  });
+              });
+        }
 
-      function fetchDataCurrent() {
-        $scope.loading = true;
-        $scope.Completeloading = false;
-        $('.loading-container').removeClass('loading-inactive');
+
+        function fetchDataCurrent() {
+          $scope.loading = true;
+          $scope.Completeloading = false;
+          $('.loading-container').removeClass('loading-inactive');
 
 
-         dashboardService.getDashboardData($scope.dashboardParams).then(function(dashdata) {
-          $scope.dashdata = dashdata;
-          DrawPieChart($scope.dashdata.summary.Good, $scope.dashdata.summary.Average, $scope.dashdata.summary.Poor);
-          PoplatePoints($scope.dashdata.data);
-          console.log($scope.dashdata);
-          $scope.loading = false;
-         $scope.Completeloading = true;
-         $('.loading-container').addClass('loading-inactive');
-        }, function(error){
-            $scope.Completeloading = true;
-            if($.isNumeric(error) && error==405)
-            {
-              alert('Data is getting loaded. Please try again after 10 mins.');
+           dashboardService.getDashboardData($scope.dashboardParams).then(function(dashdata) {
+            $scope.dashdata = dashdata;
+            DrawPieChart($scope.dashdata.summary.Good, $scope.dashdata.summary.Average, $scope.dashdata.summary.Poor);
+            PoplatePoints($scope.dashdata.data);
+            console.log($scope.dashdata);
+            $scope.loading = false;
+           $scope.Completeloading = true;
+           $('.loading-container').addClass('loading-inactive');
+          }, function(error){
+              $scope.Completeloading = true;
+              if($.isNumeric(error) && error==405)
+              {
+                alert('Data is getting loaded. Please try again after 10 mins.');
+              }
+              else if(!$.isNumeric(error)){
+                alert(error);
+              }
+              else{
+               alert('Unknown error occured. Please try again later.'); 
+              }
             }
-            else if(!$.isNumeric(error)){
-              alert(error);
-            }
-            else{
-             alert('Unknown error occured. Please try again later.'); 
-            }
-          }
-        );
+          );
+        }
       }
-    }
   ]);
+
+      
+  app.filter('services_dump', function () {
+    return function (service_maps) {
+        var dump = '';
+        angular.forEach(service_maps, function(service_map){
+          if(dump)
+          {
+            dump += ', '
+          }
+          dump += service_map.event_name+':'+service_map.ods_count
+        });
+        return dump;
+    };
+  });
+
+  app.filter('gs_map', function () {
+    return function (d_services) {
+        var dump = '';
+        angular.forEach(d_services, function(d_service){
+          if(dump)
+          {
+            dump += ', '
+          }
+          dump += d_service.event.val
+        });
+        return dump;
+    };
+  });
+
+  app.filter('d_map', function () {
+    return function (d_services) {
+        var dump = '';
+        angular.forEach(d_services, function(d_service){
+          if(dump)
+          {
+            dump += ', '
+          }
+          var d_split = new Date(d_service.timestamp).toString().split(' ')
+          var d_val = d_split[1]+' '+d_split[3]
+          dump += d_service.event.val+' ('+d_val+')'
+        });
+        return dump;
+    };
+  });
+
+  app.filter('wp_duration', function () {
+    return function (date_this, date_then) {
+        var dt_this = new Date(date_this);
+        var dt_then = new Date(date_then);
+        var d_split_this = dt_this.toString().split(' ');
+        var d_split_then = dt_then.toString().split(' ');
+        if(dt_this.toDateString() == dt_then.toDateString())
+        { 
+            return d_split_this[1]+', '+d_split_this[3];
+        }
+
+        return  d_split_then[1]+', '+d_split_then[3]+" to "+d_split_this[1]+', '+d_split_this[3];
+    };
+  });
 
   app.factory('dashboardService', function($http, $q) {
     return {
-      getDashboardData: getDashboardData
+      getDashboardData: getDashboardData,
+      getWorkplanData:getWorkplanData
     };
+
+    function getWorkplanData(subc_id, mode, since_months)
+    {
+      var url = '/subcenter/dashboard/workplan/';
+      url = url + '?subc_id='+subc_id+'&report_type='+mode+'&since_months='+since_months;
+      
+      var request = $http({
+        method: 'get',
+        url: url
+      });
+      return request.then(handleSuccess, handleError);      
+    }
 
     function getDashboardData(params) {
 
@@ -245,7 +388,7 @@ app.directive('onFinishRender', function ($timeout) {
     var output = new google.maps.LatLng(25.4486, 78.5696);
     var mapOptions = {
       center: output,
-      zoom: 9
+      zoom: 11
     };
     var map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);

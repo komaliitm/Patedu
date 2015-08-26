@@ -8,6 +8,12 @@
      white-space: nowrap;
   }
 
+
+body .modal-dialog {
+    /* new custom width */
+    width: 900px;
+}
+
 .my_label 
 {
     color: red;

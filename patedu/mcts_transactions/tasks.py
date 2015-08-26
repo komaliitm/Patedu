@@ -70,9 +70,9 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 				pnc_benefs = PNCBenef.objects.filter(subcenter = sub)
 				imm_benefs = IMMBenef.objects.filter(subcenter = sub)
 
-				sub_data["Beneficiaries_anc"] = anc_benefs.filter(LMP__gte=anc_cutoff, createdon__gt=yesterday_utc).count()
+				sub_data["Beneficiaries_anc"] = anc_benefs.filter(LMP__gte=anc_cutoff).count()
 				sub_data["Beneficiaries_pnc"] = pnc_benefs.count()
-				sub_data["Beneficiaries_imm"] = imm_benefs.filter(dob__gte=imm_cutoff, createdon__gt=yesterday_utc).count()
+				sub_data["Beneficiaries_imm"] = imm_benefs.filter(dob__gte=imm_cutoff).count()
 
 				from mcts_transactions.views import ProcessSubcenterData, get_status, increment_count_on_status
 				data_anc = ProcessSubcenterData(anc_benefs, sub, since_months, Events.ANC_REG_VAL, months)
@@ -92,9 +92,18 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 				sub_data["overdue_sg_anc"] = data_anc["overdue_sg"]
 				sub_data["overdue_sg_pnc"] = data_pnc["overdue_sg"]
 				sub_data["overdue_sg_imm"] = data_imm["overdue_sg"]
+				sub_data["due_sg_anc"] = data_anc["due_sg"]
+				sub_data["due_sg_pnc"] = data_pnc["due_sg"]
+				sub_data["due_sg_imm"] = data_imm["due_sg"]
+				sub_data["given_sg_anc"] = data_anc["given_sg"]
+				sub_data["given_sg_pnc"] = data_pnc["given_sg"]
+				sub_data["given_sg_imm"] = data_imm["given_sg"]
 				sub_data["GivenServices_anc"] = data_anc["GivenServices"]
 				sub_data["GivenServices_pnc"] = data_pnc["GivenServices"]
 				sub_data["GivenServices_imm"] = data_imm["GivenServices"]
+				sub_data["DueServices_anc"] = data_anc["DueServices"]
+				sub_data["DueServices_pnc"] = data_pnc["DueServices"]
+				sub_data["DueServices_imm"] = data_imm["DueServices"]
 				sub_data["OverDueRate_anc"] = data_anc["OverDueRate"]
 				sub_data["OverDueRate_pnc"] = data_pnc["OverDueRate"]
 				sub_data["OverDueRate_imm"] = data_imm["OverDueRate"]

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import base64
 import uuid
 #from django.contrib.auth.models import User
@@ -308,7 +307,7 @@ def SaveIMMBenef(benef):
         print 'IMM Benef already exists'
         return
 
-        t_district = []
+    t_district = []
     if district_rs:
         district_rs = district_rs.lower()
         _regSearch = re.search('([a-z ]+)', district_rs)
