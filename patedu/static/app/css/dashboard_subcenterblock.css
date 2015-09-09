@@ -1,3 +1,9 @@
+.horizontal-bar-chart {
+  width:450px;
+  height:300px;
+  
+}
+
 .labels {
      color: white;
      background-color: red;

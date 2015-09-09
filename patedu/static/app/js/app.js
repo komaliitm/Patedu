@@ -1,6 +1,6 @@
 'use strict';
 (function() {
-  var app = angular.module('MainApp', ['ngRoute', 'infinite-scroll'], function($interpolateProvider) {
+  var app = angular.module('MainApp', ['ngRoute'], function($interpolateProvider) {
     $interpolateProvider.startSymbol('#{');
     $interpolateProvider.endSymbol('}#');
   });
@@ -18,8 +18,181 @@ app.directive('onFinishRender', function ($timeout) {
     }
   });
 
-  app.controller('DasboardController', ['$scope', 'dashboardService',
-    function($scope, dashboardService) {
+  app.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider
+      // route for the Main page
+      .when('/subcenter/', {
+        templateUrl : 'subcenter_report/',
+        controller  : 'SubcenterController'
+      })
+      // route for the template page
+      .when('/block/', {
+        templateUrl : 'block_report/',
+        controller  : 'BlockController'
+      })
+      // route for the outreach page
+      .when('/outreach/', {
+        templateUrl : 'outreach_monitoring_report/',
+        controller  : 'BlockController'
+      })
+      .otherwise({
+              redirectTo: '/subcenter/'
+      });
+    }]);
+
+
+  app.controller('MainController', ['$scope', '$location', function($scope, $location){
+    console.log("In Main controller");
+    $scope.isActive = function (route) {
+      return $location.path().indexOf(route) === 0;
+      // return route === $location.path();
+    };
+  }]);
+
+  app.controller('BlockController', ['$scope', 'blockService', function($scope, blockService){
+    console.log("In Block controller");
+    var InitiateHorizonalChart = function (elem, my_data, tickLabels) {
+      return {
+              init: function () {
+                  // // Set up our data array  
+                  // var my_data = [[50, 0], [95, 1], [60, 2], [90, 3], [65, 4], [85, 5], [70, 6], [80, 7]];
+                  // // Setup labels for use on the Y-axis  
+                  // var tickLabels = [[0, 'Badagaon'], [1, 'Gursarai'], [2, 'Bamaur'], [3, 'Babina'], [4, 'Chirgaon'], [5, 'Bangra'], [6, 'Mauranipur'], [7, 'Moth']];
+                  $.plot($(elem), [
+                  {
+                      data: my_data,
+                      bars: {
+                          show: true,
+                          align: 'center',
+                          horizontal: true
+                      }
+                  }
+                  ],
+                  {
+                      bars: {
+                          fillColor: { colors: [{ opacity: 0.8 }, { opacity: 1 }] },
+                          barWidth: 0.50,
+                          lineWidth: 1.0,
+                          borderWidth: 0
+                      },
+                      colors: [themeprimary],
+                      yaxis: {
+                          ticks: tickLabels
+                      },
+                      grid: {
+                          show: true,
+                          hoverable: true,
+                          clickable: true,
+                          tickColor: gridbordercolor,
+                          borderWidth: 0,
+                          borderColor: gridbordercolor,
+                      },
+                  }
+                  );
+              }
+          };
+      };
+      var InitiateEasyPieChart = function (elem) {
+          return {
+              init: function () {
+                  var easypiecharts = $(elem);
+                  $.each(easypiecharts, function () {
+                      var barColor = getcolor($(this).data('barcolor')) || themeprimary,
+                          trackColor = getcolor($(this).data('trackcolor')) || false,
+                          scaleColor = getcolor($(this).data('scalecolor')) || false,
+                          lineCap = $(this).data('linecap') || "round",
+                          lineWidth = $(this).data('linewidth') || 3,
+                          size = $(this).data('size') || 110,
+                          animate = $(this).data('animate') || false;
+
+                      $(this).easyPieChart({
+                          barColor: barColor,
+                          trackColor: trackColor,
+                          scaleColor: scaleColor,
+                          lineCap: lineCap,
+                          lineWidth: lineWidth,
+                          size: size,
+                          animate : animate
+                      });
+                  });
+              }
+          };
+      };
+
+      var setupHorizonalCharts = function()
+      {
+        angular.forEach($scope.block_indices.block_graph_data, function(graph_data, pillar){
+          InitiateHorizonalChart($('#'+pillar), graph_data[0], graph_data[1]).init();
+        });
+      }
+
+      $scope.block_indices = null;
+
+      var RefreshBlockData = function()
+      {
+        $('.loading-container').removeClass('loading-inactive');
+        blockService.getBlockIndicesData('36').then( function(block_indices){
+          $scope.block_indices = block_indices;
+          setupHorizonalCharts();
+          $('.loading-container').addClass('loading-inactive');
+
+          $scope.$watch(function (scope) {
+              return scope.block_indices.district_data.del_rep.percent;
+            },
+            function (newValue, oldValue) {
+              InitiateEasyPieChart($('#doughnut-drep')).init();
+            }
+          );
+
+          $scope.$watch(function (scope) {
+              return scope.block_indices.district_data.child_reg.percent;
+            },
+            function (newValue, oldValue) {
+              InitiateEasyPieChart($('#doughnut-child-reg')).init();
+            }
+          );
+
+          $scope.$watch(function (scope) {
+              return scope.block_indices.district_data.mother_reg.percent;
+            },
+            function (newValue, oldValue) {
+              InitiateEasyPieChart($('#doughnut-mother-reg')).init();
+            }
+          );
+
+          $scope.$watch(function (scope) {
+              return scope.block_indices.district_data.full_anc.percent;
+            },
+            function (newValue, oldValue) {
+              InitiateEasyPieChart($('#doughnut-fanc')).init();
+            }
+          );
+
+          $scope.$watch(function (scope) {
+              return scope.block_indices.district_data.full_imm.percent;
+            },
+            function (newValue, oldValue) {
+              InitiateEasyPieChart($('#doughnut-fimm')).init();
+            }
+          );
+
+
+        }, function(error){
+          $('.loading-container').addClass('loading-inactive');
+          alert('Unknown error. Please try after sometime.')
+        });
+      }
+
+      //End Init Section
+      RefreshBlockData();
+  }]);
+
+  app.controller('OutreachController', ['$scope', function($scope){
+    console.log("In Outreach controller");
+  }]);
+
+  app.controller('SubcenterController', ['$scope', 'subcenterService',
+    function($scope, subcenterService) {
       $scope.dashboardParams = {
         since_months: 1,
         blockid: "",
@@ -147,7 +320,7 @@ app.directive('onFinishRender', function ($timeout) {
         $scope.loading = true;
         $scope.Completeloading = false;
         $('.loading-container').removeClass('loading-inactive');
-        dashboardService.getWorkplanData(subc_id, mode, $scope.dashboardParams.since_months).then( function(wpData){
+        subcenterService.getWorkplanData(subc_id, mode, $scope.dashboardParams.since_months).then( function(wpData){
           $scope.currentWP = wpData;
           $scope.loading = false;
           $scope.Completeloading = true;
@@ -156,6 +329,7 @@ app.directive('onFinishRender', function ($timeout) {
         }, function(error){
           $scope.loading = false;
           $scope.Completeloading = true;
+          $('.loading-container').addClass('loading-inactive');
           alert('Unknown error. Please try after sometime.')
         });
 
@@ -206,17 +380,18 @@ app.directive('onFinishRender', function ($timeout) {
           $scope.Completeloading = false;
           $('.loading-container').removeClass('loading-inactive');
 
-
-           dashboardService.getDashboardData($scope.dashboardParams).then(function(dashdata) {
+           subcenterService.getDashboardData($scope.dashboardParams).then(function(dashdata) {
             $scope.dashdata = dashdata;
             DrawPieChart($scope.dashdata.summary.Good, $scope.dashdata.summary.Average, $scope.dashdata.summary.Poor);
             PoplatePoints($scope.dashdata.data);
             console.log($scope.dashdata);
             $scope.loading = false;
-           $scope.Completeloading = true;
-           $('.loading-container').addClass('loading-inactive');
+            $scope.Completeloading = true;
+            $('.loading-container').addClass('loading-inactive');
           }, function(error){
               $scope.Completeloading = true;
+              $scope.loading = false;
+              $('.loading-container').addClass('loading-inactive');
               if($.isNumeric(error) && error==405)
               {
                 alert('Data is getting loaded. Please try again after 10 mins.');
@@ -293,7 +468,40 @@ app.directive('onFinishRender', function ($timeout) {
     };
   });
 
-  app.factory('dashboardService', function($http, $q) {
+  app.factory('blockService', function($http, $q){
+    return {
+      getBlockIndicesData: getBlockIndicesData
+    };
+
+    function getBlockIndicesData(district_id){
+      var url = '/subcenter/dashboard/block_report/data/';
+      if(district_id)
+      {
+        url += '?district_id='+district_id; 
+      }
+
+      var request = $http({
+        method:'get',
+        url:url
+      });
+      return request.then(handleSuccess, handleError);
+    }
+
+    function handleSuccess(response) {
+      // return dummy_patient_list
+      return response.data;
+    }
+
+    function handleError(response) {
+      if (!angular.isObject(response.data) || !response.data.message) {
+        return ($q.reject(response.status) );
+      }
+      return $q.reject(response.data.message);
+    }
+
+  });
+
+  app.factory('subcenterService', function($http, $q) {
     return {
       getDashboardData: getDashboardData,
       getWorkplanData:getWorkplanData

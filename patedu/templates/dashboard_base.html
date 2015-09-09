@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<!--
+BeyondAdmin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.2.0
+Version: 1.0.0
+Purchase: http://wrapbootstrap.com
+-->
+
+<html ng-app="MainApp">
+<!-- Head -->
+
+<head>
+    <meta charset="utf-8" />
+    <title>Block Infromation</title>
+
+    <meta name="description" content="Block Infromation" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="{{STATIC_URL}}beyond/img/favicon.png" type="image/x-icon">
+
+
+    <!--Basic Styles-->
+    <link href="{{STATIC_URL}}beyond/css/bootstrap.min.css" rel="stylesheet" />
+    <link id="bootstrap-rtl-link" href="" rel="stylesheet" />
+    <link href="{{STATIC_URL}}beyond/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="{{STATIC_URL}}beyond/css/weather-icons.min.css" rel="stylesheet" />
+
+    <!--Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300" rel="stylesheet" type="text/css">
+
+    <!--Beyond styles-->
+    <link href="{{STATIC_URL}}beyond/css/beyond.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{STATIC_URL}}beyond/css/demo.min.css" rel="stylesheet" />
+    <link href="{{STATIC_URL}}beyond/css/typicons.min.css" rel="stylesheet" />
+    <link href="{{STATIC_URL}}beyond/css/animate.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link id="skin-link" href="" rel="stylesheet" type="text/css" />
+
+    <!--Page Related styles-->
+    <link href="{{STATIC_URL}}beyond/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="{{STATIC_URL}}app/css/dashboard_subcenterblock.css" rel="stylesheet" />
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <script src="{{STATIC_URL}}beyond/js/skins.min.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/markerwithlabel.js"></script>
+</head>
+<!-- /Head -->
+<!-- Body -->
+
+<body ng-controller="MainController">
+
+    <!-- Loading Container -->
+    <div class="loading-container">
+        <div class="loading-progress">
+            <div class="rotator">
+                <div class="rotator">
+                    <div class="rotator colored">
+                        <div class="rotator">
+                            <div class="rotator colored">
+                                <div class="rotator colored"></div>
+                                <div class="rotator"></div>
+                            </div>
+                            <div class="rotator colored"></div>
+                        </div>
+                        <div class="rotator"></div>
+                    </div>
+                    <div class="rotator"></div>
+                </div>
+                <div class="rotator"></div>
+            </div>
+            <div class="rotator"></div>
+        </div>
+    </div>
+    <!--  /Loading Container -->
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-container">
+                <!-- Navbar Barnd -->
+                <div class="navbar-header pull-left">
+                    <a class="navbar-brand">
+                        <!-- <small>
+                            <img src="assets/img/logo.png" alt="" />
+                        </small> -->
+                        <h1 style="margin-top:4px">
+                                <b style="font-color:#e6e6e6">NIRAMAYAH</b>
+                        </h1>
+                    </a>
+                </div> 
+                <!-- /Navbar Barnd -->
+
+                <!-- Sidebar Collapse -->
+                <div class="sidebar-collapse margin-left-30" id="sidebar-collapse">
+                    <i class="collapse-icon fa fa-bars"></i>
+                </div> 
+                <!-- /Sidebar Collapse -->
+                <!-- Account Area and Settings -->
+                <!-- /Account Area and Settings -->
+
+                <div class="navbar-header pull-right">
+                    <div class="navbar-account">
+                        <div class="setting">
+                            <a id="btn btn-sm btn-circle" title="Logout" href="/login/logout_user">
+                                <i class="icon glyphicon glyphicon-log-out"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Navbar -->
+    <!-- Main Container -->
+    <div class="main-container container-fluid">
+        <!-- Page Container -->
+        <div class="page-container">
+            <div class="page-sidebar" id="sidebar"> 
+                <ul class="nav sidebar-menu">
+                    <li ng-class="{active: isActive('/subcenter')}">
+                        <a href="#subcenter">
+                            <i class="menu-icon glyphicon glyphicon-th"></i>
+                            <span class="menu-text">Subcenter Status</span>
+                        </a>
+                    </li>
+                    <li ng-class="{active: isActive('/block')}">
+                        <a href="#block">
+                            <i class="menu-icon glyphicon glyphicon-th-list"></i>
+                            <span class="menu-text">Block Status</span>
+                        </a>
+                    </li>
+                    <li ng-class="{active: isActive('/outreach')}">
+                        <a href="#outreach">
+                            <i class="menu-icon glyphicon glyphicon-phone-alt"></i>
+                            <span class="menu-text">Outreach Status</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <!-- PATCH remove the zero margin and uncomment  above sidebar for the enabling the multiple pages -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <!-- <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a >Home</a>
+                        </li>
+                        <li class="active">Block Information</li>
+                    </ul>
+                    
+                </div> -->
+                <!-- /Page Breadcrumb -->
+                <!-- <div class="page-header position-relative">
+                    <div class="header-title">
+                        <h1>
+                            Block Information
+                        </h1>
+                        <span class="btn btn-xs" title="Print Out" onclick="window.print()">
+                            <i class="icon glyphicon glyphicon-print"></i>
+                        </span>
+                    </div>
+                    <div class="header-buttons">
+                        <a class="sidebar-toggler" href="#">
+                            <i class="fa fa-arrows-h"></i>
+                        </a>
+                        <a class="refresh" id="refresh-toggler" href="">
+                            <i class="glyphicon glyphicon-refresh"></i>
+                        </a>
+                        <a class="fullscreen" id="fullscreen-toggler" href="#">
+                            <i class="glyphicon glyphicon-fullscreen"></i>
+                        </a>
+                    </div>
+                </div> -->
+                <!-- /Page Header -->
+
+                <div class="page-body" ng-view> 
+                    
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+        </div>
+        <!-- /Page Container -->
+        <!-- Main Container -->
+
+    </div>
+
+    <!--Basic Scripts-->
+    <script src="{{STATIC_URL}}beyond/js/jquery-2.0.3.min.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/bootstrap.min.js"></script>
+
+    <!--Beyond Scripts-->
+    <script src="{{STATIC_URL}}beyond/js/beyond.min.js"></script>
+
+
+    <!--Page Related Scripts-->
+    <!--Sparkline Charts Needed Scripts-->
+    <script src="{{STATIC_URL}}beyond/js/charts/sparkline/jquery.sparkline.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/charts/sparkline/sparkline-init.js"></script>
+
+    <!--Easy Pie Charts Needed Scripts-->
+    <script src="{{STATIC_URL}}beyond/js/charts/easypiechart/jquery.easypiechart.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/charts/easypiechart/easypiechart-init.js"></script>
+
+    <!--Flot Charts Needed Scripts-->
+    <script src="{{STATIC_URL}}beyond/js/charts/flot/jquery.flot.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/charts/flot/jquery.flot.resize.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/charts/flot/jquery.flot.pie.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/charts/flot/jquery.flot.tooltip.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/charts/flot/jquery.flot.orderBars.js"></script>
+    <!--Page Related Scripts-->
+    <script src="{{STATIC_URL}}beyond/js/datatable/ZeroClipboard.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="{{STATIC_URL}}beyond/js/datatable/datatables-init.js"></script>
+
+    <script type="text/javascript" src="{{STATIC_URL}}angular/js/angular.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}angular/js/angular-route.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}angular/js/ng-infinite-scroll.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}app/js/app.js"></script>
+
+    <script>
+    InitiateSimpleDataTable.init();
+    InitiateEditableDataTable.init();
+    InitiateExpandableDataTable.init();
+    InitiateSearchableDataTable.init();
+    </script>
+
+
+    <script>
+    // If you want to draw your charts with Theme colors you must run initiating charts after that current skin is loaded
+    $(window).bind("load", function() {
+
+        /*Sets Themed Colors Based on Themes*/
+        themeprimary = getThemeColorFromCss('themeprimary');
+        themesecondary = getThemeColorFromCss('themesecondary');
+        themethirdcolor = getThemeColorFromCss('themethirdcolor');
+        themefourthcolor = getThemeColorFromCss('themefourthcolor');
+        themefifthcolor = getThemeColorFromCss('themefifthcolor');
+
+        
+
+        //Sets The Hidden Chart Width
+        $('#dashboard-bandwidth-chart')
+            .data('width', $('.box-tabbs')
+                .width() - 20);
+
+        //-------------------------Visitor Sources Pie Chart----------------------------------------//
+        fillInformationBlock();
+
+        //------------------------------Visit Chart------------------------------------------------//
+        var data2 = [{
+            color: themesecondary,
+            label: "Direct Visits",
+            data: [
+                [3, 2],
+                [4, 5],
+                [5, 4],
+                [6, 11],
+                [7, 12],
+                [8, 11],
+                [9, 8],
+                [10, 14],
+                [11, 12],
+                [12, 16],
+                [13, 9],
+                [14, 10],
+                [15, 14],
+                [16, 15],
+                [17, 9]
+            ],
+
+            lines: {
+                show: true,
+                fill: true,
+                lineWidth: .1,
+                fillColor: {
+                    colors: [{
+                        opacity: 0
+                    }, {
+                        opacity: 0.4
+                    }]
+                }
+            },
+            points: {
+                show: false
+            },
+            shadowSize: 0
+        }, {
+            color: themeprimary,
+            label: "Referral Visits",
+            data: [
+                [3, 10],
+                [4, 13],
+                [5, 12],
+                [6, 16],
+                [7, 19],
+                [8, 19],
+                [9, 24],
+                [10, 19],
+                [11, 18],
+                [12, 21],
+                [13, 17],
+                [14, 14],
+                [15, 12],
+                [16, 14],
+                [17, 15]
+            ],
+            bars: {
+                order: 1,
+                show: true,
+                borderWidth: 0,
+                barWidth: 0.4,
+                lineWidth: .5,
+                fillColor: {
+                    colors: [{
+                        opacity: 0.4
+                    }, {
+                        opacity: 1
+                    }]
+                }
+            }
+        }, {
+            color: themethirdcolor,
+            label: "Search Engines",
+            data: [
+                [3, 14],
+                [4, 11],
+                [5, 10],
+                [6, 9],
+                [7, 5],
+                [8, 8],
+                [9, 5],
+                [10, 6],
+                [11, 4],
+                [12, 7],
+                [13, 4],
+                [14, 3],
+                [15, 4],
+                [16, 6],
+                [17, 4]
+            ],
+            lines: {
+                show: true,
+                fill: false,
+                fillColor: {
+                    colors: [{
+                        opacity: 0.3
+                    }, {
+                        opacity: 0
+                    }]
+                }
+            },
+            points: {
+                show: true
+            }
+        }];
+        var options = {
+            legend: {
+                show: false
+            },
+            xaxis: {
+                tickDecimals: 0,
+                color: '#f3f3f3'
+            },
+            yaxis: {
+                min: 0,
+                color: '#f3f3f3',
+                tickFormatter: function(val, axis) {
+                    return "";
+                },
+            },
+            grid: {
+                hoverable: true,
+                clickable: false,
+                borderWidth: 0,
+                aboveData: false,
+                color: '#fbfbfb'
+
+            },
+            tooltip: true,
+            tooltipOpts: {
+                defaultTheme: false,
+                content: " <b>%x May</b> , <b>%s</b> : <span>%y</span>",
+            }
+        };
+        var placeholder = $("#dashboard-chart-visits");
+        var plot = $.plot(placeholder, data2, options);
+
+        //------------------------------Real-Time Chart-------------------------------------------//
+        var data = [],
+            totalPoints = 300;
+
+        function getRandomData() {
+
+                if (data.length > 0)
+                    data = data.slice(1);
+
+                // Do a random walk
+
+                while (data.length < totalPoints) {
+
+                    var prev = data.length > 0 ? data[data.length - 1] : 50,
+                        y = prev + Math.random() * 10 - 5;
+
+                    if (y < 0) {
+                        y = 0;
+                    } else if (y > 100) {
+                        y = 100;
+                    }
+
+                    data.push(y);
+                }
+
+                // Zip the generated y values with the x values
+
+                var res = [];
+                for (var i = 0; i < data.length; ++i) {
+                    res.push([i, data[i]]);
+                }
+
+                return res;
+            }
+            // Set up the control widget
+        var updateInterval = 100;
+        var plot = $.plot("#dashboard-chart-realtime", [getRandomData()], {
+            yaxis: {
+                color: '#f3f3f3',
+                min: 0,
+                max: 100,
+                tickFormatter: function(val, axis) {
+                    return "";
+                }
+            },
+            xaxis: {
+                color: '#f3f3f3',
+                min: 0,
+                max: 100,
+                tickFormatter: function(val, axis) {
+                    return "";
+                }
+            },
+            colors: [themeprimary],
+            series: {
+                lines: {
+                    lineWidth: 0,
+                    fill: true,
+                    fillColor: {
+                        colors: [{
+                            opacity: 0.5
+                        }, {
+                            opacity: 0
+                        }]
+                    },
+                    steps: false
+                },
+                shadowSize: 0
+            },
+            grid: {
+                hoverable: true,
+                clickable: false,
+                borderWidth: 0,
+                aboveData: false
+            }
+        });
+
+        function update() {
+
+            plot.setData([getRandomData()]);
+
+            plot.draw();
+            setTimeout(update, updateInterval);
+        }
+        update();
+
+
+        //-------------------------Initiates Easy Pie Chart instances in page--------------------//
+        InitiateEasyPieChart.init();
+
+        //-------------------------Initiates Sparkline Chart instances in page------------------//
+        InitiateSparklineCharts.init();
+        
+        // call the draw of pie chrt---------------------------------------//
+        DrawPieChart();
+    });
+
+    function fillInformationBlock() {
+        //draw pie chart
+        createanewpiechart()
+
+        //populat data in table
+
+        //populate data in google graph
+    }
+
+    function createanewpiechart() {
+
+        MainApp.dashboardParams.since_months = document.getElementById("TimeLine").value;
+        MainApp.dashboardParams.blockid = document.getElementById("Blocks").value;
+        MainApp.fetchDataCurrent();
+        console.log(" I was here buddy");
+       // DrawPieChart();      
+     }
+
+
+
+    </script>
+    <!--Google Analytics::Demo Only-->
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-52103994-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.15&key=AIzaSyBi0Oz6xouYIoWM3DWDJ0C9AllumEB9YXo">
+    </script>
+
+    <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.10/src/markerwithlabel.js"></script>
+
+    <script type="text/javascript">
+        InitiateSparklineCharts.init();
+    var panchyatRajInput = [{
+        "lat": 25.4486,
+        "lang": 78.5696,
+        "panchayatName": "bab1",
+        "Status": "Green",
+        "Beneficiaries": 10,
+        "Adherence": 68,
+        "Overdue": 70,
+        "Subcenter": "badegaon",
+        "AshaDetails": "Ramvati:9177866663"
+    }, {
+        "lat": 25.4686,
+        "lang": 78.5696,
+        "panchayatName": "bab2",
+        "Status": "Green",
+        "Beneficiaries": 10,
+        "Adherence": 68,
+        "Overdue": 70,
+        "Subcenter": "badegaon",
+        "AshaDetails": "Ramvati:9177866663"
+    }, {
+        "lat": 25.4886,
+        "lang": 78.5696,
+        "panchayatName": "bab3",
+        "Status": "Yellow",
+        "Beneficiaries": 10,
+        "Adherence": 68,
+        "Overdue": 70,
+        "Subcenter": "badegaon",
+        "AshaDetails": "Ramvati:9177866663"
+    }, {
+        "lat": 25.5086,
+        "lang": 78.5696,
+        "panchayatName": "bab4",
+        "Status": "Red",
+        "Beneficiaries": 10,
+        "Adherence": 68,
+        "Overdue": 70,
+        "Subcenter": "badegaon",
+        "AshaDetails": "Ramvati:9177866663"
+    }];
+
+    </script>
+
+
+</body>
+<!--  /Body -->
+
+</html>

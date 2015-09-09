@@ -37,6 +37,7 @@ from math import ceil
 import unicodedata
 from dateutil.relativedelta import relativedelta
 from django.contrib.auth.decorators import login_required
+from common.models import ANCReportings, IMMReportings
 
 class StaticData:
 	SCHEDULE_MSG =0
@@ -250,10 +251,245 @@ def SendSchSMS(role=StaticData.SCHEDULE_MSG, job=StaticData.SENDER, reach = Stat
 
 @login_required
 def DashboardPage(request):
+	return render(request, "dashboard_base.html", {})
+
+def SubcenterPage(request):
 	_allBlocks = Block.objects.all()
 	blocks = [block for block in _allBlocks]
-	return render(request, "dasboard_subcenteratblock.html", {'blocks':blocks})
+	return render(request, "subcenter_page.html", {'blocks':blocks})	
 
+def BlockPage(request):
+	return render(request, "block_page.html", {})
+
+def BlockIndicesData(request):
+	today_date = utcnow_aware().date()
+	fin_marker = today_date.replace(month = 4, day=1)
+	if today_date.month < 4:
+		fin_marker = fin_marker.replace(year=today_date.year-1)
+	this_month_date = today_date.replace(day=1)
+	months_since_start = (this_month_date.month-fin_marker.month) if this_month_date.month > 3 else (this_month_date.month-fin_marker.month + 12) 
+
+	last_year_date = this_month_date.replace(year=this_month_date.year-1)
+
+	mother_reg = [] #{block id, name, count, target, %, sorted}
+	child_reg = [] #{block id,name, count, target, %, sorted}
+	full_imm = [] #{block id,name, count, target, %, sorted}
+	full_anc = [] #{block id,name, count, target, %, sorted}
+	del_rep = [] #{block id,name, count, target, %, sorted}
+
+	if request.method == 'GET':
+		district_mcts_id = str(request.GET.get('district_mcts_id')) if request.GET.get('district_mcts_id') else '36'
+		try:
+			district = District.objects.get(MCTS_ID=district_mcts_id)
+		except:
+			return HttpResponseBadRequest('Wrong district id specified')
+		from common.models import NHMTargets, PopulationData
+		#Find all distinct blocks
+		blocks = Block.objects.filter()
+		#query to get all beneficiaries of  given financial year & given iterative block
+		for block in blocks:
+			imm_benefs = IMMBenef.objects.filter(subcenter__block=block, dob__gte=fin_marker)
+			anc_benefs = ANCBenef.objects.filter(subcenter__block=block, LMP__gte=fin_marker)
+
+			mreg_district_target = NHMTargets.objects.get(target_type='MREG', district=district, target_year=fin_marker.year).target_value
+			creg_district_target = NHMTargets.objects.get(target_type='CREG', district=district, target_year=fin_marker.year).target_value
+
+			district_population = PopulationData.objects.get(unit_type=District.__name__, MCTS_ID= district.MCTS_ID, year=fin_marker.year).population
+			block_population = PopulationData.objects.get(unit_type=Block.__name__, MCTS_ID=block.MCTS_ID, year=fin_marker.year).population
+
+			mreg_target = ceil((mreg_district_target * block_population * months_since_start) / (district_population * 12) )
+			creg_target = ceil((creg_district_target * block_population * months_since_start) / (district_population * 12) )
+
+			imm_benefs_last_year = IMMBenef.objects.filter(subcenter__block=block, dob__year=last_year_date.year, dob__month=last_year_date.month)
+			anc_benefs_last_year = ANCBenef.objects.filter(subcenter__block=block, LMP__year=last_year_date.year, LMP__month=last_year_date.month)
+			
+			fimm_target = imm_benefs_last_year.count()
+			fanc_target = anc_benefs_last_year.count()
+			drep_target = fanc_target
+
+			anc_reports = ANCReportings.objects.filter(benef__in=anc_benefs_last_year)
+			fanc_reportings = anc_reports.filter( anc1_date__isnull=False, anc2_date__isnull=False, anc3_date__isnull=False,\
+			 anc4_date__isnull=False) | anc_reports.filter( anc1_date__isnull=True, anc2_date__isnull=False, anc3_date__isnull=False,\
+			 anc4_date__isnull=False) | anc_reports.filter( anc1_date__isnull=False, anc2_date__isnull=True, anc3_date__isnull=False,\
+			 anc4_date__isnull=False) | anc_reports.filter( anc1_date__isnull=False, anc2_date__isnull=False, anc3_date__isnull=True,\
+			 anc4_date__isnull=False) | anc_reports.filter( anc1_date__isnull=False, anc2_date__isnull=False, anc3_date__isnull=False,\
+			 anc4_date__isnull=True)
+			fanc_count = fanc_reportings.count()
+
+			imm_reports = IMMReportings.objects.filter(benef__in=imm_benefs_last_year)
+			fimm_reportings = imm_reports.filter(measles_date__isnull=False)
+			fimm_count = fimm_reportings.count()
+
+			drep_count = anc_reports.filter(delivery_date__isnull=False).count()
+
+			mreg = {
+				'block_id':block.MCTS_ID,
+				'block_name':block.name,
+				'count':anc_benefs.count(),
+				'target':mreg_target,
+				'percent': (float(anc_benefs.count())/float(mreg_target))*100 if mreg_target else 0
+			}
+			creg = {
+				'block_id':block.MCTS_ID,
+				'block_name':block.name,
+				'count':imm_benefs.count(),
+				'target':creg_target,
+				'percent': (float(imm_benefs.count())/float(creg_target))*100 if creg_target else 0
+			}
+			fanc = {
+				'block_id':block.MCTS_ID,
+				'block_name':block.name,
+				'count':fanc_count,
+				'target':fanc_target,
+				'percent':(float(fanc_count)/float(fanc_target))*100 if fanc_target else 0
+			}
+			fimm = {
+				'block_id':block.MCTS_ID,
+				'block_name':block.name,
+				'count':fimm_count,
+				'target':fimm_target,
+				'percent':(float(fimm_count)/float(fimm_target))*100 if fimm_target else 0
+			}
+			drep = {
+				'block_id':block.MCTS_ID,
+				'block_name':block.name,
+				'count':drep_count,
+				'target':drep_target,
+				'percent':(float(drep_count)/float(drep_target))*100 if drep_target else 0
+			}
+			mother_reg.append(mreg)
+			child_reg.append(creg)
+			full_imm.append(fimm)
+			full_anc.append(fanc)
+			del_rep.append(drep)
+
+		mother_reg = sorted(mother_reg, key=lambda k:k.get("percent"), reverse=True)
+		child_reg = sorted(child_reg, key=lambda k:k.get("percent"), reverse=True)
+		full_imm = sorted(full_imm, key=lambda k:k.get("percent"), reverse=True)
+		full_anc = sorted(full_anc, key=lambda k:k.get("percent"), reverse=True)
+		del_rep = sorted(del_rep, key=lambda k:k.get("percent"), reverse=True)
+		#Prepare data: block name, count(), target, % sorted on %.
+		#Preapre data: y-axis [index, block_name], x-axis [%, index]
+
+		block_data = {
+			"mother_reg":mother_reg, #{block id, name, count, target, %, sorted}
+			"child_reg":child_reg,
+			"full_imm":full_imm,
+			"full_anc":full_anc,
+			"del_rep":del_rep
+		}
+
+		mother_reg_graph_x = [[x.get("percent"), i] for i,x in enumerate(mother_reg)]
+		mother_reg_graph_y = [[i, x.get("block_name")] for i,x in enumerate(mother_reg)]
+
+		child_reg_graph_x = [[x.get("percent"), i] for i,x in enumerate(child_reg)]
+		child_reg_graph_y = [[i, x.get("block_name")] for i,x in enumerate(child_reg)]
+
+		full_imm_graph_x = [[x.get("percent"), i] for i,x in enumerate(full_imm)]
+		full_imm_graph_y = [[i, x.get("block_name")] for i,x in enumerate(full_imm)]
+
+		full_anc_graph_x = [[x.get("percent"), i] for i,x in enumerate(full_anc)]
+		full_anc_graph_y = [[i, x.get("block_name")] for i,x in enumerate(full_anc)]
+
+		del_rep_graph_x = [[x.get("percent"), i] for i,x in enumerate(del_rep)]
+		del_rep_graph_y = [[i, x.get("block_name")] for i,x in enumerate(del_rep)]
+
+		block_graph_data = {
+			"mother_reg_chart" : [mother_reg_graph_x, mother_reg_graph_y],
+			"child_reg_chart" : [child_reg_graph_x, child_reg_graph_y], 
+			"full_anc_chart" : [full_anc_graph_x, full_anc_graph_y],
+			"full_imm_chart" : [full_imm_graph_x, full_imm_graph_y],
+			"del_rep_chart" : [del_rep_graph_x, del_rep_graph_y]
+		}
+
+		imm_benefs = IMMBenef.objects.filter(subcenter__district=district, dob__gte=fin_marker)
+		anc_benefs = ANCBenef.objects.filter(subcenter__district=district, LMP__gte=fin_marker)
+
+		mreg_district_target_annual = NHMTargets.objects.get(target_type='MREG', district=district, target_year=fin_marker.year).target_value
+		creg_district_target_annual = NHMTargets.objects.get(target_type='CREG', district=district, target_year=fin_marker.year).target_value
+
+		mreg_district_target = ceil((mreg_district_target_annual*months_since_start)/12)
+		creg_district_target = ceil((creg_district_target_annual*months_since_start)/12)
+
+		imm_benefs_last_year = IMMBenef.objects.filter(subcenter__district=district, dob__year=last_year_date.year, dob__month=last_year_date.month)
+		anc_benefs_last_year = ANCBenef.objects.filter(subcenter__district=district, LMP__year=last_year_date.year, LMP__month=last_year_date.month)
+		
+		fimm_target = imm_benefs_last_year.count()
+		fanc_target = anc_benefs_last_year.count()
+		drep_target = fanc_target
+
+		anc_reports = ANCReportings.objects.filter(benef__in=anc_benefs_last_year)
+		fanc_reportings = anc_reports.filter( anc1_date__isnull=False, anc2_date__isnull=False, anc3_date__isnull=False,\
+		 anc4_date__isnull=False) | anc_reports.filter( anc1_date__isnull=True, anc2_date__isnull=False, anc3_date__isnull=False,\
+		 anc4_date__isnull=False) | anc_reports.filter( anc1_date__isnull=False, anc2_date__isnull=True, anc3_date__isnull=False,\
+		 anc4_date__isnull=False) | anc_reports.filter( anc1_date__isnull=False, anc2_date__isnull=False, anc3_date__isnull=True,\
+		 anc4_date__isnull=False) | anc_reports.filter( anc1_date__isnull=False, anc2_date__isnull=False, anc3_date__isnull=False,\
+		 anc4_date__isnull=True)
+		fanc_count = fanc_reportings.count()
+
+		imm_reports = IMMReportings.objects.filter(benef__in=imm_benefs_last_year)
+		fimm_reportings = imm_reports.filter(measles_date__isnull=False)
+		fimm_count = fimm_reportings.count()
+
+		drep_count = anc_reports.filter(delivery_date__isnull=False).count()
+
+		mother_reg = {
+			'district_id':district.MCTS_ID,
+			'district_name':district.name,
+			'count':anc_benefs.count(),
+			'target':mreg_district_target,
+			'percent': (float(anc_benefs.count())/float(mreg_district_target))*100 if mreg_district_target else 0
+		}
+
+		child_reg = {
+			'district_id':district.MCTS_ID,
+			'district_name':district.name,
+			'count':imm_benefs.count(),
+			'target':creg_district_target,
+			'percent': (float(imm_benefs.count())/float(creg_district_target))*100 if creg_district_target else 0
+		}
+		full_imm = {
+			'district_id':district.MCTS_ID,
+			'district_name':district.name,
+			'count':fimm_count,
+			'target':fimm_target,
+			'percent':(float(fimm_count)/float(fimm_target))*100 if fimm_target else 0	
+		} 
+		full_anc = {
+			'district_id':district.MCTS_ID,
+			'district_name':district.name,
+			'count':fanc_count,
+			'target':fanc_target,
+			'percent':(float(fanc_count)/float(fanc_target))*100 if fanc_target else 0	
+		} 
+		del_rep = {
+			'district_id':district.MCTS_ID,
+			'district_name':district.name,
+			'count':drep_count,
+			'target':drep_target,
+			'percent':(float(drep_count)/float(drep_target))*100 if drep_target else 0
+		} 
+
+		district_data = {
+			"mother_reg":mother_reg, #{block id, name, count, target, %, sorted}
+			"child_reg":child_reg,
+			"full_imm":full_imm,
+			"full_anc":full_anc,
+			"del_rep":del_rep
+		}
+
+		data = {
+			'district_data':district_data,
+			'block_graph_data':block_graph_data,
+			'block_data':block_data
+		}
+
+		return HttpResponse(json.dumps(data),  mimetype='application/json')
+	else:
+		return HttpResponseBadRequest('Method type not allowed. Only get is allowed.')
+
+def OutreachMonitoringPage(request):
+	return render(request, "outreach_page.html", {})
 
 def GetLastSixMonthsProgress(benefs, sub, reg_type):
 	timezone = 'Asia/Kolkata'

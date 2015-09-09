@@ -1,0 +1,349 @@
+<div class="row">
+    <div class="col-lg-6 col-sm-12 col-xs-6">
+        <div class="well">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-lg-6">
+                    <h6>Select Timeline</h6>
+                    <select id="TimeLine" style="width:100%;" ng-model="dashboardParams.since_months" ng-change="RefreshDataFromServer($event, 0)">
+                        <option value="1">Last 1 Month </option>
+                        <option value="2">Last 2 Months </option>
+                        <option value="3">Last 3 Months </option>
+                        <option value="6">Last 6 Months </option>
+                        <option value="36">Beginning of Time </option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-lg-6">
+                    <h6>Select Blocks</h6>
+                    <select id="Blocks" style="width:100%;" ng-change="RefreshDataFromServer($event, 1)" ng-model="dashboardParams.blockid">
+                        {% if blocks %}
+                        <option value="">
+                            AllBlocks
+                        </option>
+
+                        {% endif %} {% for block in blocks %}
+                        <option value="{{block.id}}">
+                            {{block.name}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <hr class="wide"/>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-lg-6">
+                <h6> Select Domain</h6>
+                <select id="Type" style="width:100%;" ng-model="dashboardParams.domain">
+                    <option value="1"> Ante Natal Care (ANC) </option>
+                    <option value="2"> Immunization (Child & Infant) </option>
+                </select>
+                </div>
+            </div>
+            <hr class="wide"/>
+            <div>
+                <h6> Block Statistics:</h6>
+                Lorem Ipsum<br>
+                Lorem Ipsum
+            </div>
+
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-4">
+        <div class="databox databox-xxlg databox-vertical databox-shadowed bg-white radius-bordered padding-5">
+            <div class="databox-bottom">
+                <div class="databox-row row-12">
+                    <div class="databox-cell cell-7 text-center  padding-5">
+                        <div id="dashboard-pie-chart-sources" class="chart"></div>
+                    </div>
+                    <div class="databox-cell cell-5 text-center no-padding-left padding-bottom-30">
+                        <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
+                            <span class="databox-text sonic-silver pull-left no-margin">Performane</span>
+                            <span class="databox-text sonic-silver pull-right no-margin uppercase">PCT</span>
+                        </div>
+                        <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
+                            <span class="badge badge-palegreen badge-empty pull-left margin-5"></span>
+                            <span class="databox-text darkgray pull-left no-margin hidden-xs">Good</span>
+                            <span class="databox-text darkgray pull-right no-margin uppercase" id="GoodId"></span>
+                        </div>
+                        <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
+                            <span class="badge badge-yellow badge-empty pull-left margin-5"></span>
+                            <span class="databox-text darkgray pull-left no-margin hidden-xs">Average</span>
+                            <span class="databox-text darkgray pull-right no-margin uppercase" id="AverageId"></span>
+                        </div>
+                        <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
+                            <span class="badge badge-orange badge-empty pull-left margin-5"></span>
+                            <span class="databox-text darkgray pull-left no-margin hidden-xs">Poor</span>
+                            <span class="databox-text darkgray pull-right no-margin uppercase" id="PoorId"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tabbable">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active">
+            <a data-toggle="tab" href="#geobox" target="self">
+                Geo-Analysis
+            </a>
+        </li>
+
+        <li>
+            <a data-toggle="tab" href="#listviewbox" target="self">
+                Listview
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="row tab-pane in active" id="geobox">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                     <div class="widget-header ">
+                        <span class="widget-caption">Subcenter loations</span>
+                        <div class="widget-buttons">
+                        <a data-toggle="maximize">
+                            <i class="fa fa-expand"></i>
+                        </a>
+                        </div>
+                    </div>
+
+                    <div id="map-canvas" style="width: 100%; height: 900px"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row tab-pane" id="listviewbox">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget ">
+                    <div class="widget-header">
+                        <span class="widget-caption">Blockwise Details</span>
+                        <div class="widget-buttons">
+                        <a data-toggle="maximize">
+                            <i class="fa fa-expand"></i>
+                        </a>
+                        </div>
+                    </div>
+                
+                    <!-- Modal -->
+                    <div class="modal modal-primary fade" id="workplan_modal" tabindex="-1" role="dialog" aria-labelledby="GeneralWorkplan" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title">Workplan</h4>
+                                </div>
+                                
+                                <div class="modal-body">
+                                    <div style="text-align:center">
+                                        <h3>
+                                            <b>
+                                                Workplan for #{currentWP.area}#
+                                            </b>
+                                        </h3>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            Subcenter: #{currentWP.subcenter.name}# (#{currentWP.subcenter.MCTS_ID}#)
+                                        </div>
+                                        <div class="col-sm-2">
+                                            HealthFacility: #{currentWP.subcenter.health_facility.name}# (#{currentWP.subcenter.health_facility.MCTS_ID}#)
+                                        </div>
+                                        <div class="col-sm-2">
+                                            Block: #{currentWP.subcenter.block.name}# (#{currentWP.subcenter.block.MCTS_ID}#)
+                                        </div>
+                                        <div class="col-sm-2">
+                                            District: #{currentWP.subcenter.district.name}# (#{currentWP.subcenter.district.MCTS_ID}#)
+                                        </div>
+                                        <div class="col-sm-2">
+                                            For: #{currentWP.date_this | wp_duration:currentWP.date_then}#
+                                        </div>
+                                    </div>      
+                                    <div class="margin-top-20"></div>                                                                
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>S.No.</th>
+                                                <th>Name</th>
+                                                <th>MCTS_ID</th>
+                                                <th>Phone</th>
+                                                <th>Given Services</th>
+                                                <th>Due Services</th>
+                                                <th>Overdue Services</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="benef in currentWP.workplan">    
+                                                <td> #{$index+1}#</td>
+                                                <td> #{benef.name}#</td>
+                                                <td> #{benef.MCTS_ID}#</td>
+                                                <td> #{benef.notify_number}#</td>
+                                                <td> #{benef.txns | gs_map}#</td>
+                                                <td> #{benef.due_events | d_map}#</td>
+                                                <td> #{benef.odue_events | d_map}#</td>    
+                                            </tr> 
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" ng-click="PrintElem('#workplan_modal .modal-body')" data-dismiss="modal">Print Out</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+
+                    <table id="tabular-anc" ng-show="dashboardParams.domain==1" class="table table-bordered table-hover table-striped">
+                           <thead>
+                                <tr role="row">
+                                    <th >S. No.</th>
+                                    <th ng-class="{'asc_label': SerialNum==1 && Asc ==1  , 'desc_label': SerialNum==1 && Asc == 0, 'no_label': SerialNum != 1}" ng-click="SortData($event, 1)" style="cursor:pointer">Status indicator&nbsp;</th>
+                                    <th ng-class="{'asc_label': SerialNum==2 && Asc ==1  , 'desc_label': SerialNum==2 && Asc == 0, 'no_label': SerialNum != 2}" ng-click="SortData($event, 2)" style="cursor:pointer">Subcenter&nbsp;</th>
+                                    <th ng-class="{'asc_label': SerialNum==3 && Asc ==1  , 'desc_label': SerialNum==3 && Asc == 0, 'no_label': SerialNum != 3}" ng-click="SortData($event, 3)" style="cursor:pointer">Beneficiary Count&nbsp;</th>
+                                    <th>HMIS Beneficiary Count&nbsp;</th>
+                                    <th ng-class="{'asc_label': SerialNum==4 && Asc ==1  , 'desc_label': SerialNum==4 && Asc == 0, 'no_label': SerialNum != 4}" ng-click="SortData($event, 4)" style="cursor:pointer">Due Services&nbsp;</th>
+                                    <th ng-class="{'asc_label': SerialNum==5 && Asc ==1  , 'desc_label': SerialNum==5 && Asc == 0, 'no_label': SerialNum != 5}" ng-click="SortData($event, 5)" style="cursor:pointer">Given Services&nbsp;</th>
+                                    <th ng-class="{'asc_label': SerialNum==6 && Asc ==1  , 'desc_label': SerialNum==6 && Asc == 0, 'no_label': SerialNum != 6}" ng-click="SortData($event, 6)" style="cursor:pointer">Overdue Services number&nbsp;</th>
+                                    <th ng-class="{'asc_label': SerialNum==7 && Asc ==1  , 'desc_label': SerialNum==7 && Asc == 0, 'no_label': SerialNum != 7}" ng-click="SortData($event, 7)" style="cursor:pointer">Overdue rate&nbsp;</th>
+                                    <th>Overdue rate trends</th> 
+                                    <th>ANM name | Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="villageData in dashdata.data" on-finish-render>
+                                    <td >#{$index + 1}#</td>
+                                    <td >
+                                        <div ng-class="{'status_label_green':villageData.status_anc==2,'status_label_red':villageData.status_anc==0,
+                                        'status_label_yellow':villageData.status_anc==1}">
+                                              #{villageData.status_anc}#
+                                       </div>
+                                    </td>
+                                    <td >
+                                        <a ng-click="WorkplanModal(villageData.SubcenterId)"  style="cursor:pointer">#{villageData.Subcenter}#</a>
+                                    </td>
+                                    <td >#{villageData.Beneficiaries_anc}# </td>
+                                    <td>N/A</td>
+                                    <td>
+                                        #{villageData.DueServices_anc }#
+                                        <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Dues" data-content="#{villageData.due_sg_anc | services_dump}#">
+                                          <i class="glyphicon glyphicon-info-sign gray"></i>
+                                        </a> 
+                                    </td>
+                                    <td >
+                                        #{villageData.GivenServices_anc }#
+                                        <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Given" data-content="#{villageData.given_sg_anc | services_dump}#">
+                                          <i class="glyphicon glyphicon-info-sign gray"></i>
+                                        </a> 
+                                    </td>
+                                    <td >
+                                        #{villageData.Overdue_anc}#
+                                        <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Overdues" data-content="#{villageData.overdue_sg_anc | services_dump}#">
+                                          <i class="glyphicon glyphicon-info-sign gray"></i>
+                                        </a> 
+                                    </td>
+                                    <td >#{villageData.OverDueRate_anc| number:2}# </td>
+                                    
+                                    <td>
+                                        <div class="databox-sparkline">
+                                            <span data-height="25px" data-width="100%" data-fillcolor="false" data-linecolor="#03c" data-spotcolor="#03c" data-linewidth="1" data-spotradius="0" id="sparkline-anc-#{$index}#">
+                                            </span>
+                                        </div>
+
+                                    </td>
+
+                                    <td >
+                                     <span ng-repeat="anmPerson in villageData.ANMDetails"> 
+                                        <span ng-show="$index>0">, </span>
+                                        #{anmPerson}#
+                                        </span>
+                                    </td>
+                                    <!--
+                                    <td >
+                                     <span ng-repeat="ashaWorker in villageData.AshaDetails"> 
+                                        <span ng-show="$index>0">, </span>
+                                        #{ashaWorker}#
+                                        </span>
+                                     </td> -->
+
+                                </tr>
+                            </tbody>
+                    </table>
+
+                    <table id="tabular_imm" ng-show="dashboardParams.domain==2" class="table table-bordered table-hover table-striped">
+                           <thead>
+                                <tr role="row">
+                                    <th >S. No.</th>
+                                    <th ng-class="{'asc_label': SerialNum==1 && Asc ==1  , 'desc_label': SerialNum==1 && Asc == 0, 'no_label': SerialNum != 1}" ng-click="SortData($event, 1)" style="cursor:pointer">Status indicator&nbsp;</th>
+                                    <th ng-class="{'asc_label': SerialNum==2 && Asc ==1  , 'desc_label': SerialNum==2 && Asc == 0, 'no_label': SerialNum != 2}" ng-click="SortData($event, 2)" style="cursor:pointer">Subcenter&nbsp;</th>
+                                    <th ng-class="{'asc_label': SerialNum==3 && Asc ==1  , 'desc_label': SerialNum==3 && Asc == 0, 'no_label': SerialNum != 3}" ng-click="SortData($event, 3)" style="cursor:pointer">Beneficiary Count&nbsp;</th>
+                                    <th>HMIS Beneficiary Count&nbsp;</th>
+                                    <th ng-class="{'asc_label': SerialNum==4 && Asc ==1  , 'desc_label': SerialNum==4 && Asc == 0, 'no_label': SerialNum != 4}" ng-click="SortData($event, 4)" style="cursor:pointer">Due Services&nbsp;</th>
+                                    <th ng-class="{'asc_label': SerialNum==5 && Asc ==1  , 'desc_label': SerialNum==5 && Asc == 0, 'no_label': SerialNum != 5}" ng-click="SortData($event, 5)" style="cursor:pointer">Given Services&nbsp;</th>
+                                    <th ng-class="{'asc_label': SerialNum==6 && Asc ==1  , 'desc_label': SerialNum==6 && Asc == 0, 'no_label': SerialNum != 6}" ng-click="SortData($event, 6)" style="cursor:pointer">Overdue Services number&nbsp;</th>
+                                    <th ng-class="{'asc_label': SerialNum==7 && Asc ==1  , 'desc_label': SerialNum==7 && Asc == 0, 'no_label': SerialNum != 7}" ng-click="SortData($event, 7)" style="cursor:pointer">Overdue rate&nbsp;</th>
+                                    <th>Overdue rate trends</th> 
+                                    <th>ANM name | Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr  ng-repeat="villageData in dashdata.data" on-finish-render>
+                                    <td >#{$index + 1}#</td>
+                                    <td >
+                                        <div ng-class="{'status_label_green':villageData.status_imm==2,'status_label_red':villageData.status_imm==0,
+                                        'status_label_yellow':villageData.status_imm==1}">
+                                              #{villageData.status_imm}#
+                                       </div>
+                                    </td>
+                                    <td >
+                                        <a ng-click="WorkplanModal(villageData.SubcenterId)"  style="cursor:pointer">#{villageData.Subcenter}#</a>
+                                    </td>
+                                    <td >#{villageData.Beneficiaries_imm}# </td>
+                                    <td>N/A</td>
+                                    <td>
+                                        #{villageData.DueServices_imm }#
+                                        <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Dues" data-content="#{villageData.due_sg_imm | services_dump}#">
+                                          <i class="glyphicon glyphicon-info-sign gray"></i>
+                                        </a> 
+                                    </td>
+                                    <td >
+                                        #{villageData.GivenServices_imm }#
+                                        <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Given" data-content="#{villageData.given_sg_imm | services_dump}#">
+                                          <i class="glyphicon glyphicon-info-sign gray"></i>
+                                        </a> 
+                                    </td>
+                                    <td >
+                                        #{villageData.Overdue_imm}#
+                                        <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Overdues" data-content="#{villageData.overdue_sg_imm | services_dump}#">
+                                          <i class="glyphicon glyphicon-info-sign gray"></i>
+                                        </a> 
+                                    </td>
+                                    <td >#{villageData.OverDueRate_imm| number:2}# </td>
+                                    
+                                    <td>
+                                        <div class="databox-sparkline">
+                                            <span data-height="25px" data-width="100%" data-fillcolor="false" data-linecolor="#03c" data-spotcolor="#03c" data-linewidth="1" data-spotradius="0" id="sparkline-imm-#{$index}#">
+                                            </span>
+                                        </div>
+
+                                    </td>
+                                    <td >
+                                     <span ng-repeat="anmPerson in villageData.ANMDetails"> 
+                                        <span ng-show="$index>0">, </span>
+                                        #{anmPerson}#
+                                        </span>
+                                    </td>
+                                    <!-- <td >
+                                     <span ng-repeat="ashaWorker in villageData.AshaDetails"> 
+                                        <span ng-show="$index>0">, </span>
+                                        #{ashaWorker}#
+                                        </span>
+                                    </td> -->
+
+                                </tr>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+         </div>   
+    </div>
+</div>

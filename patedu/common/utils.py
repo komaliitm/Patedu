@@ -19,6 +19,7 @@ import pytz
 from schedule_api.models import TaskScheduler
 import requests, re
 import xlsxwriter
+from common.models import ANCReportings, IMMReportings
 from mcts_identities.models import IMMBenef, ANCBenef, Beneficiary, Block, SubCenter, Address,  CareProvider, CareGiver, HealthFacility, District
 from mcts_transactions.models import DueEvents, OverDueEvents
 
@@ -38,6 +39,31 @@ def LoadLatLong():
             sub.save()
         except:
             continue
+
+def LoadPopulationData(orm, year):
+    file_to_read = 'population_data_'+str(year)+'.txt'
+    file_path = os.path.join(settings.STATIC_ROOT, 'common', file_to_read)
+    with open(file_path, 'r') as f:
+        j_string = f.read()
+    print j_string
+    population_items = json.loads(j_string)
+    from common.models import PopulationData
+    for population_item in population_items:
+        population_data = PopulationData.objects.create(population= population_item["population"], last_updated=utcnow_aware(),\
+            MCTS_ID=population_item["MCTS_ID"], unit_type=population_item["unit_type"])
+
+def LoadNHMTargets(orm, year):
+    file_to_read = 'nhm_targets_'+str(year)+'.txt'
+    file_path = os.path.join(settings.STATIC_ROOT, 'common', file_to_read)
+    with open(file_path, 'r') as f:
+        j_string = f.read()
+    print j_string
+    targets = json.loads(j_string)
+    from common.models import NHMTargets
+    for target in targets:
+        district = District.objects.get(MCTS_ID = str(target["district"]))
+        nhm_target = NHMTargets.objects.create(target_type=target["target_type"], target_year=int(target["target_year"]),\
+         target_value=int(target["target_value"]), last_updated=utcnow_aware(), district=district)
 
 def DumpSubCList():
     subcenters = SubCenter.objects.all()
@@ -124,9 +150,28 @@ def SaveANCBenef(benef):
     district_rs = benef.get('Distric')
     block_rs = benef.get('Health Bloc')
     health_facility_rs = benef.get('Health Facilit')
+    anc1_date = datetime.strptime(benef.get('ANC1 Date'), "%d/%m/%Y").date() if benef.get('ANC1 Date') else None
+    anc2_date = datetime.strptime(benef.get('ANC2 Date'), "%d/%m/%Y").date() if benef.get('ANC2 Date') else None
+    anc3_date = datetime.strptime(benef.get('ANC3 Date'), "%d/%m/%Y").date() if benef.get('ANC3 Date') else None
+    anc4_date = datetime.strptime(benef.get('ANC4 Date'), "%d/%m/%Y").date() if benef.get('ANC4 Date') else None
+    delivery_date = datetime.strptime(benef.get('Delivery/\nAbortion Date'), "%d/%m/%Y").date() if benef.get('Delivery/\nAbortion Date') else None
     
-    if ANCBenef.objects.filter(MCTS_ID=mother_mcts_id):
-        print 'IMM Benef Already exists'
+    anc_benef_qs = ANCBenef.objects.filter(MCTS_ID=mother_mcts_id)
+    if anc_benef_qs:
+        anc_benef = anc_benef_qs[0]
+        if anc1_date or anc2_date or anc3_date or anc4_date or delivery_date:
+            try:
+                anc_reporting = ANCReportings.objects.get(benef=anc_benef)
+            except:
+                anc_reporting = ANCReportings.objects.create(benef=anc_benef)
+            anc_reporting.anc1_date = anc1_date
+            anc_reporting.anc2_date = anc2_date
+            anc_reporting.anc3_date = anc3_date
+            anc_reporting.anc4_date = anc4_date
+            anc_reporting.delivery_date = delivery_date
+            anc_reporting.save()
+            print 'ANC benef services added'
+        print 'ANC Benef Already exists'
         return
 
     t_district = []
@@ -275,7 +320,14 @@ def SaveANCBenef(benef):
         active=True, MCTS_ID=mother_mcts_id, notify_number=notify_number, notify_number_type= notify_number_type, \
         address=village, createdon=utcnow_aware(), modifiedon=utcnow_aware(), subcenter=subcenter, \
         first_name=mother_name, caregiver=cg, careprovider=cp, username=benef_username)
-
+    if anc1_date or anc2_date or anc3_date or anc4_date or delivery_date:
+        anc_reporting = ANCReportings.objects.create(benef=anc_benef)
+        anc_reporting.anc1_date = anc1_date
+        anc_reporting.anc2_date = anc2_date
+        anc_reporting.anc3_date = anc3_date
+        anc_reporting.anc4_date = anc4_date
+        anc_reporting.delivery_date = delivery_date
+        anc_reporting.save()
 
 def SaveIMMBenef(benef):
     birthdate = benef.get('Date of Birth')
@@ -302,8 +354,24 @@ def SaveIMMBenef(benef):
     district_rs = benef.get('Distric')
     block_rs = benef.get('Health Bloc')
     health_facility_rs = benef.get('Health Facilit')
-    
-    if IMMBenef.objects.filter(MCTS_ID=child_mcts_id):
+    measles_date = benef.get('Measles Date')
+    if measles_date:
+        measles_date = datetime.strptime(measles_date, "%d/%m/%Y").date()
+    else:
+        measles_date = None    
+
+    imm_benef_qs = IMMBenef.objects.filter(MCTS_ID=child_mcts_id)
+    if imm_benef_qs:
+        imm_benef = imm_benef_qs[0]
+        if measles_date:
+            try:
+                imm_reporting = IMMReportings.objects.get(benef=imm_benef)
+            except:
+                imm_reporting = IMMReportings.objects.create(benef=imm_benef)
+            imm_reporting.measles_date = measles_date
+            imm_reporting.save()
+            print 'IMM benef services added'
+
         print 'IMM Benef already exists'
         return
 
@@ -455,6 +523,11 @@ def SaveIMMBenef(benef):
     createdon=utcnow_aware(), modifiedon=utcnow_aware(), subcenter=subcenter, \
     first_name=child_name, caregiver=cg, careprovider=cp, username=benef_username)
 
+    if measles_date:
+        imm_reporting = IMMReportings.objects.create(benef=imm_benef)
+        imm_reporting.measles_date = measles_date
+        imm_reporting.save()
+
 def LoadBenefsFromJson(json_data_file, Type=ANCBenef):
     with open(json_data_file, 'r') as f:
         j_string = f.read()
@@ -469,7 +542,15 @@ def LoadBenefsFromJson(json_data_file, Type=ANCBenef):
             SaveIMMBenef(benef)
         i +=1
 
-def ANMIvrForOverdueServices_Exotel():
+def ANMIvrForOverdueServices_Exotel(mode=1, target=1):
+    #mode = 1 Due
+    #mode = 2 OverDue
+    #mode = 3 Both
+    if target == 1:
+        benef_type = ANCBenef
+    elif target == 2:
+        benef_type = IMMBenef
+
     timezone = 'Asia/Kolkata'
     tz = pytz.timezone(timezone)
     today = utcnow_aware().replace(tzinfo=tz)
@@ -477,21 +558,22 @@ def ANMIvrForOverdueServices_Exotel():
     from sms.sender import SendVoiceCall
 
     #Voice call for ANC
-    anc_benefs = ANCBenef.objects.filter(odue_events__date=date_then).distinct()
-    anc_number_string = GenerateNumberString_ANM(anc_benefs)
-    anc_voice_file = 'ANM_ODUE_ANC_REMINDER_20150703142527385436.wav'
-    print 'ANMs for ANC over due services'
-    print anc_number_string
-    if test:
-        anc_number_string = '919390681183'
+    if mode == 1:
+        benefs = benef_type.objects.filter(due_events__date=date_then).distinct()
+    elif mode ==2:
+        benefs = benef_type.objects.filter(odue_events__date=date_then).distinct()
+    else:
+        abenefs = benef_type.objects.filter(odue_events__date=date_then).distinct() & ANCBenef.objects.filter(due_events__date=date_then).distinct()
+    anms = CareProvider.objects.filter(beneficiaries__in=benefs).distinct()
     
-    try:
-        SendVoiceCall(rec_num = imm_number_string, voice_file=imm_voice_file, campaign_name='ANM_ODS_IMM_'+str(date_then))
-        SendVoiceCall(rec_num = anc_number_string, voice_file=anc_voice_file, campaign_name='ANM_ODS_ANC_'+str(date_then))
-    except:
-        # Put exception detail here
-        sys.exc_info()[0]
-        pass
+    callerid = ""
+    app_url = settings.EXOTEL_APP_URL
+    for anm in amns:
+        try:
+            connect_customer_to_app(customer_no=due_anms.notify_number, callerid=callerid, app_url=app_url)
+        except:
+            sys.exec_info()[0]
+
 
 def BenefIVRForDueServices(test=True):
     timezone = 'Asia/Kolkata'

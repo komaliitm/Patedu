@@ -1,0 +1,1 @@
+[{"target_type":"MREG", "target_year":2015, "target_value":65012, "district": "36"},{"target_type":"CREG", "target_year":2015, "target_value":56148, "district": "36"},{"target_type":"DREP", "target_year":2015, "target_value":79572, "district": "36"}]
