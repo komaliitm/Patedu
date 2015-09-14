@@ -261,6 +261,12 @@ def SubcenterPage(request):
 def BlockPage(request):
 	return render(request, "block_page.html", {})
 
+def substract_months(date1, date2):
+	if date1.year == date2.year:
+		return date1.month - date2.month
+	else:
+		return (date1.month - date2.month) + 12 * (date1.year - date2.year)
+
 def BlockIndicesData(request):
 	today_date = utcnow_aware().date()
 	fin_marker = today_date.replace(month = 4, day=1)
@@ -270,6 +276,8 @@ def BlockIndicesData(request):
 	months_since_start = (this_month_date.month-fin_marker.month) if this_month_date.month > 3 else (this_month_date.month-fin_marker.month + 12) 
 
 	last_year_date = this_month_date.replace(year=this_month_date.year-1)
+
+	months_since_last_year = substract_months(this_month_date, last_year_date)
 
 	mother_reg = [] #{block id, name, count, target, %, sorted}
 	child_reg = [] #{block id,name, count, target, %, sorted}
@@ -288,8 +296,8 @@ def BlockIndicesData(request):
 		blocks = Block.objects.filter()
 		#query to get all beneficiaries of  given financial year & given iterative block
 		for block in blocks:
-			imm_benefs = IMMBenef.objects.filter(subcenter__block=block, dob__gte=fin_marker)
-			anc_benefs = ANCBenef.objects.filter(subcenter__block=block, LMP__gte=fin_marker)
+			imm_benefs = IMMBenef.objects.filter(subcenter__block=block, dob__gte=last_year_date)
+			anc_benefs = ANCBenef.objects.filter(subcenter__block=block, LMP__gte=last_year_date)
 
 			mreg_district_target = NHMTargets.objects.get(target_type='MREG', district=district, target_year=fin_marker.year).target_value
 			creg_district_target = NHMTargets.objects.get(target_type='CREG', district=district, target_year=fin_marker.year).target_value
@@ -297,14 +305,21 @@ def BlockIndicesData(request):
 			district_population = PopulationData.objects.get(unit_type=District.__name__, MCTS_ID= district.MCTS_ID, year=fin_marker.year).population
 			block_population = PopulationData.objects.get(unit_type=Block.__name__, MCTS_ID=block.MCTS_ID, year=fin_marker.year).population
 
-			mreg_target = ceil((mreg_district_target * block_population * months_since_start) / (district_population * 12) )
-			creg_target = ceil((creg_district_target * block_population * months_since_start) / (district_population * 12) )
+			mreg_target = ceil((mreg_district_target * block_population) / (district_population) )
+			creg_target = ceil((creg_district_target * block_population) / (district_population) )
 
-			imm_benefs_last_year = IMMBenef.objects.filter(subcenter__block=block, dob__year=last_year_date.year, dob__month=last_year_date.month)
-			anc_benefs_last_year = ANCBenef.objects.filter(subcenter__block=block, LMP__year=last_year_date.year, LMP__month=last_year_date.month)
+			# imm_benefs_last_year = IMMBenef.objects.filter(subcenter__block=block, dob__year=last_year_date.year, dob__month=last_year_date.month)
+			# anc_benefs_last_year = ANCBenef.objects.filter(subcenter__block=block, LMP__year=last_year_date.year, LMP__month=last_year_date.month)
 			
-			fimm_target = imm_benefs_last_year.count()
-			fanc_target = anc_benefs_last_year.count()
+			imm_benefs_last_year = imm_benefs
+			anc_benefs_last_year = anc_benefs
+
+			# fimm_target = imm_benefs_last_year.count()
+			# fanc_target = anc_benefs_last_year.count()
+			# drep_target = fanc_target
+
+			fimm_target = creg_target
+			fanc_target = mreg_target
 			drep_target = fanc_target
 
 			anc_reports = ANCReportings.objects.filter(benef__in=anc_benefs_last_year)
@@ -402,21 +417,27 @@ def BlockIndicesData(request):
 			"del_rep_chart" : [del_rep_graph_x, del_rep_graph_y]
 		}
 
-		imm_benefs = IMMBenef.objects.filter(subcenter__district=district, dob__gte=fin_marker)
-		anc_benefs = ANCBenef.objects.filter(subcenter__district=district, LMP__gte=fin_marker)
+		imm_benefs = IMMBenef.objects.filter(subcenter__district=district, dob__gte=last_year_date)
+		anc_benefs = ANCBenef.objects.filter(subcenter__district=district, LMP__gte=last_year_date)
 
 		mreg_district_target_annual = NHMTargets.objects.get(target_type='MREG', district=district, target_year=fin_marker.year).target_value
 		creg_district_target_annual = NHMTargets.objects.get(target_type='CREG', district=district, target_year=fin_marker.year).target_value
 
-		mreg_district_target = ceil((mreg_district_target_annual*months_since_start)/12)
-		creg_district_target = ceil((creg_district_target_annual*months_since_start)/12)
+		mreg_district_target = ceil((mreg_district_target_annual))
+		creg_district_target = ceil((creg_district_target_annual))
 
-		imm_benefs_last_year = IMMBenef.objects.filter(subcenter__district=district, dob__year=last_year_date.year, dob__month=last_year_date.month)
-		anc_benefs_last_year = ANCBenef.objects.filter(subcenter__district=district, LMP__year=last_year_date.year, LMP__month=last_year_date.month)
+		# imm_benefs_last_year = IMMBenef.objects.filter(subcenter__district=district, dob__year=last_year_date.year, dob__month=last_year_date.month)
+		# anc_benefs_last_year = ANCBenef.objects.filter(subcenter__district=district, LMP__year=last_year_date.year, LMP__month=last_year_date.month)
+		imm_benefs_last_year = imm_benefs
+		anc_benefs_last_year = anc_benefs		
+
+		fimm_target = creg_district_target
+		fanc_target = mreg_district_target
+		drep_target = mreg_district_target
 		
-		fimm_target = imm_benefs_last_year.count()
-		fanc_target = anc_benefs_last_year.count()
-		drep_target = fanc_target
+		# fimm_target = imm_benefs_last_year.count()
+		# fanc_target = anc_benefs_last_year.count()
+		# drep_target = fanc_target
 
 		anc_reports = ANCReportings.objects.filter(benef__in=anc_benefs_last_year)
 		fanc_reportings = anc_reports.filter( anc1_date__isnull=False, anc2_date__isnull=False, anc3_date__isnull=False,\
