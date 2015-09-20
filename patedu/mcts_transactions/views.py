@@ -318,9 +318,9 @@ def BlockIndicesData(request):
 			# fanc_target = anc_benefs_last_year.count()
 			# drep_target = fanc_target
 
-			fimm_target = creg_target
-			fanc_target = mreg_target
-			drep_target = fanc_target
+			fimm_target = imm_benefs.count()
+			fanc_target = anc_benefs.count()
+			drep_target = ceil(mreg_target * 0.9)
 
 			anc_reports = ANCReportings.objects.filter(benef__in=anc_benefs_last_year)
 			fanc_reportings = anc_reports.filter( anc1_date__isnull=False, anc2_date__isnull=False, anc3_date__isnull=False,\

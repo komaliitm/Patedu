@@ -183,6 +183,8 @@ def SaveANCBenef(benef):
         _regSearch= re.search('(\d+)', district_rs)
         if _regSearch:
             district_id = _regSearch.group(0).strip()
+        #Hardcoding
+        district_id = '36'
         if district_id and district_name:
             t_district = [district_name, district_id]
     
@@ -384,6 +386,8 @@ def SaveIMMBenef(benef):
         _regSearch= re.search('(\d+)', district_rs)
         if _regSearch:
             district_id = _regSearch.group(0).strip()
+        #Hardcoding
+        district_id = '36'
         if district_id and district_name:
             t_district = [district_name, district_id]
     
