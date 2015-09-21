@@ -431,9 +431,9 @@ def BlockIndicesData(request):
 		imm_benefs_last_year = imm_benefs
 		anc_benefs_last_year = anc_benefs		
 
-		fimm_target = creg_district_target
-		fanc_target = mreg_district_target
-		drep_target = mreg_district_target
+		fimm_target = imm_benefs.count()
+		fanc_target = anc_benefs.count()
+		drep_target = ceil(mreg_district_target * 0.9)
 		
 		# fimm_target = imm_benefs_last_year.count()
 		# fanc_target = anc_benefs_last_year.count()
