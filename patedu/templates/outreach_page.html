@@ -1,2 +1,139 @@
-This page is meant for monitoring the outreach.
-CURRENTLY UNDER CONSTRUCTION 
+<div class="tabbable">
+    <ul class="nav nav-tabs nav-justified" id="outreach-tabs">
+        <li class="active">
+            <a data-toggle="tab" href="#anm_pan" target="self">ANM</a>
+        </li>
+
+        <li>
+            <a data-toggle="tab" href="#asha_pan" target="self">ASHA</a>
+        </li>
+
+        <li>
+            <a data-toggle="tab" href="#benef_pan" target="self">BENEFICIARY</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="anm_pan" class="tab-pane in active">
+            <div class="panel-group accordion"style="border-top:1px 0 0 0;" id="accordion-anm">
+                <div class="panel panel-default" ng-repeat="block in outreach.anm" >
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-anm" href="#block#{$index}#-anm" target="self">
+                            	<div class="row">
+                            		<div class="col-xs-3"><b>#{block.name}#</b></div>
+                            		<div class="col-xs-3">Scheduled:&nbsp;#{block.scheduled}#</div>
+                            		<div class="col-xs-3">Sent:&nbsp;#{block.sent}#</div>
+                            		<div class="col-xs-3">Answered:&nbsp;#{block.answered}#</div>
+                            	</div>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="block#{$index}#-anm" class="panel-collapse collapse">
+                        <div class="panel-body border-red" style="padding-left:60px; padding-right:60px">
+                            <table class="table table-hover">
+                            	<thead>
+                            		<tr>
+                            			<th>Subcenter</th>
+                            			<th>Scheduled</th>
+                            			<th>Sent</th>
+                            			<th>Answered</th>
+                            		</tr>
+                            	</thead>
+                            	<tbody>
+                            		<tr ng-repeat="subcenter in block.subcenter" ng-class="{'success': subcenter.answered > (subcenter.sent)*.8, 'warning': subcenter.answered <= (subcenter.sent)*.8 && subcenter.answered > (subcenter.sent)*.6, 'danger':subcenter.answered <= (subcenter.sent)*.6}">
+                            			<td>#{subcenter.name}#</td>
+                            			<td>#{subcenter.scheduled}#</td>
+                            			<td>#{subcenter.sent}#</td>
+                            			<td>#{subcenter.answered}#</td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="asha_pan" class="tab-pane">
+            <div class="panel-group accordion" id="accordion-asha">
+                <div class="panel panel-default" ng-repeat="block in outreach.asha">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-anm" href="#block#{$index}#-asha" target="self">
+                                <div class="row">
+                            		<div class="col-xs-3"><b>#{block.name}#</b></div>
+                            		<div class="col-xs-3">Scheduled:&nbsp;#{block.scheduled}#</div>
+                            		<div class="col-xs-3">Sent:&nbsp;#{block.sent}#</div>
+                            		<div class="col-xs-3">Answered:&nbsp;#{block.answered}#</div>
+                            	</div>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="block#{$index}#-asha" class="panel-collapse collapse">
+                        <div class="panel-body border-red" style="padding-left:60px; padding-right:60px">
+                            <table class="table table-hover">
+                            	<thead>
+                            		<tr>
+                            			<th>Subcenter</th>
+                            			<th>Scheduled</th>
+                            			<th>Sent</th>
+                            			<th>Answered</th>
+                            		</tr>
+                            	</thead>
+                            	<tbody>
+                            		<tr ng-repeat="subcenter in block.subcenter" ng-class="{'success': subcenter.answered > (subcenter.sent)*.8, 'warning': subcenter.answered <= (subcenter.sent)*.8 && subcenter.answered > (subcenter.sent)*.6, 'danger':subcenter.answered <= (subcenter.sent)*.6}">
+                            			<td>#{subcenter.name}#</td>
+                            			<td>#{subcenter.scheduled}#</td>
+                            			<td>#{subcenter.sent}#</td>
+                            			<td>#{subcenter.answered}#</td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="benef_pan" class="tab-pane">
+            <div class="panel-group accordion" id="accordion-benef">
+                <div class="panel panel-default" ng-repeat="block in outreach.benef">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-benef" href="#block#{$index}#-benef" target="self">
+                                <div class="row">
+                            		<div class="col-xs-3"><b>#{block.name}#</b></div>
+                            		<div class="col-xs-3">Scheduled:&nbsp;#{block.scheduled}#</div>
+                            		<div class="col-xs-3">Sent:&nbsp;#{block.sent}#</div>
+                            		<div class="col-xs-3">Answered:&nbsp;#{block.answered}#</div>
+                            	</div>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="block#{$index}#-benef" class="panel-collapse collapse">
+                        <div class="panel-body border-red" style="padding-left:60px; padding-right:60px">
+                            <table class="table table-hover">
+                            	<thead>
+                            		<tr>
+                            			<th>Subcenter</th>
+                            			<th>Scheduled</th>
+                            			<th>Sent</th>
+                            			<th>Answered</th>
+                            		</tr>
+                            	</thead>
+                            	<tbody>
+                            		<tr ng-repeat="subcenter in block.subcenter" ng-class="{'success': subcenter.answered > (subcenter.sent)*.8, 'warning': subcenter.answered <= (subcenter.sent)*.8 && subcenter.answered > (subcenter.sent)*.6, 'danger':subcenter.answered <= (subcenter.sent)*.6}">
+                            			<td>#{subcenter.name}#</td>
+                            			<td>#{subcenter.scheduled}#</td>
+                            			<td>#{subcenter.sent}#</td>
+                            			<td>#{subcenter.answered}#</td>
+                            		</tr>
+                            	</tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

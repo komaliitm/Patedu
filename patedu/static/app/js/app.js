@@ -33,7 +33,7 @@ app.directive('onFinishRender', function ($timeout) {
       // route for the outreach page
       .when('/outreach/', {
         templateUrl : 'outreach_monitoring_report/',
-        controller  : 'BlockController'
+        controller  : 'OutreachController'
       })
       .otherwise({
               redirectTo: '/subcenter/'
@@ -187,7 +187,20 @@ app.directive('onFinishRender', function ($timeout) {
       RefreshBlockData();
   }]);
 
-  app.controller('OutreachController', ['$scope', function($scope){
+  app.controller('OutreachController', ['$scope', 'outreachService', 
+    function($scope, outreachService){
+    $scope.outreach = {};
+    var RefreshOutreachData = function(){
+      $('.loading-container').removeClass('loading-inactive');
+      outreachService.getOutreachData('36', 0).then( function(outreach){
+        $scope.outreach = outreach;
+        $('.loading-container').addClass('loading-inactive');
+      }, function(error){
+        $('.loading-container').addClass('loading-inactive');
+        alert('Unknown error. Please try after sometime.')
+      });
+    }
+    RefreshOutreachData();
     console.log("In Outreach controller");
   }]);
 
@@ -467,6 +480,36 @@ app.directive('onFinishRender', function ($timeout) {
         return  d_split_then[1]+', '+d_split_then[3]+" to "+d_split_this[1]+', '+d_split_this[3];
     };
   });
+
+  app.factory('outreachService', function($http, $q){
+    return {
+      getOutreachData: getOutreachData
+    };
+
+    function getOutreachData(district_id, months_back){
+      var url = '/subcenter/dashboard/outreach/data/';
+      
+      url += '?district_id='+district_id+'&'+'months_back='+months_back; 
+
+      var request = $http({
+        method:'get',
+        url:url
+      });
+      return request.then(handleSuccess, handleError);
+    }
+
+    function handleSuccess(response) {
+      return response.data;
+    }
+
+    function handleError(response) {
+      if (!angular.isObject(response.data) || !response.data.message) {
+        return ($q.reject(response.status) );
+      }
+      return $q.reject(response.data.message);
+    }
+
+  });  
 
   app.factory('blockService', function($http, $q){
     return {

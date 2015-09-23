@@ -104,7 +104,7 @@ class CareGiver(User):
 class SubCenter(models.Model):
 	MCTS_ID = models.CharField(max_length=50, null=True)
 	health_facility = models.ForeignKey(HealthFacility)
-	block = models.ForeignKey(Block)
+	block = models.ForeignKey(Block, related_name='subcenters')
 	district = models.ForeignKey(District)
 	_lat = models.FloatField(null=True)
 	_long = models.FloatField(null=True)

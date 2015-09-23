@@ -267,6 +267,70 @@ def substract_months(date1, date2):
 	else:
 		return (date1.month - date2.month) + 12 * (date1.year - date2.year)
 
+def OutreachData(request):
+	today_date = utcnow_aware().date()
+	this_month_date = today_date.replace(day=1)
+
+	if request.method == 'GET':
+		district_mcts_id = str(request.GET.get('district_mcts_id')) if request.GET.get('district_mcts_id') else '36'
+		try:
+			district = District.objects.get(MCTS_ID=district_mcts_id)
+		except:
+			return HttpResponseBadRequest('Wrong district id specified')
+		months_back = int(request.GET.get('months_back')) if request.GET.get('months_back') else 0
+		
+		#
+		blocks = Block.objects.filter(subcenters__district=district).distinct()
+		outreach_anm = []
+		outreach_asha = []
+		outreach_benef = []
+		for block in blocks:
+			anm_outreach_data = {}
+			asha_outreach_data = {}
+			benef_outreach_data = {}
+			anm_outreach_data['name'] = block.name.upper()
+			anm_outreach_data['scheduled'] = 0
+			anm_outreach_data['sent'] = 0
+			anm_outreach_data['answered'] = 0
+			asha_outreach_data['name'] = block.name.upper()
+			asha_outreach_data['scheduled'] = 0
+			asha_outreach_data['sent'] = 0
+			asha_outreach_data['answered'] = 0
+			benef_outreach_data['name'] = block.name.upper()
+			benef_outreach_data['scheduled'] = 0
+			benef_outreach_data['sent'] = 0
+			benef_outreach_data['answered'] = 0
+			
+			subcenters = SubCenter.objects.filter(block=block)
+			subcenters_anm = []
+			subcenters_asha = []
+			subcenters_benef = []
+			for subcenter in subcenters:
+				#Calculate seprately, for this subcenter calls stats in each area
+				dict = {
+					'name':subcenter.name,
+					'scheduled':0,
+					'sent':0,
+					'answered':0
+				}
+				subcenters_anm.append(dict)
+				subcenters_asha.append(dict)
+				subcenters_benef.append(dict)
+			anm_outreach_data['subcenter'] = subcenters_anm
+			asha_outreach_data['subcenter'] = subcenters_asha
+			benef_outreach_data['subcenter'] = subcenters_benef
+			outreach_anm.append(anm_outreach_data)
+			outreach_asha.append(asha_outreach_data)
+			outreach_benef.append(benef_outreach_data)
+		outreach ={
+			'anm':outreach_anm,
+			'asha':outreach_asha,
+			'benef':outreach_benef
+		}
+		return HttpResponse(json.dumps(outreach),  mimetype='application/json')
+	else:
+		return HttpResponseBadRequest('HTTP method type not allowed')
+
 def BlockIndicesData(request):
 	today_date = utcnow_aware().date()
 	fin_marker = today_date.replace(month = 4, day=1)
