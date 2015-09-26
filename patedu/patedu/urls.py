@@ -2,7 +2,8 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from mcts_transactions.views import DashboardPage, SubcenterPage, BlockPage, OutreachMonitoringPage
+from django.http import HttpResponseRedirect
+from mcts_transactions.views import DashboardPage, SubcenterPage, BlockPage, OutreachMonitoringPage, HomeRedirectPage
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -19,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^urlpattern/', include('sms.urls')),
     url(r'^mctsdata/', include('mcts_data.urls')),
     url(r'^subcenter/', include('mcts_transactions.urls')),
+    url(r'^$', HomeRedirectPage),
     url(r'^dashboard/$', DashboardPage),
     url(r'^dashboard/subcenter_report/$', SubcenterPage),
     url(r'^dashboard/block_report/$', BlockPage),

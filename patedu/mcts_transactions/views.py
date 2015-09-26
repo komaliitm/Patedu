@@ -4,7 +4,7 @@
 from __future__ import absolute_import
 import json
 import datetime
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.template.loader import get_template
 from django.template import RequestContext
 from django.contrib.auth.models import User
@@ -47,6 +47,9 @@ class StaticData:
 	CLEANER = 1
 	REACHONLYSELF = 0
 
+
+def HomeRedirectPage(request):
+	return HttpResponseRedirect('/dashboard/')
 
 def GenerateReportPerVillage(month =None, year=None):
 	timezone = 'Asia/Kolkata'

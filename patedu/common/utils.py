@@ -40,6 +40,17 @@ def LoadLatLong():
         except:
             continue
 
+def AccountsInit():
+    blocks = Block.objects.all()
+    for block in blocks:
+        try:
+            user = CareProvider.objects.create(username=block.name.replace(' ','_'), first_name=block.name, designation='DOC')
+            user.set_password("abcd@1234")
+            user.save()
+            print "created user: "+block.name.replace(' ','_')
+        except:
+            pass
+
 def LoadPopulationData(orm, year):
     file_to_read = 'population_data_'+str(year)+'.txt'
     file_path = os.path.join(settings.STATIC_ROOT, 'common', file_to_read)
