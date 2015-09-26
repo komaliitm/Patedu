@@ -858,7 +858,7 @@ def CallWrapper_Exotel(id, role, type, demo_phone="09390681183"):
 	connect_customer_to_app(customer_no=demo_phone, callerid="01130017630", CustomField=custom_field)
 
 
-def ServicesCount(request):
+def ServicesCount(request, voice=None):
 	if request.method == 'GET':
 		callee = request.GET.get('CustomField')
 		if not callee:
@@ -880,8 +880,16 @@ def ServicesCount(request):
 				count, string = services_processor(benefs, type)
 		except:
 			return HttpResponseBadRequest('ANM/ASHA does not exist')
-		
-		return HttpResponse(str(count), content_type='text/plain')
+		if not voice: 
+			return HttpResponse(str(count), content_type='text/plain')
+		else:
+			if count<=10:
+				f_name = 'cmo_'+int(count)+'.mp3'
+			else:
+				f_name = 'cmo_10.mp3'
+			static_path = '/static/voices/'+f_name
+			full_uri = request.build_absolute_uri(static_path)
+			return HttpResponse(full_uri, content_type='text/plain')
 
 def GenerateWorkplan(subcenter, report_type, since_months):
 	timezone = 'Asia/Kolkata'

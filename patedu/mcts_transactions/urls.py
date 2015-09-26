@@ -15,5 +15,6 @@ urlpatterns = patterns('',
 	url(r'^dashboard/data/$', views.DashboardData),
 	url(r'^wp_call/ods/anm/$', views.ODSANMANC),
 	url(r'^wp_call/services/count/$', views.ServicesCount),
+	url(r'^wp_call/services/count/(?P<voice>.+)$', views.ServicesCount),
 	url(r'^dashboard/workplan/$', views.SubcWorkplan)
 )
