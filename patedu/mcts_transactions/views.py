@@ -39,6 +39,7 @@ from dateutil.relativedelta import relativedelta
 from django.contrib.auth.decorators import login_required
 from common.models import ANCReportings, IMMReportings
 
+
 class StaticData:
 	SCHEDULE_MSG =0
 	AWARENESS_MSG = 1
@@ -793,6 +794,90 @@ def ODSANMANC(request):
 		return HttpResponse(anm_stats_anc, content_type='text/plain')
 	else:
 		return HttpResponseBadRequest('HTTP method type not allowed')
+
+def ServicesStringGenerator(qs, type):
+	if type == 'ds':
+		stats = 'Due Services: '
+	else:
+		stats = 'Overdue Services: '
+
+	stats = ''
+	for q in qs:
+		event = Events.objects.get(id=q.get('event'))
+		event_count = q.get('count')
+		stats += event.val+' '+str(event_count)
+		stats += ' '
+
+	stats +='\n'
+	return stats
+
+def services_processor(benefs, type, mode=0):
+	timezone = 'Asia/Kolkata'
+	tz = pytz.timezone(timezone)
+	today = utcnow_aware().replace(tzinfo=tz)
+	date_then = today.replace(hour=12, minute=0, day=1, second=0).date()
+
+	services_string = ''
+	ods = OverDueEvents.objects.filter(beneficiary__in=benefs, date=date_then)
+	if mode:
+		ods_services= ods.values('event').annotate(count=Count('event'))
+		services_string += ServicesStringGenerator(ods_services, 'ods')
+	count = ods.count()
+	if type == 'ds':
+		ds = DueEvents.objects.filter(beneficiary__in=benefs, date=date_then)
+		count +=ds.count()
+		if mode:
+			ds_services = ds.values('event').annotate(count=Count('event'))
+			services_string += ServicesStringGenerator(ds_services, 'ds')
+	
+	return count, services_string
+
+def CallWrapper_Exotel(id, role, type, demo_phone="09390681183"):
+	try:
+		if role == 'ANM':
+			anm = CareProvider.objects.get(id=int(id))
+			phone = anm.phone
+			benefs = Beneficiary.objects.filter(careprovider=anm)
+			count, string = services_processor(benefs=benefs, type=type, mode=1)
+		else:
+			asha = CareGiver.objects.get(id=int(id))
+			phone = asha.phone
+			benefs = Beneficiary.objects.filter(caregiver=asha)
+			count, string = services_processor(benefs=benefs, type=type, mode=1)
+	except:
+		return 'ANM/ASHA does not exist'
+	sms_text = "आपके क्षेत्र में शेष सर्विसेज- \n"+unicode(string)+"प्रेषक,\n मुख्य चिकित्साधिकारी, झाँसी"
+	#Send SMS
+	SendSMSUnicode(recNum=phone, msgtxt=string)
+	#Send Exotel Call here
+	custom_field = str(id)+"_"+role+"_"+type
+	connect_customer_to_app(customer_no=demo_phone, callerid="01130017630", CustomField=custom_field)
+
+
+def ServicesCount(request):
+	if request.method == 'GET':
+		callee = request.GET.get('CustomField')
+		if not callee:
+			return HttpResponseBadRequest('Callee is not provided')
+		
+		parameters = callee.split('_')
+		id = parameters[0]
+		role = parameters[1].upper()
+		type = parameters[2].lower()
+
+		try:
+			if role == 'ANM':
+				anm = CareProvider.objects.get(id=int(id))
+				benefs = Beneficiary.objects.filter(careprovider=anm)
+				count, string = services_processor(benefs, type)
+			else:
+				asha = CareGiver.objects.get(id=int(id))
+				benefs = Beneficiary.objects.filter(caregiver=asha)
+				count, string = services_processor(benefs, type)
+		except:
+			return HttpResponseBadRequest('ANM/ASHA does not exist')
+		
+		return HttpResponse(str(count), content_type='text/plain')
 
 def GenerateWorkplan(subcenter, report_type, since_months):
 	timezone = 'Asia/Kolkata'

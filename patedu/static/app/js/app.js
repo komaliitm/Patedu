@@ -18,6 +18,22 @@ app.directive('onFinishRender', function ($timeout) {
     }
   });
 
+  var q = {
+    id:1,
+    question: 'What is you cup size?',
+    type: 'select',
+    answer: [{
+        label:'S (small)',
+        value:'S'
+      },
+      {
+        label:'M (mid)',
+        value:'M'
+      }  
+    ],
+    model:'M'
+  }
+ 
   app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       // route for the Main page
@@ -190,6 +206,11 @@ app.directive('onFinishRender', function ($timeout) {
   app.controller('OutreachController', ['$scope', 'outreachService', 
     function($scope, outreachService){
     $scope.outreach = {};
+    $scope.ques = q;
+    $scope.selectChange = function()
+    {
+      debugger;
+    }
     var RefreshOutreachData = function(){
       $('.loading-container').removeClass('loading-inactive');
       outreachService.getOutreachData('36', 0).then( function(outreach){
