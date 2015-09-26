@@ -847,11 +847,12 @@ def CallWrapper_Exotel(id, role, type, demo_phone="09390681183"):
 	except:
 		return 'ANM/ASHA does not exist'
 	string = unicode(string)
-	if len(string) > 160:
-		string = string[0:160] + u"आदि " 
+	if len(string) > 20:
+		string = string[0:20] + u"आदि " 
 	sms_text = u"आपके क्षेत्र में शेष सर्विसेज- \n"+string+u"प्रेषक,\n मुख्य चिकित्साधिकारी, झाँसी"
 	#Send SMS
-	SendSMSUnicode(recNum=demo_phone, msgtxt=sms_text)
+	sms_text_hexlified = toHex(sms_text)
+	SendSMSUnicode(recNum=demo_phone, msgtxt=sms_text_hexlified)
 	#Send Exotel Call here
 	custom_field = str(id)+"_"+role+"_"+type
 	connect_customer_to_app(customer_no=demo_phone, callerid="01130017630", CustomField=custom_field)
