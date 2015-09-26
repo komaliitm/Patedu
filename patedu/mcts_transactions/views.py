@@ -806,7 +806,7 @@ def ServicesStringGenerator(qs, type):
 		event = Events.objects.get(id=q.get('event'))
 		event_count = q.get('count')
 		stats += event.val+' '+str(event_count)
-		stats += ' '
+		stats += ', '
 
 	stats +='\n'
 	return stats
