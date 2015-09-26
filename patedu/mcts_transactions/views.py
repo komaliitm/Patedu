@@ -22,7 +22,7 @@ from random import randint
 import pytz
 from celery import shared_task
 import unicodedata
-from sms.sender import SendSMSUnicode
+from sms.sender import SendSMSUnicode, connect_customer_to_app
 import binascii
 from django.db.models import Q, Count, Max
 from django.views.decorators.csrf import csrf_exempt
@@ -848,7 +848,7 @@ def CallWrapper_Exotel(id, role, type, demo_phone="09390681183"):
 		return 'ANM/ASHA does not exist'
 	sms_text = u"आपके क्षेत्र में शेष सर्विसेज- \n"+unicode(string)+u"प्रेषक,\n मुख्य चिकित्साधिकारी, झाँसी"
 	#Send SMS
-	SendSMSUnicode(recNum=phone, msgtxt=string)
+	SendSMSUnicode(recNum=demo_phone, msgtxt=string)
 	#Send Exotel Call here
 	custom_field = str(id)+"_"+role+"_"+type
 	connect_customer_to_app(customer_no=demo_phone, callerid="01130017630", CustomField=custom_field)
