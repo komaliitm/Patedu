@@ -886,7 +886,7 @@ def ServicesCount(request, voice=None):
 			if count<=10:
 				f_name = 'cmo_'+int(count)+'.mp3'
 			else:
-				f_name = 'cmo_10.mp3'
+				f_name = 'cmo_10.wav'
 			static_path = '/static/voices/'+f_name
 			full_uri = request.build_absolute_uri(static_path)
 			return HttpResponse(full_uri, content_type='text/plain')
