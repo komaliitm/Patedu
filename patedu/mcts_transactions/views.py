@@ -846,7 +846,7 @@ def CallWrapper_Exotel(id, role, type, demo_phone="09390681183"):
 			count, string = services_processor(benefs=benefs, type=type, mode=1)
 	except:
 		return 'ANM/ASHA does not exist'
-	sms_text = "आपके क्षेत्र में शेष सर्विसेज- \n"+unicode(string)+"प्रेषक,\n मुख्य चिकित्साधिकारी, झाँसी"
+	sms_text = u"आपके क्षेत्र में शेष सर्विसेज- \n"+unicode(string)+u"प्रेषक,\n मुख्य चिकित्साधिकारी, झाँसी"
 	#Send SMS
 	SendSMSUnicode(recNum=phone, msgtxt=string)
 	#Send Exotel Call here
