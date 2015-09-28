@@ -130,7 +130,7 @@ def services_processor(benefs, type, mode=0):
     
     return count, services_string
 
-def CallWrapper_Exotel(id, role, type, demo_phone="09390681183"):
+def CallWrapper_Exotel(id, role, type, demo_phone=None):
     try:
         if role == 'ANM':
             anm = CareProvider.objects.get(id=int(id))
@@ -150,6 +150,8 @@ def CallWrapper_Exotel(id, role, type, demo_phone="09390681183"):
     if len(string) > 20:
         string = string[0:20] + u"आदि " 
     sms_text = u"आपके क्षेत्र में शेष सर्विसेज- \n"+string+u"प्रेषक,\n मुख्य चिकित्साधिकारी, झाँसी"
+    if demo_phone:
+        phone = demo_phone
     #Send SMS
     sms_text_hexlified = toHex(sms_text)
     print sms_text_hexlified
