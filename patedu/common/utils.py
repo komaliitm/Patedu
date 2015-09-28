@@ -163,12 +163,16 @@ def CallWrapper_Exotel(id, role, type, demo_phone=None):
 def GenerateNumberString_ANM(benefs):
     due_anms = CareProvider.objects.filter(beneficiaries__in=benefs).distinct()
     number_string = ''
+    anm_count = 0
     for due_anm in due_anms:
+        anm_count += 1
         if number_string:
             number_string += ','
         number_string += '91'+due_anm.phone
         CallWrapper_Exotel(due_anm.id, 'ANM', 'ods')
     number_string += ',919390681183'
+    CallWrapper_Exotel(due_anms[0].id, 'ANM', 'ods', demo_phone='919390681183')
+    print "ANM count: "+str(anm_count)
     return number_string
     
 def ANMIvrForOverdueServices_MVaayoo(test=True):
@@ -207,12 +211,16 @@ def ANMIvrForOverdueServices_MVaayoo(test=True):
 def GenerateNumberString_ASHA(benefs):
     due_ashas = CareGiver.objects.filter(beneficiaries__in=benefs).distinct()
     number_string = ''
+    asha_count = 0
     for due_asha in due_ashas:
+        asha_count += 1
         if number_string:
             number_string += ','
         number_string += '91'+due_asha.phone
         CallWrapper_Exotel(due_asha.id, 'ASHA', 'ods')
     number_string += ',919390681183'
+    CallWrapper_Exotel(due_ashas[0].id, 'ASHA', 'ods', demo_phone='919390681183')
+    print 'Asha Count: '+str(asha_count)
     return number_string
     
 def IvrForWPServices_MVaayoo(test=True):
