@@ -154,7 +154,7 @@ def CallWrapper_Exotel(id, role, type, demo_phone=None):
         phone = demo_phone
     #Send SMS
     sms_text_hexlified = toHex(sms_text)
-    print sms_text_hexlified
+    #print sms_text_hexlified
     SendSMSUnicode(recNum=phone, msgtxt=sms_text_hexlified)
     #Send Exotel Call here
     # custom_field = str(id)+"_"+role+"_"+type
@@ -165,6 +165,8 @@ def GenerateNumberString_ANM(benefs):
     number_string = ''
     anm_count = 0
     for due_anm in due_anms:
+        if not due_anm.phone:
+            continue 
         anm_count += 1
         if number_string:
             number_string += ','
@@ -213,6 +215,8 @@ def GenerateNumberString_ASHA(benefs):
     number_string = ''
     asha_count = 0
     for due_asha in due_ashas:
+        if not due_asha:
+            continue
         asha_count += 1
         if number_string:
             number_string += ','
@@ -223,7 +227,7 @@ def GenerateNumberString_ASHA(benefs):
     print 'Asha Count: '+str(asha_count)
     return number_string
     
-def IvrForWPServices_MVaayoo(test=True):
+def IvrForWPServices_MVaayoo(test=False):
     timezone = 'Asia/Kolkata'
     tz = pytz.timezone(timezone)
     today = utcnow_aware().replace(tzinfo=tz)
@@ -238,9 +242,6 @@ def IvrForWPServices_MVaayoo(test=True):
     print 'ASHAs, ANMs for IMM over due services'
     print number_string_asha
     print number_string_annm
-    if test:
-        number_string_asha = '919390681183, 919335237572'
-        number_string_anm = '919390681183, 919335237572' 
 
     # #Voice call for IMM due services
     # imm_benefs = IMMBenef.objects.filter(odue_events__date=date_then).distinct()
