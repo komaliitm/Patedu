@@ -15,13 +15,15 @@ import json
 import inspect
 #from vaccination.models import Vaccinations
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q, Count, Max
 import pytz
 from schedule_api.models import TaskScheduler
 import requests, re
 import xlsxwriter
 from common.models import ANCReportings, IMMReportings
 from mcts_identities.models import IMMBenef, ANCBenef, Beneficiary, Block, SubCenter, Address,  CareProvider, CareGiver, HealthFacility, District
-from mcts_transactions.models import DueEvents, OverDueEvents
+from mcts_transactions.models import DueEvents, OverDueEvents, Events
+from sms.sender import SendSMSUnicode, connect_customer_to_app
 
 def LoadLatLong():
     with open("sublatlong.json", 'r') as f:
@@ -91,6 +93,71 @@ def DumpSubCList():
         f.write(json.dumps(subs))
         f.close() 
 
+def ServicesStringGenerator(qs, type):
+    if type == 'ds':
+        stats = 'Due Services: '
+    else:
+        stats = 'Overdue Services: '
+
+    stats = ''
+    for q in qs:
+        event = Events.objects.get(id=q.get('event'))
+        event_count = q.get('count')
+        stats += event.val+' '+str(event_count)
+        stats += ', '
+
+    stats +='\n'
+    return stats
+
+def services_processor(benefs, type, mode=0):
+    timezone = 'Asia/Kolkata'
+    tz = pytz.timezone(timezone)
+    today = utcnow_aware().replace(tzinfo=tz)
+    date_then = today.replace(hour=12, minute=0, day=1, second=0).date()
+
+    services_string = ''
+    ods = OverDueEvents.objects.filter(beneficiary__in=benefs, date=date_then)
+    if mode:
+        ods_services= ods.values('event').annotate(count=Count('event'))
+        services_string += ServicesStringGenerator(ods_services, 'ods')
+    count = ods.count()
+    if type == 'ds':
+        ds = DueEvents.objects.filter(beneficiary__in=benefs, date=date_then)
+        count +=ds.count()
+        if mode:
+            ds_services = ds.values('event').annotate(count=Count('event'))
+            services_string += ServicesStringGenerator(ds_services, 'ds')
+    
+    return count, services_string
+
+def CallWrapper_Exotel(id, role, type, demo_phone="09390681183"):
+    try:
+        if role == 'ANM':
+            anm = CareProvider.objects.get(id=int(id))
+            phone = anm.phone
+            benefs = Beneficiary.objects.filter(careprovider=anm)
+            count, string = services_processor(benefs=benefs, type=type, mode=1)
+        else:
+            asha = CareGiver.objects.get(id=int(id))
+            phone = asha.phone
+            benefs = Beneficiary.objects.filter(caregiver=asha)
+            count, string = services_processor(benefs=benefs, type=type, mode=1)
+    except:
+        print 'd'
+        return 'ANM/ASHA does not exist'
+
+    string = unicode(string)
+    if len(string) > 20:
+        string = string[0:20] + u"आदि " 
+    sms_text = u"आपके क्षेत्र में शेष सर्विसेज- \n"+string+u"प्रेषक,\n मुख्य चिकित्साधिकारी, झाँसी"
+    #Send SMS
+    sms_text_hexlified = toHex(sms_text)
+    print sms_text_hexlified
+    SendSMSUnicode(recNum=phone, msgtxt=sms_text_hexlified)
+    #Send Exotel Call here
+    # custom_field = str(id)+"_"+role+"_"+type
+    # connect_customer_to_app(customer_no=phone, callerid="01130017630", CustomField=custom_field)
+
 def GenerateNumberString_ANM(benefs):
     due_anms = CareProvider.objects.filter(beneficiaries__in=benefs).distinct()
     number_string = ''
@@ -98,6 +165,8 @@ def GenerateNumberString_ANM(benefs):
         if number_string:
             number_string += ','
         number_string += '91'+due_anm.phone
+        CallWrapper_Exotel(due_anm.id, 'ANM', 'ods')
+    number_string += ',919390681183'
     return number_string
     
 def ANMIvrForOverdueServices_MVaayoo(test=True):
@@ -109,7 +178,7 @@ def ANMIvrForOverdueServices_MVaayoo(test=True):
 
     #Voice call for IMM due services
     imm_benefs = IMMBenef.objects.filter(odue_events__date=date_then).distinct()
-    imm_voice_file = 'ANM_ODUE_IMM_REMINDER_20150703142712856239.wav'
+    imm_voice_file = 'Overdue_20150926130127834443.wav'
     imm_number_string = GenerateNumberString_ANM(imm_benefs)
     print 'ANMs for IMM over due services'
     print imm_number_string
@@ -119,7 +188,7 @@ def ANMIvrForOverdueServices_MVaayoo(test=True):
     #Voice call for ANC
     anc_benefs = ANCBenef.objects.filter(odue_events__date=date_then).distinct()
     anc_number_string = GenerateNumberString_ANM(anc_benefs)
-    anc_voice_file = 'ANM_ODUE_ANC_REMINDER_20150703142527385436.wav'
+    anc_voice_file = 'Overdue_20150926130127834443.wav'
     print 'ANMs for ANC over due services'
     print anc_number_string
     if test:
@@ -128,6 +197,62 @@ def ANMIvrForOverdueServices_MVaayoo(test=True):
     try:
         SendVoiceCall(rec_num = imm_number_string, voice_file=imm_voice_file, campaign_name='ANM_ODS_IMM_'+str(date_then))
         SendVoiceCall(rec_num = anc_number_string, voice_file=anc_voice_file, campaign_name='ANM_ODS_ANC_'+str(date_then))
+    except:
+        # Put exception detail here
+        sys.exc_info()[0]
+        pass
+
+def GenerateNumberString_ASHA(benefs):
+    due_ashas = CareGiver.objects.filter(beneficiaries__in=benefs).distinct()
+    number_string = ''
+    for due_asha in due_ashas:
+        if number_string:
+            number_string += ','
+        number_string += '91'+due_asha.phone
+        CallWrapper_Exotel(due_asha.id, 'ASHA', 'ods')
+    number_string += ',919390681183'
+    return number_string
+    
+def IvrForWPServices_MVaayoo(test=True):
+    timezone = 'Asia/Kolkata'
+    tz = pytz.timezone(timezone)
+    today = utcnow_aware().replace(tzinfo=tz)
+    date_then = today.replace(hour=12, minute=0, day=1, second=0).date()
+    from sms.sender import SendVoiceCall
+
+    #Voice Call for all overdue services
+    benefs = Beneficiary.objects.filter(odue_events__date=date_then).distinct()
+    voice_file = 'Overdue_20150926130127834443.wav'
+    number_string_asha = GenerateNumberString_ASHA(benefs)
+    number_string_annm = GenerateNumberString_ANM(benefs)
+    print 'ASHAs, ANMs for IMM over due services'
+    print number_string_asha
+    print number_string_annm
+    if test:
+        number_string_asha = '919390681183, 919335237572'
+        number_string_anm = '919390681183, 919335237572' 
+
+    # #Voice call for IMM due services
+    # imm_benefs = IMMBenef.objects.filter(odue_events__date=date_then).distinct()
+    # imm_voice_file = 'Overdue_20150926130127834443.wav'
+    # imm_number_string = GenerateNumberString_ASHA(imm_benefs)
+    # print 'ASHAs for IMM over due services'
+    # print imm_number_string
+    # if test:
+    #     imm_number_string = '919390681183' 
+
+    # #Voice call for ANC
+    # anc_benefs = ANCBenef.objects.filter(odue_events__date=date_then).distinct()
+    # anc_number_string = GenerateNumberString_ANM(anc_benefs)
+    # anc_voice_file = 'Overdue_20150926130127834443.wav'
+    # print 'ASHAs for ANC over due services'
+    # print anc_number_string
+    # if test:
+    #     anc_number_string = '919390681183'
+    
+    try:
+        SendVoiceCall(rec_num = number_string_asha, voice_file=voice_file, campaign_name='ASHA_ODS_IMM_'+str(date_then))
+        SendVoiceCall(rec_num = number_string_anm, voice_file=voice_file, campaign_name='ANM_ODS_ANC_'+str(date_then))
     except:
         # Put exception detail here
         sys.exc_info()[0]

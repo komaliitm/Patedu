@@ -202,7 +202,7 @@ class Beneficiary(User):
 	modifiedon = models.DateTimeField()
 	subcenter = models.ForeignKey(SubCenter)
 	registration_year = models.CharField(max_length=20, null=True)
-	caregiver = models.ForeignKey(CareGiver, null=True)
+	caregiver = models.ForeignKey(CareGiver, null=True, related_name="beneficiaries")
 	careprovider = models.ForeignKey(CareProvider, null=True, related_name="beneficiaries")
 
 	def base_json(self, date_then):

@@ -9,7 +9,7 @@ from django.template.loader import get_template
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.conf import settings
-from common.utils import pprint, utcnow_aware
+from common.utils import pprint, utcnow_aware, services_processor
 import time
 from django.http import HttpResponseNotAllowed
 import dateutil.parser
@@ -797,69 +797,6 @@ def ODSANMANC(request):
 		return HttpResponse(anm_stats_anc, content_type='text/plain')
 	else:
 		return HttpResponseBadRequest('HTTP method type not allowed')
-
-def ServicesStringGenerator(qs, type):
-	if type == 'ds':
-		stats = 'Due Services: '
-	else:
-		stats = 'Overdue Services: '
-
-	stats = ''
-	for q in qs:
-		event = Events.objects.get(id=q.get('event'))
-		event_count = q.get('count')
-		stats += event.val+' '+str(event_count)
-		stats += ', '
-
-	stats +='\n'
-	return stats
-
-def services_processor(benefs, type, mode=0):
-	timezone = 'Asia/Kolkata'
-	tz = pytz.timezone(timezone)
-	today = utcnow_aware().replace(tzinfo=tz)
-	date_then = today.replace(hour=12, minute=0, day=1, second=0).date()
-
-	services_string = ''
-	ods = OverDueEvents.objects.filter(beneficiary__in=benefs, date=date_then)
-	if mode:
-		ods_services= ods.values('event').annotate(count=Count('event'))
-		services_string += ServicesStringGenerator(ods_services, 'ods')
-	count = ods.count()
-	if type == 'ds':
-		ds = DueEvents.objects.filter(beneficiary__in=benefs, date=date_then)
-		count +=ds.count()
-		if mode:
-			ds_services = ds.values('event').annotate(count=Count('event'))
-			services_string += ServicesStringGenerator(ds_services, 'ds')
-	
-	return count, services_string
-
-def CallWrapper_Exotel(id, role, type, demo_phone="09390681183"):
-	try:
-		if role == 'ANM':
-			anm = CareProvider.objects.get(id=int(id))
-			phone = anm.phone
-			benefs = Beneficiary.objects.filter(careprovider=anm)
-			count, string = services_processor(benefs=benefs, type=type, mode=1)
-		else:
-			asha = CareGiver.objects.get(id=int(id))
-			phone = asha.phone
-			benefs = Beneficiary.objects.filter(caregiver=asha)
-			count, string = services_processor(benefs=benefs, type=type, mode=1)
-	except:
-		return 'ANM/ASHA does not exist'
-	string = unicode(string)
-	if len(string) > 20:
-		string = string[0:20] + u"आदि " 
-	sms_text = u"आपके क्षेत्र में शेष सर्विसेज- \n"+string+u"प्रेषक,\n मुख्य चिकित्साधिकारी, झाँसी"
-	#Send SMS
-	sms_text_hexlified = toHex(sms_text)
-	SendSMSUnicode(recNum=demo_phone, msgtxt=sms_text_hexlified)
-	#Send Exotel Call here
-	custom_field = str(id)+"_"+role+"_"+type
-	connect_customer_to_app(customer_no=demo_phone, callerid="01130017630", CustomField=custom_field)
-
 
 def ServicesCount(request, voice=None):
 	if request.method == 'GET':
