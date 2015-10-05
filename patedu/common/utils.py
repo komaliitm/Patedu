@@ -155,7 +155,7 @@ def CallWrapper_Exotel(id, role, type, demo_phone=None):
     #Send SMS
     sms_text_hexlified = toHex(sms_text)
     #print sms_text_hexlified
-    SendSMSUnicode(recNum=phone, msgtxt=sms_text_hexlified)
+    SendSMSUnicode(recNum=phone, msgtxt=sms_text_hexlified, senderId='CMOJHS')
     #Send Exotel Call here
     # custom_field = str(id)+"_"+role+"_"+type
     # connect_customer_to_app(customer_no=phone, callerid="01130017630", CustomField=custom_field)
