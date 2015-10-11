@@ -864,7 +864,7 @@ def SubcWorkplan(request):
 			return HttpResponseBadRequest('Subcenter specified is not correct')
 
 		report_type = ANCBenef
-		if type == 'IMM':
+		if domain == 'IMM':
 			report_type = IMMBenef
 
 		data = GenerateWorkplan(subcenter, report_type, since_months)
