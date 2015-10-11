@@ -20,7 +20,7 @@ import pytz
 from schedule_api.models import TaskScheduler
 import requests, re
 import xlsxwriter
-from common.models import ANCReportings, IMMReportings
+from common.models import ANCReportings, IMMReportings, ExotelCallStatus
 from mcts_identities.models import IMMBenef, ANCBenef, Beneficiary, Block, SubCenter, Address,  CareProvider, CareGiver, HealthFacility, District
 from mcts_transactions.models import DueEvents, OverDueEvents, Events
 from sms.sender import SendSMSUnicode, connect_customer_to_app
@@ -131,6 +131,10 @@ def services_processor(benefs, type, mode=0):
     return count, services_string
 
 def CallWrapper_Exotel(id, role, type, demo_phone=None):
+    timezone = 'Asia/Kolkata'
+    tz = pytz.timezone(timezone)
+    today = utcnow_aware().replace(tzinfo=tz)
+
     try:
         if role == 'ANM':
             anm = CareProvider.objects.get(id=int(id))
@@ -145,6 +149,7 @@ def CallWrapper_Exotel(id, role, type, demo_phone=None):
     except:
         print 'd'
         return 'ANM/ASHA does not exist'
+    subcenter = benefs[0].subcenter if benefs else None
 
     string = unicode(string)
     if len(string) > 20:
@@ -157,8 +162,17 @@ def CallWrapper_Exotel(id, role, type, demo_phone=None):
     #print sms_text_hexlified
     SendSMSUnicode(recNum=phone, msgtxt=sms_text_hexlified, senderId='CMOJHS')
     #Send Exotel Call here
-    # custom_field = str(id)+"_"+role+"_"+type
-    # connect_customer_to_app(customer_no=phone, callerid="01130017630", CustomField=custom_field)
+    custom_field = str(id)+"_"+role+"_"+type
+    result = connect_customer_to_app(customer_no=phone, callerid="01130017630", CustomField=custom_field)
+    j_result = json.loads(result)
+    sid = j_result['Call']['Sid']
+    status = j_result['Call']['Status']
+    #update call status here
+    try: 
+        marker = ExotelCallStatus.objects.get(sid=sid)
+    except ObjectDoesNotExist:
+        marker = ExotelCallStatus.objects.create(sid=sid, status=status, uid = int(id), role=role, mode=type, subcenter = subcenter, date_initiated = today.date(), dt_updated = utcnow_aware())
+
 
 def GenerateNumberString_ANM(benefs):
     due_anms = CareProvider.objects.filter(beneficiaries__in=benefs).distinct()

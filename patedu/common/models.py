@@ -44,3 +44,14 @@ class ANCReportings(models.Model):
 class IMMReportings(models.Model):
 	benef = models.ForeignKey(IMMBenef, unique=True)
 	measles_date = models.DateField(null=True)
+
+class ExotelCallStatus(models.Model):
+	sid = models.CharField(max_length=50, unique=True)
+	subcenter = models.ForeignKey('mcts_identities.SubCenter', null=True)
+	status = models.CharField(max_length=20)
+	uid = models.IntegerField(null=True)
+	role = models.CharField(max_length=10, null=True)
+	mode = models.CharField(max_length=10, null=True)
+	recording_url = models.TextField(null=True)
+	date_initiated = models.DateField(null=True)
+	dt_updated = models.DateTimeField()

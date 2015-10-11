@@ -37,7 +37,7 @@ from math import ceil
 import unicodedata
 from dateutil.relativedelta import relativedelta
 from django.contrib.auth.decorators import login_required
-from common.models import ANCReportings, IMMReportings
+from common.models import ANCReportings, IMMReportings, ExotelCallStatus
 
 
 class StaticData:
@@ -257,6 +257,9 @@ def SendSchSMS(role=StaticData.SCHEDULE_MSG, job=StaticData.SENDER, reach = Stat
 def DashboardPage(request):
 	return render(request, "dashboard_base.html", {})
 
+def UploadReportsPage(request):
+	return render(request, "upload_reports_page.html", {})
+
 def SubcenterPage(request):
 	_allBlocks = Block.objects.all()
 	blocks = [block for block in _allBlocks]
@@ -270,6 +273,25 @@ def substract_months(date1, date2):
 		return date1.month - date2.month
 	else:
 		return (date1.month - date2.month) + 12 * (date1.year - date2.year)
+
+def ExotelUpdateCallStatus(request):
+	if request.method == 'POST':
+		sid = request.POST['CallSid']
+		status = request.POST['Status']
+		recording_url = request.POST['RecordingUrl']
+		date_updated = request.POST['DateUpdated']
+		try:
+			marker = ExotelCallStatus.objects.get(sid=sid)
+			marker.status = status
+			marker.recording_url = recording_url
+			marker.dt_updated = utcnow_aware().date()
+			marker.save()
+		except:
+			marker = ExotelCallStatus.objects.create(sid=sid, status=status, recording_url=recording_url, date_initiated = utcnow_aware().date(), dt_updated = utcnow_aware())	 
+		
+		return HttpResponse('Success')
+	else:
+		return HttpResponseBadRequest('Http method not supported')
 
 def OutreachData(request):
 	today_date = utcnow_aware().date()
