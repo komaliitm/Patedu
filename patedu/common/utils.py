@@ -164,7 +164,8 @@ def CallWrapper_Exotel(id, role, type, demo_phone=None):
     #Send Exotel Call here
     custom_field = str(id)+"_"+role+"_"+type
     callback_url = "http://niramayh/subcenter/exotel/update/"
-    result = connect_customer_to_app(customer_no=phone, callerid="01130017630", CustomField=custom_field, callback_url=callback_url)
+    response = connect_customer_to_app(customer_no=phone, callerid="01130017630", CustomField=custom_field, callback_url=callback_url)
+    result = response.text
     j_result = json.loads(result)
     sid = j_result['Call']['Sid']
     status = j_result['Call']['Status']
@@ -174,6 +175,7 @@ def CallWrapper_Exotel(id, role, type, demo_phone=None):
     except ObjectDoesNotExist:
         marker = ExotelCallStatus.objects.create(sid=sid, status=status, uid = int(id),\
          role=role, mode=type, subcenter = subcenter, date_initiated = today.date(), dt_updated = utcnow_aware())
+    return marker
 
 
 def GenerateNumberString_ANM(benefs):
