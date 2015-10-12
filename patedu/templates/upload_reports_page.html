@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-lg-6 col-sm-6 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-sky">
+                <span class="widget-caption"><h5>WORKPLAN UPLOAD WIDGET</h5></span>
+            </div><!--Widget Header-->
+            <div class="widget-body padding-top-20 padding-bottom-30" >
+                <p>This is the place where you can upload workplans. It is open for all the blocks & subcenters. Please be careful to select right report type else data can get corrupted.</p>
+                <div class="margin-30"></div>
+                <form role="form" enctype="multipart/form-data" id="upload_report_workplan" ng-submit="UploadWorkplanReport()">
+					<div class="form-group">
+						<input name="file" type="file" id="workplan_file" class="form-control input-lg" value="Choose Workplan" file-upload multiple>
+					</div>
+					{% csrf_token %}
+					<div class="form-group">
+						<select name="benef_type" class="form-control input-lg" ng-model="report_type">
+							<option value="ANC">ANC</option>
+							<option value="PNC">PNC</option>
+							<option value="IMM1">INFANT IMM</option>
+							<option value="IMM2">CHILD IMM</option>
+						</select>
+					</div>
+					<button class="btn-lg btn btn-blue">Submit</button>
+				</form>
+            </div><!--Widget Body-->
+        </div><!--Widget-->
+    </div>
+</div>                      
+
+

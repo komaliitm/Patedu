@@ -1,6 +1,6 @@
 import json
 import pytz
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.template import Context, RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 
@@ -855,156 +855,218 @@ def GetFacilityFromString(fac_str):
     else:
         return None
 
-def UploadAndSave(request):
-    # Handle file upload
-    if request.method == 'POST':        
+def WPProcess(request):
+    ret_json = {
+        'msg':''
+    }
+    if request.method == 'POST':
+        if not request.FILES:
+            return HttpResponseBadRequest('Failure: No file was selected')
+        benef_type = request.POST.get('report_type')
+        success_count = 0
+        for FILE, input_excel in request.FILES.iteritems():
+            if 'xls' not in str(input_excel):
+                ret_json['msg'] += str(input_excel)+": Failed, Wrong file type\n"
+                continue
+            ret = UploadAndSave(input_excel, benef_type)
+            if ret['status'] != 0:
+                ret_json['msg'] += str(input_excel)+": Failed, "+ret['msg']+"\n"
+                continue
+            success_count += 1
+            ret_json['msg'] += str(input_excel)+": Success, "+ret['msg']+"\n"
+
+        if success_count == 0:
+            return HttpResponseBadRequest(json.dumps(ret_json))
+        else:
+            ret_json["success_count"] = success_count
+            ret_json["count"] = len(request.FILES)
+            return HttpResponse(json.dumps(ret_json), mimetype='application/json')
+
+        # raw_data = json.loads(request.body)
+        # print raw_data
+        return HttpResponse('Success')
+    else:
+        ret_json['msg'] = 'Request method not supported'
+        return HttpResponseBadRequest(json.dumps(ret_json))
+
+def WPProcessSingle(request):
+    if request.method == 'POST':
+        if not request.FILES:
+            return HttpResponseBadRequest('Failure: No file was selected')
+
         input_excel = request.FILES['file']
+        if 'xls' not in str(input_excel):
+            return HttpResponseBadRequest('Failure: Wrong file type uploaded') 
         benef_type = request.POST.get('benef_type')
+        ret = UploadAndSave(input_excel, benef_type)
+        if ret['status'] == 0:
+            return HttpResponse('Success: '+ret['msg'])
+        else:
+            return HttpResponseBadRequest('Failure: '+ret['msg'])
+    else:
+        return HttpResponseBadRequest('Http method type not supported')
 
-        book = xlrd.open_workbook(file_contents=input_excel.read())
-        sheet = book.sheet_by_index(0)
-        initialIndex = 0
-        workplan_list = []
+def UploadAndSave(input_excel, benef_type):
+    ret = {
+        'status':0,
+        'msg':''
+    }
 
-        w=0
-        while(1==1):
-            w=w+1
-            startIndex = getStartingRow(sheet, initialIndex)
-           
-            if startIndex == "NoData":
-                break
-            else:
-                chunk_dict={}
-                columnArray = []
-                dict_header = getHeaderDict(sheet, initialIndex, startIndex)
-                columnArray = getColumnNames(sheet, startIndex)
-                #print "colIndexes="+str(colIndexes)
-                rowIndex= startIndex                
-                t=0
-                row_list=[]
-                dict_row = {}
-                rowIndex=rowIndex+1
-                try:
-                    while sheet.cell_value(rowIndex,colIndexes[0])!="" and sheet.cell_value(rowIndex,colIndexes[1])!="":
-                       
-                        t=t+1
-                        dict_row = getRowDict(rowIndex, columnArray , sheet)
-                       
-                        row_list.append(dict_row)
-                        rowIndex=rowIndex+1
-                except:
-                    print "Exception Main Loop"
+    book = xlrd.open_workbook(file_contents=input_excel.read())
+    sheet = book.sheet_by_index(0)
+    initialIndex = 0
+    workplan_list = []
 
-                chunk_dict["header"] = dict_header
-                chunk_dict["data"] = row_list
-                workplan_list.append(chunk_dict)
-                initialIndex = rowIndex
+    w=0
+    while(1==1):
+        w=w+1
+        startIndex = getStartingRow(sheet, initialIndex)
+       
+        if startIndex == "NoData":
+            break
+        else:
+            chunk_dict={}
+            columnArray = []
+            dict_header = getHeaderDict(sheet, initialIndex, startIndex)
+            columnArray = getColumnNames(sheet, startIndex)
+            #print "colIndexes="+str(colIndexes)
+            rowIndex= startIndex                
+            t=0
+            row_list=[]
+            dict_row = {}
+            rowIndex=rowIndex+1
+            try:
+                while sheet.cell_value(rowIndex,colIndexes[0])!="" and sheet.cell_value(rowIndex,colIndexes[1])!="":
+                   
+                    t=t+1
+                    dict_row = getRowDict(rowIndex, columnArray , sheet)
+                   
+                    row_list.append(dict_row)
+                    rowIndex=rowIndex+1
+            except:
+                print "Exception Main Loop"
+
+            chunk_dict["header"] = dict_header
+            chunk_dict["data"] = row_list
+            workplan_list.append(chunk_dict)
+            initialIndex = rowIndex
+    
+    _fileObject = None
+    ret['msg'] = "Saved successfully"
+    for workplan_chunk in workplan_list:           
+        header = workplan_chunk["header"]
+        data = workplan_chunk["data"]
         
-        _fileObject = None
-        ret = "Saved successfully"
-        for workplan_chunk in workplan_list:           
-            header = workplan_chunk["header"]
-            data = workplan_chunk["data"]
+        if len(data) == 0:
+            ret['msg'] = 'Data length is zero'
+            continue
 
-            if len(data) == 0:
-                ret = 'Data length is zero'
-                continue
+        if benef_type == 'ANC' and 'lmp_date' not in data[0]:
+            ret['msg'] = 'Incorrect report type selected. Immunization selected for ANC workplan.'
+            ret['status'] = 1
+            return ret
 
-            #header data
-            block = header.get("Health_Block").replace("\n","").strip()
-            district = header.get("District").replace("\n","").strip()
-            health_facility = header.get("Health_Facility").replace("\n","").strip()
-            month = header.get("ReportMonth").replace("\n","").strip()
-            year = header.get("ReportYear").replace("\n","").strip()
-            state = header.get("State").replace("\n","").strip()
-            subfacility = header.get("SubFacility").replace("\n","").strip()
-            subfacility_id = header.get("SubFacilityID").replace("\n","").strip()
-            
-            stamp = benef_type+"_"+state+"_"+district+"_"+block+"_"+health_facility+"_"+subfacility+"_"+subfacility_id+"_"+year+"_"+month+"_"+state
-            if not AvailableMCTSData.objects.filter(stamp=stamp):
-                chunk = AvailableMCTSData.objects.create(stamp= stamp, benef_type=benef_type, block=block, district=district, health_facility=health_facility, month=month, year=year, state=state, subfacility=subfacility, subfacility_id=subfacility_id, time_stamp=utcnow_aware())
+
+        if benef_type != 'ANC' and 'lmp_date' in data[0]:
+            ret['msg'] = 'Incorrect report type selected. ANC selected for Immunization workplan.'
+            ret['status'] = 1
+            return ret
+
+        #header data
+        block = header.get("Health_Block").replace("\n","").strip()
+        district = header.get("District").replace("\n","").strip()
+        health_facility = header.get("Health_Facility").replace("\n","").strip()
+        month = header.get("ReportMonth").replace("\n","").strip()
+        year = header.get("ReportYear").replace("\n","").strip()
+        state = header.get("State").replace("\n","").strip()
+        subfacility = header.get("SubFacility").replace("\n","").strip()
+        subfacility_id = header.get("SubFacilityID").replace("\n","").strip()
+        
+        stamp = benef_type+"_"+state+"_"+district+"_"+block+"_"+health_facility+"_"+subfacility+"_"+subfacility_id+"_"+year+"_"+month+"_"+state
+        if not AvailableMCTSData.objects.filter(stamp=stamp):
+            chunk = AvailableMCTSData.objects.create(stamp= stamp, benef_type=benef_type, block=block, district=district, health_facility=health_facility, month=month, year=year, state=state, subfacility=subfacility, subfacility_id=subfacility_id, time_stamp=utcnow_aware())
+        else:
+            ret['msg'] = 'Report already exists'
+            continue
+
+        timezone = 'Asia/Kolkata'
+        tz = pytz.timezone(timezone)
+        today_utc = utcnow_aware()
+        today = today_utc.astimezone(tz)
+        #create then date, which is 1st of given month 12:00 PM noon IST
+        if month and year:
+            date_str = month+','+year
+            date_then = datetime.datetime.strptime(date_str, "%B,%Y")
+            date_then = date_then + datetime.timedelta(hours=12)
+            date_then = date_then.replace(second=0)
+        else:
+            date_then = today.replace(hour=12, minute=0, day=1, second=0).astimezone(pytz.utc)
+
+        t_district = GetFacilityFromString(district)
+        t_block = GetFacilityFromString(block)
+        t_health_facility = GetFacilityFromString(health_facility)
+
+        #check and create district
+        if t_district:
+            dsts = District.objects.filter(MCTS_ID = t_district[1])
+            if dsts.count()>0:
+                district = dsts[0]
             else:
-                ret = 'Report already exists'
-                continue
+                district = District.objects.create(MCTS_ID = t_district[1], name=t_district[0])
+        else:
+            district = None
 
-            timezone = 'Asia/Kolkata'
-            tz = pytz.timezone(timezone)
-            today_utc = utcnow_aware()
-            today = today_utc.astimezone(tz)
-            #create then date, which is 1st of given month 12:00 PM noon IST
-            if month and year:
-                date_str = month+','+year
-                date_then = datetime.datetime.strptime(date_str, "%B,%Y")
-                date_then = date_then + datetime.timedelta(hours=12)
-                date_then = date_then.replace(second=0)
+        #check and create block
+        if t_block:
+            blocks = Block.objects.filter(MCTS_ID = t_block[1])
+            if blocks.count()>0:
+                block = blocks[0]
             else:
-                date_then = today.replace(hour=12, minute=0, day=1, second=0).astimezone(pytz.utc)
+                block = Block.objects.create(MCTS_ID = t_block[1], name=t_block[0])
+        else:
+            block = None
 
-            t_district = GetFacilityFromString(district)
-            t_block = GetFacilityFromString(block)
-            t_health_facility = GetFacilityFromString(health_facility)
-
-            #check and create district
-            if t_district:
-                dsts = District.objects.filter(MCTS_ID = t_district[1])
-                if dsts.count()>0:
-                    district = dsts[0]
-                else:
-                    district = District.objects.create(MCTS_ID = t_district[1], name=t_district[0])
+        #check and create health facility
+        if t_health_facility:
+            hfs = HealthFacility.objects.filter(MCTS_ID = t_health_facility[1])
+            if hfs.count()>0:
+                health_facility = hfs[0]
             else:
-                district = None
+                health_facility = HealthFacility.objects.create(MCTS_ID = t_health_facility[1], name = t_health_facility[0])
+        else:
+            health_facility = None
 
-            #check and create block
-            if t_block:
-                blocks = Block.objects.filter(MCTS_ID = t_block[1])
-                if blocks.count()>0:
-                    block = blocks[0]
-                else:
-                    block = Block.objects.create(MCTS_ID = t_block[1], name=t_block[0])
-            else:
-                block = None
+        #check and create subcenter
+        sbs = SubCenter.objects.filter(MCTS_ID = subfacility_id)
+        if sbs.count() > 0:
+            subfacility = sbs[0]
+        else:
+            subfacility = SubCenter.objects.create(MCTS_ID = subfacility_id, name=subfacility, district=district, block=block, health_facility=health_facility)
 
-            #check and create health facility
-            if t_health_facility:
-                hfs = HealthFacility.objects.filter(MCTS_ID = t_health_facility[1])
-                if hfs.count()>0:
-                    health_facility = hfs[0]
-                else:
-                    health_facility = HealthFacility.objects.create(MCTS_ID = t_health_facility[1], name = t_health_facility[0])
-            else:
-                health_facility = None
+        for benef in data:
+            if benef_type == 'ANC':
+                print 'Prcessing subcenter for ANC'
+                SaveANCBeneficiary(benef=benef, subcenter=subfacility, date_then=date_then)
+            elif benef_type == 'PNC':
+                SavePNCBeneficiary(benef=benef, subcenter=subfacility)
+            elif benef_type == 'IMM1' or benef_type == 'IMM2':
+                SaveIMMBeneficiary(benef=benef, subcenter=subfacility, date_then=date_then)
+                pass
+    #print workplan_list
+    # print workplan_list[0]["header"]
+    # print workplan_list[0]["data"][0]
+    # print workplan_list[0]["data"][len(workplan_list[0]["data"])-1]
 
-            #check and create subcenter
-            sbs = SubCenter.objects.filter(MCTS_ID = subfacility_id)
-            if sbs.count() > 0:
-                subfacility = sbs[0]
-            else:
-                subfacility = SubCenter.objects.create(MCTS_ID = subfacility_id, name=subfacility, district=district, block=block, health_facility=health_facility)
+    # parsed = ""
+    # for wp in workplan_list:
+    #  parsed = parsed + " " +str(len(wp["data"]))
 
-            for benef in data:
-                if benef_type == 'ANC':
-                    print 'Prcessing subcenter for ANC'
-                    SaveANCBeneficiary(benef=benef, subcenter=subfacility, date_then=date_then)
-                elif benef_type == 'PNC':
-                    SavePNCBeneficiary(benef=benef, subcenter=subfacility)
-                elif benef_type == 'IMM1' or benef_type == 'IMM2':
-                    SaveIMMBeneficiary(benef=benef, subcenter=subfacility, date_then=date_then)
-                    pass
-        #print workplan_list
-        # print workplan_list[0]["header"]
-        # print workplan_list[0]["data"][0]
-        # print workplan_list[0]["data"][len(workplan_list[0]["data"])-1]
-
-        # parsed = ""
-        # for wp in workplan_list:
-        #  parsed = parsed + " " +str(len(wp["data"]))
-
-        # print parsed
-        #newdoc = Document(myfile = request.FILES['file'])
-        #newdoc.save()
-            # Redirect to the document list after POST
-        return HttpResponse(ret)
-    return HttpResponse('Error in saving')
+    # print parsed
+    #newdoc = Document(myfile = request.FILES['file'])
+    #newdoc.save()
+        # Redirect to the document list after POST
+    return ret
+    
 
     
 

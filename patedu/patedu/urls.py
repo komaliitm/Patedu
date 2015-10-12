@@ -3,7 +3,7 @@ from django.conf.urls import patterns, include, url
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from django.http import HttpResponseRedirect
-from mcts_transactions.views import DashboardPage, SubcenterPage, BlockPage, OutreachMonitoringPage, HomeRedirectPage
+from mcts_transactions.views import DashboardPage, SubcenterPage, BlockPage, OutreachMonitoringPage, HomeRedirectPage, UploadReportsPage
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -25,5 +25,6 @@ urlpatterns = patterns('',
     url(r'^dashboard/subcenter_report/$', SubcenterPage),
     url(r'^dashboard/block_report/$', BlockPage),
     url(r'^dashboard/outreach_monitoring_report/$', OutreachMonitoringPage),
+    url(r'^dashboard/upload_reports_page/$', UploadReportsPage),
     url(r'^login/', include('mcts_identities.urls'))
 )

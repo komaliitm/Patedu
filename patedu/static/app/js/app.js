@@ -5,6 +5,24 @@
     $interpolateProvider.endSymbol('}#');
   });
 
+app.directive('fileUpload', ['$parse', function ($parse) {
+    return {
+        scope: true,        //create a new scope
+        link: function (scope, el, attrs) {
+            el.bind('change', function (event) {
+                var files = event.target.files;
+                scope.workplan_files.length = 0;
+                scope.$apply();
+                //iterate files since 'multiple' may be specified on the element
+                for (var i = 0;i<files.length;i++) {
+                    //emit event upward
+                    scope.$emit("fileSelected", { file: files[i] });
+                }                                       
+            });
+        }
+    };
+}]);
+
 app.directive('onFinishRender', function ($timeout) {
     return {
         restrict: 'A',
@@ -51,6 +69,10 @@ app.directive('onFinishRender', function ($timeout) {
         templateUrl : 'outreach_monitoring_report/',
         controller  : 'OutreachController'
       })
+      .when('/upload/', {
+        templateUrl : 'upload_reports_page/',
+        controller  : 'UploadController'
+      })
       .otherwise({
               redirectTo: '/subcenter/'
       });
@@ -63,6 +85,45 @@ app.directive('onFinishRender', function ($timeout) {
       return $location.path().indexOf(route) === 0;
       // return route === $location.path();
     };
+  }]);
+
+  app.controller('UploadController', ['$scope', 'uploadService', function($scope, uploadService){
+    console.log("In upload controller");
+    $scope.report_type = "ANC";
+    $scope.workplan_files = [];
+
+    $scope.$on("fileSelected", function (event, args) {
+        $scope.$apply(function () {            
+            //add the file object to the scope's files collection
+            $scope.workplan_files.push(args.file);
+        });
+    });
+
+    $scope.UploadWorkplanReport = function(){
+      console.log($scope.report_type);
+      if(!$scope.workplan_files){
+        alert('No files selected');
+        return;
+      }
+      var fd = new FormData();
+      fd.append('report_type', $scope.report_type);
+      for (var i = 0; i < $scope.workplan_files.length; i++) {
+          //add each file to the form data and iteratively name them
+          fd.append("file" + i, $scope.workplan_files[i]);
+      }
+      $('.loading-container').removeClass('loading-inactive');
+      uploadService.saveWorkplanReports(fd).then(function(response){
+          $('.loading-container').addClass('loading-inactive');
+          var alert_str = "Uploaded: "+response.success_count+"/"+response.count+"\nDetails:\n"+response.msg;
+          alert(alert_str);
+      }, function(error)
+      {
+        $('.loading-container').addClass('loading-inactive');
+        var alert_str = "Server returned error:\n"+error.msg;
+        alert(alert_str);
+      });
+    };
+
   }]);
 
   app.controller('BlockController', ['$scope', 'blockService', function($scope, blockService){
@@ -561,6 +622,35 @@ app.directive('onFinishRender', function ($timeout) {
         return ($q.reject(response.status) );
       }
       return $q.reject(response.data.message);
+    }
+
+  });
+
+  app.factory('uploadService', function($http, $q){
+    return {
+      saveWorkplanReports: saveWorkplanReports
+    };
+
+    function saveWorkplanReports(fd){
+      var url = '/mctsdata/workplans/process/';
+      var request = $http.post(url, fd, {
+        transformRequest: angular.identity,
+        headers:{'Content-Type': undefined},
+      });
+      
+      return request.then(handleSuccess, handleError);
+    }
+
+    function handleSuccess(response) {
+      // return dummy_patient_list
+      return response.data;
+    }
+
+    function handleError(response) {
+      if (!angular.isObject(response.data)) {
+        return ($q.reject(response.status) );
+      }
+      return $q.reject(response.data);
     }
 
   });

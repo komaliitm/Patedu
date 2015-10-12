@@ -164,6 +164,8 @@ def CallWrapper_Exotel(id, role, type, demo_phone=None):
     #Send Exotel Call here
     custom_field = str(id)+"_"+role+"_"+type
     callback_url = "http://niramayh/subcenter/exotel/update/"
+    import time
+    time.sleep(.33)
     response = connect_customer_to_app(customer_no=phone, callerid="01130017630", CustomField=custom_field, callback_url=callback_url)
     result = response.text
     j_result = json.loads(result)

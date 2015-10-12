@@ -7,7 +7,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-	url(r'^uploadandsave/$', views.UploadAndSave),
+	url(r'^uploadandsave/$', views.WPProcessSingle),
+	url(r'^workplans/process/$', views.WPProcess),
 	url(r'^uploadpage/$', views.UploadPage),
 	url(r'^uploadandsaveLangLatData/$', views.uploadandsaveLangLatData),
 	url(r'^uploadLangLatpage/$', views.uploadLangLatpage),
