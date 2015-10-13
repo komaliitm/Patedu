@@ -207,6 +207,7 @@
                                     <th ng-class="{'asc_label': SerialNum==7 && Asc ==1  , 'desc_label': SerialNum==7 && Asc == 0, 'no_label': SerialNum != 7}" ng-click="SortData($event, 7)" style="cursor:pointer">Overdue rate&nbsp;</th>
                                     <th>Overdue rate trends</th> 
                                     <th>ANM name | Number</th>
+                                    <th>Remark</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -257,6 +258,9 @@
                                         #{anmPerson}#
                                         </span>
                                     </td>
+                                    <td>
+                                        #{villageData.reason_anc}#
+                                    </td>
                                     <!--
                                     <td >
                                      <span ng-repeat="ashaWorker in villageData.AshaDetails"> 
@@ -283,6 +287,7 @@
                                     <th ng-class="{'asc_label': SerialNum==7 && Asc ==1  , 'desc_label': SerialNum==7 && Asc == 0, 'no_label': SerialNum != 7}" ng-click="SortData($event, 7)" style="cursor:pointer">Overdue rate&nbsp;</th>
                                     <th>Overdue rate trends</th> 
                                     <th>ANM name | Number</th>
+                                    <th>Remark</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -331,6 +336,9 @@
                                         <span ng-show="$index>0">, </span>
                                         #{anmPerson}#
                                         </span>
+                                    </td>
+                                    <td>
+                                        #{villageData.reason_imm}#
                                     </td>
                                     <!-- <td >
                                      <span ng-repeat="ashaWorker in villageData.AshaDetails"> 

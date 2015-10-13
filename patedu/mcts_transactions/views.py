@@ -315,13 +315,13 @@ def OutreachData(request):
 			asha_outreach_data = {}
 			benef_outreach_data = {}
 			anm_outreach_data['name'] = block.name.upper()
-			anm_outreach_data['scheduled'] = 0
-			anm_outreach_data['sent'] = 0
-			anm_outreach_data['answered'] = 0
+			anm_outreach_data['scheduled'] = 'NA'
+			anm_outreach_data['sent'] = ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, subcenter__block=block, role='ANM').count()
+			anm_outreach_data['answered'] = ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, status='completed', subcenter__block=block, role='ANM').count()
 			asha_outreach_data['name'] = block.name.upper()
-			asha_outreach_data['scheduled'] = 0
-			asha_outreach_data['sent'] = 0
-			asha_outreach_data['answered'] = 0
+			asha_outreach_data['scheduled'] = 'NA'
+			asha_outreach_data['sent'] = ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, subcenter__block=block, role='ASHA').count()
+			asha_outreach_data['answered'] = ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, status='completed', subcenter__block=block, role='ASHA').count()
 			benef_outreach_data['name'] = block.name.upper()
 			benef_outreach_data['scheduled'] = 0
 			benef_outreach_data['sent'] = 0
@@ -333,15 +333,29 @@ def OutreachData(request):
 			subcenters_benef = []
 			for subcenter in subcenters:
 				#Calculate seprately, for this subcenter calls stats in each area
-				dict = {
+				dict_anm = {
+					'name':subcenter.name,
+					'scheduled':'NA',
+					'sent':ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, subcenter=subcenter, role='ANM').count(),
+					'answered':ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, status='completed', subcenter=subcenter, role='ANM').count()
+				}
+
+				dict_asha = {
+					'name':subcenter.name,
+					'scheduled':'NA',
+					'sent':ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, subcenter=subcenter, role='ASHA').count(),
+					'answered':ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, status='completed', subcenter=subcenter, role='ASHA').count()
+				}
+
+				dict_benef = {
 					'name':subcenter.name,
 					'scheduled':0,
 					'sent':0,
 					'answered':0
 				}
-				subcenters_anm.append(dict)
-				subcenters_asha.append(dict)
-				subcenters_benef.append(dict)
+				subcenters_anm.append(dict_anm)
+				subcenters_asha.append(dict_asha)
+				subcenters_benef.append(dict_benef)
 			anm_outreach_data['subcenter'] = subcenters_anm
 			asha_outreach_data['subcenter'] = subcenters_asha
 			benef_outreach_data['subcenter'] = subcenters_benef
@@ -652,12 +666,12 @@ def ProcessSubcenterData(benefs, sub, since_months, reg_type, months):
 	if benefs:
 		txs_service = Transactions.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(timestamp__gte=since_months.date())).exclude(event__val=reg_type)
 		txs_reg = Transactions.objects.all().filter(Q(subcenter=sub), Q(event__val=reg_type), Q(timestamp__gte=since_months.date()) )
-		dues_service = DueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) )
+		dues_service = DueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) ).exclude(event__val__contains='pentavalent')
 
 		GivenServices = txs_service.count()
 		DueServices = dues_service.count()
 
-		overdues_service = OverDueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) )
+		overdues_service = OverDueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) ).exclude(event__val__contains='pentavalent')
 		overdue_services_group = list(overdues_service.values('event_id').annotate(ods_count=Count('id'), event_name=Max('event__val')))
 		given_services_group = list(txs_service.values('event_id').annotate(ods_count=Count('id'), event_name=Max('event__val')))
 		due_srvices_group = list(dues_service.values('event_id').annotate(ods_count=Count('id'), event_name=Max('event__val')))
@@ -696,11 +710,15 @@ def ProcessSubcenterData(benefs, sub, since_months, reg_type, months):
 
 def get_status(value, cutoff1, cutoff2):
 	if value > cutoff2:
-		return 0
+		status = 0
+		reason = 'Alarming overdue services'
 	elif value >=cutoff1:
-		return 1
+		status = 1
+		reason = 'Increased overdue services'
 	else:
-		return 2
+		status = 2
+		reason = 'Overdue services under contorl'
+	return status, reason
 
 def increment_count_on_status(value, good, avg, poor):
 	if value == 2:

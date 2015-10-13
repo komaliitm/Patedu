@@ -111,10 +111,29 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 				sub_data["ProgressData_pnc"] = data_pnc["ProgressData"]
 				sub_data["ProgressData_imm"] = data_imm["ProgressData"]
 
-				status_anc = get_status(data_anc["OverDueRate"], 5, 7)
-				status_pnc = get_status(data_pnc["OverDueRate"], 5, 7)
-				status_imm = get_status(data_imm["OverDueRate"], 5, 7)
-				
+				status_anc, reason_anc = get_status(data_anc["OverDueRate"], 3, 5)
+				status_pnc, reason_pnc = get_status(data_pnc["OverDueRate"], 3, 5)
+				status_imm, reason_imm = get_status(data_imm["OverDueRate"], 3, 5)
+
+				if sub_data["Beneficiaries_anc"] == 0 or sub_data["DueServices_anc"] < 3:
+					if status_anc == 0:
+						reason_anc += "& Low beneficiary registration or updation"
+					else:
+						status_anc = 0
+						reason_anc += "But Low beneficiary registration or updation"
+				if sub_data["Beneficiaries_pnc"] == 0 or sub_data["DueServices_pnc"] < 3:
+					if status_pnc == 0:
+						reason_pnc += "& Low beneficiary registration or updation"
+					else:
+						status_pnc = 0
+						reason_pnc += "But Low beneficiary registration or updation"
+				if sub_data["Beneficiaries_imm"] == 0 or sub_data["DueServices_imm"] < 3:
+					if status_imm == 0:
+						status_imm += "& Low beneficiary registration or updation"
+					else:
+						status_imm = 0
+						reason_imm += "But Low beneficiary registration or updation"
+
 				num_good_anc, num_avg_anc, num_poor_anc = increment_count_on_status(status_anc, num_good_anc, num_avg_anc, num_poor_anc)
 				num_good_pnc, num_avg_pnc, num_poor_pnc = increment_count_on_status(status_pnc, num_good_pnc, num_avg_pnc, num_poor_pnc)
 				num_good_imm, num_avg_imm, num_poor_imm = increment_count_on_status(status_imm, num_good_imm, num_avg_imm, num_poor_imm) 
@@ -122,6 +141,9 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 				sub_data["status_anc"] = status_anc
 				sub_data["status_pnc"] = status_pnc
 				sub_data["status_imm"] = status_imm
+				sub_data["reason_anc"] = reason_anc
+				sub_data["reason_pnc"] = reason_pnc
+				sub_data["reason_imm"] = reason_imm
 				from math import ceil
 				sub_data["status"] = ceil((status_anc + status_pnc + status_imm)/3 - 0.5)
 				sub_data["Subcenter"] = sub.name
