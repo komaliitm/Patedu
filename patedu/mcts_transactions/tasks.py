@@ -129,7 +129,7 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 						reason_pnc += "But Low beneficiary registration or updation"
 				if sub_data["Beneficiaries_imm"] == 0 or sub_data["DueServices_imm"] < 3:
 					if status_imm == 0:
-						status_imm += "& Low beneficiary registration or updation"
+						reason_imm += "& Low beneficiary registration or updation"
 					else:
 						status_imm = 0
 						reason_imm += "But Low beneficiary registration or updation"
