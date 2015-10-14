@@ -278,8 +278,8 @@ def ExotelUpdateCallStatus(request):
 	if request.method == 'POST':
 		sid = request.POST['CallSid']
 		status = request.POST['Status']
-		recording_url = request.POST['RecordingUrl']
-		date_updated = request.POST['DateUpdated']
+		recording_url = request.POST.get('RecordingUrl')
+		date_updated = request.POST.get('DateUpdated')
 		try:
 			marker = ExotelCallStatus.objects.get(sid=sid)
 			marker.status = status
