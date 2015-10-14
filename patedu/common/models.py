@@ -56,3 +56,41 @@ class ExotelCallStatus(models.Model):
 	date_initiated = models.DateField(null=True)
 	dt_updated = models.DateTimeField()
 	exotel_update_received = models.BooleanField(default=False)
+
+class LOGUICL(models.Model):
+	date = models.CharField(max_length=12)
+	operator_name = models.CharField(max_length=50)
+	benef_name =  models.CharField(max_length=50)
+	address = models.TextField(null=True, blank=True)
+	description = models.TextField()
+	lmp_date = models.CharField(max_length=20)
+	date_tt1 = models.CharField(max_length=20, null=True, blank=True)
+	facility_current = models.CharField(max_length=50)	
+	facility_past = models.CharField(max_length=50, null=True, blank=True)
+	action = models.TextField()
+
+	def json(self):
+		return {
+			'date':self.date,
+			'operator_name':self.operator_name,
+			'benef_name' : self.benef_name,
+			'address': self.address,
+			'description': self.description,
+			'lmp_date': self.lmp_date,
+			'date_tt1':self.date_tt1,
+			'facility_current':self.facility_current,
+			'facility_past':self.facility_past,
+			'action':self.action
+		}
+
+	def populate(self, uicl_object):
+		self.date = uicl_object.get("date")
+		self.operator_name = uicl_object.get('operator_name')
+		self.benef_name = uicl_object.get('benef_name')
+		self.address = uicl_object.get('address')
+		self.description = uicl_object.get('description')
+		self.lmp_date = uicl_object.get('lmp_date')
+		self.date_tt1 = uicl_object.get('date_tt1')
+		self.facility_current = uicl_object.get('facility_current')
+		self.facility_past = uicl_object.get('facility_past')
+		self.action = uicl_object.get('action')

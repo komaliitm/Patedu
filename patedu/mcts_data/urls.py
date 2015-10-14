@@ -9,6 +9,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
 	url(r'^uploadandsave/$', views.WPProcessSingle),
 	url(r'^workplans/process/$', views.WPProcess),
+	url(r'^uicl_log/$', views.UiclLogs),
 	url(r'^uploadpage/$', views.UploadPage),
 	url(r'^uploadandsaveLangLatData/$', views.uploadandsaveLangLatData),
 	url(r'^uploadLangLatpage/$', views.uploadLangLatpage),

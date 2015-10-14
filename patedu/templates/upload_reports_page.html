@@ -1,5 +1,142 @@
 <div class="row">
-    <div class="col-lg-6 col-sm-6 col-xs-12">
+	<div class="col-lg-8 col-sm-8 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-sky">
+                <span class="widget-caption"><h5> INCOMING CALL LOGGING</h5></span>
+                <span class="pull-right margin-top-5 ">
+		            <a class="btn btn-default btn-xs icon-only margin-right-5 blue" ng-click="PrintElem('#uicl_logs_display', 'NIRAMAYH: INCOMING CALL LOGS')" ng-show="show_uicl_logs">
+		            	<i class="glyphicon glyphicon-print"></i>
+		            </a>
+		            <a class="btn btn-default btn-xs icon-only margin-right-5 blue" ng-click="show_uicl_logs = !show_uicl_logs">
+		            	<i class="glyphicon glyphicon-retweet"></i>
+		            </a>
+                </span>
+            </div><!--Widget Header-->
+            <div class="widget-body padding-top-20 padding-bottom-30" >
+                <div ng-show="!show_uicl_logs">
+	                <p>This is the place where you can enter the incoming call details. Later ticketing will be integrated to this workflow.</p>
+	                <div class="margin-30"></div>
+	                <form role="form" enctype="multipart/form-data" id="upload_incomingcall_log" ng-submit="UploadIncomingCallLog()">
+						<div class="form-title">
+	                        General Information
+	                    </div>
+	                    <div class="form-group">
+	                        <span class="input-icon icon-right">
+	                            <input type="text" class="form-control" id="uicl_date" placeholder="Date" ng-model="uicl_log.date">
+	                            <i class="glyphicon glyphicon-calendar circular"></i>
+	                        </span>
+	                    </div>
+	                    <div class="form-group">
+	                        <span class="input-icon icon-right">
+	                            <input type="text" class="form-control" id="uicl_operators_name" placeholder="Operator's name" ng-model="uicl_log.operator_name">
+	                            <i class="fa fa-user"></i>
+	                        </span>
+	                    </div>
+	                    <div class="form-group">
+	                        <span class="input-icon icon-right">
+	                            <input type="text" class="form-control" id="uicl_beneficiary_name" placeholder="Beneficiary name" ng-model="uicl_log.benef_name">
+	                            <i class="fa fa-user circular"></i>
+	                        </span>
+	                    </div>
+	                    <div class="form-group">
+	                        <span class="input-icon icon-right">
+	                            <input type="text" class="form-control" id="uicl_address" placeholder="Address" ng-model="uicl_log.address">
+	                            <i class="fa fa-home circular"></i>
+	                        </span>
+	                    </div>
+	                    <div class="form-group">
+	                        <span class="input-icon icon-right">
+	                            <textarea class="form-control" id="uicl_call_description" placeholder="Call description" ng-model="uicl_log.description"></textarea>
+	                            <i class="fa fa-book circular"></i>
+	                        </span>
+	                    </div>
+	                    <div class="form-title">
+	                        Maternity Information
+	                    </div>
+	                    <div class="row">
+	                        <div class="col-sm-6">
+	                            <div class="form-group">
+	                                <span class="input-icon icon-right">
+	                                    <input type="text" class="form-control" id="uicl_LMP" placeholder="LMP date" ng-model="uicl_log.lmp_date">
+	                                    <i class="fa fa-calendar-o"></i>
+	                                </span>
+	                            </div>
+	                        </div>
+	                        <div class="col-sm-6">
+	                            <div class="form-group">
+	                                <span class="input-icon icon-right">
+	                                    <input type="text" class="form-control" id="uicl_tt1" placeholder="Date of TT1" ng-model="uicl_log.date_tt1">
+	                                    <i class="fa fa-bullseye"></i>
+	                                </span>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="row">
+	                        <div class="col-sm-6">
+	                            <div class="form-group">
+	                                <span class="input-icon icon-right">
+	                                    <input type="text" class="form-control" id="uicl_current_facility" placeholder="Facility number for current" ng-model="uicl_log.facility_current">
+	                                    <i class="fa fa-building-o"></i>
+	                                </span>
+	                            </div>
+	                        </div>
+	                        <div class="col-sm-6">
+	                            <div class="form-group">
+	                                <span class="input-icon icon-right">
+	                                    <input type="text" class="form-control" id="uicl_past_facility" placeholder="Facility number for ante-natal" ng-model="uicl_log.facility_past">
+	                                    <i class="fa fa-building-o"></i>
+	                                </span>
+	                            </div>
+	                        </div>
+	                        <div class="col-sm-6">
+	                            <div class="form-group">
+	                                <span class="input-icon icon-right">
+	                                    <input type="text" class="form-control" id="uicl_action_taken" placeholder="Action taken" ng-model="uicl_log.action">
+	                                    <i class="fa fa-tasks"></i>
+	                                </span>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <hr class="wide" />
+	                    <button class="btn btn-blue">Register</button>
+					</form>
+				</div>
+				<div ng-show="show_uicl_logs" id="uicl_logs_display">
+					<table class="table table-hover">
+                        <thead class="bordered-blueberry">
+                            <tr>
+                                <th>Date</th>
+                                <th>Operator Name</th>
+                                <th>Beneficiary Name</th>
+                                <th>Address</th>
+                                <th>Description</th>
+                                <th>LMP Date</th>
+                                <th>Date TT1</th>
+                                <th>Facility Current</th>
+                                <th>Facility Past</th>
+                                <th>Action</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="uicl_log in uicl_logs">
+                                <td>#{uicl_log.date}#</td>
+                                <td>#{uicl_log.operator_name}#</td>
+                                <td>#{uicl_log.benef_name}#</td>
+                                <td>#{uicl_log.address}#</td>
+                                <td>#{uicl_log.description}#</td>
+                                <td>#{uicl_log.lmp_date}#</td>
+                                <td>#{uicl_log.date_tt1}#</td>
+                                <td>#{uicl_log.facility_current}#</td>
+                                <td>#{uicl_log.facility_past}#</td>
+                                <td>#{uicl_log.action}#</td>
+                            </tr>
+                        </tbody>
+                    </table>
+				</div>
+            </div><!--Widget Body-->
+        </div><!--Widget-->
+    </div>
+    <div class="col-lg-4 col-sm-4 col-xs-12">
         <div class="widget">
             <div class="widget-header bordered-bottom bordered-sky">
                 <span class="widget-caption"><h5>WORKPLAN UPLOAD WIDGET</h5></span>
@@ -25,6 +162,8 @@
             </div><!--Widget Body-->
         </div><!--Widget-->
     </div>
+
+    
 </div>                      
 
 

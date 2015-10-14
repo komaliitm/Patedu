@@ -92,12 +92,114 @@ app.directive('onFinishRender', function ($timeout) {
     $scope.report_type = "ANC";
     $scope.workplan_files = [];
 
+    $scope.uicl_log = {};
+    // $scope.uicl_log.operator_name = $('#uicl_operators_name').val();
+
+    $scope.show_uicl_logs = false;
+
+    $scope.uicl_logs = [];
+    var FetchUiclLog = function()
+    {
+      $('.loading-container').removeClass('loading-inactive');
+      uploadService.fetch_uicl_log().then(function(response){
+         $('.loading-container').addClass('loading-inactive');
+         $scope.uicl_logs = response;
+      }, 
+      function(error){
+        $('.loading-container').addClass('loading-inactive');
+        var alert_str = "Server returned error while fetching the logs:\n"+error.msg;
+        alert(alert_str);
+      });
+    }
+
+    var Popup = function(data, title) 
+    {
+        var mywindow = window.open('', 'my div', 'height=400,width=600');
+        mywindow.document.write('<html><head><title>'+title+'</title>');
+        mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/bootstrap.min.css" type="text/css" />');
+        mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/font-awesome.min.css" type="text/css" />');
+        mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/beyond.min.css" type="text/css" />');
+        mywindow.document.write('<link rel="stylesheet" href="/static/app/css/dashboard_subcenterblock.css" type="text/css" />');
+        mywindow.document.write('</head><body >');
+        mywindow.document.write(data);
+        mywindow.document.write('</body></html>');
+
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10
+
+        mywindow.print();
+        mywindow.close();
+
+        return true;
+    }
+
+    $scope.PrintElem = function (elem, title)
+    {
+        if(!title)
+        {
+          title = 'NIRAMAYH: INCOMING CALL LOGS';
+        }
+        Popup($(elem).html(), title);
+    }
+
+    FetchUiclLog();
+
     $scope.$on("fileSelected", function (event, args) {
         $scope.$apply(function () {            
             //add the file object to the scope's files collection
             $scope.workplan_files.push(args.file);
         });
     });
+
+    $scope.UploadIncomingCallLog = function(){
+      if(!$scope.uicl_log.date || !$scope.uicl_log.date.trim())
+      {
+        alert('Date cannot be null');
+        return;
+      }
+      if(!$scope.uicl_log.operator_name || !$scope.uicl_log.operator_name.trim())
+      {
+        alert('Operator name cannot be null');
+        return;
+      }
+      if(!$scope.uicl_log.benef_name || !$scope.uicl_log.benef_name.trim())
+      {
+        alert('Beneficiary name cannot be null');
+        return;
+      }
+      if(!$scope.uicl_log.description || !$scope.uicl_log.description.trim())
+      {
+        alert('Description cannot be null');
+        return;
+      }
+      if(!$scope.uicl_log.lmp_date || !$scope.uicl_log.lmp_date.trim())
+      {
+        alert('LMP date cannot be null');
+        return;
+      }
+      if(!$scope.uicl_log.facility_current || !$scope.uicl_log.facility_current.trim())
+      {
+        alert('Current Facility cannot be null');
+        return;
+      }
+      if(!$scope.uicl_log.action || !$scope.uicl_log.action.trim())
+      {
+        alert('Action taken cannot be null');
+        return;
+      }
+      $('.loading-container').removeClass('loading-inactive');
+      uploadService.upload_uicl_log($scope.uicl_log).then(function(response){
+        $('.loading-container').addClass('loading-inactive');
+        $scope.uicl_logs = response;
+        $scope.show_uicl_logs = true;
+        $('#upload_incomingcall_log').find("input[type=text], textarea").val("");
+      }, function(error){
+        $('.loading-container').addClass('loading-inactive');
+        var alert_str = "Server returned error:\n"+error.msg;
+        alert(alert_str);
+      })
+
+    }
 
     $scope.UploadWorkplanReport = function(){
       console.log($scope.report_type);
@@ -312,16 +414,11 @@ app.directive('onFinishRender', function ($timeout) {
           $scope.SerialNum = 0;
         }
       );
-       
-      $scope.PrintElem = function (elem)
-      {
-          Popup($(elem).html());
-      }
 
-      var Popup = function(data) 
+      var Popup = function(data, title) 
       {
           var mywindow = window.open('', 'my div', 'height=400,width=600');
-          mywindow.document.write('<html><head><title>my div</title>');
+          mywindow.document.write('<html><head><title>'+title+'</title>');
           mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/bootstrap.min.css" type="text/css" />');
           mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/font-awesome.min.css" type="text/css" />');
           mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/beyond.min.css" type="text/css" />');
@@ -337,6 +434,15 @@ app.directive('onFinishRender', function ($timeout) {
           mywindow.close();
 
           return true;
+      }
+
+      $scope.PrintElem = function (elem, title)
+      {
+          if(!title)
+          {
+            title = $scope.currentWP.area+' WORKPLAN FOR '+$scope.currentWP.subcenter.name;
+          }
+          Popup($(elem).html(), title);
       }
 
       $scope.SortData = function($event, type) {
@@ -628,8 +734,34 @@ app.directive('onFinishRender', function ($timeout) {
 
   app.factory('uploadService', function($http, $q){
     return {
-      saveWorkplanReports: saveWorkplanReports
+      saveWorkplanReports: saveWorkplanReports, 
+      upload_uicl_log: upload_uicl_log,
+      fetch_uicl_log: fetch_uicl_log
     };
+
+    function fetch_uicl_log(uicl_log)
+    {
+      var url = '/mctsdata/uicl_log/';
+      var request = $http({
+        method: 'GET',
+        url: url,
+        data: JSON.stringify(uicl_log)
+      });
+
+      return request.then(handleSuccess, handleError);
+    }
+
+    function upload_uicl_log(uicl_log)
+    {
+      var url = '/mctsdata/uicl_log/';
+      var request = $http({
+        method: 'POST',
+        url: url,
+        data: JSON.stringify(uicl_log)
+      });
+
+      return request.then(handleSuccess, handleError);
+    }
 
     function saveWorkplanReports(fd){
       var url = '/mctsdata/workplans/process/';

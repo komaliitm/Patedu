@@ -19,7 +19,7 @@ import datetime
 import re
 from django.db.models import Q
 from common.utils import utcnow_aware
-        
+from common.models import LOGUICL        
 
     
 list_header =     ['State' , 'District' , 'District_ID' , 'Health Block','Health_Block_ID' ,'Health Facility' ,'Health_Facility_ID', 'SubFacility / SubCentre','Village','ANM :' , 'ReportMonth', 'ReportYear']
@@ -854,6 +854,22 @@ def GetFacilityFromString(fac_str):
         return (name, mcts_id)    
     else:
         return None
+
+def UiclLogs(request):
+    if request.method == 'POST':
+        uicl_post_data = json.loads(request.body)
+        log_uicl = LOGUICL()
+        log_uicl.populate(uicl_post_data)
+        log_uicl.save()
+        log_uicl_objects = LOGUICL.objects.all()
+        ret = [log_uicl.json() for log_uicl in log_uicl_objects]
+        return HttpResponse(json.dumps(ret), mimetype='application/json')
+    elif request.method == 'GET':
+        log_uicl_objects = LOGUICL.objects.all()
+        ret = [log_uicl.json() for log_uicl in log_uicl_objects]
+        return HttpResponse(json.dumps(ret), mimetype='application/json')
+    else:
+        return HttpResponseBadRequest('Http method not supported')
 
 def WPProcess(request):
     ret_json = {

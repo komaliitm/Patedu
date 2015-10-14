@@ -258,7 +258,8 @@ def DashboardPage(request):
 	return render(request, "dashboard_base.html", {})
 
 def UploadReportsPage(request):
-	return render(request, "upload_reports_page.html", {})
+	user_name = request.user.first_name+' '+request.user.last_name
+	return render(request, "upload_reports_page.html", {'operator_name':user_name})
 
 def SubcenterPage(request):
 	_allBlocks = Block.objects.all()
