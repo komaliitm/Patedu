@@ -285,9 +285,10 @@ def ExotelUpdateCallStatus(request):
 			marker.status = status
 			marker.recording_url = recording_url
 			marker.dt_updated = utcnow_aware().date()
+			marker.exotel_update_received = True
 			marker.save()
 		except:
-			marker = ExotelCallStatus.objects.create(sid=sid, status=status, recording_url=recording_url, date_initiated = utcnow_aware().date(), dt_updated = utcnow_aware())	 
+			marker = ExotelCallStatus.objects.create(sid=sid, status=status, recording_url=recording_url, date_initiated = utcnow_aware().date(), dt_updated = utcnow_aware(), exotel_update_received = True)	 
 		
 		return HttpResponse('Success')
 	else:

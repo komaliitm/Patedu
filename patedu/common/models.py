@@ -55,3 +55,4 @@ class ExotelCallStatus(models.Model):
 	recording_url = models.TextField(null=True)
 	date_initiated = models.DateField(null=True)
 	dt_updated = models.DateTimeField()
+	exotel_update_received = models.BooleanField(default=False)
