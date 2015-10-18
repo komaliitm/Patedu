@@ -866,7 +866,7 @@ def ServicesCount(request, voice=None):
 			return HttpResponse(str(count), content_type='text/plain')
 		else:
 			if count<=10:
-				f_name = 'cmo_e_'+int(count)+'.mp3'
+				f_name = 'cmo_e_'+str(count)+'.wav'
 			elif count <=50:
 				f_name = 'gte10.wav'
 			elif count <=100:
