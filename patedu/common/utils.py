@@ -169,8 +169,11 @@ def CallWrapper_Exotel(id, role, type, demo_phone=None):
     response = connect_customer_to_app(customer_no=phone, callerid="01130017630", CustomField=custom_field, callback_url=callback_url)
     result = response.text
     j_result = json.loads(result)
-    sid = j_result['Call']['Sid']
-    status = j_result['Call']['Status']
+    call = j_result.get('Call')
+    sid = call.get('Sid') if call else None
+    status = call.get('Status') if call else None
+    if not sid:
+        return None
     #update call status here
     try: 
         marker = ExotelCallStatus.objects.get(sid=sid)
