@@ -4,7 +4,8 @@
             <div class="widget-header bordered-bottom bordered-sky">
                 <span class="widget-caption"><h5> INCOMING CALL LOGGING</h5></span>
                 <span class="pull-right margin-top-5 ">
-		            <a class="btn btn-default btn-xs icon-only margin-right-5 blue" ng-click="PrintElem('#uicl_logs_display', 'NIRAMAYH: INCOMING CALL LOGS')" ng-show="show_uicl_logs">
+		            <a class="btn btn-default btn-xs icon-only margin-right-5 blue"  print-div="#uicl_logs_display" ng-show="show_uicl_logs">
+		            
 		            	<i class="glyphicon glyphicon-print"></i>
 		            </a>
 		            <a class="btn btn-default btn-xs icon-only margin-right-5 blue" ng-click="show_uicl_logs = !show_uicl_logs">
@@ -101,7 +102,7 @@
 	                    <button class="btn btn-blue">Register</button>
 					</form>
 				</div>
-				<div ng-show="show_uicl_logs" id="uicl_logs_display">
+				<div ng-show="show_uicl_logs" id="uicl_logs_display" print-title="NIRAMAYAH: CALL LOGS PRINT OUT">
 					<table class="table table-hover">
                         <thead class="bordered-blueberry">
                             <tr>

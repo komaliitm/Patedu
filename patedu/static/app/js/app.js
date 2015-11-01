@@ -23,6 +23,59 @@ app.directive('fileUpload', ['$parse', function ($parse) {
     };
 }]);
 
+
+app.directive('printDiv', function () {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      element.bind('click', function(evt){    
+        evt.preventDefault();    
+        PrintElem(attrs.printDiv);
+      });
+
+      function PrintElem(elem)
+      {
+        PrintWithIframe($(elem).html(), $(elem).attr('print-title'));
+      }
+
+      function PrintWithIframe(data, title) 
+      {
+        if(!Boolean(title)){
+          title = 'NIRAMAYH';
+        }
+
+        if ($('iframe#printf').size() == 0) {
+          $('html').append('<iframe id="printf" name="printf"></iframe>');  // an iFrame is added to the html content, then your div's contents are added to it and the iFrame's content is printed
+
+          var mywindow = window.frames["printf"];
+          // mywindow.document.write('<html><head><title></title><style>@page {margin: 25mm 0mm 25mm 5mm}</style>'  // Your styles here, I needed the margins set up like this
+          //                 + '</head><body><div>'
+          //                 + data
+          //                 + '</div></body></html>');
+          mywindow.document.write('<html><head><title>'+title+'</title>');
+          mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/bootstrap.min.css" type="text/css" />');
+          mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/font-awesome.min.css" type="text/css" />');
+          mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/beyond.min.css" type="text/css" />');
+          mywindow.document.write('<link rel="stylesheet" href="/static/app/css/dashboard_subcenterblock.css" type="text/css" />');
+          mywindow.document.write('</head><body >');
+          mywindow.document.write(data);
+          mywindow.document.write('</body></html>');
+
+          $(mywindow.document).ready(function(){
+            mywindow.print();
+            setTimeout(function(){
+              $('iframe#printf').remove();
+            },
+            2000);  // The iFrame is removed 2 seconds after print() is executed, which is enough for me, but you can play around with the value
+          });
+        }
+
+        return true;
+      }
+    }
+  };
+});
+
 app.directive('onFinishRender', function ($timeout) {
     return {
         restrict: 'A',

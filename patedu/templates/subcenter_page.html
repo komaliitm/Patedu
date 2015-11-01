@@ -113,15 +113,15 @@
             </div>
         </div>
 
-        <div class="row tab-pane" id="listviewbox">
+        <div class="row tab-pane" id="listviewbox" print-title="NIRAMAYAH: SUBCENTER STATUS PRINT OUT">
             <div class="col-xs-12 col-md-12">
                 <div class="widget ">
                     <div class="widget-header">
                         <span class="widget-caption">Blockwise Details</span>
                         <div class="widget-buttons">
-                        <a data-toggle="maximize">
-                            <i class="fa fa-expand"></i>
-                        </a>
+                            <a class="btn btn-default btn-xs icon-only blue" print-div="#{dashboardParams.domain==1?#tabular-anc:#tabular-imm}#">
+                                <i class="glyphicon glyphicon-print"></i>
+                            </a>
                         </div>
                     </div>
                 
@@ -134,7 +134,7 @@
                                     <h4 class="modal-title">Workplan</h4>
                                 </div>
                                 
-                                <div class="modal-body">
+                                <div class="modal-body" print-title="NIRAMAYAH: WORKPLAN PRINT OUT">
                                     <div style="text-align:center">
                                         <h3>
                                             <b>
@@ -186,7 +186,8 @@
                                     </table>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" ng-click="PrintElem('#workplan_modal .modal-body')" data-dismiss="modal">Print Out</button>
+                                    <!-- <button type="button" class="btn btn-primary" ng-click="PrintElem('#workplan_modal .modal-body')" data-dismiss="modal">Print Out</button> -->
+                                    <button type="button" class="btn btn-primary" print-div="#workplan_modal .modal-body" data-dismiss="modal">Print Out</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div><!-- /.modal-content -->
