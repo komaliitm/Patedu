@@ -113,13 +113,16 @@
             </div>
         </div>
 
-        <div class="row tab-pane" id="listviewbox" print-title="NIRAMAYAH: SUBCENTER STATUS PRINT OUT">
+        <div class="row tab-pane" id="listviewbox">
             <div class="col-xs-12 col-md-12">
                 <div class="widget ">
                     <div class="widget-header">
-                        <span class="widget-caption">Blockwise Details</span>
+                        <span class="widget-caption">Blockwise Details for block: #{dashdata.blockname}#</span>
                         <div class="widget-buttons">
-                            <a class="btn btn-default btn-xs icon-only blue" print-div="#{dashboardParams.domain==1?#tabular-anc:#tabular-imm}#">
+                            <a class="btn btn-default btn-xs blue" print-div="#wrapper_anc_table" ng-show="dashboardParams.domain==1">
+                                <i class="glyphicon glyphicon-print"></i>
+                            </a>
+                            <a class="btn btn-default btn-xs blue" print-div="#wrapper_anc_table" ng-show="dashboardParams.domain==2">
                                 <i class="glyphicon glyphicon-print"></i>
                             </a>
                         </div>
@@ -193,164 +196,164 @@
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
                     </div>
+                    <div id="wrapper_anc_table" ng-show="dashboardParams.domain==1" print-title="NIRAMAYAH: ANC SUBCENTER STATUS PRINT OUT">
+                        <table id="tabular-anc" class="table table-bordered table-hover table-striped">
+                               <thead>
+                                    <tr role="row">
+                                        <th >S. No.</th>
+                                        <th ng-class="{'asc_label': SerialNum==1 && Asc ==1  , 'desc_label': SerialNum==1 && Asc == 0, 'no_label': SerialNum != 1}" ng-click="SortData($event, 1)" style="cursor:pointer">Status indicator&nbsp;</th>
+                                        <th ng-class="{'asc_label': SerialNum==2 && Asc ==1  , 'desc_label': SerialNum==2 && Asc == 0, 'no_label': SerialNum != 2}" ng-click="SortData($event, 2)" style="cursor:pointer">Subcenter&nbsp;</th>
+                                        <th ng-class="{'asc_label': SerialNum==3 && Asc ==1  , 'desc_label': SerialNum==3 && Asc == 0, 'no_label': SerialNum != 3}" ng-click="SortData($event, 3)" style="cursor:pointer">Beneficiary Count&nbsp;</th>
+                                        <th>HMIS Beneficiary Count&nbsp;</th>
+                                        <th ng-class="{'asc_label': SerialNum==4 && Asc ==1  , 'desc_label': SerialNum==4 && Asc == 0, 'no_label': SerialNum != 4}" ng-click="SortData($event, 4)" style="cursor:pointer">Due Services&nbsp;</th>
+                                        <th ng-class="{'asc_label': SerialNum==5 && Asc ==1  , 'desc_label': SerialNum==5 && Asc == 0, 'no_label': SerialNum != 5}" ng-click="SortData($event, 5)" style="cursor:pointer">Given Services&nbsp;</th>
+                                        <th ng-class="{'asc_label': SerialNum==6 && Asc ==1  , 'desc_label': SerialNum==6 && Asc == 0, 'no_label': SerialNum != 6}" ng-click="SortData($event, 6)" style="cursor:pointer">Overdue Services number&nbsp;</th>
+                                        <th ng-class="{'asc_label': SerialNum==7 && Asc ==1  , 'desc_label': SerialNum==7 && Asc == 0, 'no_label': SerialNum != 7}" ng-click="SortData($event, 7)" style="cursor:pointer">Overdue rate&nbsp;</th>
+                                        <th>Overdue rate trends</th> 
+                                        <th>ANM name | Number</th>
+                                        <th>Remark</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="villageData in dashdata.data" on-finish-render>
+                                        <td >#{$index + 1}#</td>
+                                        <td >
+                                            <div id="div_cc_anc#{$index}#">
+                                                  #{ColorClassUp('#div_cc_anc'+$index, villageData.status_anc)}#
+                                           </div>
+                                        </td>
+                                        <td >
+                                            <a ng-click="WorkplanModal(villageData.SubcenterId)"  style="cursor:pointer">#{villageData.Subcenter}#</a>
+                                        </td>
+                                        <td >#{villageData.Beneficiaries_anc}# </td>
+                                        <td>N/A</td>
+                                        <td>
+                                            #{villageData.DueServices_anc }#
+                                            <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Dues" data-content="#{villageData.due_sg_anc | services_dump}#">
+                                              <i class="glyphicon glyphicon-info-sign gray"></i>
+                                            </a> 
+                                        </td>
+                                        <td >
+                                            #{villageData.GivenServices_anc }#
+                                            <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Given" data-content="#{villageData.given_sg_anc | services_dump}#">
+                                              <i class="glyphicon glyphicon-info-sign gray"></i>
+                                            </a> 
+                                        </td>
+                                        <td >
+                                            #{villageData.Overdue_anc}#
+                                            <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Overdues" data-content="#{villageData.overdue_sg_anc | services_dump}#">
+                                              <i class="glyphicon glyphicon-info-sign gray"></i>
+                                            </a> 
+                                        </td>
+                                        <td >#{villageData.OverDueRate_anc| number:2}# </td>
+                                        
+                                        <td>
+                                            <div class="databox-sparkline">
+                                                <span data-height="25px" data-width="100%" data-fillcolor="false" data-linecolor="#03c" data-spotcolor="#03c" data-linewidth="1" data-spotradius="0" id="sparkline-anc-#{$index}#">
+                                                </span>
+                                            </div>
 
-                    <table id="tabular-anc" ng-show="dashboardParams.domain==1" class="table table-bordered table-hover table-striped">
-                           <thead>
-                                <tr role="row">
-                                    <th >S. No.</th>
-                                    <th ng-class="{'asc_label': SerialNum==1 && Asc ==1  , 'desc_label': SerialNum==1 && Asc == 0, 'no_label': SerialNum != 1}" ng-click="SortData($event, 1)" style="cursor:pointer">Status indicator&nbsp;</th>
-                                    <th ng-class="{'asc_label': SerialNum==2 && Asc ==1  , 'desc_label': SerialNum==2 && Asc == 0, 'no_label': SerialNum != 2}" ng-click="SortData($event, 2)" style="cursor:pointer">Subcenter&nbsp;</th>
-                                    <th ng-class="{'asc_label': SerialNum==3 && Asc ==1  , 'desc_label': SerialNum==3 && Asc == 0, 'no_label': SerialNum != 3}" ng-click="SortData($event, 3)" style="cursor:pointer">Beneficiary Count&nbsp;</th>
-                                    <th>HMIS Beneficiary Count&nbsp;</th>
-                                    <th ng-class="{'asc_label': SerialNum==4 && Asc ==1  , 'desc_label': SerialNum==4 && Asc == 0, 'no_label': SerialNum != 4}" ng-click="SortData($event, 4)" style="cursor:pointer">Due Services&nbsp;</th>
-                                    <th ng-class="{'asc_label': SerialNum==5 && Asc ==1  , 'desc_label': SerialNum==5 && Asc == 0, 'no_label': SerialNum != 5}" ng-click="SortData($event, 5)" style="cursor:pointer">Given Services&nbsp;</th>
-                                    <th ng-class="{'asc_label': SerialNum==6 && Asc ==1  , 'desc_label': SerialNum==6 && Asc == 0, 'no_label': SerialNum != 6}" ng-click="SortData($event, 6)" style="cursor:pointer">Overdue Services number&nbsp;</th>
-                                    <th ng-class="{'asc_label': SerialNum==7 && Asc ==1  , 'desc_label': SerialNum==7 && Asc == 0, 'no_label': SerialNum != 7}" ng-click="SortData($event, 7)" style="cursor:pointer">Overdue rate&nbsp;</th>
-                                    <th>Overdue rate trends</th> 
-                                    <th>ANM name | Number</th>
-                                    <th>Remark</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="villageData in dashdata.data" on-finish-render>
-                                    <td >#{$index + 1}#</td>
-                                    <td >
-                                        <div ng-class="{'status_label_green':villageData.status_anc==2,'status_label_red':villageData.status_anc==0,
-                                        'status_label_yellow':villageData.status_anc==1}">
-                                              #{villageData.status_anc}#
-                                       </div>
-                                    </td>
-                                    <td >
-                                        <a ng-click="WorkplanModal(villageData.SubcenterId)"  style="cursor:pointer">#{villageData.Subcenter}#</a>
-                                    </td>
-                                    <td >#{villageData.Beneficiaries_anc}# </td>
-                                    <td>N/A</td>
-                                    <td>
-                                        #{villageData.DueServices_anc }#
-                                        <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Dues" data-content="#{villageData.due_sg_anc | services_dump}#">
-                                          <i class="glyphicon glyphicon-info-sign gray"></i>
-                                        </a> 
-                                    </td>
-                                    <td >
-                                        #{villageData.GivenServices_anc }#
-                                        <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Given" data-content="#{villageData.given_sg_anc | services_dump}#">
-                                          <i class="glyphicon glyphicon-info-sign gray"></i>
-                                        </a> 
-                                    </td>
-                                    <td >
-                                        #{villageData.Overdue_anc}#
-                                        <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Overdues" data-content="#{villageData.overdue_sg_anc | services_dump}#">
-                                          <i class="glyphicon glyphicon-info-sign gray"></i>
-                                        </a> 
-                                    </td>
-                                    <td >#{villageData.OverDueRate_anc| number:2}# </td>
-                                    
-                                    <td>
-                                        <div class="databox-sparkline">
-                                            <span data-height="25px" data-width="100%" data-fillcolor="false" data-linecolor="#03c" data-spotcolor="#03c" data-linewidth="1" data-spotradius="0" id="sparkline-anc-#{$index}#">
+                                        </td>
+
+                                        <td >
+                                         <span ng-repeat="anmPerson in villageData.ANMDetails"> 
+                                            <span ng-show="$index>0">, </span>
+                                            #{anmPerson}#
                                             </span>
-                                        </div>
-
-                                    </td>
-
-                                    <td >
-                                     <span ng-repeat="anmPerson in villageData.ANMDetails"> 
-                                        <span ng-show="$index>0">, </span>
-                                        #{anmPerson}#
-                                        </span>
-                                    </td>
-                                    <td>
-                                        #{villageData.reason_anc}#
-                                    </td>
-                                    <!--
-                                    <td >
-                                     <span ng-repeat="ashaWorker in villageData.AshaDetails"> 
-                                        <span ng-show="$index>0">, </span>
-                                        #{ashaWorker}#
-                                        </span>
-                                     </td> -->
-
-                                </tr>
-                            </tbody>
-                    </table>
-
-                    <table id="tabular_imm" ng-show="dashboardParams.domain==2" class="table table-bordered table-hover table-striped">
-                           <thead>
-                                <tr role="row">
-                                    <th >S. No.</th>
-                                    <th ng-class="{'asc_label': SerialNum==1 && Asc ==1  , 'desc_label': SerialNum==1 && Asc == 0, 'no_label': SerialNum != 1}" ng-click="SortData($event, 1)" style="cursor:pointer">Status indicator&nbsp;</th>
-                                    <th ng-class="{'asc_label': SerialNum==2 && Asc ==1  , 'desc_label': SerialNum==2 && Asc == 0, 'no_label': SerialNum != 2}" ng-click="SortData($event, 2)" style="cursor:pointer">Subcenter&nbsp;</th>
-                                    <th ng-class="{'asc_label': SerialNum==3 && Asc ==1  , 'desc_label': SerialNum==3 && Asc == 0, 'no_label': SerialNum != 3}" ng-click="SortData($event, 3)" style="cursor:pointer">Beneficiary Count&nbsp;</th>
-                                    <th>HMIS Beneficiary Count&nbsp;</th>
-                                    <th ng-class="{'asc_label': SerialNum==4 && Asc ==1  , 'desc_label': SerialNum==4 && Asc == 0, 'no_label': SerialNum != 4}" ng-click="SortData($event, 4)" style="cursor:pointer">Due Services&nbsp;</th>
-                                    <th ng-class="{'asc_label': SerialNum==5 && Asc ==1  , 'desc_label': SerialNum==5 && Asc == 0, 'no_label': SerialNum != 5}" ng-click="SortData($event, 5)" style="cursor:pointer">Given Services&nbsp;</th>
-                                    <th ng-class="{'asc_label': SerialNum==6 && Asc ==1  , 'desc_label': SerialNum==6 && Asc == 0, 'no_label': SerialNum != 6}" ng-click="SortData($event, 6)" style="cursor:pointer">Overdue Services number&nbsp;</th>
-                                    <th ng-class="{'asc_label': SerialNum==7 && Asc ==1  , 'desc_label': SerialNum==7 && Asc == 0, 'no_label': SerialNum != 7}" ng-click="SortData($event, 7)" style="cursor:pointer">Overdue rate&nbsp;</th>
-                                    <th>Overdue rate trends</th> 
-                                    <th>ANM name | Number</th>
-                                    <th>Remark</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr  ng-repeat="villageData in dashdata.data" on-finish-render>
-                                    <td >#{$index + 1}#</td>
-                                    <td >
-                                        <div ng-class="{'status_label_green':villageData.status_imm==2,'status_label_red':villageData.status_imm==0,
-                                        'status_label_yellow':villageData.status_imm==1}">
-                                              #{villageData.status_imm}#
-                                       </div>
-                                    </td>
-                                    <td >
-                                        <a ng-click="WorkplanModal(villageData.SubcenterId)"  style="cursor:pointer">#{villageData.Subcenter}#</a>
-                                    </td>
-                                    <td >#{villageData.Beneficiaries_imm}# </td>
-                                    <td>N/A</td>
-                                    <td>
-                                        #{villageData.DueServices_imm }#
-                                        <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Dues" data-content="#{villageData.due_sg_imm | services_dump}#">
-                                          <i class="glyphicon glyphicon-info-sign gray"></i>
-                                        </a> 
-                                    </td>
-                                    <td >
-                                        #{villageData.GivenServices_imm }#
-                                        <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Given" data-content="#{villageData.given_sg_imm | services_dump}#">
-                                          <i class="glyphicon glyphicon-info-sign gray"></i>
-                                        </a> 
-                                    </td>
-                                    <td >
-                                        #{villageData.Overdue_imm}#
-                                        <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Overdues" data-content="#{villageData.overdue_sg_imm | services_dump}#">
-                                          <i class="glyphicon glyphicon-info-sign gray"></i>
-                                        </a> 
-                                    </td>
-                                    <td >#{villageData.OverDueRate_imm| number:2}# </td>
-                                    
-                                    <td>
-                                        <div class="databox-sparkline">
-                                            <span data-height="25px" data-width="100%" data-fillcolor="false" data-linecolor="#03c" data-spotcolor="#03c" data-linewidth="1" data-spotradius="0" id="sparkline-imm-#{$index}#">
+                                        </td>
+                                        <td>
+                                            #{villageData.reason_anc}#
+                                        </td>
+                                        <!--
+                                        <td >
+                                         <span ng-repeat="ashaWorker in villageData.AshaDetails"> 
+                                            <span ng-show="$index>0">, </span>
+                                            #{ashaWorker}#
                                             </span>
-                                        </div>
+                                         </td> -->
 
-                                    </td>
-                                    <td >
-                                     <span ng-repeat="anmPerson in villageData.ANMDetails"> 
-                                        <span ng-show="$index>0">, </span>
-                                        #{anmPerson}#
-                                        </span>
-                                    </td>
-                                    <td>
-                                        #{villageData.reason_imm}#
-                                    </td>
-                                    <!-- <td >
-                                     <span ng-repeat="ashaWorker in villageData.AshaDetails"> 
-                                        <span ng-show="$index>0">, </span>
-                                        #{ashaWorker}#
-                                        </span>
-                                    </td> -->
+                                    </tr>
+                                </tbody>
+                        </table>
+                    </div>
+                    <div id="wrapper_imm_table" print-title="NIRAMAYAH: IMM SUBCENTER STATUS PRINT OUT" ng-show="dashboardParams.domain==2" >   
+                        <table id="tabular_imm" class="table table-bordered table-hover table-striped">
+                               <thead>
+                                    <tr role="row">
+                                        <th >S. No.</th>
+                                        <th ng-class="{'asc_label': SerialNum==1 && Asc ==1  , 'desc_label': SerialNum==1 && Asc == 0, 'no_label': SerialNum != 1}" ng-click="SortData($event, 1)" style="cursor:pointer">Status indicator&nbsp;</th>
+                                        <th ng-class="{'asc_label': SerialNum==2 && Asc ==1  , 'desc_label': SerialNum==2 && Asc == 0, 'no_label': SerialNum != 2}" ng-click="SortData($event, 2)" style="cursor:pointer">Subcenter&nbsp;</th>
+                                        <th ng-class="{'asc_label': SerialNum==3 && Asc ==1  , 'desc_label': SerialNum==3 && Asc == 0, 'no_label': SerialNum != 3}" ng-click="SortData($event, 3)" style="cursor:pointer">Beneficiary Count&nbsp;</th>
+                                        <th>HMIS Beneficiary Count&nbsp;</th>
+                                        <th ng-class="{'asc_label': SerialNum==4 && Asc ==1  , 'desc_label': SerialNum==4 && Asc == 0, 'no_label': SerialNum != 4}" ng-click="SortData($event, 4)" style="cursor:pointer">Due Services&nbsp;</th>
+                                        <th ng-class="{'asc_label': SerialNum==5 && Asc ==1  , 'desc_label': SerialNum==5 && Asc == 0, 'no_label': SerialNum != 5}" ng-click="SortData($event, 5)" style="cursor:pointer">Given Services&nbsp;</th>
+                                        <th ng-class="{'asc_label': SerialNum==6 && Asc ==1  , 'desc_label': SerialNum==6 && Asc == 0, 'no_label': SerialNum != 6}" ng-click="SortData($event, 6)" style="cursor:pointer">Overdue Services number&nbsp;</th>
+                                        <th ng-class="{'asc_label': SerialNum==7 && Asc ==1  , 'desc_label': SerialNum==7 && Asc == 0, 'no_label': SerialNum != 7}" ng-click="SortData($event, 7)" style="cursor:pointer">Overdue rate&nbsp;</th>
+                                        <th>Overdue rate trends</th> 
+                                        <th>ANM name | Number</th>
+                                        <th>Remark</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr  ng-repeat="villageData in dashdata.data" on-finish-render>
+                                        <td >#{$index + 1}#</td>
+                                        <td >
+                                           <div id="div_cc_imm#{$index}#">
+                                                  #{ColorClassUp('#div_cc_imm'+$index, villageData.status_imm)}#
+                                           </div>
+                                        </td>
+                                        <td >
+                                            <a ng-click="WorkplanModal(villageData.SubcenterId)"  style="cursor:pointer">#{villageData.Subcenter}#</a>
+                                        </td>
+                                        <td >#{villageData.Beneficiaries_imm}# </td>
+                                        <td>N/A</td>
+                                        <td>
+                                            #{villageData.DueServices_imm }#
+                                            <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Dues" data-content="#{villageData.due_sg_imm | services_dump}#">
+                                              <i class="glyphicon glyphicon-info-sign gray"></i>
+                                            </a> 
+                                        </td>
+                                        <td >
+                                            #{villageData.GivenServices_imm }#
+                                            <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Given" data-content="#{villageData.given_sg_imm | services_dump}#">
+                                              <i class="glyphicon glyphicon-info-sign gray"></i>
+                                            </a> 
+                                        </td>
+                                        <td >
+                                            #{villageData.Overdue_imm}#
+                                            <a role="button" tabindex="0" class="pull-right" data-toggle="popover" data-trigger="focus" data-placement="top" title="Overdues" data-content="#{villageData.overdue_sg_imm | services_dump}#">
+                                              <i class="glyphicon glyphicon-info-sign gray"></i>
+                                            </a> 
+                                        </td>
+                                        <td >#{villageData.OverDueRate_imm| number:2}# </td>
+                                        
+                                        <td>
+                                            <div class="databox-sparkline">
+                                                <span data-height="25px" data-width="100%" data-fillcolor="false" data-linecolor="#03c" data-spotcolor="#03c" data-linewidth="1" data-spotradius="0" id="sparkline-imm-#{$index}#">
+                                                </span>
+                                            </div>
 
-                                </tr>
-                            </tbody>
-                    </table>
+                                        </td>
+                                        <td >
+                                         <span ng-repeat="anmPerson in villageData.ANMDetails"> 
+                                            <span ng-show="$index>0">, </span>
+                                            #{anmPerson}#
+                                            </span>
+                                        </td>
+                                        <td>
+                                            #{villageData.reason_imm}#
+                                        </td>
+                                        <!-- <td >
+                                         <span ng-repeat="ashaWorker in villageData.AshaDetails"> 
+                                            <span ng-show="$index>0">, </span>
+                                            #{ashaWorker}#
+                                            </span>
+                                        </td> -->
+
+                                    </tr>
+                                </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
          </div>   

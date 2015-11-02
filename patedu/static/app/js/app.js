@@ -468,6 +468,23 @@ app.directive('onFinishRender', function ($timeout) {
         }
       );
 
+      $scope.ColorClassUp = function(idstr, state){
+        var dom = $(idstr);
+        var ret_text = 'GOOD';
+        if(state ==2){
+          dom.addClass('status_label_green');
+        }
+        else if(state==1){
+          dom.addClass('status_label_yellow');
+          ret_text = 'AVERAGE';
+        }
+        else{
+          dom.addClass('status_label_red');
+          ret_text = 'POOR';
+        }
+        return ret_text;
+      }
+
       var Popup = function(data, title) 
       {
           var mywindow = window.open('', 'my div', 'height=400,width=600');
