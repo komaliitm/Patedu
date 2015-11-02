@@ -45,23 +45,27 @@ app.directive('printDiv', function () {
         }
 
         if ($('iframe#printf').size() == 0) {
-          $('html').append('<iframe id="printf" name="printf"></iframe>');  // an iFrame is added to the html content, then your div's contents are added to it and the iFrame's content is printed
+          $('html').append('<iframe id="printf" width="0" height="0" frameborder="0" src="about:blank" name="printf"></iframe>');  // an iFrame is added to the html content, then your div's contents are added to it and the iFrame's content is printed
 
           var mywindow = window.frames["printf"];
           // mywindow.document.write('<html><head><title></title><style>@page {margin: 25mm 0mm 25mm 5mm}</style>'  // Your styles here, I needed the margins set up like this
           //                 + '</head><body><div>'
           //                 + data
           //                 + '</div></body></html>');
-          mywindow.document.write('<html><head><title>'+title+'</title>');
-          mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/bootstrap.min.css" type="text/css" />');
-          mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/font-awesome.min.css" type="text/css" />');
-          mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/beyond.min.css" type="text/css" />');
-          mywindow.document.write('<link rel="stylesheet" href="/static/app/css/dashboard_subcenterblock.css" type="text/css" />');
-          mywindow.document.write('</head><body >');
-          mywindow.document.write(data);
-          mywindow.document.write('</body></html>');
+          var printDivCss = '<link rel="stylesheet" href="/static/beyond/css/bootstrap.min.css" type="text/css" /> <link rel="stylesheet" href="/static/beyond/css/font-awesome.min.css" type="text/css" /> <link rel="stylesheet" href="/static/beyond/css/beyond.min.css" type="text/css" /> <link rel="stylesheet" href="/static/app/css/dashboard_subcenterblock.css" type="text/css" />'
+          mywindow.document.body.innerHTML = printDivCss+data;
+          // mywindow.document.write('<html><head><title>'+title+'</title>');
+          // mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/bootstrap.min.css" type="text/css" />');
+          // mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/font-awesome.min.css" type="text/css" />');
+          // mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/beyond.min.css" type="text/css" />');
+          // mywindow.document.write('<link rel="stylesheet" href="/static/app/css/dashboard_subcenterblock.css" type="text/css" />');
+          // mywindow.document.write('</head><body >');
+          // mywindow.document.write(data);
+          // mywindow.document.write('</body></html>');
+          // mywindow.document.close();
 
           $(mywindow.document).ready(function(){
+            mywindow.focus();
             mywindow.print();
             setTimeout(function(){
               $('iframe#printf').remove();
