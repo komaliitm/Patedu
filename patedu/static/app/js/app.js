@@ -63,15 +63,26 @@ app.directive('printDiv', function () {
           // mywindow.document.write(data);
           // mywindow.document.write('</body></html>');
           // mywindow.document.close();
-
-          $(mywindow.document).ready(function(){
+          var OnBodyReady = function(){
+            if(!mywindow.document.body.innerHTML)
+              return;
             mywindow.focus();
             mywindow.print();
             setTimeout(function(){
               $('iframe#printf').remove();
             },
             2000);  // The iFrame is removed 2 seconds after print() is executed, which is enough for me, but you can play around with the value
-          });
+          }
+          $(mywindow.document.body).bind("DOMSubtreeModified" , OnBodyReady);
+
+          // $(mywindow.document).ready(function(){
+          //   mywindow.focus();
+          //   mywindow.print();
+          //   setTimeout(function(){
+          //     $('iframe#printf').remove();
+          //   },
+          //   2000);  // The iFrame is removed 2 seconds after print() is executed, which is enough for me, but you can play around with the value
+          // });
         }
 
         return true;
