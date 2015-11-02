@@ -1,10 +1,16 @@
 <div class="row">
     <div class="col-md-12">
         <div class="profile-container">
-            <div class="profile-header row">
+            <div class="profile-header row" id="profile_header_bs" print-title="NIRAMAYAH: DISTRICT STATUS ON 5 INDICES of MCTS">
                 <div style="text-align:center">
-                    <h3>DISTRICT JHANSI</h3>
+                    <h3>
+                        DISTRICT JHANSI &nbsp;
+                        <a class="btn btn-default btn-xs blue" print-div="#profile_header_bs" >
+                            <i class="glyphicon glyphicon-print"></i>
+                        </a> 
+                    </h3>
                 </div>
+                
                 <div class="margin-top-30"></div>
                 <div class="row margin-left-20 margin-right-20">
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -110,7 +116,7 @@
                             
                         </ul>
                         <div class="tab-content tabs-flat">
-                            <div id="index-child-reg" class="tab-pane active  animated fadeInUp padding-top-20 padding-left-20 padding-right-20">
+                            <div id="index-child-reg" class="tab-pane active  animated fadeInUp padding-top-20 padding-left-20 padding-right-20" print-title="NIRAMAYAH: Block wise analysis of Children Registered">
                                 <div class="row">
                                     <div class="col-sm-6 padding-right-30">
                                         <div id="child_reg_chart" class="chart chart-lg horizontal-bar-chart"></div>
@@ -136,8 +142,15 @@
                                         </table>
                                     </div>
                                 </div>
+                                <div class="row no-print">
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-default btn-xs blue pull-left" print-div="#index-child-reg" >
+                                            <i class="glyphicon glyphicon-print"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="index-mother-reg" class="tab-pane animated fadeInUp padding-top-20 padding-left-20 padding-right-20">
+                            <div id="index-mother-reg" class="tab-pane animated fadeInUp padding-top-20 padding-left-20 padding-right-20" print-title="NIRAMAYAH: Block wise analysis of Mothers' Registered">
                                 <div class="row">
                                     <div class="col-sm-6 padding-right-30">
                                         <div id="mother_reg_chart" class="chart chart-lg horizontal-bar-chart"></div>
@@ -163,8 +176,15 @@
                                         </table>
                                     </div>
                                 </div>
+                                <div class="row no-print">
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-default btn-xs blue pull-left" print-div="#index-mother-reg" >
+                                            <i class="glyphicon glyphicon-print"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="index-full-imm" class="tab-pane  animated fadeInUp padding-top-20 padding-left-20 padding-right-20">
+                            <div id="index-full-imm" class="tab-pane  animated fadeInUp padding-top-20 padding-left-20 padding-right-20" print-title="NIRAMAYAH: Block wise analysis of Full IMM given">
                                 <div class="row">
                                     <div class="col-sm-6 padding-right-30">
                                         <div id="full_imm_chart" class="chart chart-lg horizontal-bar-chart"></div>
@@ -190,8 +210,15 @@
                                         </table>
                                     </div>
                                 </div>
+                                <div class="row no-print">
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-default btn-xs blue pull-left" print-div="#index-full-imm" >
+                                            <i class="glyphicon glyphicon-print"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="index-full-anc" class="tab-pane animated fadeInUp padding-top-20 padding-left-20 padding-right-20">
+                            <div id="index-full-anc" class="tab-pane animated fadeInUp padding-top-20 padding-left-20 padding-right-20" print-title="NIRAMAYAH: Block wise analysis of Full ANC given">
                                 <div class="row">
                                     <div class="col-sm-6 padding-right-30">
                                         <div id="full_anc_chart" class="chart chart-lg horizontal-bar-chart"></div>
@@ -217,8 +244,15 @@
                                         </table>
                                     </div>
                                 </div>
+                                <div class="row no-print">
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-default btn-xs blue pull-left" print-div="#index-full-anc">
+                                            <i class="glyphicon glyphicon-print"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="index-births" class="tab-pane animated fadeInUp padding-top-20 padding-left-20 padding-right-20">
+                            <div id="index-births" class="tab-pane animated fadeInUp padding-top-20 padding-left-20 padding-right-20" print-title="NIRAMAYAH: Block wise analysis of Full Deliveries Reported">
                                 <div class="row">
                                     <div class="col-sm-6 padding-right-30">
                                         <div id="del_rep_chart" class="chart chart-lg horizontal-bar-chart"></div>
@@ -242,6 +276,13 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                    </div>
+                                </div>
+                                <div class="row no-print">
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-default btn-xs blue pull-left" print-div="#index-births">
+                                            <i class="glyphicon glyphicon-print"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

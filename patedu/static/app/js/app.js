@@ -53,19 +53,15 @@ app.directive('printDiv', function () {
           //                 + data
           //                 + '</div></body></html>');
           var printDivCss = '<link rel="stylesheet" href="/static/beyond/css/bootstrap.min.css" type="text/css" /> <link rel="stylesheet" href="/static/beyond/css/font-awesome.min.css" type="text/css" /> <link rel="stylesheet" href="/static/beyond/css/beyond.min.css" type="text/css" /> <link rel="stylesheet" href="/static/app/css/dashboard_subcenterblock.css" type="text/css" />'
+          data = '<div style="text-align:center;"><h3>'+title+'</h3></div>'+data; 
           mywindow.document.body.innerHTML = printDivCss+data;
-          // mywindow.document.write('<html><head><title>'+title+'</title>');
-          // mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/bootstrap.min.css" type="text/css" />');
-          // mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/font-awesome.min.css" type="text/css" />');
-          // mywindow.document.write('<link rel="stylesheet" href="/static/beyond/css/beyond.min.css" type="text/css" />');
-          // mywindow.document.write('<link rel="stylesheet" href="/static/app/css/dashboard_subcenterblock.css" type="text/css" />');
-          // mywindow.document.write('</head><body >');
-          // mywindow.document.write(data);
-          // mywindow.document.write('</body></html>');
-          // mywindow.document.close();
+          
+          var count = 0;
           var OnBodyReady = function(){
-            if(!mywindow.document.body.innerHTML)
+            if(!mywindow.document.body.innerHTML || count >0)
               return;
+            count++;
+
             mywindow.focus();
             mywindow.print();
             setTimeout(function(){

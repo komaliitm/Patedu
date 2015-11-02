@@ -1,3 +1,7 @@
+@media print {
+body {-webkit-print-color-adjust: exact;}
+}
+
 .horizontal-bar-chart {
   width:450px;
   height:300px;
@@ -20,6 +24,14 @@ body .modal-dialog {
     width: 900px;
 }
 
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+
 .my_label 
 {
     color: red;
@@ -37,8 +49,8 @@ body .modal-dialog {
 
 .status_label_red 
 {
-    color: #fb6e52;
-    background-color: #fb6e52;
+    color: #fb6e52 !important;
+    background-color: #fb6e52 !important;
     font-family: "Lucida Grande", "Arial", sans-serif;
     font-size: 7px;
     text-align: center;
@@ -48,12 +60,12 @@ body .modal-dialog {
     border: 1px solid grey;
     border-radius:2px;   
     box-shadow: 2px 2px 20px #888888;
-}
+  }
 
 .status_label_green
 {
-    color: #a0d468;
-    background-color: #a0d468;
+    color: #a0d468 !important;
+    background-color: #a0d468 !important;
     font-family: "Lucida Grande", "Arial", sans-serif;
     font-size: 7px;
     text-align: center;
@@ -67,8 +79,8 @@ body .modal-dialog {
 
 .status_label_yellow 
 {
-    color: #ffce55;
-    background-color: #ffce55;
+    color: #ffce55 !important;
+    background-color: #ffce55 !important;
     font-family: "Lucida Grande", "Arial", sans-serif;
     font-size: 7px;
     text-align: center;
