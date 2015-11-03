@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from isodate import datetime_isoformat
+from django.db.models import Q
 
 class Address(models.Model):
 	value = models.CharField(max_length=256)
@@ -222,8 +223,10 @@ class Beneficiary(User):
 		json_dict['registration_year'] = self.registration_year
 		json_dict['caregiver'] = self.caregiver.json() if self.caregiver else None
 		json_dict['careprovider'] = self.careprovider.json() if self.careprovider else None
-		json_dict['odue_events'] = [od_event.json() for od_event in self.odue_events.filter(date__gte=date_then)]
-		json_dict['due_events'] = [d_event.json() for d_event in self.due_events.filter(date__gte=date_then)]
+		ods = self.odue_events.filter(date__gte=date_then).exclude(Q(event__val__icontains='pentavalent') | Q(event__val__icontains='je') | Q(event__val__icontains='mmr') )
+		ds = self.odue_events.filter(date__gte=date_then).exclude(Q(event__val__icontains='pentavalent') | Q(event__val__icontains='je') | Q(event__val__icontains='mmr') )
+		json_dict['odue_events'] = [od_event.json() for od_event in ods]
+		json_dict['due_events'] = [d_event.json() for d_event in ds]
 		json_dict['txns'] = [txn.json() for txn in self.txns.all()]
 
 		return json_dict

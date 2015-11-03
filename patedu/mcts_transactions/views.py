@@ -668,12 +668,12 @@ def ProcessSubcenterData(benefs, sub, since_months, reg_type, months):
 	if benefs:
 		txs_service = Transactions.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(timestamp__gte=since_months.date())).exclude(event__val=reg_type)
 		txs_reg = Transactions.objects.all().filter(Q(subcenter=sub), Q(event__val=reg_type), Q(timestamp__gte=since_months.date()) )
-		dues_service = DueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) ).exclude(event__val__contains='pentavalent')
+		dues_service = DueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) ).exclude(Q(event__val__icontains='pentavalent') | Q(event__val__icontains='je') | Q(event__val__icontains='mmr') )
 
 		GivenServices = txs_service.count()
 		DueServices = dues_service.count()
 
-		overdues_service = OverDueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) ).exclude(event__val__contains='pentavalent')
+		overdues_service = OverDueEvents.objects.all().filter(Q(subcenter=sub), Q(beneficiary__in = benefs), Q(date__gte=since_months.date()) ).exclude(Q(event__val__icontains='pentavalent') | Q(event__val__icontains='je') | Q(event__val__icontains='mmr') )
 		overdue_services_group = list(overdues_service.values('event_id').annotate(ods_count=Count('id'), event_name=Max('event__val')))
 		given_services_group = list(txs_service.values('event_id').annotate(ods_count=Count('id'), event_name=Max('event__val')))
 		due_srvices_group = list(dues_service.values('event_id').annotate(ods_count=Count('id'), event_name=Max('event__val')))

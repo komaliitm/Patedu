@@ -145,14 +145,21 @@ app.directive('onFinishRender', function ($timeout) {
 
   app.controller('MainController', ['$scope', '$location', function($scope, $location){
     console.log("In Main controller");
+    $scope.staticPageinfo = null;
     $scope.isActive = function (route) {
       return $location.path().indexOf(route) === 0;
       // return route === $location.path();
     };
+
+    $scope.$on('StaticPageInfo', function (event, args) {
+      $scope.staticPageinfo = args;
+    });
+
   }]);
 
   app.controller('UploadController', ['$scope', 'uploadService', function($scope, uploadService){
     console.log("In upload controller");
+    $scope.$emit('StaticPageInfo', {});
     $scope.report_type = "ANC";
     $scope.workplan_files = [];
 
@@ -335,6 +342,40 @@ app.directive('onFinishRender', function ($timeout) {
               }
           };
       };
+
+      var static_blockinfo = {
+        type: 'info',
+        msg: 'This page shows comparative block status over 5 indices given by MCTS',
+        bunch:[
+          {
+            name:'Children Registered',
+            name_full:'',
+            description:'Last one year, number of children registered against the annual target.'
+          },
+          {
+            name:'Mothers Registered',
+            name_full:'',
+            description:'Last one year, number of pregnant mothers registered against the annual target.'
+          },
+          {
+            name:'Full Immunization',
+            name_full:'',
+            description:'Last one year, number of full immunizations given against the annual target.'
+          },
+          {
+            name:'Full ANC',
+            name_full:'',
+            description:'Last one year, number of full anc given against the annual target.'
+          },
+          {
+            name:'Delivery Reported',
+            name_full:'',
+            description:'Last one year, number of Deliveries Reported aagainst the annual target.'
+          }
+        ] 
+      }
+
+      $scope.$emit('StaticPageInfo', static_blockinfo);
       var InitiateEasyPieChart = function (elem) {
           return {
               init: function () {
@@ -432,6 +473,7 @@ app.directive('onFinishRender', function ($timeout) {
 
   app.controller('OutreachController', ['$scope', 'outreachService', 
     function($scope, outreachService){
+    $scope.$emit('StaticPageInfo', {});
     $scope.outreach = {};
     $scope.ques = q;
     $scope.selectChange = function()
@@ -460,6 +502,72 @@ app.directive('onFinishRender', function ($timeout) {
         domain: "1"
       }
 
+      var static_ancinfo = {
+        type: 'info',
+        msg: 'This is subcenter status w.r.t. ANC services. Details of ANC services is below,',
+        bunch:[
+          {
+            name:'ANC1',
+            name_full:'Ante Natal Care First Checkup',
+            description:'This is done in first Trimester of pregnancy to ensure well being of mother and child and screen potential high risk cases.'
+          },
+          {
+            name:'ANC2',
+            name_full:'Ante Natal Care Second Checkup',
+            description:'This is done in second Trimester of pregnancy to ensure proper growth of child and screen potential pregnancy risks like genstational diabetes, BP etc'
+          },
+          {
+            name:'ANC3',
+            name_full:'Ante Natal Care Second Checkup',
+            description:'This is done in 3rd Trimester to screen out any infections and prepare for potential complications'
+          },
+          {
+            name:'ANC4',
+            name_full:'Ante Natal Care Fourth Checkup',
+            description:'This is done in last stages of the pregnancy to gaurd against any complications.'
+          },
+          {
+            name:'TT1',
+            name_full:'Tetanus Toxoid Vaccine One',
+            description:'Given to prevent risk of Tetanus in mother and newborn baby. It is given in 2nd trimester.'
+          },
+          {
+            name:'TT2',
+            name_full:'Tetanus Toxoid Vaccine Two',
+            description:'Second Tetanus Vaccine is given in first pregnancy. It is given in 3rd trimester.'
+          }
+        ] 
+      }
+
+      var static_imminfo = {
+        type: 'info',
+        msg: 'This is subcenter status w.r.t. Immunization services. Details of ANC services is below,',
+        bunch:[
+          {
+            name:'BCG',
+            name_full:'Bacillus Calmette-Guérin',
+            description:'Vaccination given to protect against Tuberculosis. Given at birth.'
+          },
+          {
+            name:'DPT',
+            name_full:'Diphtheria vaccine',
+            description:'Vaccination given to protect against infectious diseases viz.. Diphtheria, Pertussis, Tetanus. Given at 6th, 9th, 14th, 18th week.'
+          },
+          {
+            name:'OPV',
+            name_full:'Oral Polio Vaccine',
+            description:'Vaccination given to protect against Polio Paralysis. Given at 1st, 6th, 9th and 18th week.'
+          },
+          {
+            name:'Measles',
+            name_full:'Measles Vaccine',
+            description:'Vaccination to prevent against Measles. Given at 9th month after birth.'
+          }
+        ] 
+      }
+
+      $scope.$emit('StaticPageInfo', static_ancinfo);
+
       $scope.RefreshDataFromServer = function($event, type){
         fetchDataCurrent();
       }
@@ -476,6 +584,13 @@ app.directive('onFinishRender', function ($timeout) {
         },
         function (newValue, oldValue) {
           $scope.SerialNum = 0;
+          if($scope.dashboardParams.domain == "1")
+          {
+            $scope.$emit('StaticPageInfo', static_ancinfo);
+          }
+          else if($scope.dashboardParams.domain == "2"){
+            $scope.$emit('StaticPageInfo', static_imminfo);
+          }
         }
       );
 

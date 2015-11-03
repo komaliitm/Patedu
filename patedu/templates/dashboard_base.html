@@ -137,6 +137,30 @@ Purchase: http://wrapbootstrap.com
                         </a>
                     </li>
                 </ul>
+                
+                <div class="tabbable tabs-left" style="overflow-y:auto !important">
+                    <ul class="nav nav-tabs margin-top-30" style="width:100% !important">
+                        <li>
+                            <a style="padding-top:0">
+                                <h4>
+                                    #{staticPageinfo.msg}#
+                                </h4>
+                            </a>
+                        </li>
+                        <li ng-repeat="quanta in staticPageinfo.bunch">
+                            <a style="padding-top:0">
+                                <h5>
+                                    #{quanta.name}#
+                                    <i ng-show="quanta.name_full"><br>#{quanta.name_full}#</i>
+                                </h5>
+                                <span style="line-height:1.1em">
+                                    #{quanta.description}#
+                                </span>
+                                <hr style="margin-bottom:0">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <!-- /Page Sidebar -->
             <!-- Page Content -->
