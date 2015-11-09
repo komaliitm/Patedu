@@ -587,10 +587,13 @@ app.directive('onFinishRender', function ($timeout) {
           if($scope.dashboardParams.domain == "1")
           {
             $scope.$emit('StaticPageInfo', static_ancinfo);
+            DrawPieChart($scope.dashdata.summary_anc.Excellet, $scope.dashdata.summary_anc.Good, $scope.dashdata.summary_anc.Average, $scope.dashdata.summary_anc.Poor);
           }
           else if($scope.dashboardParams.domain == "2"){
             $scope.$emit('StaticPageInfo', static_imminfo);
+            DrawPieChart($scope.dashdata.summary_imm.Excellet, $scope.dashdata.summary_imm.Good, $scope.dashdata.summary_imm.Average, $scope.dashdata.summary_imm.Poor);
           }
+          PoplatePoints($scope.dashdata.data, $scope.dashboardParams.domain);
         }
       );
 
@@ -783,8 +786,8 @@ app.directive('onFinishRender', function ($timeout) {
 
            subcenterService.getDashboardData($scope.dashboardParams).then(function(dashdata) {
             $scope.dashdata = dashdata;
-            DrawPieChart($scope.dashdata.summary.Excellet, $scope.dashdata.summary.Good, $scope.dashdata.summary.Average, $scope.dashdata.summary.Poor);
-            PoplatePoints($scope.dashdata.data);
+            DrawPieChart($scope.dashdata.summary_anc.Excellet, $scope.dashdata.summary_anc.Good, $scope.dashdata.summary_anc.Average, $scope.dashdata.summary_anc.Poor);
+            PoplatePoints($scope.dashdata.data, $scope.dashboardParams.domain);
             console.log($scope.dashdata);
             $scope.loading = false;
             $scope.Completeloading = true;
@@ -1084,7 +1087,7 @@ app.directive('onFinishRender', function ($timeout) {
     $("#PoorId").text(c);
   }
 
-  function PoplatePoints(data) {
+  function PoplatePoints(data, domain) {
     var output = new google.maps.LatLng(25.4486, 78.5696);
     var mapOptions = {
       center: output,
@@ -1116,11 +1119,17 @@ app.directive('onFinishRender', function ($timeout) {
 
       console.log("Print Values" + " " + data[i].lat + " " + data[i].long + " " + data[i].Subcenter);
       var icon_new;
-      if (data[i].status == 0) {
+      var  status = 3;
+      if(domain == "1")
+        status = data[i].status_anc;
+      else
+        status = data[i].status_imm;
+
+      if (status == 0) {
         icon_new = "/static/beyond/img/Red.png";
-      } else if (data[i].status == 1) {
+      } else if (status == 1) {
         icon_new = "/static/beyond/img/Yellow.png";
-      } else if (data[i].status == 2){
+      } else if (status == 2){
         icon_new = "/static/beyond/img/Orange.png";
       } else {
         icon_new = "/static/beyond/img/Green.png";

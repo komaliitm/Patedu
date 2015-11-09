@@ -648,7 +648,7 @@ def GetLastSixMonthsProgress(benefs, sub, reg_type):
 
 				OverDueRate = (float(Overdue)/(month*sample_size))*100
 
-			ProgressData[month-1] = OverDueRate
+			ProgressData[6-month] = OverDueRate
 			this_month_date = since_date
 	return ProgressData
 
