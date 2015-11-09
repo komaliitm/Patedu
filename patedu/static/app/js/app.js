@@ -783,7 +783,7 @@ app.directive('onFinishRender', function ($timeout) {
 
            subcenterService.getDashboardData($scope.dashboardParams).then(function(dashdata) {
             $scope.dashdata = dashdata;
-            DrawPieChart($scope.dashdata.summary.Good, $scope.dashdata.summary.Average, $scope.dashdata.summary.Poor);
+            DrawPieChart($scope.dashdata.summary.Excellet, $scope.dashdata.summary.Good, $scope.dashdata.summary.Average, $scope.dashdata.summary.Poor);
             PoplatePoints($scope.dashdata.data);
             console.log($scope.dashdata);
             $scope.loading = false;

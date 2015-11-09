@@ -405,6 +405,10 @@ def BlockIndicesData(request):
 			imm_benefs = IMMBenef.objects.filter(subcenter__block=block, dob__gte=last_year_date)
 			anc_benefs = ANCBenef.objects.filter(subcenter__block=block, LMP__gte=last_year_date)
 
+			sex_ratio = 0
+			female_infants = imm_benefs.filter(child_sex__icontains='f')
+			sex_ratio = ceil(((female_infants.count()/imm_benefs.count())*1000)) if imm_benefs else 0
+
 			mreg_district_target = NHMTargets.objects.get(target_type='MREG', district=district, target_year=fin_marker.year).target_value
 			creg_district_target = NHMTargets.objects.get(target_type='CREG', district=district, target_year=fin_marker.year).target_value
 
@@ -476,7 +480,8 @@ def BlockIndicesData(request):
 				'block_name':block.name,
 				'count':drep_count,
 				'target':drep_target,
-				'percent':(float(drep_count)/float(drep_target))*100 if drep_target else 0
+				'percent':(float(drep_count)/float(drep_target))*100 if drep_target else 0,
+				'sex_ratio':sex_ratio
 			}
 			mother_reg.append(mreg)
 			child_reg.append(creg)

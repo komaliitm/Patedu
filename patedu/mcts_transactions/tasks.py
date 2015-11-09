@@ -187,10 +187,10 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 				data.append(sub_data)
 			block_data = {}
 			block_data["data"] = data
-			block_data["summary"] = { "Good":num_good_anc , "Poor":num_poor_anc ,"Average":num_avg_anc }	
-			block_data["summary_anc"] = { "Good":num_good_anc , "Poor":num_poor_anc ,"Average":num_avg_anc }
-			block_data["summary_pnc"] = { "Good":num_good_pnc , "Poor":num_poor_pnc ,"Average":num_avg_pnc }
-			block_data["summary_imm"] = { "Good":num_good_imm , "Poor":num_poor_imm ,"Average":num_avg_imm }
+			block_data["summary"] = {"Excellent":num_exc_anc, "Good":num_good_anc , "Poor":num_poor_anc ,"Average":num_avg_anc }	
+			block_data["summary_anc"] = {"Excellent":num_exc_anc, "Good":num_good_anc , "Poor":num_poor_anc ,"Average":num_avg_anc }
+			block_data["summary_pnc"] = {"Excellent":num_exc_pnc, "Good":num_good_pnc , "Poor":num_poor_pnc ,"Average":num_avg_pnc }
+			block_data["summary_imm"] = {"Excellent":num_exc_imm, "Good":num_good_imm , "Poor":num_poor_imm ,"Average":num_avg_imm }
 			block_data["blockid"] = block.id
 			block_data["blockname"] = block.name
 			existing_analytics = AnalyticsData.objects.filter(block=block, since_months=months, month= this_month_date.month, year=this_month_date.year)
