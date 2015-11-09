@@ -711,26 +711,31 @@ def ProcessSubcenterData(benefs, sub, since_months, reg_type, months):
 	}
 
 def get_status(value, cutoff1, cutoff2):
-	if value > cutoff2:
+	if value >= cutoff2 + (cutoff2 - cutoff1): 
 		status = 0
-		reason = 'Alarming overdue services'
-	elif value >=cutoff1:
+		reason = 'Alarmingly high overdue services'
+	if value >= cutoff2:
 		status = 1
+		reason = 'High overdue services'
+	elif value >=cutoff1:
+		status = 2
 		reason = 'Increased overdue services'
 	else:
-		status = 2
+		status = 3
 		reason = 'Overdue services under contorl'
 	return status, reason
 
-def increment_count_on_status(value, good, avg, poor):
-	if value == 2:
+def increment_count_on_status(value, good, avg, poor, exc):
+	if value == 3:
+		exc = exc + 1
+	elif value == 2:
 		good = good + 1
 	elif value ==1:
 		avg = avg + 1
 	elif value == 0:
 		poor = poor + 1
 
-	return (good, avg, poor)
+	return (good, avg, poor, exc)
 
 @login_required
 def DashboardData(request, blockid = None):

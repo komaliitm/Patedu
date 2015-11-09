@@ -596,9 +596,13 @@ app.directive('onFinishRender', function ($timeout) {
 
       $scope.ColorClassUp = function(idstr, state){
         var dom = $(idstr);
-        var ret_text = 'GOOD';
-        if(state ==2){
+        var ret_text = 'EXCELLENT';
+        if(state ==3){
           dom.addClass('status_label_green');
+        }
+        else if(state ==2){
+          dom.addClass('status_label_orange');
+          ret_text = 'GOOD';
         }
         else if(state==1){
           dom.addClass('status_label_yellow');
@@ -1034,12 +1038,18 @@ app.directive('onFinishRender', function ($timeout) {
     }
   });
 
-  function DrawPieChart(a, b, c) {
+  function DrawPieChart(x, a, b, c) {
     var data = [{
+      data: [
+        [1, x]
+      ],
+      color: '#a0d468'
+    }
+    ,{
       data: [
         [1, a]
       ],
-      color: '#a0d468'
+      color: '#F08615'
     }, {
       data: [
         [1, b]
@@ -1068,7 +1078,7 @@ app.directive('onFinishRender', function ($timeout) {
       }
     });
 
-
+    $("#ExceId").text(x);
     $("#GoodId").text(a);
     $("#AverageId").text(b);
     $("#PoorId").text(c);
@@ -1110,6 +1120,8 @@ app.directive('onFinishRender', function ($timeout) {
         icon_new = "/static/beyond/img/Red.png";
       } else if (data[i].status == 1) {
         icon_new = "/static/beyond/img/Yellow.png";
+      } else if (data[i].status == 2){
+        icon_new = "/static/beyond/img/Orange.png";
       } else {
         icon_new = "/static/beyond/img/Green.png";
       }

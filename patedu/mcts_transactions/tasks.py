@@ -56,12 +56,15 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 			num_good_anc = 0
 			num_poor_anc = 0
 			num_avg_anc = 0
+			num_exc_anc = 0
 			num_good_pnc = 0
 			num_poor_pnc = 0
 			num_avg_pnc = 0
+			num_exc_pnc = 0
 			num_good_imm = 0
 			num_poor_imm = 0
 			num_avg_imm = 0
+			num_exc_imm = 0
 			for sub in subcenters:
 				sub_data = {}
 
@@ -134,9 +137,9 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 						status_imm = 0
 						reason_imm += "But Low beneficiary registration or updation"
 
-				num_good_anc, num_avg_anc, num_poor_anc = increment_count_on_status(status_anc, num_good_anc, num_avg_anc, num_poor_anc)
-				num_good_pnc, num_avg_pnc, num_poor_pnc = increment_count_on_status(status_pnc, num_good_pnc, num_avg_pnc, num_poor_pnc)
-				num_good_imm, num_avg_imm, num_poor_imm = increment_count_on_status(status_imm, num_good_imm, num_avg_imm, num_poor_imm) 
+				num_good_anc, num_avg_anc, num_poor_anc, num_exc_anc = increment_count_on_status(status_anc, num_good_anc, num_avg_anc, num_poor_anc, num_exc_anc)
+				num_good_pnc, num_avg_pnc, num_poor_pnc, num_exc_pnc = increment_count_on_status(status_pnc, num_good_pnc, num_avg_pnc, num_poor_pnc, num_exc_pnc)
+				num_good_imm, num_avg_imm, num_poor_imm, num_exc_imm = increment_count_on_status(status_imm, num_good_imm, num_avg_imm, num_poor_imm, num_exc_imm) 
 
 				sub_data["status_anc"] = status_anc
 				sub_data["status_pnc"] = status_pnc

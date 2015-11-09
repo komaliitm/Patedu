@@ -62,6 +62,21 @@ body .modal-dialog {
     box-shadow: 2px 2px 20px #888888;
   }
 
+.status_label_orange 
+{
+    color: #F08615 !important;
+    background-color: #F08615 !important;
+    font-family: "Lucida Grande", "Arial", sans-serif;
+    font-size: 7px;
+    text-align: center;
+    width: auto;     
+    white-space: nowrap;
+    padding: 2px;
+    border: 1px solid grey;
+    border-radius:2px;   
+    box-shadow: 2px 2px 20px #888888;
+  }
+
 .status_label_green
 {
     color: #a0d468 !important;
