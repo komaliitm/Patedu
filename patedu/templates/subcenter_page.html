@@ -65,7 +65,7 @@
                             <span class="databox-text darkgray pull-right no-margin uppercase" id="ExceId"></span>
                         </div>
                         <div class="databox-row row-2 bordered-bottom bordered-ivory padding-10">
-                            <span class="badge badge-palegreen badge-empty pull-left margin-5"></span>
+                            <span class="badge badge-empty pull-left margin-5" style="color:#F08615 !important"></span>
                             <span class="databox-text darkgray pull-left no-margin hidden-xs">Good</span>
                             <span class="databox-text darkgray pull-right no-margin uppercase" id="GoodId"></span>
                         </div>
@@ -215,6 +215,7 @@
                                         <th ng-class="{'asc_label': SerialNum==1 && Asc ==1  , 'desc_label': SerialNum==1 && Asc == 0, 'no_label': SerialNum != 1}" ng-click="SortData($event, 1)" style="cursor:pointer">Status indicator&nbsp;</th>
                                         <th ng-class="{'asc_label': SerialNum==2 && Asc ==1  , 'desc_label': SerialNum==2 && Asc == 0, 'no_label': SerialNum != 2}" ng-click="SortData($event, 2)" style="cursor:pointer">Subcenter&nbsp;</th>
                                         <th ng-class="{'asc_label': SerialNum==3 && Asc ==1  , 'desc_label': SerialNum==3 && Asc == 0, 'no_label': SerialNum != 3}" ng-click="SortData($event, 3)" style="cursor:pointer">Beneficiary Count&nbsp;</th>
+                                        <th>Annual Mothers Target</th>
                                         <th>HMIS Beneficiary Count&nbsp;</th>
                                         <th ng-class="{'asc_label': SerialNum==4 && Asc ==1  , 'desc_label': SerialNum==4 && Asc == 0, 'no_label': SerialNum != 4}" ng-click="SortData($event, 4)" style="cursor:pointer">Due Services&nbsp;</th>
                                         <th ng-class="{'asc_label': SerialNum==5 && Asc ==1  , 'desc_label': SerialNum==5 && Asc == 0, 'no_label': SerialNum != 5}" ng-click="SortData($event, 5)" style="cursor:pointer">Given Services&nbsp;</th>
@@ -237,6 +238,7 @@
                                             <a ng-click="WorkplanModal(villageData.SubcenterId)"  style="cursor:pointer">#{villageData.Subcenter}#</a>
                                         </td>
                                         <td >#{villageData.Beneficiaries_anc}# </td>
+                                        <td>N/A</td>
                                         <td>N/A</td>
                                         <td>
                                             #{villageData.DueServices_anc }#
@@ -295,6 +297,7 @@
                                         <th ng-class="{'asc_label': SerialNum==1 && Asc ==1  , 'desc_label': SerialNum==1 && Asc == 0, 'no_label': SerialNum != 1}" ng-click="SortData($event, 1)" style="cursor:pointer">Status indicator&nbsp;</th>
                                         <th ng-class="{'asc_label': SerialNum==2 && Asc ==1  , 'desc_label': SerialNum==2 && Asc == 0, 'no_label': SerialNum != 2}" ng-click="SortData($event, 2)" style="cursor:pointer">Subcenter&nbsp;</th>
                                         <th ng-class="{'asc_label': SerialNum==3 && Asc ==1  , 'desc_label': SerialNum==3 && Asc == 0, 'no_label': SerialNum != 3}" ng-click="SortData($event, 3)" style="cursor:pointer">Beneficiary Count&nbsp;</th>
+                                        <th>Annual Children Target</th>
                                         <th>HMIS Beneficiary Count&nbsp;</th>
                                         <th ng-class="{'asc_label': SerialNum==4 && Asc ==1  , 'desc_label': SerialNum==4 && Asc == 0, 'no_label': SerialNum != 4}" ng-click="SortData($event, 4)" style="cursor:pointer">Due Services&nbsp;</th>
                                         <th ng-class="{'asc_label': SerialNum==5 && Asc ==1  , 'desc_label': SerialNum==5 && Asc == 0, 'no_label': SerialNum != 5}" ng-click="SortData($event, 5)" style="cursor:pointer">Given Services&nbsp;</th>
@@ -317,6 +320,7 @@
                                             <a ng-click="WorkplanModal(villageData.SubcenterId)"  style="cursor:pointer">#{villageData.Subcenter}#</a>
                                         </td>
                                         <td >#{villageData.Beneficiaries_imm}# </td>
+                                        <td>N/A</td>
                                         <td>N/A</td>
                                         <td>
                                             #{villageData.DueServices_imm }#

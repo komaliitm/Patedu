@@ -407,7 +407,7 @@ def BlockIndicesData(request):
 
 			sex_ratio = 0
 			female_infants = imm_benefs.filter(child_sex__icontains='f')
-			sex_ratio = ceil(((female_infants.count()/imm_benefs.count())*1000)) if imm_benefs else 0
+			sex_ratio = ceil(1000*2*female_infants.count()/imm_benefs.count()) if imm_benefs else 0
 
 			mreg_district_target = NHMTargets.objects.get(target_type='MREG', district=district, target_year=fin_marker.year).target_value
 			creg_district_target = NHMTargets.objects.get(target_type='CREG', district=district, target_year=fin_marker.year).target_value

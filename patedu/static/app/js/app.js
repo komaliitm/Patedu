@@ -587,11 +587,11 @@ app.directive('onFinishRender', function ($timeout) {
           if($scope.dashboardParams.domain == "1")
           {
             $scope.$emit('StaticPageInfo', static_ancinfo);
-            DrawPieChart($scope.dashdata.summary_anc.Excellet, $scope.dashdata.summary_anc.Good, $scope.dashdata.summary_anc.Average, $scope.dashdata.summary_anc.Poor);
+            DrawPieChart($scope.dashdata.summary_anc.Excellent, $scope.dashdata.summary_anc.Good, $scope.dashdata.summary_anc.Average, $scope.dashdata.summary_anc.Poor);
           }
           else if($scope.dashboardParams.domain == "2"){
             $scope.$emit('StaticPageInfo', static_imminfo);
-            DrawPieChart($scope.dashdata.summary_imm.Excellet, $scope.dashdata.summary_imm.Good, $scope.dashdata.summary_imm.Average, $scope.dashdata.summary_imm.Poor);
+            DrawPieChart($scope.dashdata.summary_imm.Excellent, $scope.dashdata.summary_imm.Good, $scope.dashdata.summary_imm.Average, $scope.dashdata.summary_imm.Poor);
           }
           PoplatePoints($scope.dashdata.data, $scope.dashboardParams.domain);
         }
@@ -786,7 +786,7 @@ app.directive('onFinishRender', function ($timeout) {
 
            subcenterService.getDashboardData($scope.dashboardParams).then(function(dashdata) {
             $scope.dashdata = dashdata;
-            DrawPieChart($scope.dashdata.summary_anc.Excellet, $scope.dashdata.summary_anc.Good, $scope.dashdata.summary_anc.Average, $scope.dashdata.summary_anc.Poor);
+            DrawPieChart($scope.dashdata.summary_anc.Excellent, $scope.dashdata.summary_anc.Good, $scope.dashdata.summary_anc.Average, $scope.dashdata.summary_anc.Poor);
             PoplatePoints($scope.dashdata.data, $scope.dashboardParams.domain);
             console.log($scope.dashdata);
             $scope.loading = false;
