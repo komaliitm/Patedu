@@ -771,10 +771,10 @@ def DashboardData(request, blockid = None):
 		since_months = this_month_date - relativedelta(months=12)
 
 	data = []
-	summary = {"Good":0, "Poor":0, "Average":0}
-	summary_anc = {"Good":0, "Poor":0, "Average":0}
-	summary_pnc = {"Good":0, "Poor":0, "Average":0}
-	summary_imm = {"Good":0, "Poor":0, "Average":0}
+	summary = {"Good":0, "Poor":0, "Average":0, "Excellent":0}
+	summary_anc = {"Good":0, "Poor":0, "Average":0, "Excellent":0}
+	summary_pnc = {"Good":0, "Poor":0, "Average":0, "Excellent":0}
+	summary_imm = {"Good":0, "Poor":0, "Average":0, "Excellent":0}
 	# num_good_anc = 0
 	# num_poor_anc = 0
 	# num_avg_anc = 0
