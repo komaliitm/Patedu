@@ -793,21 +793,26 @@ def DashboardData(request, blockid = None):
 			analytics_aggregator_allblocks.delay()
 			return HttpResponseNotAllowed('Check after 5 mins. Data generation in progress.') 
 		data += json.loads(analytics_data[0].data)
+
 		summary["Good"] += json.loads(analytics_data[0].summary)["Good"]
 		summary["Poor"] += json.loads(analytics_data[0].summary)["Poor"]
 		summary["Average"] += json.loads(analytics_data[0].summary)["Average"]
+		summary["Excellent"] += json.loads(analytics_data[0].summary)["Excellent"]
 
 		summary_anc["Good"] += json.loads(analytics_data[0].summary_anc)["Good"]
 		summary_anc["Poor"] += json.loads(analytics_data[0].summary_anc)["Poor"]
 		summary_anc["Average"] += json.loads(analytics_data[0].summary_anc)["Average"]
+		summary_anc["Excellent"] += json.loads(analytics_data[0].summary_anc)["Excellent"]
 
 		summary_pnc["Good"] += json.loads(analytics_data[0].summary_pnc)["Good"]
 		summary_pnc["Poor"] += json.loads(analytics_data[0].summary_pnc)["Poor"]
 		summary_pnc["Average"] += json.loads(analytics_data[0].summary_pnc)["Average"]
+		summary_pnc["Excellent"] += json.loads(analytics_data[0].summary_pnc)["Excellent"]
 
 		summary_imm["Good"] += json.loads(analytics_data[0].summary_imm)["Good"]
 		summary_imm["Poor"] += json.loads(analytics_data[0].summary_imm)["Poor"]
 		summary_imm["Average"] += json.loads(analytics_data[0].summary_imm)["Average"]
+		summary_imm["Excellent"] += json.loads(analytics_data[0].summary_imm)["Excellent"]
 	block_data = {}
 	block_data["data"] = data
 	block_data["summary"] = summary
