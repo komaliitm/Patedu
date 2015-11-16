@@ -15,7 +15,7 @@ from celery import shared_task
 import sys
 from mcts_transactions.models import *
 from mcts_identities.models import *
-from common.models import AnalyticsData
+from common.models import AnalyticsData, PopulationData, NHMTargets
 from math import ceil
 import unicodedata
 from dateutil.relativedelta import relativedelta
@@ -41,6 +41,13 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 
 	dt_month = today.date().month
 	dt_year = today.date().year
+
+	fin_marker = today_date.replace(month = 4, day=1)
+	if today_date.month < 4:
+		fin_marker = fin_marker.replace(year=today_date.year-1)
+	mreg_district_target = NHMTargets.objects.get(target_type='MREG', district=district, target_year=fin_marker.year).target_value
+	creg_district_target = NHMTargets.objects.get(target_type='CREG', district=district, target_year=fin_marker.year).target_value
+	district_population = PopulationData.objects.get(unit_type=District.__name__, MCTS_ID= district.MCTS_ID, year=fin_marker.year).population
 
 	month_span = [1, 2, 3, 4, 5, 6, 12]
 	for months in month_span:
@@ -82,6 +89,11 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 				data_pnc = ProcessSubcenterData(pnc_benefs, sub, since_months, Events.PNC_REG_VAL, months)
 				data_imm = ProcessSubcenterData(imm_benefs, sub, since_months, Events.IMM_REG_VAL, months)
 
+				subc_population = PopulationData.objects.get(unit_type=SubCenter.__name__, MCTS_ID=sub.MCTS_ID, year=fin_marker.year).population
+				mreg_target = ceil((mreg_district_target * subc_population) / (district_population) )
+				creg_target = ceil((creg_district_target * subc_population) / (district_population) )	
+				sub_data["mreg_target"] = mreg_target
+				sub_data["creg_target"] = creg_target
 
 				sub_data["Adherence_anc"] = data_anc["Adherence"]
 				sub_data["Adherence_pnc"] = data_pnc["Adherence"]
