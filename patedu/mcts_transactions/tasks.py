@@ -20,6 +20,7 @@ from math import ceil
 import unicodedata
 from dateutil.relativedelta import relativedelta
 from mcts_identities.models import District, SubCenter, Block, Beneficiary, ANCBenef, PNCBenef, IMMBenef
+from math import ceil
 
 @shared_task
 def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
