@@ -53,6 +53,20 @@ def AccountsInit():
         except:
             pass
 
+def LoadSubcenterPopulation():
+    with open('sc_targets.txt', 'r') as f:
+        j_string = f.read()
+    sc_pops = json.loads(j_string)
+    from common.models import PopulationData
+    for population_item in sc_pops:
+        sc_str = population_item["subcenter"]
+        _regSearch = re.search('(\d+)', sc_str)
+        if _regSearch:
+            sc_mcts_id = _regSearch.group(0).strip()        
+        population_data = PopulationData.objects.create(population= population_item["population"], last_updated=utcnow_aware(),\
+            MCTS_ID=sc_mcts_id, unit_type=SubCenter.__name__)
+
+
 def LoadPopulationData(orm, year):
     file_to_read = 'population_data_'+str(year)+'.txt'
     file_path = os.path.join(settings.STATIC_ROOT, 'common', file_to_read)
