@@ -89,11 +89,16 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 				data_pnc = ProcessSubcenterData(pnc_benefs, sub, since_months, Events.PNC_REG_VAL, months)
 				data_imm = ProcessSubcenterData(imm_benefs, sub, since_months, Events.IMM_REG_VAL, months)
 
-				subc_population = PopulationData.objects.get(unit_type=SubCenter.__name__, MCTS_ID=sub.MCTS_ID, year=fin_marker.year).population
-				mreg_target = ceil((mreg_district_target * subc_population) / (district_population) )
-				creg_target = ceil((creg_district_target * subc_population) / (district_population) )	
-				sub_data["mreg_target"] = mreg_target
-				sub_data["creg_target"] = creg_target
+				try:
+					subc_population = PopulationData.objects.get(unit_type=SubCenter.__name__, MCTS_ID=sub.MCTS_ID, year=fin_marker.year).population
+					mreg_target = ceil((mreg_district_target * subc_population) / (district_population) )
+					creg_target = ceil((creg_district_target * subc_population) / (district_population) )	
+					sub_data["mreg_target"] = mreg_target
+					sub_data["creg_target"] = creg_target
+				except:
+					sub_data["mreg_target"] = 'NA'
+					sub_data["creg_target"] = 'NA'
+				
 
 				sub_data["Adherence_anc"] = data_anc["Adherence"]
 				sub_data["Adherence_pnc"] = data_pnc["Adherence"]
