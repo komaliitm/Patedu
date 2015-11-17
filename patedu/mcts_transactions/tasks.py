@@ -84,7 +84,7 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 				sub_data["Beneficiaries_pnc"] = pnc_benefs.count()
 				sub_data["Beneficiaries_imm"] = imm_benefs.filter(dob__gte=imm_cutoff).count()
 
-				from mcts_transactions.views import ProcessSubcenterData, get_status, increment_count_on_status
+				from mcts_transactions.views import ProcessSubcenterData, get_status, increment_count_on_status, get_reg_status
 				data_anc = ProcessSubcenterData(anc_benefs, sub, since_months, Events.ANC_REG_VAL, months)
 				data_pnc = ProcessSubcenterData(pnc_benefs, sub, since_months, Events.PNC_REG_VAL, months)
 				data_imm = ProcessSubcenterData(imm_benefs, sub, since_months, Events.IMM_REG_VAL, months)
