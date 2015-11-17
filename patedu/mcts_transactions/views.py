@@ -716,6 +716,8 @@ def ProcessSubcenterData(benefs, sub, since_months, reg_type, months):
 	}
 
 def get_reg_status(value, status, reason, cutoff1, cutoff2):
+	if value == 0:
+		return status, reason
 	if value > cutoff2:
 		reason += ' Regsitration is good.'
 	elif value <= cutoff2 and value > cutoff1:
