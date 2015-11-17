@@ -344,12 +344,15 @@ def OutreachData(request):
 			subcenters_benef = []
 			for subcenter in subcenters:
 				#Calculate seprately, for this subcenter calls stats in each area
+				
+				anm_status_map = ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, subcenter=subcenter, role='ANM').values('status').annotate(count=Count('id'))
+				asha_status_map = ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, subcenter=subcenter, role='ASHA').values('status').annotate(count=Count('id'))
 				dict_anm = {
 					'name':subcenter.name,
 					'scheduled':'NA',
 					'sent':ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, subcenter=subcenter, role='ANM').count(),
 					'answered':ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, status='completed', subcenter=subcenter, role='ANM').count(),
-					'status_map': ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, status='completed', subcenter=subcenter, role='ANM').values('status').annotate(count=Count('id'))
+					'status_map': [status for status in anm_status_map]
 				}
 
 				dict_asha = {
@@ -357,7 +360,7 @@ def OutreachData(request):
 					'scheduled':'NA',
 					'sent':ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, subcenter=subcenter, role='ASHA').count(),
 					'answered':ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, status='completed', subcenter=subcenter, role='ASHA').count(),
-					'status_map': ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, status='completed', subcenter=subcenter, role='ASHA').values('status').annotate(count=Count('id'))
+					'status_map': [status for status in asha_status_map]
 				}
 
 				dict_benef = {
