@@ -298,6 +298,8 @@ def ExotelUpdateCallStatus(request):
 def OutreachData(request):
 	today_date = utcnow_aware().date()
 	this_month_date = today_date.replace(day=1)
+	this_week = today_date.day%7
+	last_week_date = today_date.replace(day=7*(this_week-1))
 
 	if request.method == 'GET':
 		district_mcts_id = str(request.GET.get('district_mcts_id')) if request.GET.get('district_mcts_id') else '36'
@@ -329,6 +331,13 @@ def OutreachData(request):
 			benef_outreach_data['sent'] = 0
 			benef_outreach_data['answered'] = 0
 			
+			anm_outreach_data['total'] = ExotelCallStatus.objects.filter(subcenter__block=block, role='ANM').count()
+			anm_outreach_data['week'] = ExotelCallStatus.objects.filter(date_initiated__gte=last_week_date, subcenter__block=block, role='ANM').count()
+
+			asha_outreach_data['total'] = ExotelCallStatus.objects.filter(subcenter__block=block, role='ASHA').count()
+			asha_outreach_data['week'] = ExotelCallStatus.objects.filter(date_initiated__gte=last_week_date, subcenter__block=block, role='ASHA').count()
+
+
 			subcenters = SubCenter.objects.filter(block=block)
 			subcenters_anm = []
 			subcenters_asha = []
@@ -339,14 +348,16 @@ def OutreachData(request):
 					'name':subcenter.name,
 					'scheduled':'NA',
 					'sent':ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, subcenter=subcenter, role='ANM').count(),
-					'answered':ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, status='completed', subcenter=subcenter, role='ANM').count()
+					'answered':ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, status='completed', subcenter=subcenter, role='ANM').count(),
+					'status_map': ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, status='completed', subcenter=subcenter, role='ANM').values('status').annotate(count=Count('id'))
 				}
 
 				dict_asha = {
 					'name':subcenter.name,
 					'scheduled':'NA',
 					'sent':ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, subcenter=subcenter, role='ASHA').count(),
-					'answered':ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, status='completed', subcenter=subcenter, role='ASHA').count()
+					'answered':ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, status='completed', subcenter=subcenter, role='ASHA').count(),
+					'status_map': ExotelCallStatus.objects.filter(date_initiated__gte=this_month_date, status='completed', subcenter=subcenter, role='ASHA').values('status').annotate(count=Count('id'))
 				}
 
 				dict_benef = {

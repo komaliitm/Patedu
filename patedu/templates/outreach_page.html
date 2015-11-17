@@ -20,10 +20,12 @@
                         <h4 class="panel-title">
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-anm" href="#block#{$index}#-anm" target="self">
                             	<div class="row">
-                            		<div class="col-xs-3"><b>#{block.name}#</b></div>
-                            		<div class="col-xs-3">Scheduled:&nbsp;#{block.scheduled}#</div>
-                            		<div class="col-xs-3">Sent:&nbsp;#{block.sent}#</div>
-                            		<div class="col-xs-3">Answered:&nbsp;#{block.answered}#</div>
+                            		<div class="col-xs-2"><b>#{block.name}#</b></div>
+                            		<div class="col-xs-2">Scheduled:&nbsp;#{block.scheduled}#</div>
+                            		<div class="col-xs-2">Sent:&nbsp;#{block.sent}#</div>
+                            		<div class="col-xs-2">Answered:&nbsp;#{block.answered}#</div>
+                                    <div class="col-xs-2">Total:&nbsp;#{block.total}#</div>
+                                    <div class="col-xs-2">This Week:&nbsp;#{block.week}#</div>
                             	</div>
                             </a>
                         </h4>
@@ -37,6 +39,7 @@
                             			<th>Scheduled</th>
                             			<th>Sent</th>
                             			<th>Answered</th>
+                                        <th>Status</th>
                             		</tr>
                             	</thead>
                             	<tbody>
@@ -45,6 +48,12 @@
                             			<td>#{subcenter.scheduled}#</td>
                             			<td>#{subcenter.sent}#</td>
                             			<td>#{subcenter.answered}#</td>
+                                        <td>
+                                            <span ng-repeat="status in subcenter.status_map">
+                                                #{status.status}#:#{status.count}#
+                                                &nbsp;
+                                            </span>
+                                        </td>
                             		</tr>
                             	</tbody>
                             </table>
@@ -61,10 +70,12 @@
                         <h4 class="panel-title">
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-anm" href="#block#{$index}#-asha" target="self">
                                 <div class="row">
-                            		<div class="col-xs-3"><b>#{block.name}#</b></div>
-                            		<div class="col-xs-3">Scheduled:&nbsp;#{block.scheduled}#</div>
-                            		<div class="col-xs-3">Sent:&nbsp;#{block.sent}#</div>
-                            		<div class="col-xs-3">Answered:&nbsp;#{block.answered}#</div>
+                            		<div class="col-xs-2"><b>#{block.name}#</b></div>
+                            		<div class="col-xs-2">Scheduled:&nbsp;#{block.scheduled}#</div>
+                            		<div class="col-xs-2">Sent:&nbsp;#{block.sent}#</div>
+                            		<div class="col-xs-2">Answered:&nbsp;#{block.answered}#</div>
+                                    <div class="col-xs-2">Total:&nbsp;#{block.total}#</div>
+                                    <div class="col-xs-2">This Week:&nbsp;#{block.week}#</div>
                             	</div>
                             </a>
                         </h4>
@@ -78,6 +89,7 @@
                             			<th>Scheduled</th>
                             			<th>Sent</th>
                             			<th>Answered</th>
+                                        <th>Status</th>
                             		</tr>
                             	</thead>
                             	<tbody>
@@ -86,6 +98,12 @@
                             			<td>#{subcenter.scheduled}#</td>
                             			<td>#{subcenter.sent}#</td>
                             			<td>#{subcenter.answered}#</td>
+                                        <td>
+                                            <span ng-repeat="status in subcenter.status_map">
+                                                #{status.status}#:#{status.count}#
+                                                &nbsp;
+                                            </span>
+                                        </td>
                             		</tr>
                             	</tbody>
                             </table>
