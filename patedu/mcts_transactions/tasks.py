@@ -89,12 +89,16 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 				data_pnc = ProcessSubcenterData(pnc_benefs, sub, since_months, Events.PNC_REG_VAL, months)
 				data_imm = ProcessSubcenterData(imm_benefs, sub, since_months, Events.IMM_REG_VAL, months)
 
+				mreg_status = 0
+				creg_status = 0
 				try:
 					subc_population = PopulationData.objects.get(unit_type=SubCenter.__name__, MCTS_ID=sub.MCTS_ID, year=fin_marker.year).population
 					mreg_target = ceil((mreg_district_target * subc_population) / (district_population) )
 					creg_target = ceil((creg_district_target * subc_population) / (district_population) )	
 					sub_data["mreg_target"] = mreg_target
 					sub_data["creg_target"] = creg_target
+					mreg_status = sub_data["Beneficiaries_anc"]/mreg_target if mreg_target else 0 
+					creg_target = sub_data["Beneficiaries_imm"]/creg_target if creg_target else 0
 				except:
 					sub_data["mreg_target"] = 'NA'
 					sub_data["creg_target"] = 'NA'
@@ -153,6 +157,9 @@ def analytics_aggregator_allblocks(district_mcts_id='36', rw=False):
 					else:
 						status_imm = 0
 						reason_imm += "But Low beneficiary registration or updation"
+
+				status_anc, reason_anc = get_reg_status(mreg_status, status_anc, reason_anc, .4, .7)
+				status_imm, reason_imm = get_reg_status(creg_status, status_imm, reason_imm, .4, .7)
 
 				num_good_anc, num_avg_anc, num_poor_anc, num_exc_anc = increment_count_on_status(status_anc, num_good_anc, num_avg_anc, num_poor_anc, num_exc_anc)
 				num_good_pnc, num_avg_pnc, num_poor_pnc, num_exc_pnc = increment_count_on_status(status_pnc, num_good_pnc, num_avg_pnc, num_poor_pnc, num_exc_pnc)

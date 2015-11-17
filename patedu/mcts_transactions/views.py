@@ -715,6 +715,19 @@ def ProcessSubcenterData(benefs, sub, since_months, reg_type, months):
 			'ProgressData':ProgressData
 	}
 
+def get_reg_status(value, status, reason, cutoff1, cutoff2):
+	if value > cutoff2:
+		reason += ' Regsitration is good.'
+	elif value <= cutoff2 and value > cutoff1:
+		if status > 2:
+			status = 2
+		reason += ' Registration is low at below 70%'
+	elif value <= cutoff1:
+		if status > 0:
+			status = 0
+		reason += ' Registration is alarmingly low at below 40%'
+	return status, reason
+
 def get_status(value, cutoff1, cutoff2):
 	if value >= cutoff2 + (cutoff2 - cutoff1): 
 		status = 0
