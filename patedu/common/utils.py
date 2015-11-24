@@ -174,7 +174,10 @@ def CallWrapper_Exotel(id, role, type, demo_phone=None):
     #Send SMS
     sms_text_hexlified = toHex(sms_text)
     #print sms_text_hexlified
-    SendSMSUnicode(recNum=phone, msgtxt=sms_text_hexlified, senderId='CMOJHS')
+    try:
+        SendSMSUnicode(recNum=phone, msgtxt=sms_text_hexlified, senderId='CMOJHS')
+    except:
+        pass
     #Send Exotel Call here
     custom_field = str(id)+"_"+role+"_"+type
     callback_url = "http://niramayh.com/subcenter/exotel/update/"
@@ -183,10 +186,13 @@ def CallWrapper_Exotel(id, role, type, demo_phone=None):
     response = connect_customer_to_app(customer_no=phone, callerid="01130017630", CustomField=custom_field, callback_url=callback_url)
     result = response.text
     j_result = json.loads(result)
-    call = j_result.get('Call')
-    sid = call.get('Sid') if call else None
-    status = call.get('Status') if call else None
-    if not sid:
+    try:
+        call = j_result.get('Call')
+        sid = call.get('Sid') if call else None
+        status = call.get('Status') if call else None
+        if not sid:
+            return None
+    except:
         return None
     #update call status here
     try: 
@@ -210,7 +216,9 @@ def GenerateNumberString_ANM(benefs):
         number_string += '91'+due_anm.phone
         CallWrapper_Exotel(due_anm.id, 'ANM', 'ods')
     number_string += ',919390681183'
+    CallWrapper_Exotel(due_anms[0].id, 'ANM', 'ods', demo_phone='918005193059')
     CallWrapper_Exotel(due_anms[0].id, 'ANM', 'ods', demo_phone='919390681183')
+    CallWrapper_Exotel(due_anms[0].id, 'ANM', 'ods', demo_phone='919415509425')
     print "ANM count: "+str(anm_count)
     return number_string
     
