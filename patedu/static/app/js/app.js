@@ -604,7 +604,7 @@ app.directive('onFinishRender', function ($timeout) {
           dom.addClass('status_label_green');
         }
         else if(state ==2){
-          dom.addClass('status_label_orange');
+          dom.addClass('status_label_blue');
           ret_text = 'GOOD';
         }
         else if(state==1){
@@ -1052,7 +1052,7 @@ app.directive('onFinishRender', function ($timeout) {
       data: [
         [1, a]
       ],
-      color: '#F08615'
+      color: '#2b6194'
     }, {
       data: [
         [1, b]
@@ -1130,7 +1130,7 @@ app.directive('onFinishRender', function ($timeout) {
       } else if (status == 1) {
         icon_new = "/static/beyond/img/Yellow.png";
       } else if (status == 2){
-        icon_new = "/static/beyond/img/Orange.png";
+        icon_new = "/static/beyond/img/Blue.png";
       } else {
         icon_new = "/static/beyond/img/Green.png";
       }
